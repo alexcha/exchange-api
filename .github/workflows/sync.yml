@@ -15,7 +15,7 @@ jobs:
       - name: Fetch Global Rates
         run: |
           mkdir -p api/v1
-          # OER에서 데이터 가져오기 (등록하신 키 사용)
+          # OER에서 데이터 가져오기 (등록하신 키 사용)   -
           curl -s "https://openexchangerates.org/api/latest.json?app_id=${{ secrets.OER_APP_ID }}" > raw.json
           
           # KRW 기준 환율 추출 및 역산 (jq 도구 사용)
