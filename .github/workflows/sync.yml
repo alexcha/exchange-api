@@ -1,1 +1,36 @@
 
+
+name: ChaCha-Exchange-Sync
+on:
+  schedule:
+    - cron: '0 */6 * * *' # 6시간마다 자동 실행
+  workflow_dispatch:      # 수동 실행 버튼 활성화
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Fetch Global Rates
+        run: |
+          mkdir -p api/v1
+          # OER에서 데이터 가져오기 (등록하신 키 사용)   -
+          curl -s "https://openexchangerates.org/api/latest.json?app_id=${{ secrets.OER_APP_ID }}" > raw.json
+          
+          # KRW 기준 환율 추출 및 역산 (jq 도구 사용)
+          KRW_RATE=$(cat raw.json | jq '.rates.KRW')
+          cat raw.json | jq --arg krw "$KRW_RATE" '{
+            base: "KRW",
+            timestamp: .timestamp,
+            rates: (.rates | map_values(. / ($krw | tonumber)))
+          }' > api/v1/rates.json
+
+      - name: Push Rates
+        run: |
+          git config --global user.name "ChaCha-Bot"
+          git config --global user.email "bot@alexcha.dev"
+          git add api/v1/rates.json
+          git commit -m "Update Global Rates: $(date)" || exit 0
+          git push
