@@ -17,18 +17,13 @@ jobs:
       - name: Fetch and Process Exchange Rates
         run: |
           mkdir -p api/v1
-          
-          # 1. OER API에서 최신 환율(rates) 가져오기
+          # 1. 환율 및 국가 이름 데이터 가져오기
           curl -s "https://openexchangerates.org/api/latest.json?app_id=${{ secrets.OER_APP_ID }}" > raw_rates.json
-          
-          # 2. OER API에서 모든 통화 이름(names) 가져오기
           curl -s "https://openexchangerates.org/api/currencies.json" > raw_names.json
           
-          # 3. 표준 ISO 8601 UTC 형식 생성
           UTC_TIME=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           
-          # 4. jq를 사용하여 두 파일을 병합 (배열 형태로 구조화)
-          # 'currencies' 필드 안에 [{code, name, rate}, ...] 구조로 저장됩니다.
+          # 2. 데이터를 병합하여 api/v1/rates.json 생성
           cat raw_rates.json | jq --arg date "$UTC_TIME" --slurpfile names raw_names.json \
           '{
             base: .base,
@@ -48,5 +43,11 @@ jobs:
           git config --global user.email "bot@alexcha.dev"
           git add api/v1/rates.json
           
-          # 변경사항이 있을 때만 커밋 및 푸시
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update exchange rates with names (UTC): $(date -u +'%Y-%m-%d %H:%M')" && git push)
+          if ! git diff --quiet --staged; then
+            git commit -m "Update exchange rates with names (UTC): $(date -u +'%Y-%m-%d %H:%M')"
+            # 에러 해결 핵심: 푸시 전 원격의 최신 커밋을 가져와 합칩니다.
+            git pull --rebase origin main
+            git push
+          else
+            echo "No changes to commit"
+          fi
