@@ -1,24 +1,23 @@
-name: ChaCha-Sync
-on:
-  workflow_dispatch:
-  push:
-    branches: [ main ]
+public static void fetchRate(OnRateLoaded callback) {
+    new Thread(() -> {
+        try {
+            // 알렉스님의 GitHub Raw 주소
+            String urlPath = "https://raw.githubusercontent.com/alexcha/exchange-api/refs/heads/main/api/v1/rates.json";
+            HttpURLConnection conn = (HttpURLConnection) new URL(urlPath).openConnection();
+            
+            InputStream in = conn.getInputStream();
+            Scanner s = new Scanner(in).useDelimiter("\\A");
+            String jsonStr = s.hasNext() ? s.next() : "";
+            
+            JSONObject json = new JSONObject(jsonStr);
+            JSONObject rates = json.getJSONObject("rates");
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run
-        run: |
-          mkdir -p api/v1
-          curl -s "https://openexchangerates.org/api/latest.json?app_id=${{ secrets.OER_APP_ID }}" > raw.json
-          KRW_RATE=$(cat raw.json | jq '.rates.KRW')
-          cat raw.json | jq --arg krw "$KRW_RATE" '{base: "KRW", rates: (.rates | map_values(. / ($krw | tonumber)))}' > api/v1/rates.json
-      - name: Push
-        run: |
-          git config --global user.name "bot"
-          git config --global user.email "bot@bot.com"
-          git add .
-          git commit -m "update" || exit 0
-          git push
+            // JSON의 Base가 KRW이므로, 여기서 USD 값은 '1원당 달러(0.00067...)'입니다.
+            double krwToUsd = rates.getDouble("USD");
+            
+            new Handler(Looper.getMainLooper()).post(() -> callback.onLoaded(krwToUsd));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }).start();
+}
