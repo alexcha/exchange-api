@@ -1,8 +1,8 @@
-name: ChaCha-Sync
+Name: ChaCha-Sync
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */6 * * *' # 6시간마다 자동으로 환율 업데이트 (선택 사항)
+    - cron: '0 */6 * * *' # 6시간마다 자동으로 환율 업데이트
   push:
     branches: [ main ]
 
@@ -15,17 +15,21 @@ jobs:
       - name: Fetch and Process Exchange Rates
         run: |
           mkdir -p api/v1
-          # 1. OER API에서 최신 환율 가져오기 (기본 Base는 USD임)
+          # 1. OER API에서 최신 환율 가져오기
           curl -s "https://openexchangerates.org/api/latest.json?app_id=${{ secrets.OER_APP_ID }}" > raw.json
           
-          # 2. 불필요한 데이터 제거하고 base와 rates만 깔끔하게 추출
-          # 이제 base는 "USD"가 되고, rates.KRW는 "1475.12" 같은 직관적인 숫자가 됩니다.
-          cat raw.json | jq '{base: .base, rates: .rates}' > api/v1/rates.json
+          # 2. 현재 시간을 표준 ISO 8601 UTC 형식으로 생성 (예: 2026-04-16T11:20:00Z)
+          UTC_TIME=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          
+          # 3. base, rates와 함께 last_updated 필드에 UTC 시간 주입
+          cat raw.json | jq --arg date "$UTC_TIME" \
+          '{base: .base, last_updated: $date, rates: .rates}' > api/v1/rates.json
 
       - name: Push Changes
         run: |
           git config --global user.name "alexcha-bot"
           git config --global user.email "bot@alexcha.dev"
           git add api/v1/rates.json
-          # 변경사항이 있을 때만 커밋
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update exchange rates: $(date +'%Y-%m-%d %H:%M')" && git push)
+          
+          # 변경사항이 있을 때만 커밋 (메시지에도 시간 포함)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update exchange rates (UTC): $(date -u +'%Y-%m-%d %H:%M')" && git push)
