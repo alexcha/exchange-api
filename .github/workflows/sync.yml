@@ -10,22 +10,37 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # 깃허브에 파일을 올리려면 이 권한이 꼭 필요합니다.
+      contents: write
     steps:
       - uses: actions/checkout@v3
 
       - name: Fetch and Process Exchange Rates
         run: |
           mkdir -p api/v1
-          # 1. OER API에서 최신 환율 가져오기
-          curl -s "https://openexchangerates.org/api/latest.json?app_id=${{ secrets.OER_APP_ID }}" > raw.json
           
-          # 2. 표준 ISO 8601 UTC 형식 생성
+          # 1. OER API에서 최신 환율(rates) 가져오기
+          curl -s "https://openexchangerates.org/api/latest.json?app_id=${{ secrets.OER_APP_ID }}" > raw_rates.json
+          
+          # 2. OER API에서 모든 통화 이름(names) 가져오기
+          curl -s "https://openexchangerates.org/api/currencies.json" > raw_names.json
+          
+          # 3. 표준 ISO 8601 UTC 형식 생성
           UTC_TIME=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           
-          # 3. jq를 사용해 JSON 재구성
-          cat raw.json | jq --arg date "$UTC_TIME" \
-          '{base: .base, last_updated: $date, rates: .rates}' > api/v1/rates.json
+          # 4. jq를 사용하여 두 파일을 병합 (배열 형태로 구조화)
+          # 'currencies' 필드 안에 [{code, name, rate}, ...] 구조로 저장됩니다.
+          cat raw_rates.json | jq --arg date "$UTC_TIME" --slurpfile names raw_names.json \
+          '{
+            base: .base,
+            last_updated: $date,
+            currencies: (
+              .rates | to_entries | map({
+                code: .key,
+                rate: .value,
+                name: ($names[0][.key] // .key)
+              })
+            )
+          }' > api/v1/rates.json
 
       - name: Push Changes
         run: |
@@ -33,5 +48,5 @@ jobs:
           git config --global user.email "bot@alexcha.dev"
           git add api/v1/rates.json
           
-          # 변경사항 확인 후 푸시
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update exchange rates (UTC): $(date -u +'%Y-%m-%d %H:%M')" && git push)
+          # 변경사항이 있을 때만 커밋 및 푸시
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update exchange rates with names (UTC): $(date -u +'%Y-%m-%d %H:%M')" && git push)
