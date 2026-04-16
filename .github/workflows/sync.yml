@@ -1,14 +1,16 @@
-Name: ChaCha-Sync
+name: ChaCha-Sync
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */6 * * *' # 6시간마다 자동으로 환율 업데이트
+    - cron: '0 */6 * * *'
   push:
     branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # 깃허브에 파일을 올리려면 이 권한이 꼭 필요합니다.
     steps:
       - uses: actions/checkout@v3
 
@@ -18,10 +20,10 @@ jobs:
           # 1. OER API에서 최신 환율 가져오기
           curl -s "https://openexchangerates.org/api/latest.json?app_id=${{ secrets.OER_APP_ID }}" > raw.json
           
-          # 2. 현재 시간을 표준 ISO 8601 UTC 형식으로 생성 (예: 2026-04-16T11:20:00Z)
+          # 2. 표준 ISO 8601 UTC 형식 생성
           UTC_TIME=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           
-          # 3. base, rates와 함께 last_updated 필드에 UTC 시간 주입
+          # 3. jq를 사용해 JSON 재구성
           cat raw.json | jq --arg date "$UTC_TIME" \
           '{base: .base, last_updated: $date, rates: .rates}' > api/v1/rates.json
 
@@ -31,5 +33,5 @@ jobs:
           git config --global user.email "bot@alexcha.dev"
           git add api/v1/rates.json
           
-          # 변경사항이 있을 때만 커밋 (메시지에도 시간 포함)
+          # 변경사항 확인 후 푸시
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update exchange rates (UTC): $(date -u +'%Y-%m-%d %H:%M')" && git push)
