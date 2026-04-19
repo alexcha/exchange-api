@@ -1,6 +1,6 @@
 {
   "base": "USD",
-  "last_updated": "2026-04-19T07:22:54Z",
+  "last_updated": "2026-04-19T08:39:59Z",
   "currencies": [
     {
       "code": "AED",
@@ -74,7 +74,7 @@
     },
     {
       "code": "BHD",
-      "rate": 0.378335,
+      "rate": 0.377935,
       "name": "Bahraini Dinar"
     },
     {
@@ -109,7 +109,7 @@
     },
     {
       "code": "BTC",
-      "rate": 0.000013257861,
+      "rate": 0.000013281777,
       "name": "Bitcoin"
     },
     {
@@ -149,7 +149,7 @@
     },
     {
       "code": "CLF",
-      "rate": 0.022269,
+      "rate": 0.022275,
       "name": "Chilean Unit of Account (UF)"
     },
     {
@@ -284,12 +284,12 @@
     },
     {
       "code": "GTQ",
-      "rate": 7.647178,
+      "rate": 7.660623,
       "name": "Guatemalan Quetzal"
     },
     {
       "code": "GYD",
-      "rate": 209.203794,
+      "rate": 209.571526,
       "name": "Guyanaese Dollar"
     },
     {
@@ -314,7 +314,7 @@
     },
     {
       "code": "HUF",
-      "rate": 307.31,
+      "rate": 308.446296,
       "name": "Hungarian Forint"
     },
     {
@@ -349,7 +349,7 @@
     },
     {
       "code": "ISK",
-      "rate": 121.94,
+      "rate": 122.298173,
       "name": "Icelandic Króna"
     },
     {
@@ -359,7 +359,7 @@
     },
     {
       "code": "JMD",
-      "rate": 158.098229,
+      "rate": 158.376154,
       "name": "Jamaican Dollar"
     },
     {
@@ -404,7 +404,7 @@
     },
     {
       "code": "KWD",
-      "rate": 0.309279,
+      "rate": 0.309652,
       "name": "Kuwaiti Dinar"
     },
     {
@@ -429,7 +429,7 @@
     },
     {
       "code": "LKR",
-      "rate": 316.083038,
+      "rate": 316.6334,
       "name": "Sri Lankan Rupee"
     },
     {
@@ -599,7 +599,7 @@
     },
     {
       "code": "RSD",
-      "rate": 99.696,
+      "rate": 99.664526,
       "name": "Serbian Dinar"
     },
     {
@@ -624,7 +624,7 @@
     },
     {
       "code": "SCR",
-      "rate": 15.011,
+      "rate": 15.058814,
       "name": "Seychellois Rupee"
     },
     {
@@ -664,7 +664,7 @@
     },
     {
       "code": "SRD",
-      "rate": 37.502,
+      "rate": 37.706,
       "name": "Surinamese Dollar"
     },
     {
@@ -684,7 +684,7 @@
     },
     {
       "code": "SVC",
-      "rate": 8.74947,
+      "rate": 8.764703,
       "name": "Salvadoran Colón"
     },
     {
@@ -699,7 +699,7 @@
     },
     {
       "code": "THB",
-      "rate": 32.11941,
+      "rate": 32.119411,
       "name": "Thai Baht"
     },
     {
@@ -744,7 +744,7 @@
     },
     {
       "code": "UAH",
-      "rate": 44.018082,
+      "rate": 44.099113,
       "name": "Ukrainian Hryvnia"
     },
     {
@@ -759,7 +759,7 @@
     },
     {
       "code": "UYU",
-      "rate": 39.848821,
+      "rate": 39.759763,
       "name": "Uruguayan Peso"
     },
     {
@@ -786,56 +786,6 @@
       "code": "WST",
       "rate": 2.74422,
       "name": "Samoan Tala"
-    },
-    {
-      "code": "XAF",
-      "rate": 557.170645,
-      "name": "CFA Franc BEAC"
-    },
-    {
-      "code": "XAG",
-      "rate": 0.01237318,
-      "name": "Silver Ounce"
-    },
-    {
-      "code": "XAU",
-      "rate": 0.00020696,
-      "name": "Gold Ounce"
-    },
-    {
-      "code": "XCD",
-      "rate": 2.70255,
-      "name": "East Caribbean Dollar"
-    },
-    {
-      "code": "XCG",
-      "rate": 1.802204,
-      "name": "Caribbean Guilder"
-    },
-    {
-      "code": "XDR",
-      "rate": 0.692853,
-      "name": "Special Drawing Rights"
-    },
-    {
-      "code": "XOF",
-      "rate": 557.170645,
-      "name": "CFA Franc BCEAO"
-    },
-    {
-      "code": "XPD",
-      "rate": 0.00064511,
-      "name": "Palladium Ounce"
-    },
-    {
-      "code": "XPF",
-      "rate": 101.360522,
-      "name": "CFP Franc"
-    },
-    {
-      "code": "XPT",
-      "rate": 0.00048016,
-      "name": "Platinum Ounce"
     },
     {
       "code": "YER",
