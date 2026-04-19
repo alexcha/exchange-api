@@ -17,23 +17,32 @@ jobs:
       - name: Fetch and Process Exchange Rates
         run: |
           mkdir -p api/v1
-          # 1. 환율 및 국가 이름 데이터 가져오기
+          # 1. 환율 및 통화 명칭 데이터 가져오기
           curl -s "https://openexchangerates.org/api/latest.json?app_id=${{ secrets.OER_APP_ID }}" > raw_rates.json
           curl -s "https://openexchangerates.org/api/currencies.json" > raw_names.json
           
           UTC_TIME=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           
-          # 2. 데이터를 병합하여 api/v1/rates.json 생성
+          # 2. 이미지에 나온 국기 없는 특수 통화 및 원자재(팔라듐 등) 제외 필터링
+          # XCD, XCG, XDR, XOF, XPD, XPF, XPT 등을 포함한 'X' 계열 전체 차단
           cat raw_rates.json | jq --arg date "$UTC_TIME" --slurpfile names raw_names.json \
           '{
             base: .base,
             last_updated: $date,
             currencies: (
-              .rates | to_entries | map({
+              .rates | to_entries | 
+              map({
                 code: .key,
                 rate: .value,
                 name: ($names[0][.key] // .key)
-              })
+              }) | 
+              # 필터링 조건: 
+              # - 국가 화폐가 아닌 'X'로 시작하는 모든 코드 제외 (XPD, XAU, XDR 등)
+              # - 코드 길이가 3자리가 아닌 비표준 데이터 제외
+              map(select(
+                (.code | startswith("X") | not) and
+                (.code | length == 3)
+              ))
             )
           }' > api/v1/rates.json
 
@@ -44,8 +53,7 @@ jobs:
           git add api/v1/rates.json
           
           if ! git diff --quiet --staged; then
-            git commit -m "Update exchange rates with names (UTC): $(date -u +'%Y-%m-%d %H:%M')"
-            # 에러 해결 핵심: 푸시 전 원격의 최신 커밋을 가져와 합칩니다.
+            git commit -m "Update exchange rates (Filtered) (UTC): $(date -u +'%Y-%m-%d %H:%M')"
             git pull --rebase origin main
             git push
           else
