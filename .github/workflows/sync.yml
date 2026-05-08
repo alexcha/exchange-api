@@ -2,7 +2,7 @@ name: ChaCha-Sync
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 * * * *'  # 1시간 주기 실행 (하루 24회)
   push:
     branches: [ main ]
 
@@ -16,15 +16,15 @@ jobs:
 
       - name: Fetch and Process Exchange Rates
         run: |
-          mkdir -p api/v1
-          # 1. 환율 및 통화 명칭 데이터 가져오기
+          mkdir -p api/v1/history
+          
+          # 1. API 데이터 및 통화 명칭 가져오기 (원본 로직 유지)
           curl -s "https://openexchangerates.org/api/latest.json?app_id=${{ secrets.OER_APP_ID }}" > raw_rates.json
           curl -s "https://openexchangerates.org/api/currencies.json" > raw_names.json
           
           UTC_TIME=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           
-          # 2. 이미지에 나온 국기 없는 특수 통화 및 원자재(팔라듐 등) 제외 필터링
-          # XCD, XCG, XDR, XOF, XPD, XPF, XPT 등을 포함한 'X' 계열 전체 차단
+          # 2. 메인 rates.json 생성 (기존 계산기용 데이터 완벽 호환)
           cat raw_rates.json | jq --arg date "$UTC_TIME" --slurpfile names raw_names.json \
           '{
             base: .base,
@@ -36,9 +36,6 @@ jobs:
                 rate: .value,
                 name: ($names[0][.key] // .key)
               }) | 
-              # 필터링 조건: 
-              # - 국가 화폐가 아닌 'X'로 시작하는 모든 코드 제외 (XPD, XAU, XDR 등)
-              # - 코드 길이가 3자리가 아닌 비표준 데이터 제외
               map(select(
                 (.code | startswith("X") | not) and
                 (.code | length == 3)
@@ -46,14 +43,47 @@ jobs:
             )
           }' > api/v1/rates.json
 
+          # 3. 국가별 히스토리 데이터 생성 (차트용)
+          # rates.json에서 필터링이 완료된 통화 코드만 추출
+          CURRENCIES=$(cat api/v1/rates.json | jq -r '.currencies[].code')
+          
+          # API가 제공한 timestamp를 사용하여 정확한 날짜(UTC 기준) 매핑
+          DATA_DATE=$(cat raw_rates.json | jq -r '.timestamp | strftime("%Y-%m-%d")')
+
+          for CODE in $CURRENCIES; do
+            FILE="api/v1/history/${CODE}.json"
+            # raw_rates.json에서 해당 코드의 환율 추출
+            RATE=$(cat raw_rates.json | jq -r ".rates.${CODE}")
+
+            # 유효성 검사 (null이 아니고, 0보다 큰지 확인)
+            if [ "$RATE" != "null" ] && [ $(echo "$RATE > 0" | bc -l) -eq 1 ]; then
+              
+              # 파일이 없으면 초기 구조 생성
+              if [ ! -f "$FILE" ]; then
+                echo "{\"code\":\"$CODE\",\"base\":\"USD\",\"history\":[]}" > "$FILE"
+              fi
+
+              # 임시 파일을 활용한 원자적 교체 (데이터 깨짐 방지)
+              # 동일 날짜는 최신 값으로 덮어쓰고, 최근 180일(6개월) 유지
+              jq --arg date "$DATA_DATE" --argjson val "$RATE" '
+                .history += [{"d": $date, "v": $val}] | 
+                .history |= (unique_by(.d) | .[-180:])
+              ' "$FILE" > temp.json && mv temp.json "$FILE"
+              
+            fi
+          done
+
       - name: Push Changes
         run: |
           git config --global user.name "alexcha-bot"
           git config --global user.email "bot@alexcha.dev"
-          git add api/v1/rates.json
           
+          git add api/v1/rates.json api/v1/history/*.json
+          
+          # 변경사항이 있을 때만 커밋
           if ! git diff --quiet --staged; then
-            git commit -m "Update exchange rates (Filtered) (UTC): $(date -u +'%Y-%m-%d %H:%M')"
+            # [skip ci]를 추가하여 무한 루프 방지
+            git commit -m "Hourly sync & history update (UTC): $(date -u +'%Y-%m-%d %H:%M') [skip ci]"
             git pull --rebase origin main
             git push
           else
