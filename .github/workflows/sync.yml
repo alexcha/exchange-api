@@ -20,7 +20,7 @@ jobs:
         run: |
           mkdir -p api/v1/history
           
-          # 1. API 데이터 및 통화 명칭 가져오기
+          # 1. API 데이터 가져오기
           curl -s "https://openexchangerates.org/api/latest.json?app_id=${{ secrets.OER_APP_ID }}" > raw_rates.json
           curl -s "https://openexchangerates.org/api/currencies.json" > raw_names.json
           
@@ -34,15 +34,8 @@ jobs:
             last_updated: $date,
             currencies: (
               .rates | to_entries | 
-              map({
-                code: .key,
-                rate: .value,
-                name: ($names[0][.key] // .key)
-              }) | 
-              map(select(
-                (.code | startswith("X") | not) and
-                (.code | length == 3)
-              ))
+              map({code: .key, rate: .value, name: ($names[0][.key] // .key)}) | 
+              map(select((.code | startswith("X") | not) and (.code | length == 3)))
             )
           }' > api/v1/rates.json
 
@@ -58,16 +51,13 @@ jobs:
               if [ -f "$GZ_FILE" ]; then
                 gunzip -c "$GZ_FILE" > "$FILE"
               fi
-
               if [ ! -f "$FILE" ]; then
                 echo "{\"code\":\"$CODE\",\"base\":\"USD\",\"history\":[]}" > "$FILE"
               fi
-
               jq --arg full_date "$DATA_TIMESTAMP" --argjson val "$RATE" '
                 .history += [{"d": $full_date, "v": $val}] | 
                 .history |= (sort_by(.d) | unique_by(.d) | .[-4400:])
               ' "$FILE" > temp.json && mv temp.json "$FILE"
-              
               gzip -n -9 -f "$FILE"
             fi
           done
@@ -77,16 +67,16 @@ jobs:
           git config --global user.name "alexcha-bot"
           git config --global user.email "bot@alexcha.dev"
           
-          # 1. 변경된 모든 파일을 먼저 스테이징 (중요: pull 전에 수행)
-          git add api/v1/rates.json api/v1/history/*.json.gz
+          # 1. 모든 변경사항(새 파일 포함)을 강제로 스테이징
+          git add -A
           
-          # 2. 커밋할 변경사항이 있는지 확인
+          # 2. 커밋 생성
           if ! git diff --quiet --staged; then
             git commit -m "Hourly sync & history update (Gzip 6M): $(date -u +'%Y-%m-%d %H:%M') [skip ci]"
             
-            # 3. 원격 저장소와 동기화 (rebase 사용)
-            # 이미 스테이징/커밋이 완료된 상태이므로 unstaged 에러가 발생하지 않음
-            git pull --rebase origin main
+            # 3. 안전한 전송을 위한 3단계 전략
+            git fetch origin main
+            git rebase origin/main || (git rebase --abort && git pull --no-rebase origin main)
             git push origin main
           else
             echo "No changes to commit"
