@@ -1,4 +1,4 @@
-name: ChaCha-Sync
+Name: ChaCha-Sync
 on:
   workflow_dispatch:
   schedule:
@@ -64,10 +64,10 @@ jobs:
               fi
 
               # 임시 파일을 활용한 원자적 교체 (데이터 깨짐 방지)
-              # 동일 날짜는 최신 값으로 덮어쓰고, 최근 180일(6개월) 유지
+              # reverse를 사용하여 동일 날짜 발생 시 나중에 들어온(최신) 값이 살아남도록 수정
               jq --arg date "$DATA_DATE" --argjson val "$RATE" '
                 .history += [{"d": $date, "v": $val}] | 
-                .history |= (unique_by(.d) | .[-180:])
+                .history |= (reverse | unique_by(.d) | reverse | .[-180:])
               ' "$FILE" > temp.json && mv temp.json "$FILE"
               
             fi
