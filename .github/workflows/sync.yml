@@ -22,10 +22,10 @@ jobs:
           curl -s "https://openexchangerates.org/api/latest.json?app_id=${{ secrets.OER_APP_ID }}" > raw_rates.json
           curl -s "https://openexchangerates.org/api/currencies.json" > raw_names.json
           
-          # ISO 8601 형식의 전체 시간 (예: 2026-05-09T04:00:00Z)
+          # ISO 8601 형식의 전체 시간
           UTC_TIME=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           
-          # 2. 메인 rates.json 생성 (계산기용)
+          # 2. 메인 rates.json 생성 (계산기용 - 일반 JSON 유지)
           cat raw_rates.json | jq --arg date "$UTC_TIME" --slurpfile names raw_names.json \
           '{
             base: .base,
@@ -44,37 +44,41 @@ jobs:
             )
           }' > api/v1/rates.json
 
-          # 3. 국가별 히스토리 데이터 생성 (차트용 - 시간 정보 포함)
+          # 3. 국가별 히스토리 데이터 생성 (차트용 - .gz 압축 및 6개월 누적)
           CURRENCIES=$(cat api/v1/rates.json | jq -r '.currencies[].code')
           
-          # API 응답의 정확한 timestamp를 초 단위까지 포함한 ISO 8601 포맷으로 변환
-          # 이 시각 정보가 있어야 앱에서 로컬 타임존 변환(UTC -> KST)이 가능함
+          # API 응답의 정확한 timestamp를 초 단위까지 포함
           DATA_TIMESTAMP=$(cat raw_rates.json | jq -r '.timestamp | strftime("%Y-%m-%dT%H:%M:%SZ")')
-          # 날짜 비교용 (unique_by 체크용)
-          DATA_DATE=$(cat raw_rates.json | jq -r '.timestamp | strftime("%Y-%m-%d")')
 
           for CODE in $CURRENCIES; do
             FILE="api/v1/history/${CODE}.json"
+            GZ_FILE="${FILE}.gz"
             RATE=$(cat raw_rates.json | jq -r ".rates.${CODE}")
 
             if [ "$RATE" != "null" ] && [ $(echo "$RATE > 0" | bc -l) -eq 1 ]; then
               
+              # 기존 압축 파일이 있으면 해제하여 데이터 읽기
+              if [ -f "$GZ_FILE" ]; then
+                gunzip -c "$GZ_FILE" > "$FILE"
+              fi
+
               if [ ! -f "$FILE" ]; then
                 echo "{\"code\":\"$CODE\",\"base\":\"USD\",\"history\":[]}" > "$FILE"
               fi
 
-              # history 데이터의 "d" 필드에 시간 정보를 포함한 $DATA_TIMESTAMP를 저장
-              # unique_by(.d | extract_date) 로직을 통해 로컬 변환 전 '날짜' 기준으로 중복 관리
-              jq --arg full_date "$DATA_TIMESTAMP" --arg day_only "$DATA_DATE" --argjson val "$RATE" '
+              # history 데이터 누적: 24시간 * 183일 = 약 4,400개 보관 (6개월)
+              # unique_by(.d)를 통해 날짜가 아닌 '전체 시간' 기준으로 중복 체크하여 1시간 단위 기록 보존
+              jq --arg full_date "$DATA_TIMESTAMP" --argjson val "$RATE" '
                 .history += [{"d": $full_date, "v": $val}] | 
                 .history |= (
-                  reverse | 
-                  unique_by(.d | .[0:10]) | 
-                  reverse | 
-                  .[-180:]
+                  sort_by(.d) | 
+                  unique_by(.d) | 
+                  .[-4400:]
                 )
               ' "$FILE" > temp.json && mv temp.json "$FILE"
               
+              # 다시 Gzip 압축하고 원본 JSON 삭제
+              gzip -n -9 -f "$FILE"
             fi
           done
 
@@ -83,10 +87,11 @@ jobs:
           git config --global user.name "alexcha-bot"
           git config --global user.email "bot@alexcha.dev"
           
-          git add api/v1/rates.json api/v1/history/*.json
+          # rates.json은 유지, history는 .gz 파일들만 추가
+          git add api/v1/rates.json api/v1/history/*.json.gz
           
           if ! git diff --quiet --staged; then
-            git commit -m "Hourly sync & history update (UTC): $(date -u +'%Y-%m-%d %H:%M') [skip ci]"
+            git commit -m "Hourly sync & history update (Gzip 6M): $(date -u +'%Y-%m-%d %H:%M') [skip ci]"
             git pull --rebase origin main
             git push
           else
