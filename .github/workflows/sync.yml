@@ -18,13 +18,14 @@ jobs:
         run: |
           mkdir -p api/v1/history
           
-          # 1. API 데이터 및 통화 명칭 가져오기 (원본 로직 유지)
+          # 1. API 데이터 및 통화 명칭 가져오기
           curl -s "https://openexchangerates.org/api/latest.json?app_id=${{ secrets.OER_APP_ID }}" > raw_rates.json
           curl -s "https://openexchangerates.org/api/currencies.json" > raw_names.json
           
+          # ISO 8601 형식의 전체 시간 (예: 2026-05-09T04:00:00Z)
           UTC_TIME=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           
-          # 2. 메인 rates.json 생성 (기존 계산기용 데이터 완벽 호환)
+          # 2. 메인 rates.json 생성 (계산기용)
           cat raw_rates.json | jq --arg date "$UTC_TIME" --slurpfile names raw_names.json \
           '{
             base: .base,
@@ -43,31 +44,35 @@ jobs:
             )
           }' > api/v1/rates.json
 
-          # 3. 국가별 히스토리 데이터 생성 (차트용)
-          # rates.json에서 필터링이 완료된 통화 코드만 추출
+          # 3. 국가별 히스토리 데이터 생성 (차트용 - 시간 정보 포함)
           CURRENCIES=$(cat api/v1/rates.json | jq -r '.currencies[].code')
           
-          # API가 제공한 timestamp를 사용하여 정확한 날짜(UTC 기준) 매핑
+          # API 응답의 정확한 timestamp를 초 단위까지 포함한 ISO 8601 포맷으로 변환
+          # 이 시각 정보가 있어야 앱에서 로컬 타임존 변환(UTC -> KST)이 가능함
+          DATA_TIMESTAMP=$(cat raw_rates.json | jq -r '.timestamp | strftime("%Y-%m-%dT%H:%M:%SZ")')
+          # 날짜 비교용 (unique_by 체크용)
           DATA_DATE=$(cat raw_rates.json | jq -r '.timestamp | strftime("%Y-%m-%d")')
 
           for CODE in $CURRENCIES; do
             FILE="api/v1/history/${CODE}.json"
-            # raw_rates.json에서 해당 코드의 환율 추출
             RATE=$(cat raw_rates.json | jq -r ".rates.${CODE}")
 
-            # 유효성 검사 (null이 아니고, 0보다 큰지 확인)
             if [ "$RATE" != "null" ] && [ $(echo "$RATE > 0" | bc -l) -eq 1 ]; then
               
-              # 파일이 없으면 초기 구조 생성
               if [ ! -f "$FILE" ]; then
                 echo "{\"code\":\"$CODE\",\"base\":\"USD\",\"history\":[]}" > "$FILE"
               fi
 
-              # 임시 파일을 활용한 원자적 교체 (데이터 깨짐 방지)
-              # reverse를 사용하여 동일 날짜 발생 시 나중에 들어온(최신) 값이 살아남도록 수정
-              jq --arg date "$DATA_DATE" --argjson val "$RATE" '
-                .history += [{"d": $date, "v": $val}] | 
-                .history |= (reverse | unique_by(.d) | reverse | .[-180:])
+              # history 데이터의 "d" 필드에 시간 정보를 포함한 $DATA_TIMESTAMP를 저장
+              # unique_by(.d | extract_date) 로직을 통해 로컬 변환 전 '날짜' 기준으로 중복 관리
+              jq --arg full_date "$DATA_TIMESTAMP" --arg day_only "$DATA_DATE" --argjson val "$RATE" '
+                .history += [{"d": $full_date, "v": $val}] | 
+                .history |= (
+                  reverse | 
+                  unique_by(.d | .[0:10]) | 
+                  reverse | 
+                  .[-180:]
+                )
               ' "$FILE" > temp.json && mv temp.json "$FILE"
               
             fi
@@ -80,9 +85,7 @@ jobs:
           
           git add api/v1/rates.json api/v1/history/*.json
           
-          # 변경사항이 있을 때만 커밋
           if ! git diff --quiet --staged; then
-            # [skip ci]를 추가하여 무한 루프 방지
             git commit -m "Hourly sync & history update (UTC): $(date -u +'%Y-%m-%d %H:%M') [skip ci]"
             git pull --rebase origin main
             git push
