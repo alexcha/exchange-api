@@ -13,6 +13,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # rebase를 위해 전체 이력 가져오기
 
       - name: Fetch and Process Exchange Rates
         run: |
@@ -47,7 +49,7 @@ jobs:
           # 3. 국가별 히스토리 데이터 생성 (차트용 - .gz 압축 및 6개월 누적)
           CURRENCIES=$(cat api/v1/rates.json | jq -r '.currencies[].code')
           
-          # API 응답의 정확한 timestamp를 초 단위까지 포함
+          # API 응답의 정확한 timestamp 활용
           DATA_TIMESTAMP=$(cat raw_rates.json | jq -r '.timestamp | strftime("%Y-%m-%dT%H:%M:%SZ")')
 
           for CODE in $CURRENCIES; do
@@ -57,7 +59,7 @@ jobs:
 
             if [ "$RATE" != "null" ] && [ $(echo "$RATE > 0" | bc -l) -eq 1 ]; then
               
-              # 기존 압축 파일이 있으면 해제하여 데이터 읽기
+              # 기존 압축 파일이 있으면 해제
               if [ -f "$GZ_FILE" ]; then
                 gunzip -c "$GZ_FILE" > "$FILE"
               fi
@@ -66,8 +68,7 @@ jobs:
                 echo "{\"code\":\"$CODE\",\"base\":\"USD\",\"history\":[]}" > "$FILE"
               fi
 
-              # history 데이터 누적: 24시간 * 183일 = 약 4,400개 보관 (6개월)
-              # unique_by(.d)를 통해 날짜가 아닌 '전체 시간' 기준으로 중복 체크하여 1시간 단위 기록 보존
+              # 6개월(4400개) 데이터 누적 및 중복 제거
               jq --arg full_date "$DATA_TIMESTAMP" --argjson val "$RATE" '
                 .history += [{"d": $full_date, "v": $val}] | 
                 .history |= (
@@ -77,7 +78,7 @@ jobs:
                 )
               ' "$FILE" > temp.json && mv temp.json "$FILE"
               
-              # 다시 Gzip 압축하고 원본 JSON 삭제
+              # Gzip 압축 (-n: 타임스탬프 기록 안함, -9: 최대 압축)
               gzip -n -9 -f "$FILE"
             fi
           done
@@ -87,13 +88,16 @@ jobs:
           git config --global user.name "alexcha-bot"
           git config --global user.email "bot@alexcha.dev"
           
-          # rates.json은 유지, history는 .gz 파일들만 추가
+          # 수정되거나 생성된 모든 파일을 명확하게 추가
           git add api/v1/rates.json api/v1/history/*.json.gz
           
+          # 커밋할 내용이 있는지 확인
           if ! git diff --quiet --staged; then
             git commit -m "Hourly sync & history update (Gzip 6M): $(date -u +'%Y-%m-%d %H:%M') [skip ci]"
+            
+            # 안전한 Pull & Push를 위해 rebase 진행
             git pull --rebase origin main
-            git push
+            git push origin main
           else
             echo "No changes to commit"
           fi
