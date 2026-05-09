@@ -1,4 +1,4 @@
-name: ChaCha-Sync
+Name: ChaCha-Sync
 on:
   workflow_dispatch:
   schedule:
@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # rebase를 위해 전체 이력 가져오기
+          fetch-depth: 0
 
       - name: Fetch and Process Exchange Rates
         run: |
@@ -24,10 +24,10 @@ jobs:
           curl -s "https://openexchangerates.org/api/latest.json?app_id=${{ secrets.OER_APP_ID }}" > raw_rates.json
           curl -s "https://openexchangerates.org/api/currencies.json" > raw_names.json
           
-          # ISO 8601 형식의 전체 시간
           UTC_TIME=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          DATA_TIMESTAMP=$(cat raw_rates.json | jq -r '.timestamp | strftime("%Y-%m-%dT%H:%M:%SZ")')
           
-          # 2. 메인 rates.json 생성 (계산기용 - 일반 JSON 유지)
+          # 2. 메인 rates.json 생성
           cat raw_rates.json | jq --arg date "$UTC_TIME" --slurpfile names raw_names.json \
           '{
             base: .base,
@@ -46,11 +46,8 @@ jobs:
             )
           }' > api/v1/rates.json
 
-          # 3. 국가별 히스토리 데이터 생성 (차트용 - .gz 압축 및 6개월 누적)
+          # 3. 국가별 히스토리 데이터 생성 (.gz 압축 및 6개월 누적)
           CURRENCIES=$(cat api/v1/rates.json | jq -r '.currencies[].code')
-          
-          # API 응답의 정확한 timestamp 활용
-          DATA_TIMESTAMP=$(cat raw_rates.json | jq -r '.timestamp | strftime("%Y-%m-%dT%H:%M:%SZ")')
 
           for CODE in $CURRENCIES; do
             FILE="api/v1/history/${CODE}.json"
@@ -58,8 +55,6 @@ jobs:
             RATE=$(cat raw_rates.json | jq -r ".rates.${CODE}")
 
             if [ "$RATE" != "null" ] && [ $(echo "$RATE > 0" | bc -l) -eq 1 ]; then
-              
-              # 기존 압축 파일이 있으면 해제
               if [ -f "$GZ_FILE" ]; then
                 gunzip -c "$GZ_FILE" > "$FILE"
               fi
@@ -68,17 +63,11 @@ jobs:
                 echo "{\"code\":\"$CODE\",\"base\":\"USD\",\"history\":[]}" > "$FILE"
               fi
 
-              # 6개월(4400개) 데이터 누적 및 중복 제거
               jq --arg full_date "$DATA_TIMESTAMP" --argjson val "$RATE" '
                 .history += [{"d": $full_date, "v": $val}] | 
-                .history |= (
-                  sort_by(.d) | 
-                  unique_by(.d) | 
-                  .[-4400:]
-                )
+                .history |= (sort_by(.d) | unique_by(.d) | .[-4400:])
               ' "$FILE" > temp.json && mv temp.json "$FILE"
               
-              # Gzip 압축 (-n: 타임스탬프 기록 안함, -9: 최대 압축)
               gzip -n -9 -f "$FILE"
             fi
           done
@@ -88,14 +77,15 @@ jobs:
           git config --global user.name "alexcha-bot"
           git config --global user.email "bot@alexcha.dev"
           
-          # 수정되거나 생성된 모든 파일을 명확하게 추가
+          # 1. 변경된 모든 파일을 먼저 스테이징 (중요: pull 전에 수행)
           git add api/v1/rates.json api/v1/history/*.json.gz
           
-          # 커밋할 내용이 있는지 확인
+          # 2. 커밋할 변경사항이 있는지 확인
           if ! git diff --quiet --staged; then
             git commit -m "Hourly sync & history update (Gzip 6M): $(date -u +'%Y-%m-%d %H:%M') [skip ci]"
             
-            # 안전한 Pull & Push를 위해 rebase 진행
+            # 3. 원격 저장소와 동기화 (rebase 사용)
+            # 이미 스테이징/커밋이 완료된 상태이므로 unstaged 에러가 발생하지 않음
             git pull --rebase origin main
             git push origin main
           else
