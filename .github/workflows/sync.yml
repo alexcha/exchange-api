@@ -62,12 +62,15 @@ jobs:
             fi
           done
 
+      - name: Cleanup temporary files
+        run: rm -f raw_rates.json raw_names.json
+
       - name: Push Changes
         run: |
           git config --global user.name "alexcha-bot"
           git config --global user.email "bot@alexcha.dev"
           
-          # 1. 모든 변경사항(새 파일 포함)을 강제로 스테이징
+          # 1. 모든 변경사항(새 파일 포함)을 스테이징
           git add -A
           
           # 2. 커밋 생성
