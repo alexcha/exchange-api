@@ -2,7 +2,7 @@ name: ChaCha-Sync
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *'  # 1시간 주기 실행 (하루 24회)
+    - cron: '30  * * * *'  # 1시간 주기 실행 (하루 24회)
   push:
     branches: [ main ]
 
