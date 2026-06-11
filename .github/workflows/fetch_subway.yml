@@ -1,0 +1,46 @@
+name: Fetch Subway API
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  fetch_and_push:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Fetch
+      env:
+        SEOUL_API_KEY: ${{ secrets.SEOUL_API_KEY }} 
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+        mkdir -p api/v1/metro
+
+        LINES=("1호선" "2호선" "3호선" "4호선" "5호선" "6호선" "7호선" "8호선" "9호선" "수인분당선" "경의중앙선" "공항철도" "경춘선" "우이신설선" "신림선")
+
+        echo '{"realtimePositionList":[]}' > temp_all.json
+
+        for LINE in "${LINES[@]}"; do
+          ENCODED_LINE=$(node -e "console.log(encodeURIComponent('$LINE'))")
+          
+          curl -s "http://swopenAPI.seoul.go.kr/api/subway/${SEOUL_API_KEY}/json/realtimePosition/0/80/${ENCODED_LINE}" > temp_line.json
+          
+          if jq -e '.realtimePositionList' temp_line.json >/dev/null 2>&1; then
+            jq --argjson newItems "$(jq '.realtimePositionList' temp_line.json)" '.realtimePositionList += $newItems' temp_all.json > temp_combined.json
+            mv temp_combined.json temp_all.json
+          fi
+          
+          sleep 0.2
+        done
+
+        mv temp_all.json api/v1/metro/realtime_train_all.json
+        rm -f temp_line.json
+
+        if [[ -n $(git status --porcelain api/v1/metro/realtime_train_all.json) ]]; then
+          git add api/v1/metro/realtime_train_all.json
+          git commit -m "🌐 API Update"
+          git push origin main || echo "Push error bypass"
+        fi
