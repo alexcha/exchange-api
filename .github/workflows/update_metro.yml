@@ -29,6 +29,7 @@ jobs:
         env:
           MOBILITY_TOKEN: ${{ secrets.MOBILITY_DB_TOKEN }}
         run: |
+          # 💡 [수정] 스크립트 위치를 scripts/ 대신 m/gtfs_to_geojson.py 로 변경했습니다.
           python m/gtfs_to_geojson.py
 
       - name: Commit and Push Changes
@@ -36,13 +37,19 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # 💡 /m/output/ 폴더 내에 생성된 모든 json 파일을 깃에 추적 등록합니다.
+          # 폴더가 없다면 예외 방지를 위해 미리 생성
           mkdir -p m/output
-          git add m/output/*.json
           
-          if ! git diff --cached --quiet; then
-            git commit -m "chore: 파이프라인 정기 메트로 데이터 업데이트 [skip ci]"
-            git push
+          # m/output/ 폴더 내에 .json 결과물이 실제로 생성되었을 때만 커밋 진입
+          if ls m/output/*.json 1> /dev/null 2>&1; then
+            git add m/output/*.json
+            
+            if ! git diff --cached --quiet; then
+              git commit -m "chore: 파이프라인 정기 메트로 데이터 업데이트 [skip ci]"
+              git push
+            else
+              echo "변경사항이 없어 푸시를 건너뜁니다."
+            fi
           else
-            echo "변경사항이 없어 푸시를 건너뜁니다."
+            echo "⚠️ 경고: m/output/ 폴더 내에 생성된 JSON 파일이 없습니다. 파이썬 스크립트의 다운로드 URL이나 토큰을 확인하세요."
           fi
