@@ -5,27 +5,50 @@ import pandas as pd
 import json
 import shutil
 
-# 💡 결과물 폴더 경로를 m/output 으로 정확히 지정합니다.
 OUTPUT_DIR = "m/output"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# 💡 깃허브 액션 환경변수에서 토큰을 안전하게 읽어옵니다.
-API_TOKEN = os.environ.get("MOBILITY_TOKEN")
+# 💡 GitHub Secrets에 등록한 '리프레시 토큰'을 읽어옵니다.
+REFRESH_TOKEN = os.environ.get("MOBILITY_TOKEN")
 
-def process_city_gtfs(city_id, url):
-    print(f"[{city_id}] 작업 시작...")
+def get_access_token():
+    """
+    💡 제공해주신 curl 명령어를 파이썬 코드로 구현한 구역입니다.
+    리프레시 토큰을 사용해 API 호출용 억세스 토큰을 실시간 발급받습니다.
+    """
+    url = "https://api.mobilitydatabase.org/v1/tokens"
+    headers = {"Content-Type": "application/json"}
+    payload = {"refresh_token": REFRESH_TOKEN}
+    
+    try:
+        print("🔄 Mobility Database 토큰 갱신 요청 중...")
+        response = requests.post(url, headers=headers, json=payload, timeout=10)
+        if response.status_code == 200:
+            token_data = response.json()
+            # API 응답 규격에 따라 access_token 혹은 id_token 구조를 추출합니다.
+            access_token = token_data.get("access_token") or token_data.get("id_token")
+            if access_token:
+                print("✅ 엑세스 토큰 발급 성공!")
+                return access_token
+        print(f"❌ 토큰 발급 실패. 상태 코드: {response.status_code}, 응답: {response.text}")
+    except Exception as e:
+        print(f"❌ 토큰 요청 중 예외 발생: {e}")
+    return None
+
+def process_city_gtfs(city_id, url, access_token):
+    print(f"\n[{city_id}] 작업 시작...")
     zip_path = f"{city_id}_gtfs.zip"
     extract_path = f"{city_id}_extracted"
     
-    # 헤더에 Bearer 토큰을 실어서 다운로드 권한 획득
+    # 💡 실시간으로 발급받은 access_token을 Bearer 헤더에 주입합니다.
     headers = {
-        "Authorization": f"Bearer {API_TOKEN}",
+        "Authorization": f"Bearer {access_token}",
         "Accept": "application/json"
     }
     
     try:
-        print(f"[{city_id}] 인증 헤더와 함께 GTFS 다운로드 시도 중... URL: {url}")
-        response = requests.get(url, headers=headers, stream=True)
+        print(f"[{city_id}] GTFS 다운로드 시도 중...")
+        response = requests.get(url, headers=headers, stream=True, timeout=30)
         
         if response.status_code != 200:
             print(f"[{city_id}] 다운로드 실패! HTTP 상태 코드: {response.status_code}")
@@ -36,18 +59,15 @@ def process_city_gtfs(city_id, url):
                 f.write(chunk)
         print(f"[{city_id}] 다운로드 성공 ➡️ 압축 해제 중...")
         
-        # 압축 해제
         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
             zip_ref.extractall(extract_path)
             
         print(f"[{city_id}] GeoJSON 파싱 및 변환 시작...")
         
-        # 메모리 방어를 위해 필요한 컬럼만 지정해서 CSV 읽기
         routes = pd.read_csv(f"{extract_path}/routes.txt", usecols=['route_id', 'route_long_name', 'route_color'])
         trips = pd.read_csv(f"{extract_path}/trips.txt", usecols=['route_id', 'trip_id', 'shape_id'])
         shapes = pd.read_csv(f"{extract_path}/shapes.txt", usecols=['shape_id', 'shape_pt_lat', 'shape_pt_lon', 'shape_pt_sequence'])
         
-        # 기하학적 선형 정렬
         shapes = shapes.sort_values(by=['shape_id', 'shape_pt_sequence'])
         
         features = []
@@ -82,7 +102,6 @@ def process_city_gtfs(city_id, url):
             "features": features
         }
         
-        # 최종 가공된 GeoJSON을 m/output/{city_id}.json 에 저장
         output_file = os.path.join(OUTPUT_DIR, f"{city_id}.json")
         with open(output_file, "w", encoding="utf-8") as f:
             json.dump(geojson, f, ensure_ascii=False, indent=2)
@@ -93,20 +112,21 @@ def process_city_gtfs(city_id, url):
         print(f"[{city_id}] 처리 중 에러 발생: {e}")
         
     finally:
-        # 임시 파일 및 폴더 삭제 청소
         if os.path.exists(zip_path): 
             os.remove(zip_path)
         if os.path.exists(extract_path):
             shutil.rmtree(extract_path)
 
 if __name__ == "__main__":
-    # 💡 [반영 완료] 다운로드하고자 하는 도시 피드 목록 정의
-    # 새로운 도시를 추가하고 싶을 때는 아래 딕셔너리에 한 줄씩 주석을 풀거나 주소를 추가해 주면 됩니다.
-    target_cities = {
-        "seoul": "https://api.mobilitydatabase.org/v1/sources/mdb-1554/download", # 서울/수도권 정식 피드
-        # "tokyo": "https://api.mobilitydatabase.org/v1/sources/mdb-1051/download",
-        # "newyork": "https://api.mobilitydatabase.org/v1/sources/mdb-1234/download",
-    }
+    # 1. 엑세스 토큰 먼저 실시간으로 따오기
+    token = get_access_token()
     
-    for city, url in target_cities.items():
-        process_city_gtfs(city, url)
+    if token:
+        target_cities = {
+            "seoul": "https://api.mobilitydatabase.org/v1/sources/mdb-1554/download",
+        }
+        
+        for city, url in target_cities.items():
+            process_city_gtfs(city, url, token)
+    else:
+        print("🚨 유효한 엑세스 토큰이 없어 전체 변환 작업을 중단합니다.")
