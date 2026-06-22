@@ -8,7 +8,7 @@ import shutil
 OUTPUT_DIR = "output"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-MOBILITY_TOKEN = os.environ["MOBILITY_TOKEN"]  # GitHub Actions Secret
+MOBILITY_TOKEN = os.environ["MOBILITY_TOKEN"]
 
 MDB_TOKEN_URL = "https://api.mobilitydatabase.org/v1/tokens"
 MDB_FEEDS_URL = "https://api.mobilitydatabase.org/v1/gtfs_feeds"
@@ -36,10 +36,12 @@ def get_taiwan_feed_url(access_token: str) -> str:
     feeds = resp.json()
 
     for feed in feeds:
-        url = (feed.get("latest_dataset") or {}).get("hosted_url", "")
-        if url:
+        # hosted_url 대신 producer_url (인증 불필요한 원본 URL)
+        producer_url = (feed.get("source_info") or {}).get("producer_url", "")
+        if producer_url:
             print(f"  피드 선택: {feed.get('id')} / {feed.get('provider')}")
-            return url
+            print(f"  producer_url: {producer_url}")
+            return producer_url
 
     raise RuntimeError("대만 피드를 찾을 수 없습니다.")
 
@@ -54,15 +56,10 @@ def process_taiwan_gtfs():
 
     print("[2/4] 대만 피드 검색 중...")
     feed_url = get_taiwan_feed_url(access_token)
-    print(f"  URL: {feed_url}")
 
     print("[3/4] GTFS zip 다운로드 중...")
-    resp = requests.get(
-        feed_url,
-        headers={"Authorization": f"Bearer {access_token}"},
-        stream=True,
-        timeout=60,
-    )
+    # producer_url은 인증 불필요 — 헤더 없이 직접 다운로드
+    resp = requests.get(feed_url, stream=True, timeout=60)
     resp.raise_for_status()
     with open(zip_path, "wb") as f:
         for chunk in resp.iter_content(chunk_size=8192):
