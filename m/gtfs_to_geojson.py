@@ -8,7 +8,7 @@ import shutil
 OUTPUT_DIR = "m/output"  # yml의 m/output/ 맞춤
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-MOBILITY_TOKEN = os.environ["MOBILITY_DB_TOKEN"]  # yml 시크릿명 맞춤
+MOBILITY_TOKEN = os.environ["MOBILITY_TOKEN"]  # yml 시크릿명 맞춤
 
 MDB_TOKEN_URL = "https://api.mobilitydatabase.org/v1/tokens"
 MDB_FEEDS_URL = "https://api.mobilitydatabase.org/v1/gtfs_feeds"
