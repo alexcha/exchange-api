@@ -5,10 +5,10 @@ import pandas as pd
 import json
 import shutil
 
-OUTPUT_DIR = "output"
+OUTPUT_DIR = "m/output"  # yml의 m/output/ 맞춤
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-MOBILITY_TOKEN = os.environ["MOBILITY_TOKEN"]
+MOBILITY_TOKEN = os.environ["MOBILITY_DB_TOKEN"]  # yml 시크릿명 맞춤
 
 MDB_TOKEN_URL = "https://api.mobilitydatabase.org/v1/tokens"
 MDB_FEEDS_URL = "https://api.mobilitydatabase.org/v1/gtfs_feeds"
@@ -36,7 +36,6 @@ def get_taiwan_feed_url(access_token: str) -> str:
     feeds = resp.json()
 
     for feed in feeds:
-        # hosted_url 대신 producer_url (인증 불필요한 원본 URL)
         producer_url = (feed.get("source_info") or {}).get("producer_url", "")
         if producer_url:
             print(f"  피드 선택: {feed.get('id')} / {feed.get('provider')}")
@@ -58,7 +57,6 @@ def process_taiwan_gtfs():
     feed_url = get_taiwan_feed_url(access_token)
 
     print("[3/4] GTFS zip 다운로드 중...")
-    # producer_url은 인증 불필요 — 헤더 없이 직접 다운로드
     resp = requests.get(feed_url, stream=True, timeout=60)
     resp.raise_for_status()
     with open(zip_path, "wb") as f:
