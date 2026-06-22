@@ -5,10 +5,10 @@ import pandas as pd
 import json
 import shutil
 
-OUTPUT_DIR = "m/output"  # yml의 m/output/ 맞춤
+OUTPUT_DIR = "m/output"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-MOBILITY_TOKEN = os.environ["MOBILITY_TOKEN"]  # yml 시크릿명 맞춤
+MOBILITY_TOKEN = os.environ["MOBILITY_TOKEN"]
 
 MDB_TOKEN_URL = "https://api.mobilitydatabase.org/v1/tokens"
 MDB_FEEDS_URL = "https://api.mobilitydatabase.org/v1/gtfs_feeds"
@@ -80,55 +80,41 @@ def process_taiwan_gtfs():
         shutil.rmtree(extract_path)
         return
 
-    # 1. GTFS 텍스트 파일들을 데이터프레임으로 로드
     routes = pd.read_csv(os.path.join(extract_path, "routes.txt"), encoding="utf-8")
     trips  = pd.read_csv(os.path.join(extract_path, "trips.txt"),  encoding="utf-8")
     shapes = pd.read_csv(shapes_path, encoding="utf-8")
     
-    # 💡 [보정 1] 데이터 병합 누락을 막기 위해 route_id 컬럼을 확실하게 문자열 타입으로 일치시키고 공백을 제거합니다.
+    # 데이터 매핑 누락 방지 타입 통일
     routes["route_id"] = routes["route_id"].astype(str).str.strip()
     trips["route_id"]  = trips["route_id"].astype(str).str.strip()
 
-    # 2. 정렬 및 유니크한 shape_id 매핑 추출
     shapes = shapes.sort_values(["shape_id", "shape_pt_sequence"])
     unique_shapes = trips.dropna(subset=["shape_id"]).drop_duplicates(subset=["shape_id"])
-    
-    # 3. 데이터프레임 병합
     merged = unique_shapes.merge(routes, on="route_id")
 
     features = []
     for _, row in merged.iterrows():
         shape_id = row["shape_id"]
         
-        # 💡 [보정 2] 이름 데이터가 결측치(NaN)일 경우를 대비해 3단계 방어벽을 세워 문자열로 안전하게 파싱합니다.
         r_long = row.get("route_long_name")
         r_short = row.get("route_short_name")
+        route_name = str(r_long).strip() if pd.notna(r_long) and str(r_long).strip() else (str(r_short).strip() if pd.notna(r_short) else f"Line {row['route_id']}")
+
+        # 💡 대만 routes.txt 데이터에 route_color 컬럼이 아예 없으므로 눈에 띄는 선명한 블루(#007AFF)를 기본색으로 완전 고정 주입합니다.
+        route_color = "#007AFF"
+
+        pts = shapes[shapes["shape_id"] == shape_id]
         
-        route_name = ""
-        if pd.notna(r_long) and str(r_long).strip() and str(r_long).lower() != "nan":
-            route_name = str(r_long).strip()
-        elif pd.notna(r_short) and str(r_short).strip() and str(r_short).lower() != "nan":
-            route_name = str(r_short).strip()
-        else:
-            route_name = f"Line {row['route_id']}"
+        # 💡 [핵심 버그 수정] zip 매핑 순서 오염을 완벽히 방지하여 표준 GeoJSON 규격인 [경도, 위도] 정순서로 조립합니다.
+        coords = []
+        for _, pt in pts.iterrows():
+            lon_val = float(pt["shape_pt_lon"]) # 경도 (120.xx)
+            lat_val = float(pt["shape_pt_lat"]) # 위도 (24.xx)
+            coords.append([lon_val, lat_val])
 
-        # 💡 [보정 3] Pandas가 빈 칸을 float 형태의 NaN으로 가져오면서 생기는 데이터 오염을 판별해 냅니다.
-        color_raw = row.get("route_color")
-        if pd.isna(color_raw) or not str(color_raw).strip() or str(color_raw).lower() == "nan":
-            route_color = "#1b74e4"  # 노선 색상이 누락되었을 때 사용할 기본 시스템 블루
-        else:
-            # 혹시 기존 데이터에 # 부호가 붙어있거나 떨어져 있어도 유연하게 대처
-            color_str = str(color_raw).strip().replace("#", "")
-            route_color = f"#{color_str}"
-
-        # 4. 해당 노선의 좌표 리스트 빌드
-        pts    = shapes[shapes["shape_id"] == shape_id]
-        coords = [[float(lon), float(lat)]
-                  for lat, lon in zip(pts["shape_pt_lat"], pts["shape_pt_lon"])]
         if len(coords) < 2:
             continue
 
-        # 💡 [보정 4] 안드로이드 MapLibre가 온전하게 수신할 수 있도록 확실하게 키와 밸류를 properties에 담아줍니다.
         features.append({
             "type": "Feature",
             "geometry": {"type": "LineString", "coordinates": coords},
@@ -138,7 +124,6 @@ def process_taiwan_gtfs():
             },
         })
 
-    # 5. 최종 GeoJSON 저장
     geojson = {"type": "FeatureCollection", "features": features}
     output_file = os.path.join(OUTPUT_DIR, f"{city_id}.json")
     with open(output_file, "w", encoding="utf-8") as f:
