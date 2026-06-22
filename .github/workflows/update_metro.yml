@@ -1,0 +1,33 @@
+name: Update GM  GeoJSON
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # 매주 일요일 자동 실행
+  workflow_dispatch: # 수동 실행 버튼
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas requests
+
+      - name: Run GTFS to GeoJSON Converter
+        env:
+          # 💡 GitHub Secrets에 저장한 토큰을 파이썬 스크립트로 전달합니다.
+          MOBILITY_TOKEN: ${{ secrets.MOBILITY_DB_TOKEN }}
+        run: |
+          python scripts/gtfs_to_geojson.py
