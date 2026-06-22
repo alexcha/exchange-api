@@ -25,7 +25,7 @@ jobs:
 
       - name: Run GTFS to GeoJSON Converter
         env:
-          MOBILITY_TOKEN: ${{ secrets.MOBILITY_TOKEN }}
+          MOBILITY_TOKEN: ${{ secrets.MOBILITY_DB_TOKEN }}
         run: python m/gtfs_to_geojson.py
 
       - name: Commit and Push Changes
