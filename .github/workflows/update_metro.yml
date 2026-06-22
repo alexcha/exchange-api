@@ -1,4 +1,4 @@
-name: Update GM  GeoJSON
+name: Update Global Metro GeoJSON
 
 on:
   schedule:
@@ -27,7 +27,22 @@ jobs:
 
       - name: Run GTFS to GeoJSON Converter
         env:
-          # 💡 GitHub Secrets에 저장한 토큰을 파이썬 스크립트로 전달합니다.
           MOBILITY_TOKEN: ${{ secrets.MOBILITY_DB_TOKEN }}
         run: |
           python scripts/gtfs_to_geojson.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 💡 /m/output/ 폴더 내에 생성된 모든 json 파일을 깃에 추적 등록합니다.
+          mkdir -p m/output
+          git add m/output/*.json
+          
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: 파이프라인 정기 메트로 데이터 업데이트 [skip ci]"
+            git push
+          else
+            echo "변경사항이 없어 푸시를 건너뜁니다."
+          fi
