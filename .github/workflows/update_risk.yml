@@ -89,6 +89,17 @@ jobs:
             "united kingdom": "GB", "uruguay": "UY", "uzbekistan": "UZ", "vanuatu": "VU",
             "vatican city": "VA", "holy see": "VA", "venezuela": "VE", "vietnam": "VN",
             "viet nam": "VN", "yemen": "YE", "zambia": "ZM", "zimbabwe": "ZW",
+
+            # ── 실제 GitHub Actions 로그에서 확인된 매핑 실패 21건 추가 ──
+            "french guiana": "GF", "turks and caicos islands": "TC",
+            "british virgin islands": "VG", "anguilla": "AI", "new caledonia": "NC",
+            "cayman islands": "KY", "bermuda": "BM", "french polynesia": "PF",
+            "mainland china, hong kong & macau": "CN", "greenland": "GL",
+            "curacao": "CW", "aruba": "AW", "sint maarten": "SX",
+            "sint eustatius": "BQ", "bonaire": "BQ", "saba": "BQ",
+            # "Antarctica"와 "French West Indies"는 특정 단일 국가가 아니라
+            # 각각 대륙 전체 / 과들루프+마르티니크 묶음 표기라서 ISO2 코드가
+            # 애초에 존재하지 않음. 매핑하지 않고 계속 스킵되게 둔다.
         }
 
         LEVEL_RE = re.compile(r"level\s*([1-4])", re.IGNORECASE)
@@ -118,6 +129,9 @@ jobs:
             if " - " not in title:
                 continue
             country_part, _, level_part = title.partition(" - ")
+            # 일부 타이틀은 "Mexico Travel Advisory - Level ..." 형태로
+            # 국가명 뒤에 접미사가 붙어 나온다. 매핑 조회 전에 제거.
+            country_part = re.sub(r"\s+Travel Advisory$", "", country_part).strip()
 
             level_match = LEVEL_RE.search(level_part)
             if not level_match:
