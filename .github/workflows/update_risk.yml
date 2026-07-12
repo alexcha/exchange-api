@@ -105,9 +105,9 @@ jobs:
         LEVEL_RE = re.compile(r"level\s*([1-4])", re.IGNORECASE)
 
         def normalize(name):
+            name = name.replace("\u2019", "'").replace("\u2018", "'")
             name = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
             name = name.lower().strip()
-            name = re.sub(r"'", "'", name)
             name = re.sub(r"\s+", " ", name)
             return name
 
@@ -126,9 +126,16 @@ jobs:
 
             title = title_el.text.strip()
             # 타이틀 형식: "Armenia - Level 2: Exercise Increased Caution"
-            if " - " not in title:
+            # 단, 국무부 쪽 표기가 일관되지 않아 하이픈(-) 대신 en dash(–)나
+            # em dash(—)를 쓰는 국가들이 있다. 이걸 놓치면 "France", "Brazil"
+            # 처럼 파싱 자체가 실패해서 unmatched 로그에도 안 잡히고 조용히
+            # 통째로 누락된다 (실제로 이렇게 스위스/프랑스/브라질이 빠졌었음).
+            split_match = re.search(r"\s[-–—]\s", title)
+            if not split_match:
+                unmatched.append(f"{title}  (구분자(-/–/—) 자체를 못 찾음)")
                 continue
-            country_part, _, level_part = title.partition(" - ")
+            country_part = title[:split_match.start()]
+            level_part = title[split_match.end():]
             # 일부 타이틀은 "Mexico Travel Advisory - Level ..." 형태로
             # 국가명 뒤에 접미사가 붙어 나온다. 매핑 조회 전에 제거.
             country_part = re.sub(r"\s+Travel Advisory$", "", country_part).strip()
