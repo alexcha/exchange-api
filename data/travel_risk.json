@@ -2,1320 +2,1439 @@
   "status": "success",
   "data": [
     {
-      "iso_code": "SEN",
-      "name": "Senegal",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.007508"
-    },
-    {
-      "iso_code": "TAJ",
-      "name": "Tajikistan",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.033338"
-    },
-    {
-      "iso_code": "ISL",
-      "name": "Iceland",
-      "advisory_level": 0,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.963108"
-    },
-    {
-      "iso_code": "CHN",
-      "name": "Mainland China, Hong Kong & Macau - See Summaries",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.057289"
-    },
-    {
-      "iso_code": "ZAM",
-      "name": "Zambia",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.072787"
-    },
-    {
-      "iso_code": "ARM",
-      "name": "Armenia",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.018250"
-    },
-    {
-      "iso_code": "SYR",
-      "name": "Syria",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.001657"
-    },
-    {
-      "iso_code": "BOL",
-      "name": "Bolivia",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.965823"
-    },
-    {
-      "iso_code": "TWN",
-      "name": "Taiwan",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.008270"
-    },
-    {
-      "iso_code": "RWA",
-      "name": "Rwanda",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.960578"
-    },
-    {
-      "iso_code": "URY",
-      "name": "Uruguay",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.039413"
-    },
-    {
-      "iso_code": "BAR",
-      "name": "Barbados",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.970823"
-    },
-    {
-      "iso_code": "NOR",
-      "name": "Norway",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.932682"
-    },
-    {
-      "iso_code": "CHA",
-      "name": "Chad",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.966678"
-    },
-    {
-      "iso_code": "HUN",
-      "name": "Hungary",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.969076"
-    },
-    {
-      "iso_code": "MAL",
-      "name": "Malta",
-      "advisory_level": 0,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.924295"
-    },
-    {
-      "iso_code": "MMR",
-      "name": "Burma (Myanmar)",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-05-11T00:51:59.192606"
-    },
-    {
-      "iso_code": "QAT",
-      "name": "Qatar",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.988352"
-    },
-    {
-      "iso_code": "SAU",
-      "name": "Saudi Arabia",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.981671"
-    },
-    {
-      "iso_code": "EST",
-      "name": "Estonia",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.977163"
-    },
-    {
-      "iso_code": "BRI",
-      "name": "British Virgin Islands",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.941841"
-    },
-    {
-      "iso_code": "THE",
-      "name": "The Kyrgyz Republic",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.994020"
-    },
-    {
-      "iso_code": "MON",
-      "name": "Montserrat",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.931081"
-    },
-    {
-      "iso_code": "ARG",
-      "name": "Argentina",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.949447"
-    },
-    {
-      "iso_code": "BEL",
-      "name": "Belgium",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.029898"
-    },
-    {
-      "iso_code": "JOR",
-      "name": "Jordan",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.964126"
-    },
-    {
-      "iso_code": "SDN",
-      "name": "Sudan",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.955440"
-    },
-    {
-      "iso_code": "CUB",
-      "name": "Cuba",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.040180"
-    },
-    {
-      "iso_code": "SVK",
-      "name": "Slovakia",
-      "advisory_level": 0,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.993150"
-    },
-    {
-      "iso_code": "GUI",
-      "name": "Guinea",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.990024"
-    },
-    {
-      "iso_code": "CYP",
-      "name": "Cyprus",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.940925"
-    },
-    {
-      "iso_code": "ERI",
-      "name": "Eritrea",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.073621"
-    },
-    {
-      "iso_code": "MAR",
-      "name": "Marshall Islands",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.945977"
-    },
-    {
-      "iso_code": "DEU",
-      "name": "Germany",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.035651"
-    },
-    {
-      "iso_code": "JAM",
-      "name": "Jamaica",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.935978"
-    },
-    {
-      "iso_code": "DZA",
-      "name": "Algeria",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.062620"
-    },
-    {
-      "iso_code": "PAR",
-      "name": "Paraguay",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.041033"
-    },
-    {
-      "iso_code": "AND",
-      "name": "Andorra",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.943569"
-    },
-    {
-      "iso_code": "LES",
-      "name": "Lesotho",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.936840"
-    },
-    {
-      "iso_code": "DOM",
-      "name": "Dominica",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.950338"
-    },
-    {
-      "iso_code": "FRE",
-      "name": "French Guiana",
-      "advisory_level": 0,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.925151"
-    },
-    {
-      "iso_code": "TUR",
-      "name": "Turks and Caicos Islands",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.928664"
-    },
-    {
-      "iso_code": "PRT",
-      "name": "Portugal",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.048311"
-    },
-    {
-      "iso_code": "AFG",
-      "name": "Afghanistan",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.991668"
-    },
-    {
-      "iso_code": "SUR",
-      "name": "Suriname",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.050040"
-    },
-    {
-      "iso_code": "GUA",
-      "name": "Guatemala",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.983391"
-    },
-    {
-      "iso_code": "CUR",
-      "name": "Curaçao",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.066023"
-    },
-    {
-      "iso_code": "ROU",
-      "name": "Oman",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.972716"
-    },
-    {
-      "iso_code": "BRA",
-      "name": "Brazil",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.026008"
-    },
-    {
-      "iso_code": "AUT",
-      "name": "Austria",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.064999"
-    },
-    {
-      "iso_code": "AZE",
-      "name": "Azerbaijan",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.967524"
-    },
-    {
-      "iso_code": "CAM",
-      "name": "Cameroon",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.956315"
-    },
-    {
-      "iso_code": "COL",
-      "name": "Colombia",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.044482"
-    },
-    {
-      "iso_code": "GEO",
-      "name": "Georgia",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.046793"
-    },
-    {
-      "iso_code": "SAI",
+      "iso_code": "LC",
       "name": "Saint Lucia",
       "advisory_level": 2,
       "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.921232"
+      "last_updated": "Fri, 10 Jul 2026"
     },
     {
-      "iso_code": "CHL",
-      "name": "Chile",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.951220"
-    },
-    {
-      "iso_code": "CAN",
-      "name": "Canada",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.023718"
-    },
-    {
-      "iso_code": "BLR",
-      "name": "Belarus",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.999433"
-    },
-    {
-      "iso_code": "ANG",
-      "name": "Anguilla",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.942716"
-    },
-    {
-      "iso_code": "LUX",
-      "name": "Luxembourg",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.973579"
-    },
-    {
-      "iso_code": "TUV",
-      "name": "Tuvalu",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.052427"
-    },
-    {
-      "iso_code": "KIR",
-      "name": "Kiribati",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.053208"
-    },
-    {
-      "iso_code": "ZWE",
-      "name": "Zimbabwe",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.074383"
-    },
-    {
-      "iso_code": "JPN",
-      "name": "Japan",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.034909"
-    },
-    {
-      "iso_code": "BGD",
-      "name": "Bangladesh",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.995546"
-    },
-    {
-      "iso_code": "GHA",
-      "name": "Ghana",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.926133"
-    },
-    {
-      "iso_code": "ARU",
-      "name": "Aruba",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.066930"
-    },
-    {
-      "iso_code": "SWE",
-      "name": "Sweden",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.952952"
-    },
-    {
-      "iso_code": "GAB",
-      "name": "Gabon",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.978864"
-    },
-    {
-      "iso_code": "ELS",
-      "name": "El Salvador",
-      "advisory_level": 0,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.934346"
-    },
-    {
-      "iso_code": "MAD",
-      "name": "Madagascar",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.006769"
-    },
-    {
-      "iso_code": "POL",
-      "name": "Poland",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.024491"
-    },
-    {
-      "iso_code": "MAU",
-      "name": "Mauritius",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.004278"
-    },
-    {
-      "iso_code": "MOL",
-      "name": "Moldova",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.927059"
-    },
-    {
-      "iso_code": "NAM",
-      "name": "Namibia",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.957237"
-    },
-    {
-      "iso_code": "NGA",
-      "name": "Nigeria",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.938451"
-    },
-    {
-      "iso_code": "TUN",
-      "name": "Tunisia",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.944332"
-    },
-    {
-      "iso_code": "GRC",
-      "name": "Greece",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.011630"
-    },
-    {
-      "iso_code": "CEN",
-      "name": "Central African Republic",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.009131"
-    },
-    {
-      "iso_code": "SOM",
-      "name": "Somalia",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.945088"
-    },
-    {
-      "iso_code": "GRE",
-      "name": "Grenada",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.997900"
-    },
-    {
-      "iso_code": "TZA",
-      "name": "Tanzania",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.009978"
-    },
-    {
-      "iso_code": "TON",
-      "name": "Tonga",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.053994"
-    },
-    {
-      "iso_code": "SSD",
-      "name": "South Sudan",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.954646"
-    },
-    {
-      "iso_code": "UKR",
-      "name": "Ukraine",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.060951"
-    },
-    {
-      "iso_code": "IRL",
-      "name": "Ireland",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.979677"
-    },
-    {
-      "iso_code": "PAL",
-      "name": "Palau",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.071122"
-    },
-    {
-      "iso_code": "RUS",
-      "name": "Russia",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.998670"
-    },
-    {
-      "iso_code": "SAO",
-      "name": "Sao Tome and Principe",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.015816"
-    },
-    {
-      "iso_code": "ANT",
-      "name": "Antigua and Barbuda",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.952149"
-    },
-    {
-      "iso_code": "DEM",
-      "name": "Democratic Republic of the Congo",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.940104"
-    },
-    {
-      "iso_code": "ECU",
-      "name": "Ecuador",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.013355"
-    },
-    {
-      "iso_code": "IDN",
-      "name": "Indonesia",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.927833"
-    },
-    {
-      "iso_code": "LVA",
-      "name": "Latvia",
-      "advisory_level": 0,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.975478"
-    },
-    {
-      "iso_code": "PHL",
-      "name": "Philippines",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.037911"
-    },
-    {
-      "iso_code": "TOG",
-      "name": "Togo",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.984271"
-    },
-    {
-      "iso_code": "UGA",
-      "name": "Uganda",
-      "advisory_level": 0,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.005075"
-    },
-    {
-      "iso_code": "FIN",
-      "name": "Finland",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.982524"
-    },
-    {
-      "iso_code": "HRV",
-      "name": "Croatia",
-      "advisory_level": 0,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.953789"
-    },
-    {
-      "iso_code": "GBR",
-      "name": "United Kingdom",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.038655"
-    },
-    {
-      "iso_code": "NIC",
-      "name": "Nicaragua",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.958851"
-    },
-    {
-      "iso_code": "KHM",
-      "name": "Cambodia",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.019737"
-    },
-    {
-      "iso_code": "BOS",
-      "name": "Bosnia and Herzegovina",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.050858"
-    },
-    {
-      "iso_code": "ESP",
-      "name": "Spain",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.036384"
-    },
-    {
-      "iso_code": "LIE",
-      "name": "Liechtenstein",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.030818"
-    },
-    {
-      "iso_code": "BRU",
-      "name": "Brunei",
-      "advisory_level": 0,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.959721"
-    },
-    {
-      "iso_code": "UZB",
-      "name": "Uzbekistan",
-      "advisory_level": 0,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.994830"
-    },
-    {
-      "iso_code": "KEN",
-      "name": "Kenya",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.046013"
-    },
-    {
-      "iso_code": "BEN",
-      "name": "Benin",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.997133"
-    },
-    {
-      "iso_code": "PAP",
-      "name": "Papua New Guinea",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.041966"
-    },
-    {
-      "iso_code": "SVN",
-      "name": "Slovenia",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.958035"
-    },
-    {
-      "iso_code": "LKA",
-      "name": "Sri Lanka",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.014065"
-    },
-    {
-      "iso_code": "VNM",
-      "name": "Vietnam",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.935121"
-    },
-    {
-      "iso_code": "BUR",
-      "name": "Burma",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.961526"
-    },
-    {
-      "iso_code": "CHE",
-      "name": "Switzerland",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.032478"
-    },
-    {
-      "iso_code": "SGP",
-      "name": "Singapore",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.985016"
-    },
-    {
-      "iso_code": "IRQ",
-      "name": "Iraq",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.989080"
-    },
-    {
-      "iso_code": "ALB",
-      "name": "Albania",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.049242"
-    },
-    {
-      "iso_code": "NLD",
-      "name": "Netherlands",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.070298"
-    },
-    {
-      "iso_code": "NAU",
-      "name": "Nauru",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.054848"
-    },
-    {
-      "iso_code": "SEY",
-      "name": "Seychelles",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.003482"
-    },
-    {
-      "iso_code": "YEM",
-      "name": "Yemen",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.000128"
-    },
-    {
-      "iso_code": "COM",
-      "name": "Comoros",
-      "advisory_level": 0,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.996465"
-    },
-    {
-      "iso_code": "TRI",
-      "name": "Trinidad and Tobago",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.969986"
-    },
-    {
-      "iso_code": "MOZ",
-      "name": "Mozambique",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.022167"
-    },
-    {
-      "iso_code": "DNK",
-      "name": "Kingdom of Denmark",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.064155"
-    },
-    {
-      "iso_code": "NPL",
-      "name": "Nepal",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.977997"
-    },
-    {
-      "iso_code": "HON",
-      "name": "Honduras",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.051646"
-    },
-    {
-      "iso_code": "MLI",
-      "name": "Mali",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.939255"
-    },
-    {
-      "iso_code": "EQU",
-      "name": "Equatorial Guinea",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.016694"
-    },
-    {
-      "iso_code": "KAZ",
-      "name": "Kazakhstan",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.071961"
-    },
-    {
-      "iso_code": "LAO",
-      "name": "Laos",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.060202"
-    },
-    {
-      "iso_code": "DJI",
-      "name": "Djibouti",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.047575"
-    },
-    {
-      "iso_code": "SIE",
-      "name": "Sierra Leone",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.017523"
-    },
-    {
-      "iso_code": "PER",
-      "name": "Peru",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.034100"
-    },
-    {
-      "iso_code": "LTU",
-      "name": "Lithuania",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.968315"
-    },
-    {
-      "iso_code": "FIJ",
-      "name": "Fiji",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.055622"
-    },
-    {
-      "iso_code": "EGY",
-      "name": "Egypt",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.021260"
-    },
-    {
-      "iso_code": "SRB",
-      "name": "Serbia",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.045211"
-    },
-    {
-      "iso_code": "CAB",
-      "name": "Cabo Verde",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.000934"
-    },
-    {
-      "iso_code": "HTI",
+      "iso_code": "HT",
       "name": "Haiti",
       "advisory_level": 4,
       "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.922361"
+      "last_updated": "Fri, 10 Jul 2026"
     },
     {
-      "iso_code": "THA",
-      "name": "Thailand",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.929427"
-    },
-    {
-      "iso_code": "NEW",
-      "name": "New Caledonia",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.946841"
-    },
-    {
-      "iso_code": "CRI",
-      "name": "Costa Rica",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.974599"
-    },
-    {
-      "iso_code": "SOU",
-      "name": "South Korea",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.026848"
-    },
-    {
-      "iso_code": "PAK",
-      "name": "Pakistan",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.985846"
-    },
-    {
-      "iso_code": "VEN",
-      "name": "Venezuela",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.980474"
-    },
-    {
-      "iso_code": "SOL",
-      "name": "Solomon Islands",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.042905"
-    },
-    {
-      "iso_code": "MYS",
-      "name": "Malaysia",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.990918"
-    },
-    {
-      "iso_code": "ARE",
-      "name": "United Arab Emirates",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.986659"
-    },
-    {
-      "iso_code": "LIB",
-      "name": "Liberia",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.002684"
-    },
-    {
-      "iso_code": "TIM",
-      "name": "Timor-Leste",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.947697"
-    },
-    {
-      "iso_code": "IRN",
-      "name": "Iran",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.005895"
-    },
-    {
-      "iso_code": "GUY",
-      "name": "Guyana",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.037159"
-    },
-    {
-      "iso_code": "NER",
-      "name": "Niger",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.010801"
-    },
-    {
-      "iso_code": "REP",
-      "name": "Republic of the Congo",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.061877"
-    },
-    {
-      "iso_code": "BOT",
-      "name": "Botswana",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.937651"
-    },
-    {
-      "iso_code": "SAM",
-      "name": "Samoa",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.930272"
-    },
-    {
-      "iso_code": "BAH",
-      "name": "Bahrain",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.987581"
-    },
-    {
-      "iso_code": "KOS",
-      "name": "Kosovo",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.056530"
-    },
-    {
-      "iso_code": "CAY",
-      "name": "Cayman Islands",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.948576"
-    },
-    {
-      "iso_code": "BGR",
-      "name": "Bulgaria",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.014973"
-    },
-    {
-      "iso_code": "ESW",
+      "iso_code": "SZ",
       "name": "Eswatini",
       "advisory_level": 2,
       "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.923383"
+      "last_updated": "Fri, 10 Jul 2026"
     },
     {
-      "iso_code": "AUS",
-      "name": "Australia",
+      "iso_code": "NE",
+      "name": "Niger",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 09 Jul 2026"
+    },
+    {
+      "iso_code": "MT",
+      "name": "Malta",
       "advisory_level": 1,
       "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.025259"
+      "last_updated": "Thu, 09 Jul 2026"
     },
     {
-      "iso_code": "BER",
-      "name": "Bermuda",
-      "advisory_level": 0,
+      "iso_code": "GF",
+      "name": "French Guiana",
+      "advisory_level": 1,
       "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.971700"
+      "last_updated": "Wed, 08 Jul 2026"
     },
     {
-      "iso_code": "FRA",
-      "name": "France",
+      "iso_code": "GH",
+      "name": "Ghana",
       "advisory_level": 2,
       "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.027615"
+      "last_updated": "Tue, 07 Jul 2026"
     },
     {
-      "iso_code": "SIN",
-      "name": "Sint Maarten",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.067787"
-    },
-    {
-      "iso_code": "KWT",
-      "name": "Kuwait",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.933425"
-    },
-    {
-      "iso_code": "LBY",
-      "name": "Libya",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.020497"
-    },
-    {
-      "iso_code": "NZL",
-      "name": "New Zealand",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.964932"
-    },
-    {
-      "iso_code": "ETH",
-      "name": "Ethiopia",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.976389"
-    },
-    {
-      "iso_code": "ZAF",
-      "name": "South Africa",
+      "iso_code": "ID",
+      "name": "Indonesia",
       "advisory_level": 2,
       "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.028370"
+      "last_updated": "Tue, 07 Jul 2026"
     },
     {
-      "iso_code": "PAN",
-      "name": "Panama",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.063421"
-    },
-    {
-      "iso_code": "ITA",
-      "name": "Italy",
+      "iso_code": "MD",
+      "name": "Moldova",
       "advisory_level": 2,
       "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.029090"
+      "last_updated": "Tue, 07 Jul 2026"
     },
     {
-      "iso_code": "COT",
-      "name": "Cote d Ivoire",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.992496"
-    },
-    {
-      "iso_code": "LBN",
-      "name": "Lebanon",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.962340"
-    },
-    {
-      "iso_code": "BON",
-      "name": "Bonaire",
+      "iso_code": "WS",
+      "name": "Samoa",
       "advisory_level": 1,
       "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.068723"
+      "last_updated": "Tue, 07 Jul 2026"
     },
     {
-      "iso_code": "SAB",
-      "name": "Saba",
+      "iso_code": "VC",
+      "name": "Saint Vincent and the Grenadines",
       "advisory_level": 1,
       "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.069528"
+      "last_updated": "Tue, 07 Jul 2026"
     },
     {
-      "iso_code": "MEX",
-      "name": "Mexico",
-      "advisory_level": 4,
+      "iso_code": "KN",
+      "name": "Saint Kitts and Nevis",
+      "advisory_level": 1,
       "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.018979"
+      "last_updated": "Tue, 07 Jul 2026"
     },
     {
-      "iso_code": "IND",
-      "name": "India",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.022929"
-    },
-    {
-      "iso_code": "VAN",
-      "name": "Vanuatu",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.031677"
-    },
-    {
-      "iso_code": "HKG",
-      "name": "Hong Kong",
+      "iso_code": "TC",
+      "name": "Turks and Caicos Islands",
       "advisory_level": 2,
       "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.058053"
+      "last_updated": "Tue, 07 Jul 2026"
     },
     {
-      "iso_code": "MAC",
-      "name": "Macau",
-      "advisory_level": 3,
+      "iso_code": "TH",
+      "name": "Thailand",
+      "advisory_level": 1,
       "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.059211"
+      "last_updated": "Tue, 07 Jul 2026"
     },
     {
-      "iso_code": "FED",
+      "iso_code": "MS",
+      "name": "Montserrat",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 07 Jul 2026"
+    },
+    {
+      "iso_code": "FM",
       "name": "Federated States of Micronesia",
       "advisory_level": 1,
       "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:02.931920"
+      "last_updated": "Tue, 07 Jul 2026"
     },
     {
-      "iso_code": "CZE",
+      "iso_code": "NO",
+      "name": "Norway",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 06 Jul 2026"
+    },
+    {
+      "iso_code": "KW",
+      "name": "Kuwait",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Sun, 28 Jun 2026"
+    },
+    {
+      "iso_code": "OM",
+      "name": "Oman",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Sat, 27 Jun 2026"
+    },
+    {
+      "iso_code": "VE",
+      "name": "Venezuela",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Sat, 27 Jun 2026"
+    },
+    {
+      "iso_code": "SV",
+      "name": "El Salvador",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 25 Jun 2026"
+    },
+    {
+      "iso_code": "VN",
+      "name": "Vietnam",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 24 Jun 2026"
+    },
+    {
+      "iso_code": "JM",
+      "name": "Jamaica",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 23 Jun 2026"
+    },
+    {
+      "iso_code": "BW",
+      "name": "Botswana",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 17 Jun 2026"
+    },
+    {
+      "iso_code": "LS",
+      "name": "Lesotho",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 17 Jun 2026"
+    },
+    {
+      "iso_code": "PK",
+      "name": "Pakistan",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 16 Jun 2026"
+    },
+    {
+      "iso_code": "NG",
+      "name": "Nigeria",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 12 Jun 2026"
+    },
+    {
+      "iso_code": "TR",
+      "name": "Turkey",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 09 Jun 2026"
+    },
+    {
+      "iso_code": "ML",
+      "name": "Mali",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 08 Jun 2026"
+    },
+    {
+      "iso_code": "CA",
+      "name": "Canada",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 05 Jun 2026"
+    },
+    {
+      "iso_code": "UG",
+      "name": "Uganda",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 04 Jun 2026"
+    },
+    {
+      "iso_code": "BO",
+      "name": "Bolivia",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 04 Jun 2026"
+    },
+    {
+      "iso_code": "RW",
+      "name": "Rwanda",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 04 Jun 2026"
+    },
+    {
+      "iso_code": "CD",
+      "name": "Democratic Republic of the Congo",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 04 Jun 2026"
+    },
+    {
+      "iso_code": "CY",
+      "name": "Cyprus",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 01 Jun 2026"
+    },
+    {
+      "iso_code": "MX",
+      "name": "Mexico",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 29 May 2026"
+    },
+    {
+      "iso_code": "VG",
+      "name": "British Virgin Islands",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 22 May 2026"
+    },
+    {
+      "iso_code": "AI",
+      "name": "Anguilla",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 22 May 2026"
+    },
+    {
+      "iso_code": "SO",
+      "name": "Somalia",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 21 May 2026"
+    },
+    {
+      "iso_code": "TN",
+      "name": "Tunisia",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 21 May 2026"
+    },
+    {
+      "iso_code": "AD",
+      "name": "Andorra",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 21 May 2026"
+    },
+    {
+      "iso_code": "TL",
+      "name": "Timor-Leste",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 21 May 2026"
+    },
+    {
+      "iso_code": "KY",
+      "name": "Cayman Islands",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 21 May 2026"
+    },
+    {
+      "iso_code": "MH",
+      "name": "Marshall Islands",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 21 May 2026"
+    },
+    {
+      "iso_code": "NC",
+      "name": "New Caledonia",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 21 May 2026"
+    },
+    {
+      "iso_code": "CL",
+      "name": "Chile",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 20 May 2026"
+    },
+    {
+      "iso_code": "AR",
+      "name": "Argentina",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 20 May 2026"
+    },
+    {
+      "iso_code": "DM",
+      "name": "Dominica",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 20 May 2026"
+    },
+    {
+      "iso_code": "AG",
+      "name": "Antigua and Barbuda",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 20 May 2026"
+    },
+    {
+      "iso_code": "HR",
+      "name": "Croatia",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 18 May 2026"
+    },
+    {
+      "iso_code": "SE",
+      "name": "Sweden",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 18 May 2026"
+    },
+    {
+      "iso_code": "SS",
+      "name": "South Sudan",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Sun, 17 May 2026"
+    },
+    {
+      "iso_code": "SD",
+      "name": "Sudan",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 15 May 2026"
+    },
+    {
+      "iso_code": "SI",
+      "name": "Slovenia",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 15 May 2026"
+    },
+    {
+      "iso_code": "CM",
+      "name": "Cameroon",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 15 May 2026"
+    },
+    {
+      "iso_code": "NA",
+      "name": "Namibia",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 15 May 2026"
+    },
+    {
+      "iso_code": "BN",
+      "name": "Brunei",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 14 May 2026"
+    },
+    {
+      "iso_code": "MW",
+      "name": "Malawi",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 14 May 2026"
+    },
+    {
+      "iso_code": "NI",
+      "name": "Nicaragua",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 14 May 2026"
+    },
+    {
+      "iso_code": "MM",
+      "name": "Burma",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 08 May 2026"
+    },
+    {
+      "iso_code": "LB",
+      "name": "Lebanon",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 06 May 2026"
+    },
+    {
+      "iso_code": "IS",
+      "name": "Iceland",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 05 May 2026"
+    },
+    {
+      "iso_code": "BF",
+      "name": "Burkina Faso",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 04 May 2026"
+    },
+    {
+      "iso_code": "JO",
+      "name": "Jordan",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 04 May 2026"
+    },
+    {
+      "iso_code": "NZ",
+      "name": "New Zealand",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 29 Apr 2026"
+    },
+    {
+      "iso_code": "TD",
+      "name": "Chad",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 28 Apr 2026"
+    },
+    {
+      "iso_code": "AZ",
+      "name": "Azerbaijan",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 28 Apr 2026"
+    },
+    {
+      "iso_code": "LT",
+      "name": "Lithuania",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 28 Apr 2026"
+    },
+    {
+      "iso_code": "HU",
+      "name": "Hungary",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 15 Apr 2026"
+    },
+    {
+      "iso_code": "TT",
+      "name": "Trinidad and Tobago",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 13 Apr 2026"
+    },
+    {
+      "iso_code": "BB",
+      "name": "Barbados",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 10 Apr 2026"
+    },
+    {
+      "iso_code": "BM",
+      "name": "Bermuda",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 10 Apr 2026"
+    },
+    {
+      "iso_code": "ST",
+      "name": "São Tomé and Príncipe",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 08 Apr 2026"
+    },
+    {
+      "iso_code": "LU",
+      "name": "Luxembourg",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 08 Apr 2026"
+    },
+    {
+      "iso_code": "CR",
+      "name": "Costa Rica",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 02 Apr 2026"
+    },
+    {
+      "iso_code": "LV",
+      "name": "Latvia",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 01 Apr 2026"
+    },
+    {
+      "iso_code": "ET",
+      "name": "Ethiopia",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 01 Apr 2026"
+    },
+    {
+      "iso_code": "CO",
+      "name": "Colombia",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 31 Mar 2026"
+    },
+    {
+      "iso_code": "NP",
+      "name": "Nepal",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 31 Mar 2026"
+    },
+    {
+      "iso_code": "EE",
+      "name": "Estonia",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 31 Mar 2026"
+    },
+    {
+      "iso_code": "GA",
+      "name": "Gabon",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 30 Mar 2026"
+    },
+    {
+      "iso_code": "IE",
+      "name": "Ireland",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 20 Mar 2026"
+    },
+    {
+      "iso_code": "FI",
+      "name": "Finland",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 13 Mar 2026"
+    },
+    {
+      "iso_code": "SA",
+      "name": "Saudi Arabia",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 13 Mar 2026"
+    },
+    {
+      "iso_code": "GT",
+      "name": "Guatemala",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 12 Mar 2026"
+    },
+    {
+      "iso_code": "BZ",
+      "name": "Belize",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 12 Mar 2026"
+    },
+    {
+      "iso_code": "SG",
+      "name": "Singapore",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 09 Mar 2026"
+    },
+    {
+      "iso_code": "TG",
+      "name": "Togo",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 09 Mar 2026"
+    },
+    {
+      "iso_code": "AO",
+      "name": "Angola",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 05 Mar 2026"
+    },
+    {
+      "iso_code": "AE",
+      "name": "United Arab Emirates",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 03 Mar 2026"
+    },
+    {
+      "iso_code": "BH",
+      "name": "Bahrain",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 02 Mar 2026"
+    },
+    {
+      "iso_code": "QA",
+      "name": "Qatar",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 02 Mar 2026"
+    },
+    {
+      "iso_code": "IQ",
+      "name": "Iraq",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 02 Mar 2026"
+    },
+    {
+      "iso_code": "GN",
+      "name": "Guinea",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 25 Feb 2026"
+    },
+    {
+      "iso_code": "MY",
+      "name": "Malaysia",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Sun, 22 Feb 2026"
+    },
+    {
+      "iso_code": "AF",
+      "name": "Afghanistan",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 20 Feb 2026"
+    },
+    {
+      "iso_code": "CI",
+      "name": "Cote d Ivoire",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 18 Feb 2026"
+    },
+    {
+      "iso_code": "SK",
+      "name": "Slovakia",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 12 Feb 2026"
+    },
+    {
+      "iso_code": "KG",
+      "name": "The Kyrgyz Republic",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 10 Feb 2026"
+    },
+    {
+      "iso_code": "UZ",
+      "name": "Uzbekistan",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 26 Jan 2026"
+    },
+    {
+      "iso_code": "BD",
+      "name": "Bangladesh",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 20 Jan 2026"
+    },
+    {
+      "iso_code": "GM",
+      "name": "The Gambia",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 16 Jan 2026"
+    },
+    {
+      "iso_code": "CF",
+      "name": "Central African Republic",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 15 Jan 2026"
+    },
+    {
+      "iso_code": "KM",
+      "name": "Comoros",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 12 Jan 2026"
+    },
+    {
+      "iso_code": "CZ",
       "name": "Czechia",
       "advisory_level": 1,
       "risk_score": 0.0,
-      "last_updated": "2026-07-12T06:23:03.043745"
+      "last_updated": "Thu, 08 Jan 2026"
     },
     {
-      "iso_code": "BHU",
+      "iso_code": "PW",
+      "name": "Palau",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 07 Jan 2026"
+    },
+    {
+      "iso_code": "BJ",
+      "name": "Benin",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 07 Jan 2026"
+    },
+    {
+      "iso_code": "GD",
+      "name": "Grenada",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 05 Jan 2026"
+    },
+    {
+      "iso_code": "RU",
+      "name": "Russia",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 29 Dec 2025"
+    },
+    {
+      "iso_code": "BY",
+      "name": "Belarus",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 29 Dec 2025"
+    },
+    {
+      "iso_code": "PT",
+      "name": "Portugal",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 23 Dec 2025"
+    },
+    {
+      "iso_code": "YE",
+      "name": "Yemen",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 19 Dec 2025"
+    },
+    {
+      "iso_code": "CV",
+      "name": "Cabo Verde",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 18 Dec 2025"
+    },
+    {
+      "iso_code": "GW",
+      "name": "Guinea-Bissau",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 11 Dec 2025"
+    },
+    {
+      "iso_code": "SY",
+      "name": "Syria",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 11 Dec 2025"
+    },
+    {
+      "iso_code": "LR",
+      "name": "Liberia",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 11 Dec 2025"
+    },
+    {
+      "iso_code": "SC",
+      "name": "Seychelles",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 09 Dec 2025"
+    },
+    {
+      "iso_code": "MU",
+      "name": "Mauritius",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 08 Dec 2025"
+    },
+    {
+      "iso_code": "IR",
+      "name": "Iran",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 05 Dec 2025"
+    },
+    {
+      "iso_code": "MG",
+      "name": "Madagascar",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 05 Dec 2025"
+    },
+    {
+      "iso_code": "SN",
+      "name": "Senegal",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 01 Dec 2025"
+    },
+    {
+      "iso_code": "TW",
+      "name": "Taiwan",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 25 Nov 2025"
+    },
+    {
+      "iso_code": "TZ",
+      "name": "Tanzania",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 31 Oct 2025"
+    },
+    {
+      "iso_code": "GR",
+      "name": "Greece",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 23 Oct 2025"
+    },
+    {
+      "iso_code": "BT",
       "name": "Bhutan",
       "advisory_level": 1,
-      "risk_score": 1.0,
-      "last_updated": "2026-07-12T06:23:03.012534"
+      "risk_score": 0.0,
+      "last_updated": "Mon, 20 Oct 2025"
     },
     {
-      "iso_code": "SOT",
-      "name": "São Tomé and Príncipe",
-      "advisory_level": 3,
-      "risk_score": 2.0,
-      "last_updated": "2026-07-11T12:23:02.576454"
+      "iso_code": "RO",
+      "name": "Romania",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 14 Oct 2025"
     },
     {
-      "iso_code": "CTE",
-      "name": "Côte d’Ivoire",
+      "iso_code": "LK",
+      "name": "Sri Lanka",
       "advisory_level": 2,
-      "risk_score": 2.0,
-      "last_updated": "2026-07-11T00:23:02.621919"
+      "risk_score": 0.0,
+      "last_updated": "Tue, 14 Oct 2025"
+    },
+    {
+      "iso_code": "EC",
+      "name": "Ecuador",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 14 Oct 2025"
+    },
+    {
+      "iso_code": "BG",
+      "name": "Bulgaria",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 09 Oct 2025"
+    },
+    {
+      "iso_code": "GQ",
+      "name": "Equatorial Guinea",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 07 Oct 2025"
+    },
+    {
+      "iso_code": "MV",
+      "name": "Maldives",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 07 Oct 2025"
+    },
+    {
+      "iso_code": "SL",
+      "name": "Sierra Leone",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 15 Sep 2025"
+    },
+    {
+      "iso_code": "AM",
+      "name": "Armenia",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 05 Sep 2025"
+    },
+    {
+      "iso_code": "KH",
+      "name": "Cambodia",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 25 Jul 2025"
+    },
+    {
+      "iso_code": "LY",
+      "name": "Libya",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 16 Jul 2025"
+    },
+    {
+      "iso_code": "EG",
+      "name": "Egypt",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 15 Jul 2025"
+    },
+    {
+      "iso_code": "MR",
+      "name": "Mauritania",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 15 Jul 2025"
+    },
+    {
+      "iso_code": "IN",
+      "name": "India",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 16 Jun 2025"
+    },
+    {
+      "iso_code": "MZ",
+      "name": "Mozambique",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 16 Jun 2025"
+    },
+    {
+      "iso_code": "DO",
+      "name": "Dominican Republic",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 12 Jun 2025"
+    },
+    {
+      "iso_code": "PL",
+      "name": "Poland",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 05 Jun 2025"
+    },
+    {
+      "iso_code": "AU",
+      "name": "Australia",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 30 May 2025"
+    },
+    {
+      "iso_code": "FR",
+      "name": "France",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 28 May 2025"
+    },
+    {
+      "iso_code": "KR",
+      "name": "South Korea",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 28 May 2025"
+    },
+    {
+      "iso_code": "ZA",
+      "name": "South Africa",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 27 May 2025"
+    },
+    {
+      "iso_code": "IT",
+      "name": "Italy",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 23 May 2025"
+    },
+    {
+      "iso_code": "LI",
+      "name": "Liechtenstein",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 22 May 2025"
+    },
+    {
+      "iso_code": "BE",
+      "name": "Belgium",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 22 May 2025"
+    },
+    {
+      "iso_code": "VU",
+      "name": "Vanuatu",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 22 May 2025"
+    },
+    {
+      "iso_code": "CH",
+      "name": "Switzerland",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 20 May 2025"
+    },
+    {
+      "iso_code": "TJ",
+      "name": "Tajikistan",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 16 May 2025"
+    },
+    {
+      "iso_code": "PE",
+      "name": "Peru",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 16 May 2025"
+    },
+    {
+      "iso_code": "JP",
+      "name": "Japan",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 15 May 2025"
+    },
+    {
+      "iso_code": "DE",
+      "name": "Germany",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 13 May 2025"
+    },
+    {
+      "iso_code": "ES",
+      "name": "Spain",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 12 May 2025"
+    },
+    {
+      "iso_code": "GY",
+      "name": "Guyana",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 12 May 2025"
+    },
+    {
+      "iso_code": "GB",
+      "name": "United Kingdom",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 08 May 2025"
+    },
+    {
+      "iso_code": "PH",
+      "name": "Philippines",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 08 May 2025"
+    },
+    {
+      "iso_code": "UY",
+      "name": "Uruguay",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 07 May 2025"
+    },
+    {
+      "iso_code": "CU",
+      "name": "Cuba",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 07 May 2025"
+    },
+    {
+      "iso_code": "PY",
+      "name": "Paraguay",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 30 Apr 2025"
+    },
+    {
+      "iso_code": "KP",
+      "name": "North Korea",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 29 Apr 2025"
+    },
+    {
+      "iso_code": "PG",
+      "name": "Papua New Guinea",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 29 Apr 2025"
+    },
+    {
+      "iso_code": "BI",
+      "name": "Burundi",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 29 Apr 2025"
+    },
+    {
+      "iso_code": "SB",
+      "name": "Solomon Islands",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 29 Apr 2025"
+    },
+    {
+      "iso_code": "MA",
+      "name": "Morocco",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 21 Apr 2025"
+    },
+    {
+      "iso_code": "RS",
+      "name": "Serbia",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 11 Apr 2025"
+    },
+    {
+      "iso_code": "BS",
+      "name": "The Bahamas",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 31 Mar 2025"
+    },
+    {
+      "iso_code": "KE",
+      "name": "Kenya",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 17 Mar 2025"
+    },
+    {
+      "iso_code": "GE",
+      "name": "Georgia",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 13 Mar 2025"
+    },
+    {
+      "iso_code": "DJ",
+      "name": "Djibouti",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 06 Mar 2025"
+    },
+    {
+      "iso_code": "TM",
+      "name": "Turkmenistan",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 28 Feb 2025"
+    },
+    {
+      "iso_code": "MN",
+      "name": "Mongolia",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 22 Jan 2025"
+    },
+    {
+      "iso_code": "MK",
+      "name": "North Macedonia",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 14 Jan 2025"
+    },
+    {
+      "iso_code": "AL",
+      "name": "Albania",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 31 Dec 2024"
+    },
+    {
+      "iso_code": "SR",
+      "name": "Suriname",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 13 Dec 2024"
+    },
+    {
+      "iso_code": "BA",
+      "name": "Bosnia and Herzegovina",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 12 Dec 2024"
+    },
+    {
+      "iso_code": "HN",
+      "name": "Honduras",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 10 Dec 2024"
+    },
+    {
+      "iso_code": "TV",
+      "name": "Tuvalu",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 02 Dec 2024"
+    },
+    {
+      "iso_code": "KI",
+      "name": "Kiribati",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 02 Dec 2024"
+    },
+    {
+      "iso_code": "PF",
+      "name": "French Polynesia",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 02 Dec 2024"
+    },
+    {
+      "iso_code": "NR",
+      "name": "Nauru",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 02 Dec 2024"
+    },
+    {
+      "iso_code": "FJ",
+      "name": "Fiji",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 02 Dec 2024"
+    },
+    {
+      "iso_code": "XK",
+      "name": "Kosovo",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 02 Dec 2024"
+    },
+    {
+      "iso_code": "CN",
+      "name": "China",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 27 Nov 2024"
+    },
+    {
+      "iso_code": "HK",
+      "name": "Hong Kong",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 27 Nov 2024"
+    },
+    {
+      "iso_code": "MO",
+      "name": "Macau",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 27 Nov 2024"
+    },
+    {
+      "iso_code": "ME",
+      "name": "Montenegro",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 26 Nov 2024"
+    },
+    {
+      "iso_code": "LA",
+      "name": "Laos",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 21 Nov 2024"
+    },
+    {
+      "iso_code": "UA",
+      "name": "Ukraine",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 14 Nov 2024"
+    },
+    {
+      "iso_code": "GL",
+      "name": "Greenland",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 29 Oct 2024"
+    },
+    {
+      "iso_code": "CG",
+      "name": "Republic of the Congo",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 02 Oct 2024"
+    },
+    {
+      "iso_code": "DZ",
+      "name": "Algeria",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 26 Sep 2024"
+    },
+    {
+      "iso_code": "PA",
+      "name": "Panama",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 23 Sep 2024"
+    },
+    {
+      "iso_code": "DK",
+      "name": "Kingdom of Denmark",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 17 Sep 2024"
+    },
+    {
+      "iso_code": "AT",
+      "name": "Austria",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 23 Aug 2024"
+    },
+    {
+      "iso_code": "CW",
+      "name": "Curaçao",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 19 Aug 2024"
+    },
+    {
+      "iso_code": "AW",
+      "name": "Aruba",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 19 Aug 2024"
+    },
+    {
+      "iso_code": "SX",
+      "name": "Sint Maarten",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 19 Aug 2024"
+    },
+    {
+      "iso_code": "BQ",
+      "name": "Sint Eustatius",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 19 Aug 2024"
+    },
+    {
+      "iso_code": "NL",
+      "name": "Netherlands",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Fri, 09 Aug 2024"
+    },
+    {
+      "iso_code": "KZ",
+      "name": "Kazakhstan",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 05 Aug 2024"
+    },
+    {
+      "iso_code": "ZM",
+      "name": "Zambia",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 31 Jul 2023"
+    },
+    {
+      "iso_code": "ER",
+      "name": "Eritrea",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 31 Jul 2023"
+    },
+    {
+      "iso_code": "ZW",
+      "name": "Zimbabwe",
+      "advisory_level": 2,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 27 Jun 2023"
     }
   ]
 }
