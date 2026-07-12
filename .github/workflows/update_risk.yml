@@ -41,6 +41,80 @@ jobs:
 
         rm page1.json page2.json
 
+    # 🌟 [1.5단계] iso_code 표준 alpha-3 교정
+    # 소스 API가 국가명 앞 3글자를 iso_code로 잘못 내려주는 케이스가 188개 중
+    # 65개(약 35%) 발견됨 (예: Tajikistan -> "TAJ" 대신 표준은 "TJK").
+    # world_map.html의 iso3to2 매핑에 없는 코드라 지도에서 회색으로 남는 원인.
+    # 별도 파일 없이 워크플로우 안에서 python3 -c로 바로 교정.
+    - name: iso_code 표준 코드 교정
+      run: |
+        python3 - << 'PYEOF'
+        import json
+
+        # world_map.html의 iso2to3.values()와 동일한 표준 alpha-3 전체 집합
+        VALID_ISO3 = {
+            "AFG","ALA","ALB","DZA","ASM","AND","AGO","AIA","ATA","ATG","ARG","ARM","ABW","AUS","AUT","AZE",
+            "BHS","BHR","BGD","BRB","BLR","BEL","BLZ","BEN","BMU","BTN","BOL","BES","BIH","BWA","BVT","BRA",
+            "IOT","BRN","BGR","BFA","BDI","CPV","KHM","CMR","CAN","CYM","CAF","TCD","CHL","CHN","CXR","CCK",
+            "COL","COM","COD","COG","COK","CRI","CIV","HRV","CUB","CUW","CYP","CZE","DNK","DJI","DMA","DOM",
+            "ECU","EGY","SLV","GNQ","ERI","EST","SWZ","ETH","FLK","FRO","FJI","FIN","FRA","GUF","PYF","ATF",
+            "GAB","GMB","GEO","DEU","GHA","GIB","GRC","GRL","GRD","GLP","GUM","GTM","GGY","GIN","GNB","GUY",
+            "HTI","HMD","VAT","HND","HKG","HUN","ISL","IND","IDN","IRN","IRQ","IRL","IMN","ISR","ITA","JAM",
+            "JPN","JEY","JOR","KAZ","KEN","KIR","PRK","KOR","KWT","KGZ","LAO","LVA","LBN","LSO","LBR","LBY",
+            "LIE","LTU","LUX","MAC","MDG","MWI","MYS","MDV","MLI","MLT","MHL","MTQ","MRT","MUS","MYT","MEX",
+            "FSM","MDA","MCO","MNG","MNE","MSR","MAR","MOZ","MMR","NAM","NRU","NPL","NLD","NCL","NZL","NIC",
+            "NER","NGA","NIU","NFK","MKD","MNP","NOR","OMN","PAK","PLW","PSE","PAN","PNG","PRY","PER","PHL",
+            "PCN","POL","PRT","PRI","QAR","REU","ROU","RUS","RWA","BLM","SHN","KNA","LCA","MAF","SPM","VCT",
+            "WSM","SMR","STP","SAU","SEN","SRB","SYC","SLE","SGP","SXM","SVK","SVN","SLB","SOM","ZAF","SGS",
+            "SSD","ESP","LKA","SDN","SUR","SJM","SWE","CHE","SYR","TWN","TJK","TZA","THA","TLS","TGO","TKL",
+            "TON","TTO","TUN","TUR","TKM","TCA","TUV","UGA","UKR","ARE","GBR","UMI","USA","URY","UZB","VUT",
+            "VEN","VNM","VGB","VIR","WLF","ESH","YEM","ZMB","ZWE",
+        }
+
+        # 실제로 확인된 잘못된 코드 -> 표준 alpha-3 매핑
+        WRONG_TO_CORRECT_ISO3 = {
+            "TAJ": "TJK", "ZAM": "ZMB", "BAR": "BRB", "CHA": "TCD", "BRI": "VGB",
+            "THE": "KGZ", "MON": "MSR", "GUI": "GIN", "PAR": "PRY", "LES": "LSO",
+            "FRE": "GUF", "GUA": "GTM", "CUR": "CUW", "CAM": "CMR", "SAI": "LCA",
+            "ANG": "AIA", "ARU": "ABW", "ELS": "SLV", "MAD": "MDG", "MAU": "MUS",
+            "MOL": "MDA", "CEN": "CAF", "GRE": "GRD", "PAL": "PLW", "SAO": "STP",
+            "ANT": "ATG", "DEM": "COD", "TOG": "TGO", "BOS": "BIH", "BRU": "BRN",
+            "PAP": "PNG", "BUR": "MMR", "NAU": "NRU", "SEY": "SYC", "TRI": "TTO",
+            "HON": "HND", "EQU": "GNQ", "SIE": "SLE", "FIJ": "FJI", "CAB": "CPV",
+            "NEW": "NCL", "SOU": "KOR", "SOL": "SLB", "LIB": "LBR",
+            "TIM": "TLS", "REP": "COG", "BOT": "BWA", "SAM": "WSM", "BAH": "BHR",
+            "CAY": "CYM", "ESW": "SWZ", "BER": "BMU", "SIN": "SXM", "COT": "CIV",
+            "BON": "BES", "SAB": "BES", "VAN": "VUT", "FED": "FSM", "BHU": "BTN",
+            "SOT": "STP", "CTE": "CIV", "MAL": "MLT", "QAT": "QAR",
+        }
+        # 참고: KOS(Kosovo)는 공식 ISO3166 alpha-3 코드가 없어 매핑 대상에서 제외.
+
+        def fix_iso_code(raw_code):
+            code = (raw_code or "").upper().strip()
+            if code in VALID_ISO3:
+                return code
+            return WRONG_TO_CORRECT_ISO3.get(code, code)
+
+        path = "data/travel_risk.json"
+        with open(path, encoding="utf-8") as f:
+            payload = json.load(f)
+
+        still_bad = []
+        for item in payload.get("data", []):
+            before = item["iso_code"]
+            item["iso_code"] = fix_iso_code(before)
+            if item["iso_code"] not in VALID_ISO3:
+                still_bad.append((before, item.get("name")))
+
+        if still_bad:
+            print(f"WARNING: 여전히 매핑 실패 ({len(still_bad)}건): {still_bad}")
+        else:
+            print(f"OK: 전체 {len(payload.get('data', []))}건 교정 완료, 매핑 실패 없음")
+
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(payload, f, ensure_ascii=False, indent=2)
+        PYEOF
+
     # 🌟 [2단계] 실시간 재난 정보 수집 (404/403 에러 발생 시 공백 데이터로 우회 처리)
     - name: 실시간 재난(Disasters) 피드 데이터 추출
       run: |
