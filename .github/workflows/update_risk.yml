@@ -16,124 +16,201 @@ jobs:
     - name: data 디렉토리 생성
       run: mkdir -p data
 
-    # 🌟 [1단계] 국가별 기본 위험도 정보 수집 및 중복/인덱스 정제
-    - name: 국가별 위험도 데이터 추출 및 정제
+    # 🌟 [1단계] 미국 국무부 공식 RSS 피드에서 국가별 위험도 직접 추출
+    # travelriskapi.com 같은 제3자 중개 API를 거치지 않고 국무부(travel.state.gov)
+    # 공식 RSS를 바로 파싱한다. 인증 불필요, API 키 필요 없음.
+    - name: 국가별 위험도 데이터 추출 (State Dept 공식 RSS)
       run: |
-        curl -f -s -X GET \
-          -H "X-API-Key: ${{ secrets.TRAVEL_RISK_API_KEY }}" \
-          -H "Accept: application/json" \
-          "https://travelriskapi.com/api/v1/countries?skip=0&limit=100" > page1.json
+        curl -f -s "https://travel.state.gov/_res/rss/TAsTWs.xml" -o state_dept_raw.xml
 
-        curl -f -s -X GET \
-          -H "X-API-Key: ${{ secrets.TRAVEL_RISK_API_KEY }}" \
-          -H "Accept: application/json" \
-          "https://travelriskapi.com/api/v1/countries?skip=100&limit=100" > page2.json
+        python3 - << 'PYEOF'
+        import json
+        import re
+        import unicodedata
+        import xml.etree.ElementTree as ET
 
-        # 고유 iso_code 기준으로 객체 정렬 및 중복 제거 후 배열로 변환
-        jq -n '
-          [inputs.data[]] | 
-          reduce .[] as $item ({}; .[$item.iso_code] = $item) | 
-          {
-            status: "success",
-            data: [ .[] ]
-          }
-        ' page1.json page2.json > data/travel_risk.json
+        # ── 국가명(정규화된 소문자, 악센트 제거) -> ISO2 매핑 ──
+        # world_map.html의 iso3to2는 ISO2를 키로 쓰므로, 여기서는 바로 ISO2를 낸다.
+        NAME_TO_ISO2 = {
+            "afghanistan": "AF", "albania": "AL", "algeria": "DZ", "andorra": "AD", "angola": "AO",
+            "antigua and barbuda": "AG", "argentina": "AR", "armenia": "AM", "australia": "AU",
+            "austria": "AT", "azerbaijan": "AZ", "bahamas": "BS", "the bahamas": "BS", "bahrain": "BH",
+            "bangladesh": "BD", "barbados": "BB", "belarus": "BY", "belgium": "BE", "belize": "BZ",
+            "benin": "BJ", "bhutan": "BT", "bolivia": "BO", "bosnia and herzegovina": "BA",
+            "botswana": "BW", "brazil": "BR", "brunei": "BN", "brunei darussalam": "BN",
+            "bulgaria": "BG", "burkina faso": "BF", "burma": "MM", "burma (myanmar)": "MM",
+            "myanmar": "MM", "burundi": "BI", "cabo verde": "CV", "cape verde": "CV",
+            "cambodia": "KH", "cameroon": "CM", "canada": "CA", "central african republic": "CF",
+            "chad": "TD", "chile": "CL", "china": "CN", "mainland china": "CN",
+            "colombia": "CO", "comoros": "KM", "democratic republic of the congo": "CD",
+            "dr congo": "CD", "congo-kinshasa": "CD", "republic of the congo": "CG",
+            "congo-brazzaville": "CG", "costa rica": "CR", "cote d ivoire": "CI",
+            "cote d'ivoire": "CI", "cote d'ivoire": "CI", "ivory coast": "CI", "croatia": "HR",
+            "cuba": "CU", "cyprus": "CY", "czech republic": "CZ", "czechia": "CZ",
+            "denmark": "DK", "kingdom of denmark": "DK", "djibouti": "DJ", "dominica": "DM",
+            "dominican republic": "DO", "ecuador": "EC", "egypt": "EG", "el salvador": "SV",
+            "equatorial guinea": "GQ", "eritrea": "ER", "estonia": "EE", "eswatini": "SZ",
+            "swaziland": "SZ", "ethiopia": "ET", "fiji": "FJ", "finland": "FI", "france": "FR",
+            "gabon": "GA", "gambia": "GM", "the gambia": "GM", "georgia": "GE", "germany": "DE",
+            "ghana": "GH", "greece": "GR", "grenada": "GD", "guatemala": "GT", "guinea": "GN",
+            "guinea-bissau": "GW", "guyana": "GY", "haiti": "HT", "honduras": "HN",
+            "hong kong": "HK", "hungary": "HU", "iceland": "IS", "india": "IN", "indonesia": "ID",
+            "iran": "IR", "iraq": "IQ", "ireland": "IE", "israel": "IL", "italy": "IT",
+            "jamaica": "JM", "japan": "JP", "jordan": "JO", "kazakhstan": "KZ", "kenya": "KE",
+            "kiribati": "KI", "north korea": "KP", "kosovo": "XK", "kuwait": "KW",
+            "kyrgyz republic": "KG", "kyrgyzstan": "KG", "the kyrgyz republic": "KG",
+            "laos": "LA", "lao people's democratic republic": "LA", "latvia": "LV",
+            "lebanon": "LB", "lesotho": "LS", "liberia": "LR", "libya": "LY",
+            "liechtenstein": "LI", "lithuania": "LT", "luxembourg": "LU", "macau": "MO",
+            "madagascar": "MG", "malawi": "MW", "malaysia": "MY", "maldives": "MV", "mali": "ML",
+            "malta": "MT", "marshall islands": "MH", "mauritania": "MR", "mauritius": "MU",
+            "mexico": "MX", "micronesia": "FM", "federated states of micronesia": "FM",
+            "moldova": "MD", "republic of moldova": "MD", "monaco": "MC", "mongolia": "MN",
+            "montenegro": "ME", "montserrat": "MS", "morocco": "MA", "mozambique": "MZ",
+            "namibia": "NA", "nauru": "NR", "nepal": "NP", "netherlands": "NL",
+            "new zealand": "NZ", "nicaragua": "NI", "niger": "NE", "nigeria": "NG",
+            "north macedonia": "MK", "macedonia": "MK", "norway": "NO", "oman": "OM",
+            "pakistan": "PK", "palau": "PW", "panama": "PA", "papua new guinea": "PG",
+            "paraguay": "PY", "peru": "PE", "philippines": "PH", "poland": "PL",
+            "portugal": "PT", "qatar": "QA", "romania": "RO", "russia": "RU",
+            "russian federation": "RU", "rwanda": "RW", "saint kitts and nevis": "KN",
+            "saint lucia": "LC", "saint vincent and the grenadines": "VC", "samoa": "WS",
+            "san marino": "SM", "sao tome and principe": "ST", "sao tome and principe": "ST",
+            "saudi arabia": "SA", "senegal": "SN", "serbia": "RS", "seychelles": "SC",
+            "sierra leone": "SL", "singapore": "SG", "slovakia": "SK", "slovenia": "SI",
+            "solomon islands": "SB", "somalia": "SO", "south africa": "ZA", "south korea": "KR",
+            "republic of korea": "KR", "south sudan": "SS", "spain": "ES", "sri lanka": "LK",
+            "sudan": "SD", "suriname": "SR", "sweden": "SE", "switzerland": "CH", "syria": "SY",
+            "syrian arab republic": "SY", "taiwan": "TW", "tajikistan": "TJ", "tanzania": "TZ",
+            "united republic of tanzania": "TZ", "thailand": "TH", "timor-leste": "TL",
+            "east timor": "TL", "togo": "TG", "tonga": "TO", "trinidad and tobago": "TT",
+            "tunisia": "TN", "turkey": "TR", "turkiye": "TR", "turkmenistan": "TM",
+            "tuvalu": "TV", "uganda": "UG", "ukraine": "UA", "united arab emirates": "AE",
+            "united kingdom": "GB", "uruguay": "UY", "uzbekistan": "UZ", "vanuatu": "VU",
+            "vatican city": "VA", "holy see": "VA", "venezuela": "VE", "vietnam": "VN",
+            "viet nam": "VN", "yemen": "YE", "zambia": "ZM", "zimbabwe": "ZW",
+        }
 
-        rm page1.json page2.json
+        LEVEL_RE = re.compile(r"level\s*([1-4])", re.IGNORECASE)
 
-    # 🌟 [1.5단계] iso_code 표준 alpha-3 교정
-    # 소스 API가 국가명 앞 3글자를 iso_code로 잘못 내려주는 케이스가 188개 중
-    # 65개(약 35%) 발견됨 (예: Tajikistan -> "TAJ" 대신 표준은 "TJK").
-    # world_map.html의 iso3to2 매핑에 없는 코드라 지도에서 회색으로 남는 원인.
-    # 별도 파일 없이 워크플로우 안에서 python3 -c로 바로 교정.
-    - name: iso_code 표준 코드 교정
+        def normalize(name):
+            name = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
+            name = name.lower().strip()
+            name = re.sub(r"'", "'", name)
+            name = re.sub(r"\s+", " ", name)
+            return name
+
+        tree = ET.parse("state_dept_raw.xml")
+        root = tree.getroot()
+
+        results = []
+        unmatched = []
+        seen_iso2 = set()
+
+        for item in root.iter("item"):
+            title_el = item.find("title")
+            pubdate_el = item.find("pubDate")
+            if title_el is None or not title_el.text:
+                continue
+
+            title = title_el.text.strip()
+            # 타이틀 형식: "Armenia - Level 2: Exercise Increased Caution"
+            if " - " not in title:
+                continue
+            country_part, _, level_part = title.partition(" - ")
+
+            level_match = LEVEL_RE.search(level_part)
+            if not level_match:
+                continue
+            level = int(level_match.group(1))
+
+            key = normalize(country_part)
+            iso2 = NAME_TO_ISO2.get(key)
+
+            if not iso2:
+                unmatched.append(country_part)
+                continue
+
+            if iso2 in seen_iso2:
+                continue  # 이미 처리된 국가(중복 항목) 스킵
+            seen_iso2.add(iso2)
+
+            results.append({
+                "iso_code": iso2,
+                "name": country_part,
+                "advisory_level": level,
+                "risk_score": 0.0,
+                "last_updated": pubdate_el.text if pubdate_el is not None else "",
+            })
+
+        if unmatched:
+            print(f"매핑 실패한 국가명 ({len(unmatched)}건, NAME_TO_ISO2에 별칭 추가 필요):")
+            for name in unmatched:
+                print("  -", name)
+        print(f"총 {len(results)}개국 위험도 추출 완료")
+
+        with open("data/travel_risk.json", "w", encoding="utf-8") as f:
+            json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
+        PYEOF
+
+        rm -f state_dept_raw.xml
+
+    # 🌟 [2단계] GDACS 공식 API에서 실시간 재난 데이터 직접 추출
+    # 지진/태풍/홍수/화산/산불/가뭄, 최근 4일치. 인증 불필요.
+    - name: 실시간 재난(GDACS) 데이터 추출
       run: |
+        curl -f -s "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=green;orange;red" \
+          -o gdacs_raw.json || echo '{"features":[]}' > gdacs_raw.json
+
         python3 - << 'PYEOF'
         import json
 
-        # world_map.html의 iso2to3.values()와 동일한 표준 alpha-3 전체 집합
-        VALID_ISO3 = {
-            "AFG","ALA","ALB","DZA","ASM","AND","AGO","AIA","ATA","ATG","ARG","ARM","ABW","AUS","AUT","AZE",
-            "BHS","BHR","BGD","BRB","BLR","BEL","BLZ","BEN","BMU","BTN","BOL","BES","BIH","BWA","BVT","BRA",
-            "IOT","BRN","BGR","BFA","BDI","CPV","KHM","CMR","CAN","CYM","CAF","TCD","CHL","CHN","CXR","CCK",
-            "COL","COM","COD","COG","COK","CRI","CIV","HRV","CUB","CUW","CYP","CZE","DNK","DJI","DMA","DOM",
-            "ECU","EGY","SLV","GNQ","ERI","EST","SWZ","ETH","FLK","FRO","FJI","FIN","FRA","GUF","PYF","ATF",
-            "GAB","GMB","GEO","DEU","GHA","GIB","GRC","GRL","GRD","GLP","GUM","GTM","GGY","GIN","GNB","GUY",
-            "HTI","HMD","VAT","HND","HKG","HUN","ISL","IND","IDN","IRN","IRQ","IRL","IMN","ISR","ITA","JAM",
-            "JPN","JEY","JOR","KAZ","KEN","KIR","PRK","KOR","KWT","KGZ","LAO","LVA","LBN","LSO","LBR","LBY",
-            "LIE","LTU","LUX","MAC","MDG","MWI","MYS","MDV","MLI","MLT","MHL","MTQ","MRT","MUS","MYT","MEX",
-            "FSM","MDA","MCO","MNG","MNE","MSR","MAR","MOZ","MMR","NAM","NRU","NPL","NLD","NCL","NZL","NIC",
-            "NER","NGA","NIU","NFK","MKD","MNP","NOR","OMN","PAK","PLW","PSE","PAN","PNG","PRY","PER","PHL",
-            "PCN","POL","PRT","PRI","QAR","REU","ROU","RUS","RWA","BLM","SHN","KNA","LCA","MAF","SPM","VCT",
-            "WSM","SMR","STP","SAU","SEN","SRB","SYC","SLE","SGP","SXM","SVK","SVN","SLB","SOM","ZAF","SGS",
-            "SSD","ESP","LKA","SDN","SUR","SJM","SWE","CHE","SYR","TWN","TJK","TZA","THA","TLS","TGO","TKL",
-            "TON","TTO","TUN","TUR","TKM","TCA","TUV","UGA","UKR","ARE","GBR","UMI","USA","URY","UZB","VUT",
-            "VEN","VNM","VGB","VIR","WLF","ESH","YEM","ZMB","ZWE",
-        }
+        try:
+            with open("gdacs_raw.json", encoding="utf-8") as f:
+                raw = json.load(f)
+        except Exception as e:
+            print(f"GDACS 응답 파싱 실패: {e}")
+            raw = {"features": []}
 
-        # 실제로 확인된 잘못된 코드 -> 표준 alpha-3 매핑
-        WRONG_TO_CORRECT_ISO3 = {
-            "TAJ": "TJK", "ZAM": "ZMB", "BAR": "BRB", "CHA": "TCD", "BRI": "VGB",
-            "THE": "KGZ", "MON": "MSR", "GUI": "GIN", "PAR": "PRY", "LES": "LSO",
-            "FRE": "GUF", "GUA": "GTM", "CUR": "CUW", "CAM": "CMR", "SAI": "LCA",
-            "ANG": "AIA", "ARU": "ABW", "ELS": "SLV", "MAD": "MDG", "MAU": "MUS",
-            "MOL": "MDA", "CEN": "CAF", "GRE": "GRD", "PAL": "PLW", "SAO": "STP",
-            "ANT": "ATG", "DEM": "COD", "TOG": "TGO", "BOS": "BIH", "BRU": "BRN",
-            "PAP": "PNG", "BUR": "MMR", "NAU": "NRU", "SEY": "SYC", "TRI": "TTO",
-            "HON": "HND", "EQU": "GNQ", "SIE": "SLE", "FIJ": "FJI", "CAB": "CPV",
-            "NEW": "NCL", "SOU": "KOR", "SOL": "SLB", "LIB": "LBR",
-            "TIM": "TLS", "REP": "COG", "BOT": "BWA", "SAM": "WSM", "BAH": "BHR",
-            "CAY": "CYM", "ESW": "SWZ", "BER": "BMU", "SIN": "SXM", "COT": "CIV",
-            "BON": "BES", "SAB": "BES", "VAN": "VUT", "FED": "FSM", "BHU": "BTN",
-            "SOT": "STP", "CTE": "CIV", "MAL": "MLT", "QAT": "QAR",
-        }
-        # 참고: KOS(Kosovo)는 공식 ISO3166 alpha-3 코드가 없어 매핑 대상에서 제외.
+        features = raw.get("features", [])
+        results = []
 
-        def fix_iso_code(raw_code):
-            code = (raw_code or "").upper().strip()
-            if code in VALID_ISO3:
-                return code
-            return WRONG_TO_CORRECT_ISO3.get(code, code)
+        for feat in features:
+            props = feat.get("properties", {})
+            geom = feat.get("geometry", {}) or {}
+            coords = geom.get("coordinates", [])
 
-        path = "data/travel_risk.json"
-        with open(path, encoding="utf-8") as f:
-            payload = json.load(f)
+            if len(coords) < 2:
+                continue
+            lng, lat = coords[0], coords[1]
 
-        still_bad = []
-        for item in payload.get("data", []):
-            before = item["iso_code"]
-            item["iso_code"] = fix_iso_code(before)
-            if item["iso_code"] not in VALID_ISO3:
-                still_bad.append((before, item.get("name")))
+            event_name = props.get("eventname") or props.get("name") or props.get("eventtype", "Disaster")
+            country = props.get("country", "")
+            title = f"{event_name} - {country}" if country else event_name
 
-        if still_bad:
-            print(f"WARNING: 여전히 매핑 실패 ({len(still_bad)}건): {still_bad}")
-        else:
-            print(f"OK: 전체 {len(payload.get('data', []))}건 교정 완료, 매핑 실패 없음")
+            results.append({
+                "latitude": lat,
+                "longitude": lng,
+                "title": title,
+                "summary": props.get("description", "") or props.get("htmldescription", ""),
+                "last_updated": props.get("todate") or props.get("fromdate") or "",
+                "severity": props.get("alertlevel", ""),
+            })
 
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump(payload, f, ensure_ascii=False, indent=2)
+        print(f"총 {len(results)}건 재난 이벤트 추출 완료")
+
+        with open("data/realtime_disasters.json", "w", encoding="utf-8") as f:
+            json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
         PYEOF
 
-    # 🌟 [2단계] 실시간 재난 정보 수집 (404/403 에러 발생 시 공백 데이터로 우회 처리)
-    - name: 실시간 재난(Disasters) 피드 데이터 추출
-      run: |
-        curl -f -s -X GET \
-          -H "X-API-Key: ${{ secrets.TRAVEL_RISK_API_KEY }}" \
-          -H "Accept: application/json" \
-          "https://travelriskapi.com/api/v1/disasters" > data/realtime_disasters.json || \
-        echo "{ \"status\": \"success\", \"data\": [] }" > data/realtime_disasters.json
+        rm -f gdacs_raw.json
 
-    # 🌟 [3단계] 실시간 긴급 알림 수집 (404/403 에러 발생 시 공백 데이터로 우회 처리)
-    - name: 실시간 긴급 경보(Alerts) 피드 데이터 추출
-      run: |
-        curl -f -s -X GET \
-          -H "X-API-Key: ${{ secrets.TRAVEL_RISK_API_KEY }}" \
-          -H "Accept: application/json" \
-          "https://travelriskapi.com/api/v1/alerts" > data/realtime_alerts.json || \
-        echo "{ \"status\": \"success\", \"data\": [] }" > data/realtime_alerts.json
+        # 별도 얼럿 소스는 더 이상 쓰지 않음 (GDACS로 통합) -
+        # 앱 쪽 fetchTargetFeed가 3개 URL을 개별적으로 호출하므로
+        # 빈 배열이라도 파일은 유지해 404로 인한 캐시 실패를 방지.
+        echo '{ "status": "success", "data": [] }' > data/realtime_alerts.json
 
-    # 🌟 [4단계] 변동 사항이 있을 때만 깃허브에 커밋 및 푸시
+    # 🌟 [3단계] 변동 사항이 있을 때만 깃허브에 커밋 및 푸시
     - name: 변경사항 자동 커밋 및 푸시
       run: |
         git config --global user.name "github-actions[bot]"
@@ -142,7 +219,7 @@ jobs:
         git add data/travel_risk.json data/realtime_disasters.json data/realtime_alerts.json
         
         if ! git diff --cached --exit-code; then
-          git commit -m "⚡ 실시간 위험도 및 재난 데이터 통합 정기 업데이트"
+          git commit -m "⚡ 국무부 공식 RSS + GDACS 공식 API 기반 실시간 데이터 갱신"
           git push
         else
           echo "업데이트된 신규 위험 정보 없음"
