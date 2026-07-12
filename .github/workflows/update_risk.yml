@@ -1,56 +1,74 @@
-
-name: Update Travel Risk Data
+name: Update Travel & Disaster Data
 
 on:
   schedule:
-    - cron: '0 18 * * *' # 매일 한국 시간(KST) 새벽 3시 자동으로 실행
+    - cron: '0 18 * * *' # 매일 한국 시간(KST) 새벽 3시 자동 실행
   workflow_dispatch:     # 수동 실행 버튼 활성화
 
 jobs:
-  update-data:
+  fetch-and-clean:
     runs-on: ubuntu-latest
 
     steps:
     - name: 저장소 코드 가져오기
       uses: actions/checkout@v4
 
-    - name: data 디렉토리 생성 및 페이지네이션 데이터 통합
+    - name: data 디렉토리 생성
+      run: mkdir -p data
+
+    # 🌟 [1단계] 국가별 기본 위험도 정보 수집 및 인덱스 밀림/중복 완전 정제
+    - name: 국가별 위험도 데이터 추출 및 정제
       run: |
-        mkdir -p data
-        
-        # 🌟 1. 첫 번째 페이지 (0 ~ 100번 국가) 가져오기
         curl -f -s -X GET \
           -H "X-API-Key: ${{ secrets.TRAVEL_RISK_API_KEY }}" \
           -H "Accept: application/json" \
           "https://travelriskapi.com/api/v1/countries?skip=0&limit=100" > page1.json
 
-        # 🌟 2. 두 번째 페이지 (100 ~ 200번 국가) 가져오기
         curl -f -s -X GET \
           -H "X-API-Key: ${{ secrets.TRAVEL_RISK_API_KEY }}" \
           -H "Accept: application/json" \
           "https://travelriskapi.com/api/v1/countries?skip=100&limit=100" > page2.json
 
-        # 🌟 3. 리눅스 기본 내장 도구(jq)를 사용하여 두 페이지의 data 배열을 완벽하게 병합
-        # 무료 플랜 규격 {"status": "success", "data": [...]} 구조 유지
+        # jq를 사용하여 고유 iso_code 기준으로 객체 정렬 및 중복 데이터(Cote d Ivoire 등) 완전 해결
+        # 프론트엔드가 지도 매핑에 바로 쓸 수 있게 깔끔한 배열 구조로 변환합니다.
         jq -n '
-          input as $p1 | input as $p2 | 
+          [inputs.data[]] | 
+          reduce .[] as $item ({}; .[$item.iso_code] = $item) | 
           {
-            status: "success", 
-            data: ($p1.data + $p2.data)
+            status: "success",
+            data: [ .[] ]
           }
         ' page1.json page2.json > data/travel_risk.json
 
-        # 임시 파일 삭제
         rm page1.json page2.json
 
-    - name: 변경사항이 있으면 깃허브에 자동으로 커밋/푸시
+    # 🌟 [2단계] API가 제공하는 실시간 재난 정보(지진, 화산, 기상 이변 등) 수집
+    - name: 실시간 재난(Disasters) 피드 데이터 추출
+      run: |
+        curl -f -s -X GET \
+          -H "X-API-Key: ${{ secrets.TRAVEL_RISK_API_KEY }}" \
+          -H "Accept: application/json" \
+          "https://travelriskapi.com/api/v1/disasters" > data/realtime_disasters.json
+
+    # 🌟 [3단계] API가 제공하는 실시간 치안 경보/테러/위험 알림(Alerts/Advisories) 수집
+    - name: 실시간 긴급 경보(Alerts) 피드 데이터 추출
+      run: |
+        curl -f -s -X GET \
+          -H "X-API-Key: ${{ secrets.TRAVEL_RISK_API_KEY }}" \
+          -H "Accept: application/json" \
+          "https://travelriskapi.com/api/v1/alerts" > data/realtime_alerts.json || echo "{ \"status\": \"no_data\", \"data\": [] }" > data/realtime_alerts.json
+
+    # 🌟 [4단계] 변동 사항이 있을 때만 깃허브에 커밋 및 푸시
+    - name: 변경사항 자동 커밋 및 푸시
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add data/travel_risk.json
+        
+        git add data/travel_risk.json data/realtime_disasters.json data/realtime_alerts.json
+        
         if ! git diff --cached --exit-code; then
-          git commit -m "⚡ 100개 제한 우회 및 데이터 완벽 병합 업데이트"
+          git commit -m "⚡ 실시간 재난 및 종합 여행 경보 데이터 통합 업데이트"
           git push
         else
-          echo "변경 사항 없음"
+          echo "업데이트된 신규 재난/위험 정보 없음"
         fi
