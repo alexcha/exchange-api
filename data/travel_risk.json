@@ -44,6 +44,13 @@
       "last_updated": "Wed, 08 Jul 2026"
     },
     {
+      "iso_code": "VC",
+      "name": "Saint Vincent and the Grenadines",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 07 Jul 2026"
+    },
+    {
       "iso_code": "GH",
       "name": "Ghana",
       "advisory_level": 2,
@@ -51,9 +58,9 @@
       "last_updated": "Tue, 07 Jul 2026"
     },
     {
-      "iso_code": "ID",
-      "name": "Indonesia",
-      "advisory_level": 2,
+      "iso_code": "KN",
+      "name": "Saint Kitts and Nevis",
+      "advisory_level": 1,
       "risk_score": 0.0,
       "last_updated": "Tue, 07 Jul 2026"
     },
@@ -65,23 +72,9 @@
       "last_updated": "Tue, 07 Jul 2026"
     },
     {
-      "iso_code": "WS",
-      "name": "Samoa",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "Tue, 07 Jul 2026"
-    },
-    {
-      "iso_code": "VC",
-      "name": "Saint Vincent and the Grenadines",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "Tue, 07 Jul 2026"
-    },
-    {
-      "iso_code": "KN",
-      "name": "Saint Kitts and Nevis",
-      "advisory_level": 1,
+      "iso_code": "ID",
+      "name": "Indonesia",
+      "advisory_level": 2,
       "risk_score": 0.0,
       "last_updated": "Tue, 07 Jul 2026"
     },
@@ -95,6 +88,13 @@
     {
       "iso_code": "TH",
       "name": "Thailand",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 07 Jul 2026"
+    },
+    {
+      "iso_code": "WS",
+      "name": "Samoa",
       "advisory_level": 1,
       "risk_score": 0.0,
       "last_updated": "Tue, 07 Jul 2026"
@@ -163,15 +163,15 @@
       "last_updated": "Tue, 23 Jun 2026"
     },
     {
-      "iso_code": "BW",
-      "name": "Botswana",
+      "iso_code": "LS",
+      "name": "Lesotho",
       "advisory_level": 2,
       "risk_score": 0.0,
       "last_updated": "Wed, 17 Jun 2026"
     },
     {
-      "iso_code": "LS",
-      "name": "Lesotho",
+      "iso_code": "BW",
+      "name": "Botswana",
       "advisory_level": 2,
       "risk_score": 0.0,
       "last_updated": "Wed, 17 Jun 2026"
@@ -268,9 +268,9 @@
       "last_updated": "Fri, 22 May 2026"
     },
     {
-      "iso_code": "SO",
-      "name": "Somalia",
-      "advisory_level": 4,
+      "iso_code": "AD",
+      "name": "Andorra",
+      "advisory_level": 1,
       "risk_score": 0.0,
       "last_updated": "Thu, 21 May 2026"
     },
@@ -282,23 +282,9 @@
       "last_updated": "Thu, 21 May 2026"
     },
     {
-      "iso_code": "AD",
-      "name": "Andorra",
-      "advisory_level": 1,
-      "risk_score": 0.0,
-      "last_updated": "Thu, 21 May 2026"
-    },
-    {
-      "iso_code": "TL",
-      "name": "Timor-Leste",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "Thu, 21 May 2026"
-    },
-    {
-      "iso_code": "KY",
-      "name": "Cayman Islands",
-      "advisory_level": 1,
+      "iso_code": "SO",
+      "name": "Somalia",
+      "advisory_level": 4,
       "risk_score": 0.0,
       "last_updated": "Thu, 21 May 2026"
     },
@@ -317,11 +303,18 @@
       "last_updated": "Thu, 21 May 2026"
     },
     {
-      "iso_code": "CL",
-      "name": "Chile",
+      "iso_code": "TL",
+      "name": "Timor-Leste",
       "advisory_level": 2,
       "risk_score": 0.0,
-      "last_updated": "Wed, 20 May 2026"
+      "last_updated": "Thu, 21 May 2026"
+    },
+    {
+      "iso_code": "KY",
+      "name": "Cayman Islands",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 21 May 2026"
     },
     {
       "iso_code": "AR",
@@ -334,6 +327,13 @@
       "iso_code": "DM",
       "name": "Dominica",
       "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Wed, 20 May 2026"
+    },
+    {
+      "iso_code": "CL",
+      "name": "Chile",
+      "advisory_level": 2,
       "risk_score": 0.0,
       "last_updated": "Wed, 20 May 2026"
     },
@@ -593,13 +593,6 @@
       "iso_code": "GT",
       "name": "Guatemala",
       "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "Thu, 12 Mar 2026"
-    },
-    {
-      "iso_code": "BZ",
-      "name": "Belize",
-      "advisory_level": 2,
       "risk_score": 0.0,
       "last_updated": "Thu, 12 Mar 2026"
     },
@@ -1257,6 +1250,13 @@
     {
       "iso_code": "KI",
       "name": "Kiribati",
+      "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 02 Dec 2024"
+    },
+    {
+      "iso_code": "TO",
+      "name": "Tonga",
       "advisory_level": 1,
       "risk_score": 0.0,
       "last_updated": "Mon, 02 Dec 2024"
