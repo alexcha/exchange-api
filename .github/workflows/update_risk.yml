@@ -1,8 +1,9 @@
+
 name: Update Travel Risk Data
 
 on:
   schedule:
-    - cron: '0 18 * * *' # 매일 한국 시간(KST) 새벽 3시마다 자동으로 실행
+    - cron: '0 18 * * *' # 매일 한국 시간(KST) 새벽 3시 자동으로 실행
   workflow_dispatch:     # 수동 실행 버튼 활성화
 
 jobs:
@@ -13,16 +14,34 @@ jobs:
     - name: 저장소 코드 가져오기
       uses: actions/checkout@v4
 
-    - name: data 디렉토리 생성 및 API 호출 저장
+    - name: data 디렉토리 생성 및 페이지네이션 데이터 통합
       run: |
-        # 🌟 data 폴더가 없으면 새로 생성하는 명령어
         mkdir -p data
         
-        # 🌟 data/ 폴더 밑에 travel_risk.json 이름으로 저장
-        curl -s -X GET \
+        # 🌟 1. 첫 번째 페이지 (0 ~ 100번 국가) 가져오기
+        curl -f -s -X GET \
           -H "X-API-Key: ${{ secrets.TRAVEL_RISK_API_KEY }}" \
           -H "Accept: application/json" \
-          "https://travelriskapi.com/api/v1/countries?limit=1000" > data/travel_risk.json
+          "https://travelriskapi.com/api/v1/countries?skip=0&limit=100" > page1.json
+
+        # 🌟 2. 두 번째 페이지 (100 ~ 200번 국가) 가져오기
+        curl -f -s -X GET \
+          -H "X-API-Key: ${{ secrets.TRAVEL_RISK_API_KEY }}" \
+          -H "Accept: application/json" \
+          "https://travelriskapi.com/api/v1/countries?skip=100&limit=100" > page2.json
+
+        # 🌟 3. 리눅스 기본 내장 도구(jq)를 사용하여 두 페이지의 data 배열을 완벽하게 병합
+        # 무료 플랜 규격 {"status": "success", "data": [...]} 구조 유지
+        jq -n '
+          input as $p1 | input as $p2 | 
+          {
+            status: "success", 
+            data: ($p1.data + $p2.data)
+          }
+        ' page1.json page2.json > data/travel_risk.json
+
+        # 임시 파일 삭제
+        rm page1.json page2.json
 
     - name: 변경사항이 있으면 깃허브에 자동으로 커밋/푸시
       run: |
@@ -30,7 +49,7 @@ jobs:
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git add data/travel_risk.json
         if ! git diff --cached --exit-code; then
-          git commit -m "⚡ data 디렉토리 내 안전 데이터 자동 업데이트"
+          git commit -m "⚡ 100개 제한 우회 및 데이터 완벽 병합 업데이트"
           git push
         else
           echo "변경 사항 없음"
