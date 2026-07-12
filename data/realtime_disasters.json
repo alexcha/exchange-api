@@ -4,802 +4,902 @@
     {
       "latitude": 53.6497,
       "longitude": -166.7155,
-      "title": "Earthquake in United States - United States",
+      "type": "EQ",
+      "title": "[EQ]  - United States",
       "summary": "Earthquake in United States",
       "last_updated": "2026-07-12T11:23:48",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -22.6035,
       "longitude": -174.917,
-      "title": "Earthquake in Tonga Islands Region - Tonga Islands Region",
+      "type": "EQ",
+      "title": "[EQ]  - Tonga Islands Region",
       "summary": "Earthquake in Tonga Islands Region",
       "last_updated": "2026-07-12T11:09:45",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 0.2198,
       "longitude": 122.4111,
-      "title": "Earthquake in Indonesia - Indonesia",
+      "type": "EQ",
+      "title": "[EQ]  - Indonesia",
       "summary": "Earthquake in Indonesia",
       "last_updated": "2026-07-12T10:05:37",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -54.6008,
       "longitude": -118.9732,
-      "title": "Earthquake in Southern East Pacific Rise - Southern East Pacific Rise",
+      "type": "EQ",
+      "title": "[EQ]  - Southern East Pacific Rise",
       "summary": "Earthquake in Southern East Pacific Rise",
       "last_updated": "2026-07-12T07:29:23",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -15.0887,
       "longitude": 167.3355,
-      "title": "Earthquake in Vanuatu - Vanuatu",
+      "type": "EQ",
+      "title": "[EQ]  - Vanuatu",
       "summary": "Earthquake in Vanuatu",
       "last_updated": "2026-07-12T03:04:07",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 3.6769,
       "longitude": 127.0246,
-      "title": "Earthquake in Indonesia - Indonesia",
+      "type": "EQ",
+      "title": "[EQ]  - Indonesia",
       "summary": "Earthquake in Indonesia",
       "last_updated": "2026-07-12T00:43:30",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -13.5748,
       "longitude": 130.8337,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -16.5277,
       "longitude": 145.0224,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 59.6958,
       "longitude": 90.3835,
-      "title": "Forest fires in Russian Federation - Russian Federation",
+      "type": "WF",
+      "title": "[WF]  - Russian Federation",
       "summary": "Forest fires in Russian Federation",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 59.0101,
       "longitude": 90.6031,
-      "title": "Forest fires in Russian Federation - Russian Federation",
+      "type": "WF",
+      "title": "[WF]  - Russian Federation",
       "summary": "Forest fires in Russian Federation",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 65.6054,
       "longitude": -119.0584,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 65.1156,
       "longitude": -120.0383,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 65.2641,
       "longitude": -117.7062,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -12.3315,
       "longitude": 135.5505,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -12.1629,
       "longitude": 133.4795,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -12.8279,
       "longitude": 135.243,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -13.7912,
       "longitude": 132.0735,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -14.6066,
       "longitude": 127.4597,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -20.8598,
       "longitude": 127.6546,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 65.7234,
       "longitude": -117.5715,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 50.4991,
       "longitude": -78.4759,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -12.8022,
       "longitude": 141.8531,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -35.7632,
       "longitude": 137.0654,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 59.3863,
       "longitude": 90.4169,
-      "title": "Forest fires in Russian Federation - Russian Federation",
+      "type": "WF",
+      "title": "[WF]  - Russian Federation",
       "summary": "Forest fires in Russian Federation",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 50.8825,
       "longitude": -78.76,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -16.7749,
       "longitude": 126.6361,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 64.8083,
       "longitude": -121.6915,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 63.6494,
       "longitude": -119.7558,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -12.4116,
       "longitude": 132.6015,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -14.8896,
       "longitude": 142.2464,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 59.1918,
       "longitude": 86.6158,
-      "title": "Forest fires in Russian Federation - Russian Federation",
+      "type": "WF",
+      "title": "[WF]  - Russian Federation",
       "summary": "Forest fires in Russian Federation",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 51.6187,
       "longitude": -78.1882,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 51.6686,
       "longitude": -78.5297,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -12.3382,
       "longitude": 133.4267,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 62.1196,
       "longitude": 136.4493,
-      "title": "Forest fires in Russian Federation - Russian Federation",
+      "type": "WF",
+      "title": "[WF]  - Russian Federation",
       "summary": "Forest fires in Russian Federation",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 64.8446,
       "longitude": 110.2727,
-      "title": "Forest fires in Russian Federation - Russian Federation",
+      "type": "WF",
+      "title": "[WF]  - Russian Federation",
       "summary": "Forest fires in Russian Federation",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -7.9424,
       "longitude": 20.1017,
-      "title": "Forest fires in Angola - Angola",
+      "type": "WF",
+      "title": "[WF]  - Angola",
       "summary": "Forest fires in Angola",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -17.8472,
       "longitude": 137.2471,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 50.1879,
       "longitude": -78.7758,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -12.9162,
       "longitude": 132.045,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -18.1846,
       "longitude": 137.6172,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -14.2084,
       "longitude": 133.8787,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -12.4228,
       "longitude": 133.673,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -13.237,
       "longitude": 142.0306,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 38.1214,
       "longitude": -107.6275,
-      "title": "Forest fires in United States - United States",
+      "type": "WF",
+      "title": "[WF]  - United States",
       "summary": "Forest fires in United States",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 38.0532,
       "longitude": -104.9938,
-      "title": "Forest fires in United States - United States",
+      "type": "WF",
+      "title": "[WF]  - United States",
       "summary": "Forest fires in United States",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 37.8336,
       "longitude": -109.7292,
-      "title": "Forest fires in United States - United States",
+      "type": "WF",
+      "title": "[WF]  - United States",
       "summary": "Forest fires in United States",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 37.7356,
       "longitude": -108.6843,
-      "title": "Forest fires in United States - United States",
+      "type": "WF",
+      "title": "[WF]  - United States",
       "summary": "Forest fires in United States",
       "last_updated": "2026-07-12T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 16.4995,
       "longitude": 84.5232,
-      "title": "Earthquake in Bay Of Bengal - Bay Of Bengal",
+      "type": "EQ",
+      "title": "[EQ]  - Bay Of Bengal",
       "summary": "Earthquake in Bay Of Bengal",
       "last_updated": "2026-07-11T23:35:45",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 32.655,
       "longitude": -39.8835,
-      "title": "Earthquake in Northern Mid-Atlantic Ridge - Northern Mid-Atlantic Ridge",
+      "type": "EQ",
+      "title": "[EQ]  - Northern Mid-Atlantic Ridge",
       "summary": "Earthquake in Northern Mid-Atlantic Ridge",
       "last_updated": "2026-07-11T22:13:42",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 28.7,
       "longitude": 120.4,
-      "title": "BAVI-26 - Guam, Northern Mariana Islands, Japan, Taiwan, China",
+      "type": "TC",
+      "title": "[TC] BAVI-26 - Guam, Northern Mariana Islands, Japan, Taiwan, China",
       "summary": "Tropical Cyclone BAVI-26",
       "last_updated": "2026-07-11T18:00:00",
-      "severity": "Red"
+      "severity": "red"
     },
     {
       "latitude": 4.9407,
       "longitude": 125.2447,
-      "title": "Earthquake in Philippines - Philippines",
+      "type": "EQ",
+      "title": "[EQ]  - Philippines",
       "summary": "Earthquake in Philippines",
       "last_updated": "2026-07-11T17:49:31",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -15.3141,
       "longitude": -173.293,
-      "title": "Earthquake in Tonga - Tonga",
+      "type": "EQ",
+      "title": "[EQ]  - Tonga",
       "summary": "Earthquake in Tonga",
       "last_updated": "2026-07-11T15:33:17",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 51.1281,
       "longitude": 151.3975,
-      "title": "Earthquake in Sea Of Okhotsk - Sea Of Okhotsk",
+      "type": "EQ",
+      "title": "[EQ]  - Sea Of Okhotsk",
       "summary": "Earthquake in Sea Of Okhotsk",
       "last_updated": "2026-07-11T13:15:58",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -17.3108,
       "longitude": 166.7258,
-      "title": "Earthquake in Vanuatu - Vanuatu",
+      "type": "EQ",
+      "title": "[EQ]  - Vanuatu",
       "summary": "Earthquake in Vanuatu",
       "last_updated": "2026-07-11T12:48:30",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 5.0334,
       "longitude": 125.4897,
-      "title": "Earthquake in Philippines - Philippines",
+      "type": "EQ",
+      "title": "[EQ]  - Philippines",
       "summary": "Earthquake in Philippines",
       "last_updated": "2026-07-11T10:51:12",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -55.5424,
       "longitude": -28.8526,
-      "title": "Earthquake in South Sandwich Islands Region - South Sandwich Islands Region",
+      "type": "EQ",
+      "title": "[EQ]  - South Sandwich Islands Region",
       "summary": "Earthquake in South Sandwich Islands Region",
       "last_updated": "2026-07-11T10:26:45",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -10.8592,
       "longitude": -79.0295,
-      "title": "Earthquake in Peru - Peru",
+      "type": "EQ",
+      "title": "[EQ]  - Peru",
       "summary": "Earthquake in Peru",
       "last_updated": "2026-07-11T07:58:27",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 4.3516,
       "longitude": 95.109,
-      "title": "Earthquake in Indonesia - Indonesia",
+      "type": "EQ",
+      "title": "[EQ]  - Indonesia",
       "summary": "Earthquake in Indonesia",
       "last_updated": "2026-07-11T07:41:18",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -59.6331,
       "longitude": -26.2943,
-      "title": "Earthquake in South Sandwich Islands Region - South Sandwich Islands Region",
+      "type": "EQ",
+      "title": "[EQ]  - South Sandwich Islands Region",
       "summary": "Earthquake in South Sandwich Islands Region",
       "last_updated": "2026-07-11T06:52:27",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -21.1,
       "longitude": -178.8589,
-      "title": "Earthquake in Fiji - Fiji",
+      "type": "EQ",
+      "title": "[EQ]  - Fiji",
       "summary": "Earthquake in Fiji",
       "last_updated": "2026-07-11T06:26:37",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 51.5376,
       "longitude": 16.1635,
-      "title": "Earthquake in Poland - Poland",
+      "type": "EQ",
+      "title": "[EQ]  - Poland",
       "summary": "Earthquake in Poland",
       "last_updated": "2026-07-11T06:11:59",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -18.2136,
       "longitude": -176.783,
-      "title": "Earthquake in Fiji Islands Region - Fiji Islands Region",
+      "type": "EQ",
+      "title": "[EQ]  - Fiji Islands Region",
       "summary": "Earthquake in Fiji Islands Region",
       "last_updated": "2026-07-11T03:14:55",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -2.8499,
       "longitude": 128.7635,
-      "title": "Earthquake in Indonesia - Indonesia",
+      "type": "EQ",
+      "title": "[EQ]  - Indonesia",
       "summary": "Earthquake in Indonesia",
       "last_updated": "2026-07-11T02:28:51",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 40.941,
       "longitude": -29.5643,
-      "title": "Earthquake in Azores Islands Region - Azores Islands Region",
+      "type": "EQ",
+      "title": "[EQ]  - Azores Islands Region",
       "summary": "Earthquake in Azores Islands Region",
       "last_updated": "2026-07-11T01:33:17",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 24.3545,
       "longitude": 91.4027,
-      "title": "Flood in Bangladesh - Bangladesh",
+      "type": "FL",
+      "title": "[FL]  - Bangladesh",
       "summary": "Flood in Bangladesh",
       "last_updated": "2026-07-11T01:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 5.4394,
       "longitude": -72.1848,
-      "title": "Flood in Colombia - Colombia",
+      "type": "FL",
+      "title": "[FL]  - Colombia",
       "summary": "Flood in Colombia",
       "last_updated": "2026-07-11T01:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 15.3232,
       "longitude": -89.6686,
-      "title": "Flood in Guatemala - Guatemala",
+      "type": "FL",
+      "title": "[FL]  - Guatemala",
       "summary": "Flood in Guatemala",
       "last_updated": "2026-07-11T01:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 7.5397,
       "longitude": 126.5011,
-      "title": "Earthquake in Philippines - Philippines",
+      "type": "EQ",
+      "title": "[EQ]  - Philippines",
       "summary": "Earthquake in Philippines",
       "last_updated": "2026-07-11T00:47:40",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -9.8632,
       "longitude": 18.3254,
-      "title": "Forest fires in Angola - Angola",
+      "type": "WF",
+      "title": "[WF]  - Angola",
       "summary": "Forest fires in Angola",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -9.0627,
       "longitude": 17.3482,
-      "title": "Forest fires in Angola - Angola",
+      "type": "WF",
+      "title": "[WF]  - Angola",
       "summary": "Forest fires in Angola",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -10.8134,
       "longitude": 29.629,
-      "title": "Forest fires in Zambia - Zambia",
+      "type": "WF",
+      "title": "[WF]  - Zambia",
       "summary": "Forest fires in Zambia",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -12.6765,
       "longitude": 130.9162,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -11.4698,
       "longitude": 17.7051,
-      "title": "Forest fires in Angola - Angola",
+      "type": "WF",
+      "title": "[WF]  - Angola",
       "summary": "Forest fires in Angola",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -10.3522,
       "longitude": 15.0477,
-      "title": "Forest fires in Angola - Angola",
+      "type": "WF",
+      "title": "[WF]  - Angola",
       "summary": "Forest fires in Angola",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -7.7864,
       "longitude": 23.7519,
-      "title": "Forest fires in The Democratic Republic of Congo - The Democratic Republic of Congo",
+      "type": "WF",
+      "title": "[WF]  - The Democratic Republic of Congo",
       "summary": "Forest fires in The Democratic Republic of Congo",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -10.8196,
       "longitude": 16.9691,
-      "title": "Forest fires in Angola - Angola",
+      "type": "WF",
+      "title": "[WF]  - Angola",
       "summary": "Forest fires in Angola",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 37.1805,
       "longitude": -2.0012,
-      "title": "Forest fires in Spain - Spain",
+      "type": "WF",
+      "title": "[WF]  - Spain",
       "summary": "Forest fires in Spain",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -14.6441,
       "longitude": 127.469,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -9.7947,
       "longitude": 18.5205,
-      "title": "Forest fires in Angola - Angola",
+      "type": "WF",
+      "title": "[WF]  - Angola",
       "summary": "Forest fires in Angola",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 64.5693,
       "longitude": -121.1405,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -9.6721,
       "longitude": 18.3448,
-      "title": "Forest fires in Angola - Angola",
+      "type": "WF",
+      "title": "[WF]  - Angola",
       "summary": "Forest fires in Angola",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -9.3791,
       "longitude": 20.8654,
-      "title": "Forest fires in Angola - Angola",
+      "type": "WF",
+      "title": "[WF]  - Angola",
       "summary": "Forest fires in Angola",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -7.034,
       "longitude": 18.5164,
-      "title": "Forest fires in The Democratic Republic of Congo - The Democratic Republic of Congo",
+      "type": "WF",
+      "title": "[WF]  - The Democratic Republic of Congo",
       "summary": "Forest fires in The Democratic Republic of Congo",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -8.3426,
       "longitude": 17.1254,
-      "title": "Forest fires in Angola - Angola",
+      "type": "WF",
+      "title": "[WF]  - Angola",
       "summary": "Forest fires in Angola",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -8.4992,
       "longitude": 19.395,
-      "title": "Forest fires in Angola - Angola",
+      "type": "WF",
+      "title": "[WF]  - Angola",
       "summary": "Forest fires in Angola",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 63.5907,
       "longitude": -121.2223,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 64.4435,
       "longitude": -116.4666,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 65.4994,
       "longitude": -119.121,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -15.3682,
       "longitude": 142.2945,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -15.4368,
       "longitude": 142.4046,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 44.7191,
       "longitude": 5.3437,
-      "title": "Forest fires in France - France",
+      "type": "WF",
+      "title": "[WF]  - France",
       "summary": "Forest fires in France",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -11.2735,
       "longitude": 132.5851,
-      "title": "Forest fires in Australia - Australia",
+      "type": "WF",
+      "title": "[WF]  - Australia",
       "summary": "Forest fires in Australia",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": 65.1904,
       "longitude": -117.4466,
-      "title": "Forest fires in Canada - Canada",
+      "type": "WF",
+      "title": "[WF]  - Canada",
       "summary": "Forest fires in Canada",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -10.8047,
       "longitude": 17.8438,
-      "title": "Forest fires in Angola - Angola",
+      "type": "WF",
+      "title": "[WF]  - Angola",
       "summary": "Forest fires in Angola",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -7.3028,
       "longitude": 18.379,
-      "title": "Forest fires in The Democratic Republic of Congo - The Democratic Republic of Congo",
+      "type": "WF",
+      "title": "[WF]  - The Democratic Republic of Congo",
       "summary": "Forest fires in The Democratic Republic of Congo",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -11.2736,
       "longitude": 24.7448,
-      "title": "Forest fires in The Democratic Republic of Congo, Zambia - The Democratic Republic of Congo, Zambia",
+      "type": "WF",
+      "title": "[WF]  - The Democratic Republic of Congo, Zambia",
       "summary": "Forest fires in The Democratic Republic of Congo, Zambia",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -7.558,
       "longitude": 18.6451,
-      "title": "Forest fires in The Democratic Republic of Congo - The Democratic Republic of Congo",
+      "type": "WF",
+      "title": "[WF]  - The Democratic Republic of Congo",
       "summary": "Forest fires in The Democratic Republic of Congo",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -7.2284,
       "longitude": 20.2898,
-      "title": "Forest fires in Angola - Angola",
+      "type": "WF",
+      "title": "[WF]  - Angola",
       "summary": "Forest fires in Angola",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     },
     {
       "latitude": -15.2114,
       "longitude": 25.8894,
-      "title": "Forest fires in Zambia - Zambia",
+      "type": "WF",
+      "title": "[WF]  - Zambia",
       "summary": "Forest fires in Zambia",
       "last_updated": "2026-07-11T00:00:00",
-      "severity": "Green"
+      "severity": "green"
     }
   ]
 }
