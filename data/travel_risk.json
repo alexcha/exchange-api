@@ -163,13 +163,6 @@
       "last_updated": "Wed, 17 Jun 2026"
     },
     {
-      "iso_code": "PK",
-      "name": "Pakistan",
-      "advisory_level": 3,
-      "risk_score": 0.0,
-      "last_updated": "Tue, 16 Jun 2026"
-    },
-    {
       "iso_code": "NG",
       "name": "Nigeria",
       "advisory_level": 3,
@@ -196,13 +189,6 @@
       "advisory_level": 1,
       "risk_score": 0.0,
       "last_updated": "Fri, 05 Jun 2026"
-    },
-    {
-      "iso_code": "UG",
-      "name": "Uganda",
-      "advisory_level": 4,
-      "risk_score": 0.0,
-      "last_updated": "Thu, 04 Jun 2026"
     },
     {
       "iso_code": "CD",
@@ -604,6 +590,13 @@
       "last_updated": "Mon, 09 Mar 2026"
     },
     {
+      "iso_code": "PK",
+      "name": "Pakistan",
+      "advisory_level": 3,
+      "risk_score": 0.0,
+      "last_updated": "Tue, 03 Mar 2026"
+    },
+    {
       "iso_code": "AE",
       "name": "United Arab Emirates",
       "advisory_level": 3,
@@ -685,7 +678,7 @@
       "name": "Uzbekistan",
       "advisory_level": 1,
       "risk_score": 0.0,
-      "last_updated": "Mon, 26 Jan 2026"
+      "last_updated": "Thu, 22 Jan 2026"
     },
     {
       "iso_code": "BD",
@@ -814,6 +807,13 @@
       "last_updated": "Mon, 08 Dec 2025"
     },
     {
+      "iso_code": "UG",
+      "name": "Uganda",
+      "advisory_level": 4,
+      "risk_score": 0.0,
+      "last_updated": "Mon, 08 Dec 2025"
+    },
+    {
       "iso_code": "IR",
       "name": "Iran",
       "advisory_level": 4,
@@ -870,13 +870,6 @@
       "last_updated": "Tue, 14 Oct 2025"
     },
     {
-      "iso_code": "LK",
-      "name": "Sri Lanka",
-      "advisory_level": 2,
-      "risk_score": 0.0,
-      "last_updated": "Tue, 14 Oct 2025"
-    },
-    {
       "iso_code": "EC",
       "name": "Ecuador",
       "advisory_level": 2,
@@ -887,6 +880,13 @@
       "iso_code": "BG",
       "name": "Bulgaria",
       "advisory_level": 1,
+      "risk_score": 0.0,
+      "last_updated": "Thu, 09 Oct 2025"
+    },
+    {
+      "iso_code": "LK",
+      "name": "Sri Lanka",
+      "advisory_level": 2,
       "risk_score": 0.0,
       "last_updated": "Thu, 09 Oct 2025"
     },
@@ -1087,15 +1087,15 @@
       "last_updated": "Mon, 12 May 2025"
     },
     {
-      "iso_code": "GB",
-      "name": "United Kingdom",
+      "iso_code": "PH",
+      "name": "Philippines",
       "advisory_level": 2,
       "risk_score": 0.0,
       "last_updated": "Thu, 08 May 2025"
     },
     {
-      "iso_code": "PH",
-      "name": "Philippines",
+      "iso_code": "GB",
+      "name": "United Kingdom",
       "advisory_level": 2,
       "risk_score": 0.0,
       "last_updated": "Thu, 08 May 2025"
