@@ -72,11 +72,11 @@ jobs:
             "portugal": "PT", "qatar": "QA", "romania": "RO", "russia": "RU",
             "russian federation": "RU", "rwanda": "RW", "saint kitts and nevis": "KN",
             "saint lucia": "LC", "saint vincent and the grenadines": "VC", "samoa": "WS",
-            "san marino": "SM", "sao tome and principe": "ST", "saudi arabia": "SA", 
-            "senegal": "SN", "serbia": "RS", "seychelles": "SC", "sierra leone": "SL", 
-            "singapore": "SG", "slovakia": "SK", "slovenia": "SI", "solomon islands": "SB", 
-            "somalia": "SO", "south africa": "ZA", "south korea": "KR", "republic of korea": "KR", 
-            "south sudan": "SS", "spain": "ES", "sri lanka": "LK", "sudan": "SD", "suriname": "SR", 
+            "san marino": "SM", "sao tome and principe": "ST", "saudi arabia": "SA",
+            "senegal": "SN", "serbia": "RS", "seychelles": "SC", "sierra leone": "SL",
+            "singapore": "SG", "slovakia": "SK", "slovenia": "SI", "solomon islands": "SB",
+            "somalia": "SO", "south africa": "ZA", "south korea": "KR", "republic of korea": "KR",
+            "south sudan": "SS", "spain": "ES", "sri lanka": "LK", "sudan": "SD", "suriname": "SR",
             "sweden": "SE", "switzerland": "CH", "swiss confederation": "CH", "syria": "SY",
             "syrian arab republic": "SY", "taiwan": "TW", "tajikistan": "TJ", "tanzania": "TZ",
             "united republic of tanzania": "TZ", "thailand": "TH", "timor-leste": "TL",
@@ -100,19 +100,11 @@ jobs:
             name = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
             name = name.lower().strip()
             name = re.sub(r"\s+", " ", name)
-            # 불필요 관사 제거를 통해 Norway/Switzerland 등 매칭 극대화
             if name.startswith("the "):
                 name = name[4:]
             name = name.replace(",", "").replace(".", "")
             return name
 
-        # 🌟 [버그 수정] "and"가 국가명 자체에 포함된 나라
-        #     (Bosnia and Herzegovina, Antigua and Barbuda, Trinidad and Tobago,
-        #      Turks and Caicos, Saint Kitts and Nevis, Saint Vincent and the Grenadines,
-        #      Sao Tome and Principe 등)가 무조건 "and" 기준으로 쪼개지면서
-        #     통째로 누락되던 문제를 해결합니다.
-        #     -> 쪼개기 전에 먼저 전체 문자열이 NAME_TO_ISO2에 이미 등록된
-        #        완전한 국가명인지부터 확인합니다.
         def extract_countries(country_part):
             whole_key = normalize(country_part)
             if whole_key in NAME_TO_ISO2:
@@ -149,7 +141,7 @@ jobs:
 
             raw_country_part = title[:split_match.start()]
             level_part = title[split_match.end():]
-            
+
             raw_country_part = re.sub(r"\s+Travel Advisory$", "", raw_country_part).strip()
 
             level_match = LEVEL_RE.search(level_part)
@@ -180,7 +172,6 @@ jobs:
                     "last_updated": pubdate_el.text if pubdate_el is not None else "",
                 })
 
-        # ── 미국(US) 데이터 강제 주입 (보호 코드) ──
         if "US" not in seen_iso2:
             results.append({
                 "iso_code": "US",
@@ -203,8 +194,14 @@ jobs:
 
         rm -f state_dept_raw.xml
 
-    # 🌟 [2단계] GDACS 실시간 재난 데이터 연동 및 전처리 자동화
-    - name: 실시간 재난(GDACS) 데이터 추출
+    # 🌟 [2단계] GDACS 실시간 재난 데이터 연동 및 상세정보 확장 수집
+    #     - GDACS ID / 활동(에피소드) 번호
+    #     - 발생일 ~ 최종 감지일 및 기간(일)
+    #     - 영향 받은 사람 수 (사망자/이재민 등 population 데이터)
+    #     - 피해 면적 (해당 필드가 있는 경우, 예: 산불)
+    #     - 심각도 텍스트 및 스코어
+    #     - 상세 리포트 URL (report/details 링크)
+    - name: 실시간 재난(GDACS) 데이터 추출 (상세정보 포함)
       run: |
         curl -f -s "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=green;orange;red" \
           -o gdacs_raw.json || echo '{"features":[]}' > gdacs_raw.json
@@ -234,6 +231,18 @@ jobs:
             "turkiye": "Turkey"
         }
 
+        def strip_html(text):
+            return re.sub(r'<[^>]*>', '', text or "").strip()
+
+        def to_number(value):
+            """문자열/숫자 혼용 필드를 안전하게 숫자로 변환. 실패 시 None."""
+            if value is None:
+                return None
+            try:
+                return float(value)
+            except (ValueError, TypeError):
+                return None
+
         for feat in features:
             props = feat.get("properties", {}) or {}
             geom = feat.get("geometry", {}) or {}
@@ -253,14 +262,61 @@ jobs:
             raw_country = (props.get("country") or "").strip()
             clean_country = GDACS_COUNTRY_MAP.get(raw_country.lower(), raw_country)
 
-            event_name = props.get("eventname") or props.get("name") or props.get("eventtype", "Disaster")
+            event_type = props.get("eventtype", "")
+            event_id = props.get("eventid", "")
+            episode_id = props.get("episodeid", "")
+            iso3 = props.get("iso3", "")
+
+            event_name = props.get("eventname") or props.get("name") or event_type or "Disaster"
             title = f"{event_name} - {clean_country}" if clean_country else event_name
 
-            desc = props.get("description") or props.get("htmldescription") or ""
-            desc_clean = re.sub(r'<[^>]*>', '', desc).strip()
-            
+            desc_clean = strip_html(props.get("description") or props.get("htmldescription") or "")
+
+            # ── 심각도(severitydata) 상세 ──
+            severity_data = props.get("severitydata") or {}
+            severity_value = to_number(severity_data.get("severity"))
+            severity_unit = severity_data.get("severityunit", "")
+            severity_text = strip_html(severity_data.get("severitytext") or "")
+
+            # ── 영향 받은 인구(population) 상세: 사망자/이재민 등 ──
+            population_data = props.get("population") or {}
+            affected_value = to_number(population_data.get("value"))
+            affected_unit = population_data.get("units", "")
+
+            # ── 피해 면적 (주로 산불(WF) 이벤트에서 제공, 없을 수 있음) ──
+            affected_area = None
+            for area_key in ("affectedarea", "areakm2", "burnedarea"):
+                if props.get(area_key) is not None:
+                    affected_area = to_number(props.get(area_key))
+                    break
+
+            # severitytext 안에 "OOO명이 사망했습니다" 류의 문구가 있는 경우가 많아
+            # 별도 숫자 필드가 비어 있으면 텍스트에서 보조 추출 시도
+            if affected_value is None and severity_text:
+                num_match = re.search(r"([\d,]+)\s*(명|people|persons)", severity_text, re.IGNORECASE)
+                if num_match:
+                    affected_value = to_number(num_match.group(1).replace(",", ""))
+                    affected_unit = affected_unit or "명"
+
+            from_date = props.get("fromdate", "")
+            to_date = props.get("todate", "") or props.get("datemodified", "")
+
+            alert_level = props.get("alertlevel", "green")
+            alert_score = to_number(props.get("alertscore"))
+
+            # ── GDACS 상세 리포트/맵 URL ──
+            url_data = props.get("url") or {}
+            report_url = url_data.get("report") or url_data.get("details") or ""
+
+            # ── 화면 캡처와 동일한 형태의 활동 번호(GDACS ID) 구성 ──
+            gdacs_id = f"{event_type}{event_id}".strip() if event_type or event_id else ""
+            activation_number = None
+            if event_type and event_id and iso3:
+                year_str = str(from_date)[:4] if from_date else ""
+                activation_number = f"{event_type}-{year_str}-{str(episode_id or event_id).zfill(6)}-{iso3}"
+
             if not desc_clean:
-                severity_str = (props.get("alertlevel") or "unknown").upper()
+                severity_str = str(alert_level).upper()
                 desc_clean = f"A {severity_str} level {event_name} event has been detected near {clean_country or 'coordinates'}: {lat}, {lng}."
 
             results.append({
@@ -268,8 +324,24 @@ jobs:
                 "longitude": lng,
                 "title": title,
                 "summary": desc_clean,
-                "last_updated": props.get("todate") or props.get("fromdate") or "",
-                "severity": props.get("alertlevel", "green"),
+                "country": clean_country,
+                "iso3": iso3,
+                "gdacs_id": gdacs_id,
+                "activation_number": activation_number,
+                "event_type": event_type,
+                "alert_level": alert_level,
+                "alert_score": alert_score,
+                "severity_value": severity_value,
+                "severity_unit": severity_unit,
+                "severity_text": severity_text,
+                "affected_population": affected_value,
+                "affected_population_unit": affected_unit,
+                "affected_area_km2": affected_area,
+                "from_date": from_date,
+                "to_date": to_date,
+                "report_url": report_url,
+                "last_updated": to_date or from_date,
+                "severity": alert_level,
             })
 
         print(f"총 {len(results)}건 재난 이벤트 정밀 추출 및 정제 완료")
@@ -286,11 +358,11 @@ jobs:
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        
+
         git add data/travel_risk.json data/realtime_disasters.json data/realtime_alerts.json
-        
+
         if ! git diff --cached --exit-code; then
-          git commit -m "⚡ and-포함 국가명(보스니아 등) 누락 버그 수정 + GDACS 파이프라인 통합 갱신"
+          git commit -m "⚡ GDACS 상세정보(사망자/피해면적/활동번호 등) 확장 수집 반영"
           git push
         else
           echo "업데이트된 신규 위험 정보 없음"
