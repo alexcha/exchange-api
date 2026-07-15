@@ -132,6 +132,8 @@ jobs:
         results = []
         unmatched = []
         seen_iso2 = set()
+        total_items = len(list(root.iter("item")))
+        print(f"RSS 원본 item 개수: {total_items}")
 
         for item in root.iter("item"):
             title_el = item.find("title")
@@ -152,6 +154,7 @@ jobs:
 
             level_match = LEVEL_RE.search(level_part)
             if not level_match:
+                unmatched.append(f"{title} (Level 패턴 미발견: '{level_part.strip()[:60]}')")
                 continue
             level = int(level_match.group(1))
 
