@@ -439,8 +439,29 @@ jobs:
             r["deaths"] = deaths or None
             r["displaced"] = displaced or None
             r["missing"] = missing or None
-            # report 상단 요약문 (예: "Orange Flood in Spain from: ... to: ...")
-            r["report_description"] = props.get("htmldescription") or props.get("description")
+
+            # 이벤트 요약(예: "산불화재 피해 지역과 피해를 입은 인구 및 그들의 취약성을
+            # 고려할 때, 인도주의적 측면에서 중간 정도의 영향을 미칠 수 있습니다.")
+            # GDACS는 이 문장을 여러 이름의 필드로 내려줄 수 있어 후보 키를 순차 탐색
+            SUMMARY_KEY_CANDIDATES = (
+                "htmldescription", "description", "headline",
+                "eventsummary", "event_summary", "summary",
+                "alertlevel_text", "impacttext",
+            )
+            report_description = None
+            for key in SUMMARY_KEY_CANDIDATES:
+                val = props.get(key)
+                if val:
+                    report_description = val
+                    break
+
+            if report_description is None:
+                # 어떤 후보 키에도 없으면 실제 응답의 최상위 키를 로그로 남겨서
+                # 다음에 정확한 필드명을 바로 찾을 수 있게 함
+                print(f"  ⚠️ eventtype={eventtype} eventid={eventid}: "
+                      f"이벤트 요약 필드를 찾지 못함. props 키 목록: {list(props.keys())}")
+
+            r["report_description"] = report_description
             # 심각도 원문 텍스트 (예: "Magnitude 4.8M, Depth:135km")
             r["severity_text"] = severity.get("severitytext")
             # report 페이지의 개별 피해 이력 전체 (가장 최근이 마지막)
