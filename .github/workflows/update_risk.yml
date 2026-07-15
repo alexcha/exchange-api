@@ -200,10 +200,29 @@ jobs:
         rm -f state_dept_raw.xml
 
     # 🌟 [2단계] GDACS 실시간 재난 데이터 연동 및 전처리 자동화 (목록 API)
+    #   - GDACS가 curl 기본 User-Agent를 차단하는 경우가 있어 브라우저 UA를 명시적으로 지정
+    #   - HTTP 상태코드/응답 크기를 로그에 남겨서 "0건 추출" 원인이
+    #     (a) 요청 자체 실패인지 (b) 응답은 왔지만 이벤트가 실제로 없는지 (c) 응답 구조가 바뀐 것인지 구분 가능하게 함
     - name: 실시간 재난(GDACS) 데이터 추출
       run: |
-        curl -f -s "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=green;orange;red" \
-          -o gdacs_raw.json || echo '{"features":[]}' > gdacs_raw.json
+        HTTP_STATUS=$(curl -s -o gdacs_raw.json -w "%{http_code}" \
+          --max-time 20 \
+          -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+          -H "Accept: application/json" \
+          "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=green;orange;red" \
+          || echo "000")
+
+        echo "GDACS 응답 HTTP 상태코드: ${HTTP_STATUS}"
+        echo "GDACS 응답 파일 크기: $(wc -c < gdacs_raw.json 2>/dev/null || echo 0) bytes"
+        echo "--- 응답 앞부분 미리보기 (최대 500자) ---"
+        head -c 500 gdacs_raw.json 2>/dev/null || true
+        echo ""
+        echo "--- 미리보기 끝 ---"
+
+        if [ "$HTTP_STATUS" != "200" ]; then
+          echo "⚠️ GDACS 요청 실패 (HTTP ${HTTP_STATUS}). 빈 목록으로 폴백합니다."
+          echo '{"features":[]}' > gdacs_raw.json
+        fi
 
         python3 - << 'PYEOF'
         import json
@@ -216,7 +235,23 @@ jobs:
             print(f"GDACS 응답 파싱 실패: {e}")
             raw = {"features": []}
 
-        features = raw.get("features", [])
+        # 응답 최상위 구조 방어: features가 최상위에 없으면
+        # FeatureCollection / data / results 등 흔한 대체 키를 순차 탐색
+        features = raw.get("features")
+        if features is None:
+            for alt_key in ("data", "results", "events", "FeatureCollection"):
+                candidate = raw.get(alt_key)
+                if isinstance(candidate, dict):
+                    candidate = candidate.get("features")
+                if isinstance(candidate, list):
+                    features = candidate
+                    print(f"주의: 최상위 'features' 키가 없어 '{alt_key}' 경로에서 복구함")
+                    break
+        if features is None:
+            features = []
+            print("주의: 응답에서 이벤트 목록을 찾지 못해 빈 목록으로 처리함. "
+                  "raw 응답의 최상위 키: " + str(list(raw.keys())))
+
         results = []
 
         GDACS_COUNTRY_MAP = {
