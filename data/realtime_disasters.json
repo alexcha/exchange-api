@@ -2,6 +2,14 @@
   "status": "success",
   "data": [
     {
+      "latitude": 15.7,
+      "longitude": -114.6,
+      "title": "ELIDA-26",
+      "summary": "Tropical Cyclone ELIDA-26",
+      "last_updated": "2026-07-15T21:00:00",
+      "severity": "Green"
+    },
+    {
       "latitude": 54.233,
       "longitude": -153.278,
       "title": "Earthquake in South Of Alaska - South Of Alaska",
@@ -15,14 +23,6 @@
       "title": "Earthquake in South Sandwich Islands Region - South Sandwich Islands Region",
       "summary": "Earthquake in South Sandwich Islands Region",
       "last_updated": "2026-07-15T15:36:06",
-      "severity": "Green"
-    },
-    {
-      "latitude": 15.4,
-      "longitude": -113.5,
-      "title": "ELIDA-26",
-      "summary": "Tropical Cyclone ELIDA-26",
-      "last_updated": "2026-07-15T15:00:00",
       "severity": "Green"
     },
     {
