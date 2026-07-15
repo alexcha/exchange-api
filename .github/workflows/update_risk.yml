@@ -401,6 +401,12 @@ jobs:
             if not detail:
                 continue
 
+            # 🔍 임시 디버그: 원본 응답 구조를 파악하기 위해 Orange/Red 이벤트의
+            # geteventdata 전체 응답을 로그에 그대로 출력 (필드명 확정되면 제거)
+            print(f"  🔍 RAW DETAIL DUMP (eventtype={eventtype}, eventid={eventid}):")
+            print(json.dumps(detail, ensure_ascii=False, indent=2)[:4000])
+            print("  🔍 --- DUMP 끝 ---")
+
             props = detail.get("properties", detail) or {}
             sendai = props.get("sendai") or []
             severity = props.get("severitydata") or {}
