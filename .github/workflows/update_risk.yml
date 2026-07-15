@@ -354,11 +354,13 @@ jobs:
 
             props = detail.get("properties", detail) or {}
             sendai = props.get("sendai") or []
+            severity = props.get("severitydata") or {}
+            images = props.get("images") or {}
 
             deaths = 0
             displaced = 0
             missing = 0
-            latest_desc = None
+            sendai_details = []
 
             for s in sendai:
                 name = (s.get("sendainame") or "").lower()
@@ -374,14 +376,30 @@ jobs:
                 elif "missing" in name:
                     missing += val
 
-                # sendai 배열은 시간순으로 쌓이므로 마지막(가장 최근) 설명을 채택
-                if s.get("description"):
-                    latest_desc = s["description"]
+                # report 페이지에 나오는 개별 피해 이력 원문을 그대로 보존
+                sendai_details.append({
+                    "type": s.get("sendaitype"),
+                    "name": s.get("sendainame"),
+                    "value": s.get("sendaivalue"),
+                    "region": s.get("region"),
+                    "description": s.get("description"),
+                    "date": s.get("dateinsert"),
+                    "latest": s.get("latest"),
+                })
 
             r["deaths"] = deaths or None
             r["displaced"] = displaced or None
             r["missing"] = missing or None
-            r["impact_description"] = (latest_desc[:300] if latest_desc else None)
+            # report 상단 요약문 (예: "Orange Flood in Spain from: ... to: ...")
+            r["report_description"] = props.get("htmldescription") or props.get("description")
+            # 심각도 원문 텍스트 (예: "Magnitude 4.8M, Depth:135km")
+            r["severity_text"] = severity.get("severitytext")
+            # report 페이지의 개별 피해 이력 전체 (가장 최근이 마지막)
+            r["impact_history"] = sendai_details
+            # 가장 최근 피해 이력 한 줄 요약 (기존 impact_description 대체)
+            r["impact_description"] = (sendai_details[-1]["description"][:300] if sendai_details else None)
+            # report 페이지 지도 이미지
+            r["overview_map_url"] = images.get("overviewmap") or images.get("overviewmap_cached")
             r["report_detail_url"] = detail_url
 
             enriched_ok += 1
