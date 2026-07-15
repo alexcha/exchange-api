@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '0 18 * * *' # 매일 한국 시간(KST) 새벽 3시 자동 실행
   workflow_dispatch:     # 수동 실행 버튼 활성화
+    inputs:
+      enrich_max:
+        description: '상세정보(사상자 등) 보강할 최대 이벤트 수'
+        required: false
+        default: '40'
 
 jobs:
   fetch-and-clean:
@@ -194,14 +199,8 @@ jobs:
 
         rm -f state_dept_raw.xml
 
-    # 🌟 [2단계] GDACS 실시간 재난 데이터 연동 및 상세정보 확장 수집
-    #     - GDACS ID / 활동(에피소드) 번호
-    #     - 발생일 ~ 최종 감지일 및 기간(일)
-    #     - 영향 받은 사람 수 (사망자/이재민 등 population 데이터)
-    #     - 피해 면적 (해당 필드가 있는 경우, 예: 산불)
-    #     - 심각도 텍스트 및 스코어
-    #     - 상세 리포트 URL (report/details 링크)
-    - name: 실시간 재난(GDACS) 데이터 추출 (상세정보 포함)
+    # 🌟 [2단계] GDACS 실시간 재난 데이터 연동 및 전처리 자동화 (목록 API)
+    - name: 실시간 재난(GDACS) 데이터 추출
       run: |
         curl -f -s "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=green;orange;red" \
           -o gdacs_raw.json || echo '{"features":[]}' > gdacs_raw.json
@@ -231,18 +230,6 @@ jobs:
             "turkiye": "Turkey"
         }
 
-        def strip_html(text):
-            return re.sub(r'<[^>]*>', '', text or "").strip()
-
-        def to_number(value):
-            """문자열/숫자 혼용 필드를 안전하게 숫자로 변환. 실패 시 None."""
-            if value is None:
-                return None
-            try:
-                return float(value)
-            except (ValueError, TypeError):
-                return None
-
         for feat in features:
             props = feat.get("properties", {}) or {}
             geom = feat.get("geometry", {}) or {}
@@ -262,61 +249,14 @@ jobs:
             raw_country = (props.get("country") or "").strip()
             clean_country = GDACS_COUNTRY_MAP.get(raw_country.lower(), raw_country)
 
-            event_type = props.get("eventtype", "")
-            event_id = props.get("eventid", "")
-            episode_id = props.get("episodeid", "")
-            iso3 = props.get("iso3", "")
-
-            event_name = props.get("eventname") or props.get("name") or event_type or "Disaster"
+            event_name = props.get("eventname") or props.get("name") or props.get("eventtype", "Disaster")
             title = f"{event_name} - {clean_country}" if clean_country else event_name
 
-            desc_clean = strip_html(props.get("description") or props.get("htmldescription") or "")
-
-            # ── 심각도(severitydata) 상세 ──
-            severity_data = props.get("severitydata") or {}
-            severity_value = to_number(severity_data.get("severity"))
-            severity_unit = severity_data.get("severityunit", "")
-            severity_text = strip_html(severity_data.get("severitytext") or "")
-
-            # ── 영향 받은 인구(population) 상세: 사망자/이재민 등 ──
-            population_data = props.get("population") or {}
-            affected_value = to_number(population_data.get("value"))
-            affected_unit = population_data.get("units", "")
-
-            # ── 피해 면적 (주로 산불(WF) 이벤트에서 제공, 없을 수 있음) ──
-            affected_area = None
-            for area_key in ("affectedarea", "areakm2", "burnedarea"):
-                if props.get(area_key) is not None:
-                    affected_area = to_number(props.get(area_key))
-                    break
-
-            # severitytext 안에 "OOO명이 사망했습니다" 류의 문구가 있는 경우가 많아
-            # 별도 숫자 필드가 비어 있으면 텍스트에서 보조 추출 시도
-            if affected_value is None and severity_text:
-                num_match = re.search(r"([\d,]+)\s*(명|people|persons)", severity_text, re.IGNORECASE)
-                if num_match:
-                    affected_value = to_number(num_match.group(1).replace(",", ""))
-                    affected_unit = affected_unit or "명"
-
-            from_date = props.get("fromdate", "")
-            to_date = props.get("todate", "") or props.get("datemodified", "")
-
-            alert_level = props.get("alertlevel", "green")
-            alert_score = to_number(props.get("alertscore"))
-
-            # ── GDACS 상세 리포트/맵 URL ──
-            url_data = props.get("url") or {}
-            report_url = url_data.get("report") or url_data.get("details") or ""
-
-            # ── 화면 캡처와 동일한 형태의 활동 번호(GDACS ID) 구성 ──
-            gdacs_id = f"{event_type}{event_id}".strip() if event_type or event_id else ""
-            activation_number = None
-            if event_type and event_id and iso3:
-                year_str = str(from_date)[:4] if from_date else ""
-                activation_number = f"{event_type}-{year_str}-{str(episode_id or event_id).zfill(6)}-{iso3}"
+            desc = props.get("description") or props.get("htmldescription") or ""
+            desc_clean = re.sub(r'<[^>]*>', '', desc).strip()
 
             if not desc_clean:
-                severity_str = str(alert_level).upper()
+                severity_str = (props.get("alertlevel") or "unknown").upper()
                 desc_clean = f"A {severity_str} level {event_name} event has been detected near {clean_country or 'coordinates'}: {lat}, {lng}."
 
             results.append({
@@ -325,23 +265,17 @@ jobs:
                 "title": title,
                 "summary": desc_clean,
                 "country": clean_country,
-                "iso3": iso3,
-                "gdacs_id": gdacs_id,
-                "activation_number": activation_number,
-                "event_type": event_type,
-                "alert_level": alert_level,
-                "alert_score": alert_score,
-                "severity_value": severity_value,
-                "severity_unit": severity_unit,
-                "severity_text": severity_text,
-                "affected_population": affected_value,
-                "affected_population_unit": affected_unit,
-                "affected_area_km2": affected_area,
-                "from_date": from_date,
-                "to_date": to_date,
-                "report_url": report_url,
-                "last_updated": to_date or from_date,
-                "severity": alert_level,
+                "iso3": props.get("iso3", ""),
+                "gdacs_id": f"{props.get('eventtype','')}{props.get('eventid','')}",
+                "eventtype": props.get("eventtype", ""),
+                "eventid": props.get("eventid", ""),
+                "activation_number": props.get("glide"),
+                "event_type": props.get("eventtype", ""),
+                "alert_level": props.get("alertlevel", "green"),
+                "alert_score": props.get("alertscore", 0),
+                "report_url": (props.get("url") or {}).get("report", ""),
+                "last_updated": props.get("todate") or props.get("fromdate") or "",
+                "severity": props.get("alertlevel", "green"),
             })
 
         print(f"총 {len(results)}건 재난 이벤트 정밀 추출 및 정제 완료")
@@ -353,6 +287,111 @@ jobs:
         rm -f gdacs_raw.json
         echo '{ "status": "success", "data": [] }' > data/realtime_alerts.json
 
+    # 🌟 [2.5단계] 이벤트별 상세정보(사상자·이재민 등 피해규모) 보강
+    #   - report.aspx 페이지는 JS(Angular)로 렌더링되는 SPA라 curl로 직접 파싱이 불가능함
+    #   - 대신 report.aspx가 내부적으로 호출하는 것과 동일한 공식 JSON API(geteventdata)를 사용
+    #   - Green 등급 이벤트는 건수가 매우 많고 피해 데이터가 거의 없어 스킵, Orange/Red만 보강
+    #   - 서버 부하 방지를 위해 호출 간 딜레이 + 최대 호출 건수 제한(ENRICH_MAX)
+    - name: 재난 상세정보(사상자/영향인구) API 보강
+      env:
+        ENRICH_MAX: ${{ github.event.inputs.enrich_max || '40' }}
+      run: |
+        python3 - << 'PYEOF'
+        import json
+        import os
+        import re
+        import time
+        import urllib.request
+        import urllib.error
+
+        ENRICH_MAX = int(os.environ.get("ENRICH_MAX", "40"))
+
+        def fetch_json(url, timeout=15):
+            try:
+                req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                with urllib.request.urlopen(req, timeout=timeout) as resp:
+                    return json.loads(resp.read().decode("utf-8"))
+            except Exception as e:
+                print(f"  ⚠️ 상세정보 조회 실패: {url} ({e})")
+                return None
+
+        with open("data/realtime_disasters.json", encoding="utf-8") as f:
+            payload = json.load(f)
+
+        results = payload.get("data", [])
+
+        enrich_count = 0
+        enriched_ok = 0
+
+        for r in results:
+            if enrich_count >= ENRICH_MAX:
+                print(f"보강 한도({ENRICH_MAX}건) 도달, 이후 이벤트는 건너뜀")
+                break
+
+            # Green(관심 단계)은 대부분 사상자 데이터가 없어 API 호출 낭비 -> 스킵
+            if str(r.get("alert_level", "green")).lower() == "green":
+                continue
+
+            eventtype = r.get("eventtype") or r.get("event_type")
+            eventid = r.get("eventid")
+
+            # eventid가 비어 있으면 gdacs_id(예: "WF1029489")에서 숫자만 추출해 복구 시도
+            if not eventid:
+                m = re.search(r"(\d+)$", str(r.get("gdacs_id", "")))
+                if m:
+                    eventid = m.group(1)
+
+            if not eventtype or not eventid:
+                continue
+
+            detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
+            detail = fetch_json(detail_url)
+            enrich_count += 1
+            time.sleep(0.6)  # GDACS 서버 부하 방지용 딜레이
+
+            if not detail:
+                continue
+
+            props = detail.get("properties", detail) or {}
+            sendai = props.get("sendai") or []
+
+            deaths = 0
+            displaced = 0
+            missing = 0
+            latest_desc = None
+
+            for s in sendai:
+                name = (s.get("sendainame") or "").lower()
+                try:
+                    val = int(re.sub(r"[^\d]", "", str(s.get("sendaivalue", "0"))) or 0)
+                except ValueError:
+                    val = 0
+
+                if "death" in name:
+                    deaths += val
+                elif "displaced" in name or "evacuat" in name:
+                    displaced += val
+                elif "missing" in name:
+                    missing += val
+
+                # sendai 배열은 시간순으로 쌓이므로 마지막(가장 최근) 설명을 채택
+                if s.get("description"):
+                    latest_desc = s["description"]
+
+            r["deaths"] = deaths or None
+            r["displaced"] = displaced or None
+            r["missing"] = missing or None
+            r["impact_description"] = (latest_desc[:300] if latest_desc else None)
+            r["report_detail_url"] = detail_url
+
+            enriched_ok += 1
+
+        print(f"상세정보 API 호출 {enrich_count}건 중 {enriched_ok}건 보강 완료")
+
+        with open("data/realtime_disasters.json", "w", encoding="utf-8") as f:
+            json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
+        PYEOF
+
     # 🌟 [3단계] 최종 데이터 변경 감지 및 자동 배포
     - name: 변경사항 자동 커밋 및 푸시
       run: |
@@ -362,7 +401,7 @@ jobs:
         git add data/travel_risk.json data/realtime_disasters.json data/realtime_alerts.json
 
         if ! git diff --cached --exit-code; then
-          git commit -m "⚡ GDACS 상세정보(사망자/피해면적/활동번호 등) 확장 수집 반영"
+          git commit -m "⚡ GDACS 상세 API(사상자/영향인구) 보강 파이프라인 추가"
           git push
         else
           echo "업데이트된 신규 위험 정보 없음"
