@@ -377,8 +377,30 @@ jobs:
                 print(f"보강 한도({ENRICH_MAX}건) 도달, 이후 이벤트는 건너뜀")
                 break
 
-            # Green(관심 단계)은 대부분 사상자 데이터가 없어 API 호출 낭비 -> 스킵
-            if str(r.get("alert_level", "green")).lower() == "green":
+            # 이벤트 요약 문구는 API 호출 없이 alertlevel+eventtype만으로 만들 수 있으므로
+            # Green 포함 모든 등급에 채워준다. (사상자/이재민 상세 API 호출은 Green은 계속 스킵)
+            EVENT_TYPE_NAME = {
+                "EQ": "earthquake", "TC": "tropical cyclone", "FL": "flood",
+                "WF": "wildfire", "VO": "volcanic event", "DR": "drought",
+                "TS": "tsunami",
+            }
+            IMPACT_LEVEL = {"green": "low", "orange": "medium", "red": "significant"}
+            IMPACT_BASIS = {
+                "EQ": "the magnitude", "TC": "the wind speed", "FL": "the flood extent",
+                "WF": "the affected area", "VO": "the eruption size", "DR": "the drought severity",
+                "TS": "the wave height",
+            }
+            r_eventtype = r.get("eventtype") or r.get("event_type") or ""
+            r_alertlevel = str(r.get("alert_level", "green")).lower()
+            r["report_description"] = (
+                f"This {EVENT_TYPE_NAME.get(r_eventtype, 'event')} can have a "
+                f"{IMPACT_LEVEL.get(r_alertlevel, 'unknown')} humanitarian impact "
+                f"based on {IMPACT_BASIS.get(r_eventtype, 'the severity')} and the "
+                f"affected population and their vulnerability."
+            )
+
+            # Green(관심 단계)은 대부분 사상자 데이터가 없어 상세정보 API 호출은 계속 스킵
+            if r_alertlevel == "green":
                 continue
 
             eventtype = r.get("eventtype") or r.get("event_type")
@@ -440,31 +462,7 @@ jobs:
             r["displaced"] = displaced or None
             r["missing"] = missing or None
 
-            # 이벤트 요약(예: "This earthquake can have a low humanitarian impact
-            # based on the magnitude and the affected population and their vulnerability.")
-            # 이 문장은 geteventdata API 응답 어디에도 존재하지 않음 — GDACS 웹사이트가
-            # report.aspx에서 alertlevel + eventtype을 조합해 프론트엔드에서 생성하는 템플릿 문장.
-            # API에서 가져올 수 없으므로 동일한 템플릿을 직접 재현.
-            EVENT_TYPE_NAME = {
-                "EQ": "earthquake", "TC": "tropical cyclone", "FL": "flood",
-                "WF": "wildfire", "VO": "volcanic event", "DR": "drought",
-                "TS": "tsunami",
-            }
-            IMPACT_LEVEL = {"green": "low", "orange": "medium", "red": "significant"}
-            IMPACT_BASIS = {
-                "EQ": "the magnitude", "TC": "the wind speed", "FL": "the flood extent",
-                "WF": "the affected area", "VO": "the eruption size", "DR": "the drought severity",
-                "TS": "the wave height",
-            }
-            event_name_en = EVENT_TYPE_NAME.get(eventtype, "event")
-            impact_level = IMPACT_LEVEL.get(str(props.get("alertlevel", "")).lower(), "unknown")
-            impact_basis = IMPACT_BASIS.get(eventtype, "the severity")
-            report_description = (
-                f"This {event_name_en} can have a {impact_level} humanitarian impact "
-                f"based on {impact_basis} and the affected population and their vulnerability."
-            )
-
-            r["report_description"] = report_description
+            # report_description은 위쪽에서 이미 모든 등급에 대해 채워짐 (중복 생성 불필요)
             # 심각도 원문 텍스트 (예: "Magnitude 4.8M, Depth:135km")
             r["severity_text"] = severity.get("severitytext")
             # report 페이지의 개별 피해 이력 전체 (가장 최근이 마지막)
