@@ -16,7 +16,7 @@ jobs:
     - name: data 디렉토리 생성
       run: mkdir -p data
 
-    # 🌟 [1단계] 미국 국무부 공식 RSS 피드에서 국가별 위험도 직접 추출 (프랑스, 미국 등 누락 완벽 해결)
+    # 🌟 [1단계] 국가별 위험도 데이터 추출 (누락 예외 완벽 대응판)
     - name: 국가별 위험도 데이터 추출 (State Dept 공식 RSS)
       run: |
         curl -f -s "https://travel.state.gov/_res/rss/TAsTWs.xml" -o state_dept_raw.xml
@@ -66,8 +66,8 @@ jobs:
             "montenegro": "ME", "montserrat": "MS", "morocco": "MA", "mozambique": "MZ",
             "namibia": "NA", "nauru": "NR", "nepal": "NP", "netherlands": "NL",
             "new zealand": "NZ", "nicaragua": "NI", "niger": "NE", "nigeria": "NG",
-            "north macedonia": "MK", "macedonia": "MK", "norway": "NO", "oman": "OM",
-            "pakistan": "PK", "palau": "PW", "panama": "PA", "papua new guinea": "PG",
+            "north macedonia": "MK", "macedonia": "MK", "norway": "NO", "the kingdom of norway": "NO",
+            "oman": "OM", "pakistan": "PK", "palau": "PW", "panama": "PA", "papua new guinea": "PG",
             "paraguay": "PY", "peru": "PE", "philippines": "PH", "poland": "PL",
             "portugal": "PT", "qatar": "QA", "romania": "RO", "russia": "RU",
             "russian federation": "RU", "rwanda": "RW", "saint kitts and nevis": "KN",
@@ -77,20 +77,20 @@ jobs:
             "singapore": "SG", "slovakia": "SK", "slovenia": "SI", "solomon islands": "SB", 
             "somalia": "SO", "south africa": "ZA", "south korea": "KR", "republic of korea": "KR", 
             "south sudan": "SS", "spain": "ES", "sri lanka": "LK", "sudan": "SD", "suriname": "SR", 
-            "sweden": "SE", "switzerland": "CH", "syria": "SY", "syrian arab republic": "SY", 
-            "taiwan": "TW", "tajikistan": "TJ", "tanzania": "TZ", "united republic of tanzania": "TZ", 
-            "thailand": "TH", "timor-leste": "TL", "east timor": "TL", "togo": "TG", "tonga": "TO", 
-            "trinidad and tobago": "TT", "tunisia": "TN", "turkey": "TR", "turkiye": "TR", 
-            "turkmenistan": "TM", "tuvalu": "TV", "uganda": "UG", "ukraine": "UA", 
-            "united arab emirates": "AE", "united kingdom": "GB", "united states": "US", "uruguay": "UY", 
-            "uzbekistan": "UZ", "vanuatu": "VU", "vatican city": "VA", "holy see": "VA", 
-            "venezuela": "VE", "vietnam": "VN", "viet nam": "VN", "yemen": "YE", "zambia": "ZM", 
-            "zimbabwe": "ZW", "french guiana": "GF", "turks and caicos islands": "TC",
-            "british virgin islands": "VG", "anguilla": "AI", "new caledonia": "NC",
-            "cayman islands": "KY", "bermuda": "BM", "french polynesia": "PF",
-            "mainland china, hong kong & macau": "CN", "greenland": "GL",
-            "curacao": "CW", "aruba": "AW", "sint maarten": "SX",
-            "sint eustatius": "BQ", "bonaire": "BQ", "saba": "BQ"
+            "sweden": "SE", "switzerland": "CH", "swiss confederation": "CH", "syria": "SY",
+            "syrian arab republic": "SY", "taiwan": "TW", "tajikistan": "TJ", "tanzania": "TZ",
+            "united republic of tanzania": "TZ", "thailand": "TH", "timor-leste": "TL",
+            "east timor": "TL", "togo": "TG", "tonga": "TO", "trinidad and tobago": "TT",
+            "tunisia": "TN", "turkey": "TR", "turkiye": "TR", "turkmenistan": "TM",
+            "tuvalu": "TV", "uganda": "UG", "ukraine": "UA", "united arab emirates": "AE",
+            "united kingdom": "GB", "united states": "US", "uruguay": "UY", "uzbekistan": "UZ",
+            "vanuatu": "VU", "vatican city": "VA", "holy see": "VA", "venezuela": "VE",
+            "vietnam": "VN", "viet nam": "VN", "yemen": "YE", "zambia": "ZM", "zimbabwe": "ZW",
+            "french guiana": "GF", "turks and caicos islands": "TC", "british virgin islands": "VG",
+            "anguilla": "AI", "new caledonia": "NC", "cayman islands": "KY", "bermuda": "BM",
+            "french polynesia": "PF", "mainland china, hong kong & macau": "CN", "greenland": "GL",
+            "curacao": "CW", "aruba": "AW", "sint maarten": "SX", "sint eustatius": "BQ",
+            "bonaire": "BQ", "saba": "BQ"
         }
 
         LEVEL_RE = re.compile(r"level\s*([1-4])", re.IGNORECASE)
@@ -100,14 +100,13 @@ jobs:
             name = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
             name = name.lower().strip()
             name = re.sub(r"\s+", " ", name)
+            # 불필요 관사 제거를 통해 Norway/Switzerland 등 매칭 극대화
+            if name.startswith("the "):
+                name = name[4:]
             name = name.replace(",", "").replace(".", "")
             return name
 
         def extract_countries(country_part):
-            """
-            "France, Andorra, and Monaco" 와 같이 쉼표나 and로 묶인 다중 국가명을 
-            각각 개별 국가명 배열로 분리합니다.
-            """
             parts = re.split(r'\s+and\s+|\s*,\s*', country_part, flags=re.IGNORECASE)
             valid_countries = []
             for p in parts:
@@ -145,7 +144,6 @@ jobs:
                 continue
             level = int(level_match.group(1))
 
-            # 다중 결합 국가 분리 처리 수행 (예: France, Andorra, and Monaco)
             parsed_countries = extract_countries(raw_country_part)
 
             for country_name in parsed_countries:
@@ -168,8 +166,7 @@ jobs:
                     "last_updated": pubdate_el.text if pubdate_el is not None else "",
                 })
 
-        # ── 미국(US) 데이터 누락 방지 예외 처리 ──
-        # 국무부는 자국 경보를 발령하지 않으므로 데이터가 없을 시 기본 1단계(남색)로 채워 줍니다.
+        # ── 미국(US) 데이터 강제 주입 (보호 코드) ──
         if "US" not in seen_iso2:
             results.append({
                 "iso_code": "US",
@@ -181,7 +178,7 @@ jobs:
             seen_iso2.add("US")
 
         if unmatched:
-            print(f"매핑 실패한 국가명 ({len(unmatched)}건, NAME_TO_ISO2에 별칭 추가 필요):")
+            print(f"매핑 실패한 국가명 ({len(unmatched)}건):")
             for name in unmatched:
                 print("  -", name)
         print(f"총 {len(results)}개국 위험도 추출 완료")
@@ -192,7 +189,7 @@ jobs:
 
         rm -f state_dept_raw.xml
 
-    # 🌟 [2단계] GDACS 공식 API에서 실시간 재난 데이터 직접 추출 및 데이터 결측 보완
+    # 🌟 [2단계] GDACS 실시간 재난 데이터 연동 및 전처리 자동화
     - name: 실시간 재난(GDACS) 데이터 추출
       run: |
         curl -f -s "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=green;orange;red" \
@@ -212,7 +209,6 @@ jobs:
         features = raw.get("features", [])
         results = []
 
-        # 국가 표준명 보정 맵
         GDACS_COUNTRY_MAP = {
             "republic of korea": "South Korea",
             "korea, republic of": "South Korea",
@@ -229,7 +225,6 @@ jobs:
             geom = feat.get("geometry", {}) or {}
             coords = geom.get("coordinates", [])
 
-            # 좌표 정밀 유효성 확인
             if not coords or len(coords) < 2:
                 continue
             try:
@@ -241,14 +236,12 @@ jobs:
             if not (-180 <= lng <= 180 and -90 <= lat <= 90):
                 continue
 
-            # 국가 텍스트 정밀 가공
             raw_country = (props.get("country") or "").strip()
             clean_country = GDACS_COUNTRY_MAP.get(raw_country.lower(), raw_country)
 
             event_name = props.get("eventname") or props.get("name") or props.get("eventtype", "Disaster")
             title = f"{event_name} - {clean_country}" if clean_country else event_name
 
-            # 요약정보 내 불필요 HTML 제거 및 기본값 바인딩
             desc = props.get("description") or props.get("htmldescription") or ""
             desc_clean = re.sub(r'<[^>]*>', '', desc).strip()
             
@@ -272,11 +265,9 @@ jobs:
         PYEOF
 
         rm -f gdacs_raw.json
-
-        # 빈 배열이라도 파일은 유지해 404로 인한 캐시 실패를 방지.
         echo '{ "status": "success", "data": [] }' > data/realtime_alerts.json
 
-    # 🌟 [3단계] 변동 사항이 있을 때만 깃허브에 커밋 및 푸시
+    # 🌟 [3단계] 최종 데이터 변경 감지 및 자동 배포
     - name: 변경사항 자동 커밋 및 푸시
       run: |
         git config --global user.name "github-actions[bot]"
@@ -285,7 +276,7 @@ jobs:
         git add data/travel_risk.json data/realtime_disasters.json data/realtime_alerts.json
         
         if ! git diff --cached --exit-code; then
-          git commit -m "⚡ 국무부 공식 RSS (프랑스/미국 보완) + GDACS 공식 API 기반 실시간 데이터 갱신"
+          git commit -m "⚡ 국무부 RSS (프랑스/노르웨이/스위스/미국 전체 복구) + GDACS 파이프라인 통합 갱신"
           git push
         else
           echo "업데이트된 신규 위험 정보 없음"
