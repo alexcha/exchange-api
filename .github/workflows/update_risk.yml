@@ -401,12 +401,6 @@ jobs:
             if not detail:
                 continue
 
-            # 🔍 임시 디버그: 원본 응답 구조를 파악하기 위해 Orange/Red 이벤트의
-            # geteventdata 전체 응답을 로그에 그대로 출력 (필드명 확정되면 제거)
-            print(f"  🔍 RAW DETAIL DUMP (eventtype={eventtype}, eventid={eventid}):")
-            print(json.dumps(detail, ensure_ascii=False, indent=2)[:4000])
-            print("  🔍 --- DUMP 끝 ---")
-
             props = detail.get("properties", detail) or {}
             sendai = props.get("sendai") or []
             severity = props.get("severitydata") or {}
@@ -446,26 +440,29 @@ jobs:
             r["displaced"] = displaced or None
             r["missing"] = missing or None
 
-            # 이벤트 요약(예: "산불화재 피해 지역과 피해를 입은 인구 및 그들의 취약성을
-            # 고려할 때, 인도주의적 측면에서 중간 정도의 영향을 미칠 수 있습니다.")
-            # GDACS는 이 문장을 여러 이름의 필드로 내려줄 수 있어 후보 키를 순차 탐색
-            SUMMARY_KEY_CANDIDATES = (
-                "htmldescription", "description", "headline",
-                "eventsummary", "event_summary", "summary",
-                "alertlevel_text", "impacttext",
+            # 이벤트 요약(예: "This earthquake can have a low humanitarian impact
+            # based on the magnitude and the affected population and their vulnerability.")
+            # 이 문장은 geteventdata API 응답 어디에도 존재하지 않음 — GDACS 웹사이트가
+            # report.aspx에서 alertlevel + eventtype을 조합해 프론트엔드에서 생성하는 템플릿 문장.
+            # API에서 가져올 수 없으므로 동일한 템플릿을 직접 재현.
+            EVENT_TYPE_NAME = {
+                "EQ": "earthquake", "TC": "tropical cyclone", "FL": "flood",
+                "WF": "wildfire", "VO": "volcanic event", "DR": "drought",
+                "TS": "tsunami",
+            }
+            IMPACT_LEVEL = {"green": "low", "orange": "medium", "red": "significant"}
+            IMPACT_BASIS = {
+                "EQ": "the magnitude", "TC": "the wind speed", "FL": "the flood extent",
+                "WF": "the affected area", "VO": "the eruption size", "DR": "the drought severity",
+                "TS": "the wave height",
+            }
+            event_name_en = EVENT_TYPE_NAME.get(eventtype, "event")
+            impact_level = IMPACT_LEVEL.get(str(props.get("alertlevel", "")).lower(), "unknown")
+            impact_basis = IMPACT_BASIS.get(eventtype, "the severity")
+            report_description = (
+                f"This {event_name_en} can have a {impact_level} humanitarian impact "
+                f"based on {impact_basis} and the affected population and their vulnerability."
             )
-            report_description = None
-            for key in SUMMARY_KEY_CANDIDATES:
-                val = props.get(key)
-                if val:
-                    report_description = val
-                    break
-
-            if report_description is None:
-                # 어떤 후보 키에도 없으면 실제 응답의 최상위 키를 로그로 남겨서
-                # 다음에 정확한 필드명을 바로 찾을 수 있게 함
-                print(f"  ⚠️ eventtype={eventtype} eventid={eventid}: "
-                      f"이벤트 요약 필드를 찾지 못함. props 키 목록: {list(props.keys())}")
 
             r["report_description"] = report_description
             # 심각도 원문 텍스트 (예: "Magnitude 4.8M, Depth:135km")
