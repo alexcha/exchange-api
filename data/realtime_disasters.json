@@ -2,6 +2,25 @@
   "status": "success",
   "data": [
     {
+      "latitude": -21.2742,
+      "longitude": -179.0061,
+      "title": "Earthquake in Fiji Islands Region - Fiji Islands Region",
+      "summary": "Earthquake in Fiji Islands Region",
+      "country": "Fiji Islands Region",
+      "iso3": "",
+      "gdacs_id": "EQ1552082",
+      "eventtype": "EQ",
+      "eventid": 1552082,
+      "activation_number": "",
+      "event_type": "EQ",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventid=1552082&episodeid=1718427&eventtype=EQ",
+      "last_updated": "2026-07-15T21:58:50",
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
+    },
+    {
       "latitude": 19.7348,
       "longitude": 121.3591,
       "title": "Earthquake in Philippines - Philippines",
@@ -17,7 +36,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1552078&episodeid=1718422&eventtype=EQ",
       "last_updated": "2026-07-15T21:33:38",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 15.7,
@@ -35,7 +55,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1001282&episodeid=5&eventtype=TC",
       "last_updated": "2026-07-15T21:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This tropical cyclone can have a low humanitarian impact based on the wind speed and the affected population and their vulnerability."
     },
     {
       "latitude": 54.233,
@@ -53,7 +74,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1552050&episodeid=1718392&eventtype=EQ",
       "last_updated": "2026-07-15T17:46:19",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": -59.4525,
@@ -71,7 +93,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1552032&episodeid=1718379&eventtype=EQ",
       "last_updated": "2026-07-15T15:36:06",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": -59.9671,
@@ -89,7 +112,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1552027&episodeid=1718368&eventtype=EQ",
       "last_updated": "2026-07-15T14:51:37",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 40.3221,
@@ -107,7 +131,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1552000&episodeid=1718340&eventtype=EQ",
       "last_updated": "2026-07-15T12:29:40",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 51.7994,
@@ -125,7 +150,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551944&episodeid=1718286&eventtype=EQ",
       "last_updated": "2026-07-15T03:36:18",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 51.4762,
@@ -143,7 +169,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551943&episodeid=1718277&eventtype=EQ",
       "last_updated": "2026-07-15T02:48:45",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 51.3809,
@@ -161,7 +188,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551940&episodeid=1718274&eventtype=EQ",
       "last_updated": "2026-07-15T02:42:18",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": -14.877,
@@ -179,7 +207,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551953&episodeid=1718289&eventtype=EQ",
       "last_updated": "2026-07-15T02:40:26",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": -32.6034,
@@ -197,7 +226,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551913&episodeid=1718245&eventtype=EQ",
       "last_updated": "2026-07-15T01:09:20",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 49.9548,
@@ -215,7 +245,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551917&episodeid=1718248&eventtype=EQ",
       "last_updated": "2026-07-15T01:05:37",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 53.7735,
@@ -233,7 +264,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1104019&episodeid=2&eventtype=FL",
       "last_updated": "2026-07-15T01:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This flood can have a low humanitarian impact based on the flood extent and the affected population and their vulnerability."
     },
     {
       "latitude": -58.7712,
@@ -251,7 +283,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551906&episodeid=1718236&eventtype=EQ",
       "last_updated": "2026-07-15T00:35:28",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": -20.748,
@@ -269,7 +302,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551894&episodeid=1718222&eventtype=EQ",
       "last_updated": "2026-07-14T22:50:12",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 54.1759,
@@ -287,7 +321,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551878&episodeid=1718205&eventtype=EQ",
       "last_updated": "2026-07-14T18:51:07",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 5.3269,
@@ -305,7 +340,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551846&episodeid=1718171&eventtype=EQ",
       "last_updated": "2026-07-14T15:49:41",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": -57.117,
@@ -323,7 +359,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551973&episodeid=1718417&eventtype=EQ",
       "last_updated": "2026-07-14T15:25:03",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 19.45,
@@ -341,7 +378,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551841&episodeid=1718163&eventtype=EQ",
       "last_updated": "2026-07-14T15:20:13",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 5.69,
@@ -359,7 +397,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551813&episodeid=1718135&eventtype=EQ",
       "last_updated": "2026-07-14T13:15:08",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 54.1456,
@@ -377,7 +416,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551807&episodeid=1718128&eventtype=EQ",
       "last_updated": "2026-07-14T12:12:19",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": -14.5779,
@@ -395,7 +435,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551779&episodeid=1718095&eventtype=EQ",
       "last_updated": "2026-07-14T08:21:06",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 40.1657,
@@ -413,7 +454,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551777&episodeid=1718092&eventtype=EQ",
       "last_updated": "2026-07-14T08:07:30",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 40.1338,
@@ -431,7 +473,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551776&episodeid=1718089&eventtype=EQ",
       "last_updated": "2026-07-14T07:44:09",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 12.7846,
@@ -449,7 +492,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551772&episodeid=1718093&eventtype=EQ",
       "last_updated": "2026-07-14T07:18:47",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 12.7967,
@@ -467,7 +511,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551769&episodeid=1718083&eventtype=EQ",
       "last_updated": "2026-07-14T07:04:54",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 14.7321,
@@ -485,7 +530,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551768&episodeid=1718100&eventtype=EQ",
       "last_updated": "2026-07-14T06:48:05",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": -14.9372,
@@ -503,7 +549,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551764&episodeid=1718075&eventtype=EQ",
       "last_updated": "2026-07-14T06:15:06",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 5.1842,
@@ -521,7 +568,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551722&episodeid=1718031&eventtype=EQ",
       "last_updated": "2026-07-14T01:38:24",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": -22.7425,
@@ -539,7 +587,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551724&episodeid=1718034&eventtype=EQ",
       "last_updated": "2026-07-14T01:27:30",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 14.7717,
@@ -557,7 +606,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551719&episodeid=1718026&eventtype=EQ",
       "last_updated": "2026-07-14T01:19:59",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 13.1309,
@@ -575,7 +625,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551716&episodeid=1718028&eventtype=EQ",
       "last_updated": "2026-07-14T01:03:15",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": 15.2664,
@@ -593,7 +644,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1104021&episodeid=1&eventtype=FL",
       "last_updated": "2026-07-14T01:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This flood can have a low humanitarian impact based on the flood extent and the affected population and their vulnerability."
     },
     {
       "latitude": 2.1943,
@@ -611,7 +663,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1104020&episodeid=1&eventtype=FL",
       "last_updated": "2026-07-14T01:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This flood can have a low humanitarian impact based on the flood extent and the affected population and their vulnerability."
     },
     {
       "latitude": 60.6299,
@@ -629,7 +682,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1104008&episodeid=2&eventtype=FL",
       "last_updated": "2026-07-14T01:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This flood can have a low humanitarian impact based on the flood extent and the affected population and their vulnerability."
     },
     {
       "latitude": 19.759,
@@ -647,7 +701,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1103996&episodeid=6&eventtype=FL",
       "last_updated": "2026-07-14T01:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This flood can have a low humanitarian impact based on the flood extent and the affected population and their vulnerability."
     },
     {
       "latitude": 7.7992,
@@ -665,7 +720,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1103942&episodeid=6&eventtype=FL",
       "last_updated": "2026-07-14T01:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This flood can have a low humanitarian impact based on the flood extent and the affected population and their vulnerability."
     },
     {
       "latitude": 40.2429,
@@ -684,10 +740,10 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1103933&episodeid=24&eventtype=FL",
       "last_updated": "2026-07-14T01:00:00",
       "severity": "Orange",
+      "report_description": "This flood can have a medium humanitarian impact based on the flood extent and the affected population and their vulnerability.",
       "deaths": 12,
       "displaced": 782166,
       "missing": 10,
-      "report_description": "This flood can have a medium humanitarian impact based on the flood extent and the affected population and their vulnerability.",
       "severity_text": "Magnitude 0 ",
       "impact_history": [
         {
@@ -1269,7 +1325,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029512&episodeid=1&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -13.2016,
@@ -1287,7 +1344,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029511&episodeid=1&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 48.3068,
@@ -1305,7 +1363,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029510&episodeid=1&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 50.9688,
@@ -1323,7 +1382,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029509&episodeid=1&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 48.209,
@@ -1341,7 +1401,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029508&episodeid=1&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 50.8507,
@@ -1359,7 +1420,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029507&episodeid=1&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -12.9706,
@@ -1377,7 +1439,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029506&episodeid=1&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 50.4865,
@@ -1395,7 +1458,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029505&episodeid=1&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 50.7981,
@@ -1413,7 +1477,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029504&episodeid=1&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 50.2687,
@@ -1431,7 +1496,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029503&episodeid=1&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 49.9927,
@@ -1449,7 +1515,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029502&episodeid=1&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 50.5024,
@@ -1467,7 +1534,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029501&episodeid=1&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 49.6447,
@@ -1485,7 +1553,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029500&episodeid=1&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -7.3793,
@@ -1503,7 +1572,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029499&episodeid=1&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -8.1025,
@@ -1521,7 +1591,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029498&episodeid=2&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 48.3088,
@@ -1539,7 +1610,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029497&episodeid=2&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 48.9378,
@@ -1557,7 +1629,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029496&episodeid=2&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 48.5952,
@@ -1575,7 +1648,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029495&episodeid=4&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -14.3191,
@@ -1593,7 +1667,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029494&episodeid=2&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -10.1562,
@@ -1611,7 +1686,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029493&episodeid=3&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 50.6817,
@@ -1629,7 +1705,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029492&episodeid=3&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -3.1361,
@@ -1647,7 +1724,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029490&episodeid=4&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 48.375,
@@ -1666,10 +1744,10 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029489&episodeid=3&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
       "severity": "Orange",
+      "report_description": "This wildfire can have a medium humanitarian impact based on the affected area and the affected population and their vulnerability.",
       "deaths": null,
       "displaced": null,
       "missing": null,
-      "report_description": "This wildfire can have a medium humanitarian impact based on the affected area and the affected population and their vulnerability.",
       "severity_text": "Orange impact for forestfire in 2280 ha",
       "impact_history": [],
       "impact_description": null,
@@ -1692,7 +1770,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029488&episodeid=6&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 66.5465,
@@ -1710,7 +1789,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029487&episodeid=7&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 40.1603,
@@ -1728,7 +1808,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029485&episodeid=5&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -13.5064,
@@ -1746,7 +1827,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029484&episodeid=3&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -7.6931,
@@ -1764,7 +1846,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029483&episodeid=3&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -12.5511,
@@ -1782,7 +1865,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029482&episodeid=5&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -13.1704,
@@ -1800,7 +1884,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029481&episodeid=4&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -13.5765,
@@ -1818,7 +1903,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029475&episodeid=6&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 65.602,
@@ -1836,7 +1922,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029468&episodeid=12&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 65.1083,
@@ -1854,7 +1941,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029467&episodeid=14&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 65.2594,
@@ -1872,7 +1960,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029466&episodeid=11&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -12.3328,
@@ -1890,7 +1979,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029465&episodeid=4&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -12.1629,
@@ -1908,7 +1998,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029463&episodeid=8&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -13.7929,
@@ -1926,7 +2017,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029461&episodeid=7&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -14.6069,
@@ -1944,7 +2036,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029460&episodeid=7&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -12.7995,
@@ -1962,7 +2055,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029456&episodeid=9&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -35.7639,
@@ -1980,7 +2074,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029447&episodeid=8&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -16.7796,
@@ -1998,7 +2093,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029443&episodeid=11&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 64.8008,
@@ -2016,7 +2112,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029440&episodeid=20&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 63.6451,
@@ -2034,7 +2131,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029425&episodeid=23&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -15.2193,
@@ -2052,7 +2150,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029423&episodeid=3&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -12.4109,
@@ -2070,7 +2169,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029419&episodeid=8&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -14.8966,
@@ -2088,7 +2188,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029418&episodeid=10&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 65.1874,
@@ -2106,7 +2207,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029412&episodeid=15&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 51.6196,
@@ -2124,7 +2226,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029411&episodeid=22&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -12.3379,
@@ -2142,7 +2245,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029408&episodeid=10&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 62.1213,
@@ -2160,7 +2264,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029407&episodeid=15&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -9.31,
@@ -2178,7 +2283,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029392&episodeid=6&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 64.8414,
@@ -2196,7 +2302,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029375&episodeid=22&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -7.9569,
@@ -2214,7 +2321,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029362&episodeid=17&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -17.8511,
@@ -2232,7 +2340,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029356&episodeid=17&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -12.9152,
@@ -2250,7 +2359,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029332&episodeid=15&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -14.2086,
@@ -2268,7 +2378,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029326&episodeid=20&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -13.2496,
@@ -2286,7 +2397,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029291&episodeid=24&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": -13.3008,
@@ -2304,7 +2416,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029290&episodeid=24&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 38.053,
@@ -2322,7 +2435,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1029196&episodeid=76&eventtype=WF",
       "last_updated": "2026-07-14T00:00:00",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This wildfire can have a low humanitarian impact based on the affected area and the affected population and their vulnerability."
     },
     {
       "latitude": 0.3702,
@@ -2340,7 +2454,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551703&episodeid=1718009&eventtype=EQ",
       "last_updated": "2026-07-13T21:06:07",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     },
     {
       "latitude": -22.9464,
@@ -2358,25 +2473,8 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventid=1551691&episodeid=1717996&eventtype=EQ",
       "last_updated": "2026-07-13T21:03:37",
-      "severity": "Green"
-    },
-    {
-      "latitude": -23.0777,
-      "longitude": 171.5441,
-      "title": "Earthquake in New Caledonia - New Caledonia",
-      "summary": "Earthquake in New Caledonia",
-      "country": "New Caledonia",
-      "iso3": "NCL",
-      "gdacs_id": "EQ1551682",
-      "eventtype": "EQ",
-      "eventid": 1551682,
-      "activation_number": "",
-      "event_type": "EQ",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventid=1551682&episodeid=1717986&eventtype=EQ",
-      "last_updated": "2026-07-13T19:48:32",
-      "severity": "Green"
+      "severity": "Green",
+      "report_description": "This earthquake can have a low humanitarian impact based on the magnitude and the affected population and their vulnerability."
     }
   ]
 }
