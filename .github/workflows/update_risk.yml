@@ -294,6 +294,20 @@ jobs:
                 severity_str = (props.get("alertlevel") or "unknown").upper()
                 desc_clean = f"A {severity_str} level {event_name} event has been detected near {clean_country or 'coordinates'}: {lat}, {lng}."
 
+            event_type_val = props.get("eventtype", "")
+            event_id_val = props.get("eventid", "")
+
+            # report_url: geteventlist/SEARCH 응답에는 url.report 같은 중첩 필드가
+            # 존재하지 않거나 비어있는 경우가 많아 매번 빈 문자열로 나옴.
+            # eventtype/eventid만 있으면 report.aspx URL 패턴이 고정적이므로 직접 조립.
+            api_report_url = (props.get("url") or {}).get("report", "") if isinstance(props.get("url"), dict) else ""
+            if api_report_url:
+                report_url = api_report_url
+            elif event_type_val and event_id_val:
+                report_url = f"https://www.gdacs.org/report.aspx?eventtype={event_type_val}&eventid={event_id_val}"
+            else:
+                report_url = ""
+
             results.append({
                 "latitude": lat,
                 "longitude": lng,
@@ -301,14 +315,14 @@ jobs:
                 "summary": desc_clean,
                 "country": clean_country,
                 "iso3": props.get("iso3", ""),
-                "gdacs_id": f"{props.get('eventtype','')}{props.get('eventid','')}",
-                "eventtype": props.get("eventtype", ""),
-                "eventid": props.get("eventid", ""),
+                "gdacs_id": f"{event_type_val}{event_id_val}",
+                "eventtype": event_type_val,
+                "eventid": event_id_val,
                 "activation_number": props.get("glide"),
-                "event_type": props.get("eventtype", ""),
+                "event_type": event_type_val,
                 "alert_level": props.get("alertlevel", "green"),
                 "alert_score": props.get("alertscore", 0),
-                "report_url": (props.get("url") or {}).get("report", ""),
+                "report_url": report_url,
                 "last_updated": props.get("todate") or props.get("fromdate") or "",
                 "severity": props.get("alertlevel", "green"),
             })
