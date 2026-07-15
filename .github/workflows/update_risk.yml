@@ -106,7 +106,18 @@ jobs:
             name = name.replace(",", "").replace(".", "")
             return name
 
+        # 🌟 [버그 수정] "and"가 국가명 자체에 포함된 나라
+        #     (Bosnia and Herzegovina, Antigua and Barbuda, Trinidad and Tobago,
+        #      Turks and Caicos, Saint Kitts and Nevis, Saint Vincent and the Grenadines,
+        #      Sao Tome and Principe 등)가 무조건 "and" 기준으로 쪼개지면서
+        #     통째로 누락되던 문제를 해결합니다.
+        #     -> 쪼개기 전에 먼저 전체 문자열이 NAME_TO_ISO2에 이미 등록된
+        #        완전한 국가명인지부터 확인합니다.
         def extract_countries(country_part):
+            whole_key = normalize(country_part)
+            if whole_key in NAME_TO_ISO2:
+                return [country_part]
+
             parts = re.split(r'\s+and\s+|\s*,\s*', country_part, flags=re.IGNORECASE)
             valid_countries = []
             for p in parts:
@@ -276,7 +287,7 @@ jobs:
         git add data/travel_risk.json data/realtime_disasters.json data/realtime_alerts.json
         
         if ! git diff --cached --exit-code; then
-          git commit -m "⚡ 국무부 RSS (프랑스/노르웨이/스위스/미국 전체 복구) + GDACS 파이프라인 통합 갱신"
+          git commit -m "⚡ and-포함 국가명(보스니아 등) 누락 버그 수정 + GDACS 파이프라인 통합 갱신"
           git push
         else
           echo "업데이트된 신규 위험 정보 없음"
