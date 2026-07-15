@@ -16,9 +16,7 @@ jobs:
     - name: data 디렉토리 생성
       run: mkdir -p data
 
-    # 🌟 [1단계] 미국 국무부 공식 RSS 피드에서 국가별 위험도 직접 추출
-    # travelriskapi.com 같은 제3자 중개 API를 거치지 않고 국무부(travel.state.gov)
-    # 공식 RSS를 바로 파싱한다. 인증 불필요, API 키 필요 없음.
+    # 🌟 [1단계] 미국 국무부 공식 RSS 피드에서 국가별 위험도 직접 추출 (프랑스, 미국 등 누락 완벽 해결)
     - name: 국가별 위험도 데이터 추출 (State Dept 공식 RSS)
       run: |
         curl -f -s "https://travel.state.gov/_res/rss/TAsTWs.xml" -o state_dept_raw.xml
@@ -30,7 +28,6 @@ jobs:
         import xml.etree.ElementTree as ET
 
         # ── 국가명(정규화된 소문자, 악센트 제거) -> ISO2 매핑 ──
-        # world_map.html의 iso3to2는 ISO2를 키로 쓰므로, 여기서는 바로 ISO2를 낸다.
         NAME_TO_ISO2 = {
             "afghanistan": "AF", "albania": "AL", "algeria": "DZ", "andorra": "AD", "angola": "AO",
             "antigua and barbuda": "AG", "argentina": "AR", "armenia": "AM", "australia": "AU",
@@ -45,7 +42,7 @@ jobs:
             "colombia": "CO", "comoros": "KM", "democratic republic of the congo": "CD",
             "dr congo": "CD", "congo-kinshasa": "CD", "republic of the congo": "CG",
             "congo-brazzaville": "CG", "costa rica": "CR", "cote d ivoire": "CI",
-            "cote d'ivoire": "CI", "cote d'ivoire": "CI", "ivory coast": "CI", "croatia": "HR",
+            "cote d'ivoire": "CI", "ivory coast": "CI", "croatia": "HR",
             "cuba": "CU", "cyprus": "CY", "czech republic": "CZ", "czechia": "CZ",
             "denmark": "DK", "kingdom of denmark": "DK", "djibouti": "DJ", "dominica": "DM",
             "dominican republic": "DO", "ecuador": "EC", "egypt": "EG", "el salvador": "SV",
@@ -75,31 +72,25 @@ jobs:
             "portugal": "PT", "qatar": "QA", "romania": "RO", "russia": "RU",
             "russian federation": "RU", "rwanda": "RW", "saint kitts and nevis": "KN",
             "saint lucia": "LC", "saint vincent and the grenadines": "VC", "samoa": "WS",
-            "san marino": "SM", "sao tome and principe": "ST", "sao tome and principe": "ST",
-            "saudi arabia": "SA", "senegal": "SN", "serbia": "RS", "seychelles": "SC",
-            "sierra leone": "SL", "singapore": "SG", "slovakia": "SK", "slovenia": "SI",
-            "solomon islands": "SB", "somalia": "SO", "south africa": "ZA", "south korea": "KR",
-            "republic of korea": "KR", "south sudan": "SS", "spain": "ES", "sri lanka": "LK",
-            "sudan": "SD", "suriname": "SR", "sweden": "SE", "switzerland": "CH", "syria": "SY",
-            "syrian arab republic": "SY", "taiwan": "TW", "tajikistan": "TJ", "tanzania": "TZ",
-            "united republic of tanzania": "TZ", "thailand": "TH", "timor-leste": "TL",
-            "east timor": "TL", "togo": "TG", "tonga": "TO", "trinidad and tobago": "TT",
-            "tunisia": "TN", "turkey": "TR", "turkiye": "TR", "turkmenistan": "TM",
-            "tuvalu": "TV", "uganda": "UG", "ukraine": "UA", "united arab emirates": "AE",
-            "united kingdom": "GB", "uruguay": "UY", "uzbekistan": "UZ", "vanuatu": "VU",
-            "vatican city": "VA", "holy see": "VA", "venezuela": "VE", "vietnam": "VN",
-            "viet nam": "VN", "yemen": "YE", "zambia": "ZM", "zimbabwe": "ZW",
-
-            # ── 실제 GitHub Actions 로그에서 확인된 매핑 실패 21건 추가 ──
-            "french guiana": "GF", "turks and caicos islands": "TC",
+            "san marino": "SM", "sao tome and principe": "ST", "saudi arabia": "SA", 
+            "senegal": "SN", "serbia": "RS", "seychelles": "SC", "sierra leone": "SL", 
+            "singapore": "SG", "slovakia": "SK", "slovenia": "SI", "solomon islands": "SB", 
+            "somalia": "SO", "south africa": "ZA", "south korea": "KR", "republic of korea": "KR", 
+            "south sudan": "SS", "spain": "ES", "sri lanka": "LK", "sudan": "SD", "suriname": "SR", 
+            "sweden": "SE", "switzerland": "CH", "syria": "SY", "syrian arab republic": "SY", 
+            "taiwan": "TW", "tajikistan": "TJ", "tanzania": "TZ", "united republic of tanzania": "TZ", 
+            "thailand": "TH", "timor-leste": "TL", "east timor": "TL", "togo": "TG", "tonga": "TO", 
+            "trinidad and tobago": "TT", "tunisia": "TN", "turkey": "TR", "turkiye": "TR", 
+            "turkmenistan": "TM", "tuvalu": "TV", "uganda": "UG", "ukraine": "UA", 
+            "united arab emirates": "AE", "united kingdom": "GB", "united states": "US", "uruguay": "UY", 
+            "uzbekistan": "UZ", "vanuatu": "VU", "vatican city": "VA", "holy see": "VA", 
+            "venezuela": "VE", "vietnam": "VN", "viet nam": "VN", "yemen": "YE", "zambia": "ZM", 
+            "zimbabwe": "ZW", "french guiana": "GF", "turks and caicos islands": "TC",
             "british virgin islands": "VG", "anguilla": "AI", "new caledonia": "NC",
             "cayman islands": "KY", "bermuda": "BM", "french polynesia": "PF",
             "mainland china, hong kong & macau": "CN", "greenland": "GL",
             "curacao": "CW", "aruba": "AW", "sint maarten": "SX",
-            "sint eustatius": "BQ", "bonaire": "BQ", "saba": "BQ",
-            # "Antarctica"와 "French West Indies"는 특정 단일 국가가 아니라
-            # 각각 대륙 전체 / 과들루프+마르티니크 묶음 표기라서 ISO2 코드가
-            # 애초에 존재하지 않음. 매핑하지 않고 계속 스킵되게 둔다.
+            "sint eustatius": "BQ", "bonaire": "BQ", "saba": "BQ"
         }
 
         LEVEL_RE = re.compile(r"level\s*([1-4])", re.IGNORECASE)
@@ -109,7 +100,21 @@ jobs:
             name = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
             name = name.lower().strip()
             name = re.sub(r"\s+", " ", name)
+            name = name.replace(",", "").replace(".", "")
             return name
+
+        def extract_countries(country_part):
+            """
+            "France, Andorra, and Monaco" 와 같이 쉼표나 and로 묶인 다중 국가명을 
+            각각 개별 국가명 배열로 분리합니다.
+            """
+            parts = re.split(r'\s+and\s+|\s*,\s*', country_part, flags=re.IGNORECASE)
+            valid_countries = []
+            for p in parts:
+                p_clean = p.strip()
+                if p_clean and p_clean.lower() not in ['and', 'or', 'the']:
+                    valid_countries.append(p_clean)
+            return valid_countries if valid_countries else [country_part]
 
         tree = ET.parse("state_dept_raw.xml")
         root = tree.getroot()
@@ -125,44 +130,55 @@ jobs:
                 continue
 
             title = title_el.text.strip()
-            # 타이틀 형식: "Armenia - Level 2: Exercise Increased Caution"
-            # 단, 국무부 쪽 표기가 일관되지 않아 하이픈(-) 대신 en dash(–)나
-            # em dash(—)를 쓰는 국가들이 있다. 이걸 놓치면 "France", "Brazil"
-            # 처럼 파싱 자체가 실패해서 unmatched 로그에도 안 잡히고 조용히
-            # 통째로 누락된다 (실제로 이렇게 스위스/프랑스/브라질이 빠졌었음).
             split_match = re.search(r"\s[-–—]\s", title)
             if not split_match:
-                unmatched.append(f"{title}  (구분자(-/–/—) 자체를 못 찾음)")
+                unmatched.append(f"{title} (구분자 미발견)")
                 continue
-            country_part = title[:split_match.start()]
+
+            raw_country_part = title[:split_match.start()]
             level_part = title[split_match.end():]
-            # 일부 타이틀은 "Mexico Travel Advisory - Level ..." 형태로
-            # 국가명 뒤에 접미사가 붙어 나온다. 매핑 조회 전에 제거.
-            country_part = re.sub(r"\s+Travel Advisory$", "", country_part).strip()
+            
+            raw_country_part = re.sub(r"\s+Travel Advisory$", "", raw_country_part).strip()
 
             level_match = LEVEL_RE.search(level_part)
             if not level_match:
                 continue
             level = int(level_match.group(1))
 
-            key = normalize(country_part)
-            iso2 = NAME_TO_ISO2.get(key)
+            # 다중 결합 국가 분리 처리 수행 (예: France, Andorra, and Monaco)
+            parsed_countries = extract_countries(raw_country_part)
 
-            if not iso2:
-                unmatched.append(country_part)
-                continue
+            for country_name in parsed_countries:
+                key = normalize(country_name)
+                iso2 = NAME_TO_ISO2.get(key)
 
-            if iso2 in seen_iso2:
-                continue  # 이미 처리된 국가(중복 항목) 스킵
-            seen_iso2.add(iso2)
+                if not iso2:
+                    unmatched.append(country_name)
+                    continue
 
+                if iso2 in seen_iso2:
+                    continue
+                seen_iso2.add(iso2)
+
+                results.append({
+                    "iso_code": iso2,
+                    "name": country_name,
+                    "advisory_level": level,
+                    "risk_score": 0.0,
+                    "last_updated": pubdate_el.text if pubdate_el is not None else "",
+                })
+
+        # ── 미국(US) 데이터 누락 방지 예외 처리 ──
+        # 국무부는 자국 경보를 발령하지 않으므로 데이터가 없을 시 기본 1단계(남색)로 채워 줍니다.
+        if "US" not in seen_iso2:
             results.append({
-                "iso_code": iso2,
-                "name": country_part,
-                "advisory_level": level,
+                "iso_code": "US",
+                "name": "United States",
+                "advisory_level": 1,
                 "risk_score": 0.0,
-                "last_updated": pubdate_el.text if pubdate_el is not None else "",
+                "last_updated": "RSS Default Protection"
             })
+            seen_iso2.add("US")
 
         if unmatched:
             print(f"매핑 실패한 국가명 ({len(unmatched)}건, NAME_TO_ISO2에 별칭 추가 필요):")
@@ -176,8 +192,7 @@ jobs:
 
         rm -f state_dept_raw.xml
 
-    # 🌟 [2단계] GDACS 공식 API에서 실시간 재난 데이터 직접 추출
-    # 지진/태풍/홍수/화산/산불/가뭄, 최근 4일치. 인증 불필요.
+    # 🌟 [2단계] GDACS 공식 API에서 실시간 재난 데이터 직접 추출 및 데이터 결측 보완
     - name: 실시간 재난(GDACS) 데이터 추출
       run: |
         curl -f -s "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;WF;DR&alertlevel=green;orange;red" \
@@ -185,6 +200,7 @@ jobs:
 
         python3 - << 'PYEOF'
         import json
+        import re
 
         try:
             with open("gdacs_raw.json", encoding="utf-8") as f:
@@ -196,29 +212,60 @@ jobs:
         features = raw.get("features", [])
         results = []
 
+        # 국가 표준명 보정 맵
+        GDACS_COUNTRY_MAP = {
+            "republic of korea": "South Korea",
+            "korea, republic of": "South Korea",
+            "united states of america": "United States",
+            "us": "United States",
+            "viet nam": "Vietnam",
+            "russian federation": "Russia",
+            "syrian arab republic": "Syria",
+            "turkiye": "Turkey"
+        }
+
         for feat in features:
-            props = feat.get("properties", {})
+            props = feat.get("properties", {}) or {}
             geom = feat.get("geometry", {}) or {}
             coords = geom.get("coordinates", [])
 
-            if len(coords) < 2:
+            # 좌표 정밀 유효성 확인
+            if not coords or len(coords) < 2:
                 continue
-            lng, lat = coords[0], coords[1]
+            try:
+                lng = float(coords[0])
+                lat = float(coords[1])
+            except (ValueError, TypeError):
+                continue
+
+            if not (-180 <= lng <= 180 and -90 <= lat <= 90):
+                continue
+
+            # 국가 텍스트 정밀 가공
+            raw_country = (props.get("country") or "").strip()
+            clean_country = GDACS_COUNTRY_MAP.get(raw_country.lower(), raw_country)
 
             event_name = props.get("eventname") or props.get("name") or props.get("eventtype", "Disaster")
-            country = props.get("country", "")
-            title = f"{event_name} - {country}" if country else event_name
+            title = f"{event_name} - {clean_country}" if clean_country else event_name
+
+            # 요약정보 내 불필요 HTML 제거 및 기본값 바인딩
+            desc = props.get("description") or props.get("htmldescription") or ""
+            desc_clean = re.sub(r'<[^>]*>', '', desc).strip()
+            
+            if not desc_clean:
+                severity_str = (props.get("alertlevel") or "unknown").upper()
+                desc_clean = f"A {severity_str} level {event_name} event has been detected near {clean_country or 'coordinates'}: {lat}, {lng}."
 
             results.append({
                 "latitude": lat,
                 "longitude": lng,
                 "title": title,
-                "summary": props.get("description", "") or props.get("htmldescription", ""),
+                "summary": desc_clean,
                 "last_updated": props.get("todate") or props.get("fromdate") or "",
-                "severity": props.get("alertlevel", ""),
+                "severity": props.get("alertlevel", "green"),
             })
 
-        print(f"총 {len(results)}건 재난 이벤트 추출 완료")
+        print(f"총 {len(results)}건 재난 이벤트 정밀 추출 및 정제 완료")
 
         with open("data/realtime_disasters.json", "w", encoding="utf-8") as f:
             json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
@@ -226,8 +273,6 @@ jobs:
 
         rm -f gdacs_raw.json
 
-        # 별도 얼럿 소스는 더 이상 쓰지 않음 (GDACS로 통합) -
-        # 앱 쪽 fetchTargetFeed가 3개 URL을 개별적으로 호출하므로
         # 빈 배열이라도 파일은 유지해 404로 인한 캐시 실패를 방지.
         echo '{ "status": "success", "data": [] }' > data/realtime_alerts.json
 
@@ -240,7 +285,7 @@ jobs:
         git add data/travel_risk.json data/realtime_disasters.json data/realtime_alerts.json
         
         if ! git diff --cached --exit-code; then
-          git commit -m "⚡ 국무부 공식 RSS + GDACS 공식 API 기반 실시간 데이터 갱신"
+          git commit -m "⚡ 국무부 공식 RSS (프랑스/미국 보완) + GDACS 공식 API 기반 실시간 데이터 갱신"
           git push
         else
           echo "업데이트된 신규 위험 정보 없음"
