@@ -36,6 +36,9 @@ IMPACT_BASIS = {
 
 SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
 
+# True면 iscurrent=true(진행중)인 이벤트만 표시, False면 전부 표시(검증용)
+SHOW_ONLY_CURRENT = False
+
 
 def feature_key(feat):
     props = feat.get("properties", {}) or {}
@@ -161,7 +164,7 @@ def fetch_disaster_list():
         event_id_val = props.get("eventid", "")
 
         is_current = str(props.get("iscurrent", "")).strip().lower()
-        if is_current != "true" and event_type_val != "DR":
+        if SHOW_ONLY_CURRENT and is_current != "true" and event_type_val != "DR":
             skipped_not_current += 1
             continue
 
@@ -220,7 +223,7 @@ def fetch_disaster_list():
             "report_url": report_url,
             "last_updated": props.get("todate") or props.get("fromdate") or "",
             "severity": props.get("alertlevel", "green"),
-            "is_current": True,
+            "is_current": is_current == "true",
         })
 
     print(f"총 {len(results)}건 재난 추출 완료 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복)")
