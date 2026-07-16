@@ -62,7 +62,7 @@ def feature_key(feat):
 
 
 def get_centroid(geom):
-    """DFS 스택을 활용하여 메모리 누수나 Stack Overflow 없이 안전하게 무게중심 좌표를 구합니다."""
+    """DFS 스택을 활용하여 무게중심 좌표를 구합니다."""
     if not isinstance(geom, dict):
         return None
     coords = geom.get("coordinates")
@@ -94,9 +94,7 @@ def clean_html(raw_html):
     """HTML 태그를 완전히 제거하고 연속된 공백 및 줄바꿈을 깔끔하게 정리합니다."""
     if not raw_html:
         return ""
-    # HTML 태그 제거
     cleaned = re.sub(r'<[^>]*>', ' ', str(raw_html))
-    # 엔티티 문자 처리 및 공백 압축
     cleaned = cleaned.replace("&nbsp;", " ").replace("&amp;", "&").replace("&quot;", '"')
     cleaned = re.sub(r'\s+', ' ', cleaned).strip()
     return cleaned
@@ -234,7 +232,6 @@ def main():
         event_name = props.get("eventname") or props.get("name") or props.get("eventtype", "Disaster")
         title = f"{event_name} - {clean_country}" if clean_country else event_name
 
-        # 기본 요약문 정제 (상세 API 조회 전 기본값 배치용)
         desc = props.get("description") or props.get("htmldescription") or ""
         desc_clean = clean_html(desc)
 
@@ -268,7 +265,7 @@ def main():
             "last_updated": props.get("todate") or props.get("fromdate") or "",
             "severity": props.get("alertlevel", "green"),
             "is_current": True,
-            "report_description": "",  # 상세 API에서 채워질 예정
+            "report_description": "",  # 상세 API 호출 후 웹의 Event summary 문구로 채워집니다.
         })
 
     print(f"✅ 기본 데이터 가공 완료: 총 {len(results)}건")
@@ -293,7 +290,7 @@ def main():
             if m:
                 eventid = m.group(1)
 
-        # Fallback용 임시 텍스트 설정 (API 실패 대비 기본 설명)
+        # 예외 상황용 기본 요약문 백업
         fallback_desc = r.get("summary")
 
         if not eventtype or not eventid:
@@ -311,21 +308,15 @@ def main():
 
         props = detail.get("properties", detail) or {}
         
-        # -------------------------------------------------------------
-        # [수정 핵심] 진짜 사람이 분석해 둔 웹 상세 설명 요약 우선 파싱
-        # display_description -> htmldescription -> description 순으로 탐색
-        # -------------------------------------------------------------
-        actual_desc = (
-            props.get("display_description") or 
-            props.get("htmldescription") or 
-            props.get("description") or 
-            props.get("summary") or 
-            ""
-        )
-        actual_desc_cleaned = clean_html(actual_desc)
+        # ----------------------------------------------------------------------
+        # [수정 핵심] GDACS 상세 API의 'summary' 필드를 1순위로 추출합니다.
+        # 이 필드가 캡처 화면 상단의 "Event summary (This earthquake can have...)" 문장입니다.
+        # ----------------------------------------------------------------------
+        web_summary = props.get("summary") or props.get("description") or ""
+        web_summary_cleaned = clean_html(web_summary)
 
-        if actual_desc_cleaned and len(actual_desc_cleaned) > 20:
-            r["report_description"] = actual_desc_cleaned
+        if web_summary_cleaned:
+            r["report_description"] = web_summary_cleaned
         else:
             r["report_description"] = fallback_desc
 
@@ -380,7 +371,7 @@ def main():
 
         enriched_ok += 1
 
-    print(f"📊 상세정보 API 호출 {enrich_count}건 중 {enriched_ok}건 완벽 보강 완료")
+    print(f"📊 상세정보 API 호출 {enrich_count}건 중 {enriched_ok}건 보강 완료")
     
     # --- [4단계] JSON 결과 저장 ---
     with open("data/realtime_disasters.json", "w", encoding="utf-8") as f:
