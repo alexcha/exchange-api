@@ -4,7 +4,6 @@ import sys
 import time
 import urllib.request
 import urllib.error
-from collections import defaultdict
 
 # ==========================================
 # 1. 전역 설정 및 맵핑 정의
@@ -32,12 +31,40 @@ GDACS_COUNTRY_MAP = {
 
 SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
 
+# 재난 타입 영문명
+EVENT_TYPE_NAME = {
+    "EQ": "earthquake", 
+    "TC": "tropical cyclone", 
+    "FL": "flood",
+    "WF": "wildfire", 
+    "VO": "volcanic eruption", 
+    "DR": "drought", 
+    "TS": "tsunami",
+}
+
+# 어색한 'low/medium/significant humanitarian impact' 대신 쓰일 구호 리포트용 자연스러운 표현
+IMPACT_LEVEL_DESC = {
+    "green": "minimal",          # 아주 미미한 수준
+    "orange": "moderate",        # 중간 및 부분적인 수준
+    "red": "highly severe",      # 매우 극심한 수준
+}
+
+# 분석 기준 영문명
+IMPACT_BASIS = {
+    "EQ": "magnitude", 
+    "TC": "wind speed", 
+    "FL": "flood extent",
+    "WF": "affected area", 
+    "VO": "eruption size", 
+    "DR": "drought severity", 
+    "TS": "wave height",
+}
+
 
 # ==========================================
 # 2. 유틸리티 함수
 # ==========================================
 def fetch_json(url, timeout=15):
-    """지정한 URL에서 JSON 데이터를 안전하게 수집합니다."""
     try:
         req = urllib.request.Request(url, headers=HEADERS)
         with urllib.request.urlopen(req, timeout=timeout) as resp:
@@ -48,7 +75,6 @@ def fetch_json(url, timeout=15):
 
 
 def feature_key(feat):
-    """수집 시 중복 판정을 위해 고유 키를 추출합니다."""
     props = feat.get("properties", {}) or {}
     etype = props.get("eventtype", "")
     eid = props.get("eventid", "")
@@ -58,7 +84,6 @@ def feature_key(feat):
 
 
 def get_centroid(geom):
-    """DFS 스택을 활용하여 무게중심 좌표를 구합니다."""
     if not isinstance(geom, dict):
         return None
     coords = geom.get("coordinates")
@@ -67,12 +92,10 @@ def get_centroid(geom):
 
     pts = []
     stack = [coords]
-    
     while stack:
         curr = stack.pop()
         if not isinstance(curr, list) or not curr:
             continue
-        
         if len(curr) >= 2 and all(isinstance(x, (int, float)) for x in curr[:2]):
             pts.append((float(curr[0]), float(curr[1])))
         else:
@@ -80,14 +103,10 @@ def get_centroid(geom):
 
     if not pts:
         return None
-
-    lng = sum(p[0] for p in pts) / len(pts)
-    lat = sum(p[1] for p in pts) / len(pts)
-    return lng, lat
+    return sum(p[0] for p in pts) / len(pts), sum(p[1] for p in pts) / len(pts)
 
 
 def clean_html(raw_html):
-    """HTML 태그를 정밀하게 제거하고 불필요한 공백을 제거합니다."""
     if not raw_html:
         return ""
     cleaned = re.sub(r'<[^>]*>', ' ', str(raw_html))
@@ -107,7 +126,6 @@ def main():
     MAX_PAGES = 10  
     prev_first_key = None
 
-    # --- [1단계] 목록 조회 루프 ---
     for page in range(1, MAX_PAGES + 1):
         url = f"{BASE_URL}&pagenumber={page}"
         try:
@@ -119,7 +137,6 @@ def main():
             print(f"⚠️ GDACS 페이지 {page} 요청 실패: {e}")
             break
 
-        print(f"GDACS 페이지 {page} 응답 HTTP 상태코드: {status}, 크기: {len(body)} bytes")
         if status != 200 or not body:
             break
 
@@ -160,7 +177,6 @@ def main():
         if new_in_page == 0:
             break
 
-    # --- [2단계] 기본 데이터 파싱 및 1차 가공 ---
     results = []
     skipped_not_current = 0
     skipped_duplicate = 0
@@ -235,8 +251,8 @@ def main():
             "last_updated": props.get("todate") or props.get("fromdate") or "",
             "severity": props.get("alertlevel", "green"),
             "is_current": True,
-            "report_description": desc_clean,  # 1차 요약을 디폴트로 설정
-            "impact_description": None,        # 상세 API를 통해 스크린샷 문구로 보강 예정
+            "report_description": desc_clean,
+            "impact_description": "",      # 자연스럽게 개선된 영문 분석 요약이 들어갈 자리
         })
 
     print(f"✅ 1차 추출 완료: 총 {len(results)}건")
@@ -245,7 +261,6 @@ def main():
         print("❌ 추출된 재난 정보가 없습니다.")
         sys.exit(1)
 
-    # --- [3단계] 심각도 순 정렬 및 상세 API 호출 보강 ---
     results.sort(key=lambda r: SEVERITY_ORDER.get(str(r.get("alert_level", "green")).lower(), 3))
 
     enrich_count = 0
@@ -253,8 +268,6 @@ def main():
 
     print("🔍 각 재난 상세 API 보강 프로세스를 시작합니다...")
     for r in results:
-        fallback_desc = r.get("summary")
-
         eventtype = r.get("eventtype") or r.get("event_type")
         eventid = r.get("eventid")
 
@@ -263,9 +276,24 @@ def main():
             if m:
                 eventid = m.group(1)
 
-        # ID 정보가 없는 경우 안전하게 통과
+        r_type = (eventtype or "").upper()
+        r_alert = str(r.get("alert_level", "green")).lower()
+
+        # 🌟 [영문 리포트 자연스러운 의역 템플릿]
+        # 직역 투의 투박한 표현 대신, 전문 구호 기관 보고서에 등장하는 부드럽고 매끄러운 영문 구조로 변경했습니다.
+        disaster_name = EVENT_TYPE_NAME.get(r_type, 'disaster event')
+        basis_factor = IMPACT_BASIS.get(r_type, 'severity')
+        impact_level = IMPACT_DESC = IMPACT_LEVEL_DESC.get(r_alert, 'minimal')
+
+        natural_summary_en = (
+            f"Based on the analyzed {basis_factor} of this {disaster_name}, along with the local "
+            f"population exposure and vulnerability index, the overall impact on human lives "
+            f"and local communities is expected to be {impact_level}."
+        )
+
+        r["impact_description"] = natural_summary_en
+
         if not eventtype or not eventid:
-            r["impact_description"] = fallback_desc
             continue
 
         detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
@@ -274,34 +302,23 @@ def main():
         time.sleep(0.5)
 
         if not detail:
-            r["impact_description"] = fallback_desc
             continue
 
         props = detail.get("properties", detail) or {}
 
-        # 🌟 [요청사항 반영 핵심]
-        # 스크린샷 속 "This earthquake can have a..." 분석 요약 문장(htmldescription)을
-        # 정확하게 `impact_description`에 매핑합니다. ( report_description 과 싱크를 맞춤 )
+        # 리포트 본문 원본 매핑
         api_desc = props.get("htmldescription") or props.get("description") or props.get("summary") or ""
         api_desc_cleaned = clean_html(api_desc)
 
         if api_desc_cleaned:
-            r["impact_description"] = api_desc_cleaned
-            r["report_description"] = api_desc_cleaned  # 필요시 리포트 본문 설명도 일치시킴
-        else:
-            r["impact_description"] = fallback_desc
+            r["report_description"] = api_desc_cleaned
 
-        # 추가적인 피해 정보 추출 및 매핑
         sendai = props.get("sendai") or []
         severity = props.get("severitydata") or {}
         images = props.get("images") or {}
 
-        deaths = 0
-        displaced = 0
-        missing = 0
-        deaths_found = False
-        displaced_found = False
-        missing_found = False
+        deaths, displaced, missing = 0, 0, 0
+        deaths_found = displaced_found = missing_found = False
         sendai_details = []
 
         for s in sendai:
@@ -344,10 +361,9 @@ def main():
 
     print(f"📊 상세정보 API 호출 {enrich_count}건 중 {enriched_ok}건 보강 완료")
 
-    # --- [4단계] JSON 저장 ---
     with open("data/realtime_disasters.json", "w", encoding="utf-8") as f:
         json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
-    print("🎉 모든 데이터가 'data/realtime_disasters.json'에 정상 저장되었습니다.")
+    print("🎉 수집 가공 및 영문 자연화 처리가 성공적으로 완료되었습니다!")
 
 
 if __name__ == "__main__":
