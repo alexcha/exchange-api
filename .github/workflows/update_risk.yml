@@ -226,9 +226,17 @@ jobs:
             "Accept": "application/json",
         }
 
-        # [수정 6] TS(쓰나미) 포함 GDACS 전체 7개 이벤트 타입
-        BASE_URL = ("https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
-                    "?eventlist=EQ;TC;FL;VO;WF;DR;TS&alertlevel=green;orange;red")
+        # [수정 12] 디버그 결과 확인: eventlist=EQ;TC;FL;VO;WF;DR;TS로 한꺼번에 요청하면
+        # API가 결과를 최신순으로 정렬해서 반환하는데, 전세계 지진(EQ)이 다른 재난 타입보다
+        # 압도적으로 자주 발생하다보니 "최신 92~100건"이 전부 지진으로 채워져 버리고
+        # 가뭄/화산/산불/홍수/태풍/쓰나미는 지진들에 밀려 훨씬 뒷페이지로 밀려나 있었다.
+        # 100건 미만 응답 시 마지막 페이지로 간주해 중단하는 로직 때문에 다른 타입을
+        # 영영 가져오지 못한 것이 "재난이 3건뿐"이었던 진짜 원인.
+        # → 타입을 섞지 않고 7개 타입 각각 별도로 API를 호출해 지진이 다른 타입을 밀어내지
+        #   못하도록 한다.
+        EVENT_TYPES = ["EQ", "TC", "FL", "VO", "WF", "DR", "TS"]
+        BASE_URL_TEMPLATE = ("https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
+                              "?eventlist={etype}&alertlevel=green;orange;red")
 
         def feature_key(feat):
             """이벤트를 유일하게 식별하는 키: eventtype+eventid (없으면 gdacs_id류 대체)"""
@@ -241,75 +249,72 @@ jobs:
 
         all_features = []
         seen_keys = set()
-        MAX_PAGES = 10  # 페이지당 최대 100건 가정 → 최대 1,000건까지 안전하게 수집 시도
-        prev_first_key = None
+        MAX_PAGES_PER_TYPE = 5  # 타입당 최대 500건까지 안전하게 수집 시도
 
-        for page in range(1, MAX_PAGES + 1):
-            url = f"{BASE_URL}&pagenumber={page}"
-            try:
-                req = urllib.request.Request(url, headers=HEADERS)
-                with urllib.request.urlopen(req, timeout=20) as resp:
-                    status = resp.status
-                    body = resp.read()
-            except Exception as e:
-                print(f"GDACS 페이지 {page} 요청 실패: {e}")
-                break
+        for etype in EVENT_TYPES:
+            base_url = BASE_URL_TEMPLATE.format(etype=etype)
+            type_count = 0
+            prev_first_key = None
 
-            print(f"GDACS 페이지 {page} 응답 HTTP 상태코드: {status}, 크기: {len(body)} bytes")
+            for page in range(1, MAX_PAGES_PER_TYPE + 1):
+                url = f"{base_url}&pagenumber={page}"
+                try:
+                    req = urllib.request.Request(url, headers=HEADERS)
+                    with urllib.request.urlopen(req, timeout=20) as resp:
+                        status = resp.status
+                        body = resp.read()
+                except Exception as e:
+                    print(f"GDACS [{etype}] 페이지 {page} 요청 실패: {e}")
+                    break
 
-            if status != 200 or not body:
-                print(f"⚠️ 페이지 {page} 실패/빈 응답. 페이지네이션 중단.")
-                break
+                if status != 200 or not body:
+                    print(f"⚠️ GDACS [{etype}] 페이지 {page} 실패/빈 응답. 중단.")
+                    break
 
-            try:
-                page_json = json.loads(body)
-            except Exception as e:
-                print(f"페이지 {page} JSON 파싱 실패: {e}")
-                break
+                try:
+                    page_json = json.loads(body)
+                except Exception as e:
+                    print(f"GDACS [{etype}] 페이지 {page} JSON 파싱 실패: {e}")
+                    break
 
-            page_features = page_json.get("features")
-            if page_features is None:
-                for alt_key in ("data", "results", "events", "FeatureCollection"):
-                    candidate = page_json.get(alt_key)
-                    if isinstance(candidate, dict):
-                        candidate = candidate.get("features")
-                    if isinstance(candidate, list):
-                        page_features = candidate
-                        print(f"주의: 페이지 {page}에서 'features' 대신 '{alt_key}' 경로 사용")
-                        break
+                page_features = page_json.get("features")
+                if page_features is None:
+                    for alt_key in ("data", "results", "events", "FeatureCollection"):
+                        candidate = page_json.get(alt_key)
+                        if isinstance(candidate, dict):
+                            candidate = candidate.get("features")
+                        if isinstance(candidate, list):
+                            page_features = candidate
+                            break
 
-            if not page_features:
-                print(f"페이지 {page}: 이벤트 없음. 페이지네이션 종료.")
-                break
+                if not page_features:
+                    break
 
-            # [수정 10-a] pagenumber가 실제로 먹히는지 확인: 이번 페이지 첫 이벤트 키가
-            # 직전 페이지 첫 이벤트 키와 동일하면 API가 페이지네이션을 무시하고 있는 것이므로
-            # 더 순회해봐야 같은 100건만 반복 수집될 뿐이라 즉시 중단한다.
-            current_first_key = feature_key(page_features[0]) if page_features else None
-            if page > 1 and current_first_key is not None and current_first_key == prev_first_key:
-                print(f"⚠️ 페이지 {page}가 이전 페이지와 동일한 이벤트로 시작함 "
-                      f"→ GDACS API가 pagenumber를 무시하는 것으로 판단, 페이지네이션 중단.")
-                break
-            prev_first_key = current_first_key
+                # 같은 타입 내에서도 pagenumber가 무시되는 경우(첫 이벤트가 직전 페이지와 동일)
+                # 를 대비한 안전장치는 유지
+                current_first_key = feature_key(page_features[0]) if page_features else None
+                if page > 1 and current_first_key is not None and current_first_key == prev_first_key:
+                    print(f"⚠️ GDACS [{etype}] 페이지 {page}가 이전 페이지와 동일하게 시작함 → 중단.")
+                    break
+                prev_first_key = current_first_key
 
-            # [수정 10-b] 페이지 병합 단계에서도 이벤트 키 기준 dedup 적용(이중 안전장치)
-            new_in_page = 0
-            for feat in page_features:
-                key = feature_key(feat)
-                if key is not None and key in seen_keys:
-                    continue
-                if key is not None:
-                    seen_keys.add(key)
-                all_features.append(feat)
-                new_in_page += 1
+                new_in_page = 0
+                for feat in page_features:
+                    key = feature_key(feat)
+                    if key is not None and key in seen_keys:
+                        continue
+                    if key is not None:
+                        seen_keys.add(key)
+                    all_features.append(feat)
+                    new_in_page += 1
+                    type_count += 1
 
-            print(f"  → 페이지 {page}: 신규 이벤트 {new_in_page}건 추가 (누적 dedup 합계 {len(all_features)}건)")
+                if len(page_features) < 100:
+                    break
 
-            if len(page_features) < 100:
-                # 마지막 페이지로 판단 (100건 미만이면 다음 페이지는 비어있을 것)
-                break
+            print(f"GDACS [{etype}] 수집 완료: {type_count}건")
 
-        print(f"총 {len(all_features)}건 원본 이벤트 수집 완료 (페이지네이션 + dedup 적용)")
+        print(f"총 {len(all_features)}건 원본 이벤트 수집 완료 (타입별 개별 호출 + dedup 적용)")
 
         with open("gdacs_all_features.json", "w", encoding="utf-8") as f:
             json.dump(all_features, f, ensure_ascii=False)
@@ -638,7 +643,7 @@ jobs:
         git add data/travel_risk.json data/realtime_disasters.json data/realtime_alerts.json data/unmatched_countries.log
 
         if ! git diff --cached --exit-code; then
-          git commit -m "🐛 GDACS pagenumber 무시 현상 대응: eventtype+eventid 기준 dedup 3중 적용, 동일 페이지 감지 시 조기 중단"
+          git commit -m "🐛 GDACS 타입별 개별 API 호출로 변경: 지진(EQ) 편중으로 다른 재난 타입이 누락되던 문제 해결"
           git push
         else
           echo "업데이트된 신규 위험 정보 없음"
