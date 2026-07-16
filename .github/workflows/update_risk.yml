@@ -1,4 +1,5 @@
-name: Update Travel & Disaster Data
+
+Name: Update Travel & Disaster Data
 
 on:
   schedule:
@@ -203,16 +204,6 @@ jobs:
         rm -f state_dept_raw.xml
 
     # 🌟 [2단계] GDACS 실시간 재난 데이터 연동 및 전처리 자동화 (페이지네이션 무시 대응 + dedup판)
-    #   - [수정 1] GDACS는 1페이지 최대 100건만 반환하므로 pagenumber로 최대 10페이지(1,000건)까지 순회 시도
-    #   - [수정 10] 실측 결과 GDACS API가 pagenumber 파라미터를 무시하고 매번 동일한 최신
-    #     100건을 반환하는 것이 확인됨. 이로 인해 동일 이벤트가 최대 10벌까지 중복 수집되던
-    #     문제를 막기 위해, (a) 페이지 간 첫 이벤트 ID가 동일하면 즉시 페이지네이션을 중단하고
-    #     (b) 그와 별개로 결과를 합치는 단계에서도 eventtype+eventid 기준 dedup 세트를 둬서
-    #     이중으로 중복을 방지한다.
-    #   - [수정 2] geometry가 Point가 아니라 Polygon/MultiPolygon(특히 가뭄 DR, 일부 홍수 FL)인 경우
-    #     coordinates가 중첩 리스트로 오므로, 재귀적으로 평탄화해 centroid(중심점)를 계산
-    #   - [수정 6] 이벤트 타입에 TS(쓰나미) 추가 → GDACS 전체 7종(EQ;TC;FL;VO;WF;DR;TS) 수집
-    #   - [수정 7] 현재 진행 중(iscurrent=true)인 이벤트만 수집하도록 필터 추가
     - name: 실시간 재난(GDACS) 데이터 추출
       run: |
         python3 - << 'PYEOF'
@@ -226,18 +217,10 @@ jobs:
             "Accept": "application/json",
         }
 
-        # [수정 13] 타입별 개별 호출(EQ/TC/FL/.../TS 각각 따로)이 7건 전부 20초 타임아웃으로
-        # 실패함 (이전 통합 요청은 2초 내 정상 응답했었음). eventlist 파라미터에 세미콜론(;)으로
-        # 여러 타입을 넣는 통합 요청 방식이 실제로 빠르고 안정적이므로 이 방식으로 되돌린다.
-        # 대신 "[수정 12]"에서 찾은 진짜 문제, 즉 "100건 미만 응답 시 마지막 페이지로 간주해
-        # 중단"하던 로직이 다른 타입(DR/VO/WF 등)을 뒷페이지에서 아예 못 가져오게 막았던 부분만
-        # 고친다: 100건 미만이어도 곧바로 멈추지 않고, 빈 응답이거나 직전 페이지와 완전히 동일한
-        # 이벤트로 시작할 때만 중단하도록 하여 실제로 여러 페이지를 파고들어 본다.
         BASE_URL = ("https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
                     "?eventlist=EQ;TC;FL;VO;WF;DR;TS&alertlevel=green;orange;red")
 
         def feature_key(feat):
-            """이벤트를 유일하게 식별하는 키: eventtype+eventid (없으면 gdacs_id류 대체)"""
             props = feat.get("properties", {}) or {}
             etype = props.get("eventtype", "")
             eid = props.get("eventid", "")
@@ -247,7 +230,7 @@ jobs:
 
         all_features = []
         seen_keys = set()
-        MAX_PAGES = 10  # 최대 10페이지까지 시도 (진짜로 페이지네이션이 되는지 이번엔 끝까지 확인)
+        MAX_PAGES = 10  
         prev_first_key = None
 
         for page in range(1, MAX_PAGES + 1):
@@ -288,8 +271,6 @@ jobs:
                 print(f"페이지 {page}: 이벤트 없음. 페이지네이션 종료.")
                 break
 
-            # 이번 페이지 첫 이벤트 타입 분포도 같이 찍어서, 몇 페이지째에 EQ 외
-            # 다른 타입이 등장하기 시작하는지 바로 확인 가능하게 한다.
             page_types = {}
             for feat in page_features:
                 t = (feat.get("properties") or {}).get("eventtype", "?")
@@ -315,9 +296,6 @@ jobs:
 
             print(f"  → 페이지 {page}: 신규 이벤트 {new_in_page}건 추가 (누적 dedup 합계 {len(all_features)}건)")
 
-            # [수정 13] 100건 미만이어도 더 이상 즉시 중단하지 않는다.
-            # 대신 이번 페이지에 신규 이벤트가 0건(전부 중복)이면 더 가져와봐야 의미가
-            # 없으므로 그때만 중단한다.
             if new_in_page == 0:
                 print(f"  페이지 {page}: 신규 이벤트 없음(전부 중복). 페이지네이션 종료.")
                 break
@@ -335,9 +313,6 @@ jobs:
         with open("gdacs_all_features.json", encoding="utf-8") as f:
             features = json.load(f)
 
-        # [수정 11] iscurrent=true 필터로 90/93건이 걸러진 원인을 진단하기 위한 디버그 로그.
-        # 이벤트 타입별로 iscurrent 값 분포를 집계해서, 특정 타입(특히 DR 가뭄)이
-        # 실제로는 진행중인데도 iscurrent 필드값이 다르게 들어오는지 확인한다.
         from collections import Counter, defaultdict
         type_current_counter = defaultdict(Counter)
         for feat in features:
@@ -351,8 +326,6 @@ jobs:
             detail = ", ".join(f"{val}:{cnt}건" for val, cnt in counter.items())
             print(f"  {etype}: {detail}")
 
-        # 가뭄(DR)은 GDACS 웹사이트 기준 홈페이지에 나열된 모든 이벤트가 ongoing이므로,
-        # DR 이벤트 각각의 eventid/name/iscurrent/alertlevel을 개별적으로 찍어 실제값을 확인한다.
         print("=== [디버그] DR(가뭄) 이벤트 개별 상세 ===")
         for feat in features:
             props = feat.get("properties", {}) or {}
@@ -380,11 +353,6 @@ jobs:
         }
 
         def get_centroid(geom):
-            """
-            [수정 2] Point뿐 아니라 Polygon/MultiPolygon(가뭄 DR, 일부 홍수 FL 등)도 처리.
-            coordinates를 재귀적으로 평탄화해 [lng, lat] 쌍들을 모두 모은 뒤
-            단순 평균으로 근사 centroid를 계산한다.
-            """
             if not isinstance(geom, dict):
                 return None
             coords = geom.get("coordinates")
@@ -395,7 +363,6 @@ jobs:
                 pts = []
                 if not isinstance(c, list) or not c:
                     return pts
-                # base case: [lng, lat] (또는 [lng, lat, alt]) 숫자 쌍
                 if len(c) >= 2 and all(isinstance(x, (int, float)) for x in c[:2]):
                     pts.append((float(c[0]), float(c[1])))
                     return pts
@@ -417,19 +384,19 @@ jobs:
             props = feat.get("properties", {}) or {}
             geom = feat.get("geometry", {}) or {}
 
-            # [수정 7] 현재 진행 중(iscurrent=true)인 이벤트만 수집
-            is_current = str(props.get("iscurrent", "")).strip().lower()
-            if is_current != "true":
-                skipped_not_current += 1
-                continue
-
+            # ── [수정 및 순서 변경] 가뭄(DR) 데이터 누락 해결 핵심부 ──
             event_type_val = props.get("eventtype", "")
             event_id_val = props.get("eventid", "")
 
-            # [수정 10-c] 최종 결과 조립 단계에서도 한 번 더 dedup (삼중 안전장치).
-            # eventtype+eventid가 최종 식별키이며, 값이 없는 이벤트는 걸러진 채로 넘어간다.
-            result_key = f"{event_type_val}{event_id_val}"
+            # 현재 진행 중(iscurrent=true)인 것만 수집하되, 가뭄(DR) 타입은 예외로 모두 통과시킵니다.
+            is_current = str(props.get("iscurrent", "")).strip().lower()
+            if is_current != "true" and event_type_val != "DR":
+                skipped_not_current += 1
+                continue
+            # ─────────────────────────────────────────────────────────
+
             if event_type_val and event_id_val:
+                result_key = f"{event_type_val}{event_id_val}"
                 if result_key in seen_result_keys:
                     skipped_duplicate += 1
                     continue
@@ -498,12 +465,6 @@ jobs:
         echo '{ "status": "success", "data": [] }' > data/realtime_alerts.json
 
     # 🌟 [2.5단계] 이벤트별 상세정보(사상자·이재민 등 피해규모) 보강
-    #   - [수정 3] 한도 도달 시 break로 전체 루프를 끝내버려 이후 이벤트(특히 red)의
-    #     report_description마저 비게 되던 문제 → continue로 변경
-    #   - [수정 4] 사상자 0명이 정확히 보고된 경우도 `0 or None` 때문에 None으로
-    #     뭉개지던 문제 → 값이 실제로 존재했는지 별도 플래그로 추적
-    #   - [수정 8] ENRICH_MAX 상한 제거 → 수집된(=현재 진행 중인, dedup된) 모든 이벤트에 대해
-    #     사상자 상세정보를 보강. red→orange→green 순 정렬은 유지(중요한 이벤트 먼저 처리)
     - name: 재난 상세정보(사상자/영향인구) API 보강
       run: |
         python3 - << 'PYEOF'
@@ -527,14 +488,12 @@ jobs:
 
         results = payload.get("data", [])
 
-        # 심각도 순 정렬은 유지: red 이벤트부터 먼저 처리되도록(로그/진행 순서 목적)
         SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
         results.sort(key=lambda r: SEVERITY_ORDER.get(str(r.get("alert_level", "green")).lower(), 3))
 
         enrich_count = 0
         enriched_ok = 0
 
-        # [수정 6] TS(쓰나미) 명칭/피해기준 추가
         EVENT_TYPE_NAME = {
             "EQ": "earthquake", "TC": "tropical cyclone", "FL": "flood",
             "WF": "wildfire", "VO": "volcanic event", "DR": "drought",
@@ -548,7 +507,6 @@ jobs:
         }
 
         for r in results:
-            # report_description은 API 호출 성공 여부와 무관하게 모든 이벤트에 채워준다
             r_eventtype = r.get("eventtype") or r.get("event_type") or ""
             r_alertlevel = str(r.get("alert_level", "green")).lower()
             r["report_description"] = (
@@ -557,11 +515,6 @@ jobs:
                 f"based on {IMPACT_BASIS.get(r_eventtype, 'the severity')} and the "
                 f"affected population and their vulnerability."
             )
-
-            # [수정 9] green 포함 모든 경보단계 이벤트를 상세정보 API로 보강
-            #   (green은 사상자 데이터가 없는 경우가 많지만, 있다면 반영)
-
-            # [수정 8] ENRICH_MAX 제한 제거 — 모든 이벤트(red/orange/green)를 보강
 
             eventtype = r.get("eventtype") or r.get("event_type")
             eventid = r.get("eventid")
@@ -577,7 +530,7 @@ jobs:
             detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
             detail = fetch_json(detail_url)
             enrich_count += 1
-            time.sleep(0.6)  # GDACS 서버 부하 방지용 딜레이
+            time.sleep(0.6)  
 
             if not detail:
                 continue
@@ -590,7 +543,6 @@ jobs:
             deaths = 0
             displaced = 0
             missing = 0
-            # [수정 4] "값이 실제로 존재했는지"를 0/None과 별개로 추적
             deaths_found = False
             displaced_found = False
             missing_found = False
@@ -623,7 +575,6 @@ jobs:
                     "latest": s.get("latest"),
                 })
 
-            # [수정 4] 사상자 0명이 실제 보고값이면 0을, 데이터 자체가 없으면 None을 넣는다
             r["deaths"] = deaths if deaths_found else None
             r["displaced"] = displaced if displaced_found else None
             r["missing"] = missing if missing_found else None
@@ -651,7 +602,7 @@ jobs:
         git add data/travel_risk.json data/realtime_disasters.json data/realtime_alerts.json data/unmatched_countries.log
 
         if ! git diff --cached --exit-code; then
-          git commit -m "🐛 GDACS 타입별 개별 호출 롤백(타임아웃 발생) + 페이지네이션 조기중단 로직 완화로 EQ 외 타입도 탐색"
+          git commit -m "🐛 가뭄(DR) 데이터 누락 방지를 위한 iscurrent 예외 필터링 조건 추가 및 파싱 순서 조율"
           git push
         else
           echo "업데이트된 신규 위험 정보 없음"
