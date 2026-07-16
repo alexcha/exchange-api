@@ -3,13 +3,16 @@ import re
 import time
 import urllib.request
 import urllib.error
+from datetime import datetime, timedelta, timezone
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept": "application/json",
 }
+DAYS_BACK = 30  # 최근 N일치 이벤트만 표시
+
 BASE_URL = ("https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
-            "?eventlist=EQ;TC;FL;VO;WF;DR;TS&alertlevel=green;orange;red")
+            "?eventlist=EQ%3BTC%3BFL%3BVO%3BWF%3BDR%3BTS&alertlevel=green%3Borange%3Bred")
 
 GDACS_COUNTRY_MAP = {
     "republic of korea": "South Korea",
@@ -90,6 +93,19 @@ def fetch_json(url, timeout=15):
         return None
 
 
+def parse_gdacs_date(date_str):
+    """GDACS 날짜 문자열(YYYY-MM-DDTHH:MM:SS)을 timezone-aware datetime으로 변환"""
+    if not date_str:
+        return None
+    try:
+        dt = datetime.fromisoformat(str(date_str).replace("Z", ""))
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt
+    except ValueError:
+        return None
+
+
 def fetch_disaster_list():
     """1단계: GDACS 이벤트 리스트 수집 및 파싱"""
     all_features = []
@@ -154,7 +170,9 @@ def fetch_disaster_list():
     skipped_not_current = 0
     skipped_duplicate = 0
     skipped_no_geom = 0
+    skipped_too_old = 0
     seen_result_keys = set()
+    cutoff_date = datetime.now(timezone.utc) - timedelta(days=DAYS_BACK)
 
     for feat in all_features:
         props = feat.get("properties", {}) or {}
@@ -166,6 +184,11 @@ def fetch_disaster_list():
         is_current = str(props.get("iscurrent", "")).strip().lower()
         if SHOW_ONLY_CURRENT and is_current != "true" and event_type_val != "DR":
             skipped_not_current += 1
+            continue
+
+        event_date = parse_gdacs_date(props.get("todate")) or parse_gdacs_date(props.get("fromdate"))
+        if event_date is not None and event_date < cutoff_date:
+            skipped_too_old += 1
             continue
 
         if event_type_val and event_id_val:
@@ -226,7 +249,7 @@ def fetch_disaster_list():
             "is_current": is_current == "true",
         })
 
-    print(f"총 {len(results)}건 재난 추출 완료 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복)")
+    print(f"총 {len(results)}건 재난 추출 완료 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복, {skipped_too_old}기간초과({DAYS_BACK}일))")
     return results
 
 
