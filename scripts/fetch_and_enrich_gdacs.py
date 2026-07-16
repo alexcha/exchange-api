@@ -11,7 +11,7 @@ from collections import defaultdict
 # ==========================================
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,application/json;q=0.8",
+    "Accept": "application/json",
 }
 
 BASE_URL = (
@@ -34,7 +34,7 @@ SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
 
 
 # ==========================================
-# 2. 유틸리티 및 웹 크롤링 함수
+# 2. 유틸리티 함수
 # ==========================================
 def fetch_json(url, timeout=15, max_retries=3):
     """지정한 URL에서 JSON 데이터를 안전하게 수집하며, 실패 시 재시도합니다."""
@@ -49,42 +49,6 @@ def fetch_json(url, timeout=15, max_retries=3):
                 time.sleep(2 * attempt)
             else:
                 return None
-
-
-def clean_html(raw_html):
-    """HTML 태그를 완전히 제거하고 연속된 공백 및 줄바꿈을 깔끔하게 정리합니다."""
-    if not raw_html:
-        return ""
-    cleaned = re.sub(r'<[^>]*>', ' ', str(raw_html))
-    cleaned = cleaned.replace("&nbsp;", " ").replace("&amp;", "&").replace("&quot;", '"')
-    cleaned = re.sub(r'\s+', ' ', cleaned).strip()
-    return cleaned
-
-
-def get_summary_from_web(report_url):
-    """
-    공식 GDACS HTML 웹페이지에 직접 접근하여 
-    "This [disaster] can have a [level] humanitarian impact..." 문장을 직접 크롤링합니다.
-    """
-    if not report_url:
-        return None
-    try:
-        # User-Agent를 브라우저처럼 세팅하여 차단 방지
-        req = urllib.request.Request(report_url, headers=HEADERS)
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            html_content = resp.read().decode("utf-8", errors="ignore")
-            plain_text = clean_html(html_content)
-            
-            # 정규식 패턴으로 "This [재난종류] can have a... humanitarian impact..." 탐색
-            # 예: "This earthquake can have a low humanitarian impact..."
-            match = re.search(r"(This\s+[a-zA-Z\s]+\s+can\s+have\s+a\s+[^.]*humanitarian\s+impact[^.]*\.)", plain_text, re.IGNORECASE)
-            if match:
-                extracted = match.group(1).strip()
-                if 10 < len(extracted) < 300: # 비정상적으로 긴 텍스트 매칭 차단
-                    return extracted
-    except Exception as e:
-        print(f"  ⚠️ 웹 요약문 직접 크롤링 실패 (URL: {report_url}): {e}")
-    return None
 
 
 def feature_key(feat):
@@ -124,6 +88,16 @@ def get_centroid(geom):
     lng = sum(p[0] for p in pts) / len(pts)
     lat = sum(p[1] for p in pts) / len(pts)
     return lng, lat
+
+
+def clean_html(raw_html):
+    """HTML 태그를 완전히 제거하고 연속된 공백 및 줄바꿈을 깔끔하게 정리합니다."""
+    if not raw_html:
+        return ""
+    cleaned = re.sub(r'<[^>]*>', ' ', str(raw_html))
+    cleaned = cleaned.replace("&nbsp;", " ").replace("&amp;", "&").replace("&quot;", '"')
+    cleaned = re.sub(r'\s+', ' ', cleaned).strip()
+    return cleaned
 
 
 # ==========================================
@@ -291,7 +265,7 @@ def main():
             "last_updated": props.get("todate") or props.get("fromdate") or "",
             "severity": props.get("alertlevel", "green"),
             "is_current": True,
-            "report_description": "",  # 하단에서 웹 파싱 혹은 API 보강으로 채워짐
+            "report_description": "",  # 상세 API 결과로 대체 예정
         })
 
     print(f"✅ 기본 데이터 가공 완료: 총 {len(results)}건")
@@ -300,88 +274,55 @@ def main():
         print("❌ 필터링 및 가공 완료된 재난 정보가 0건입니다. 기존 정상 데이터의 보호를 위해 중단합니다.")
         sys.exit(1)
 
-    # --- [3단계] 심각도 순 정렬 및 웹 파싱(1순위) + API 백업(2순위) 보강 ---
+    # --- [3단계] 심각도 순 정렬 및 상세 정보 API 호출 보강 ---
     results.sort(key=lambda r: SEVERITY_ORDER.get(str(r.get("alert_level", "green")).lower(), 3))
 
     enrich_count = 0
     enriched_ok = 0
 
-    print("🔍 각 재난 리포트 직접 웹 파싱 및 상세 API 정보 보강을 시작합니다...")
+    print("🔍 각 재난 상세 API 보강 프로세스를 시작합니다...")
     for r in results:
         eventtype = r.get("eventtype") or r.get("event_type")
         eventid = r.get("eventid")
-        report_url = r.get("report_url")
+
+        if not eventid:
+            m = re.search(r"(\d+)$", str(r.get("gdacs_id", "")))
+            if m:
+                eventid = m.group(1)
 
         fallback_desc = r.get("summary")
-        r["report_description"] = fallback_desc  # 기본값 백업
 
-        # ----------------------------------------------------------------------
-        # [방어막 1순위] 공식 웹 리포트 페이지 HTML을 직접 파싱하여 요약문 추출
-        # ----------------------------------------------------------------------
-        web_summary = None
-        if report_url:
-            web_summary = get_summary_from_web(report_url)
-            if web_summary:
-                r["report_description"] = web_summary
-                print(f"  🎯 [웹 파싱 성공] ID {eventid}: {web_summary}")
-                time.sleep(0.5)  # 요청 지연
+        if not eventtype or not eventid:
+            r["report_description"] = fallback_desc
+            continue
 
-        # ----------------------------------------------------------------------
-        # [방어막 2순위] 만약 웹페이지 크롤링에 실패했을 경우, 기존 상세 API에서 탐색
-        # ----------------------------------------------------------------------
-        if not web_summary and eventtype and eventid:
-            detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
-            detail = fetch_json(detail_url)
-            enrich_count += 1
-            time.sleep(0.5)
+        detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
+        detail = fetch_json(detail_url)
+        enrich_count += 1
+        time.sleep(0.5)  # 서버 부담을 줄이기 위한 안전 지연
 
-            if detail:
-                props = detail.get("properties", detail) or {}
-                
-                # 상세 API 내에 존재하는 본문 필드들 수집
-                desc_candidates = [
-                    props.get("htmldescription"),
-                    props.get("description"),
-                    props.get("summary")
-                ]
-                
-                api_sentence = ""
-                for cand in desc_candidates:
-                    if not cand:
-                        continue
-                    cand_clean = clean_html(cand)
-                    # API 데이터 본문 속에서 문장 탐색
-                    match = re.search(r"(This\s+[a-zA-Z\s]+\s+can\s+have\s+a\s+[^.]*humanitarian\s+impact[^.]*\.)", cand_clean, re.IGNORECASE)
-                    if match:
-                        api_sentence = match.group(1).strip()
-                        break
-                
-                if api_sentence:
-                    r["report_description"] = api_sentence
-                    print(f"  ⚙️ [API 매칭 성공] ID {eventid}: {api_sentence}")
-                else:
-                    # 정규식 패턴도 실패했을 경우 가장 긴 원본 설명 대입
-                    for cand in [props.get("htmldescription"), props.get("description")]:
-                        if cand:
-                            cleaned = clean_html(cand)
-                            if len(cleaned) > len(fallback_desc):
-                                r["report_description"] = cleaned
-                                break
+        if not detail:
+            r["report_description"] = fallback_desc
+            continue
 
+        props = detail.get("properties", detail) or {}
+        
         # ----------------------------------------------------------------------
-        # [기타 데이터 보강] (사망자수, 피해이력, 지도 이미지 등)
+        # [핵심] API 내부의 'summary' 혹은 'description' 필드에서 
+        # HTML 태그를 지우고 순수 텍스트 요약문을 확보합니다.
         # ----------------------------------------------------------------------
-        # 웹 크롤링만 성공하고 API를 조회 안 했을 수도 있으므로 필요 시 상세 API 재호출
-        props_for_details = {}
-        if eventtype and eventid:
-            detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
-            detail = fetch_json(detail_url)
-            if detail:
-                props_for_details = detail.get("properties", detail) or {}
+        web_summary = props.get("summary") or props.get("description") or ""
+        web_summary_cleaned = clean_html(web_summary)
 
-        sendai = props_for_details.get("sendai") or []
-        severity = props_for_details.get("severitydata") or {}
-        images = props_for_details.get("images") or {}
+        if web_summary_cleaned:
+            r["report_description"] = web_summary_cleaned
+        else:
+            r["report_description"] = fallback_desc
+
+        # 추가적인 피해 정보 추출 및 매핑
+        sendai = props.get("sendai") or []
+        severity = props.get("severitydata") or {}
+        images = props.get("images") or {}
 
         deaths = 0
         displaced = 0
@@ -426,14 +367,11 @@ def main():
         r["impact_history"] = sendai_details
         r["impact_description"] = (sendai_details[-1]["description"][:300] if sendai_details else None)
         r["overview_map_url"] = images.get("overviewmap") or images.get("overviewmap_cached")
-        if eventtype and eventid:
-            r["report_detail_url"] = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
-        else:
-            r["report_detail_url"] = ""
+        r["report_detail_url"] = detail_url
 
         enriched_ok += 1
 
-    print(f"📊 상세 가공 작업이 완료되었습니다.")
+    print(f"📊 상세정보 API 호출 {enrich_count}건 중 {enriched_ok}건 보강 완료")
     
     # --- [4단계] JSON 결과 저장 ---
     with open("data/realtime_disasters.json", "w", encoding="utf-8") as f:
