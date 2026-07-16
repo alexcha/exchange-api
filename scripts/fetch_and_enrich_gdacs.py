@@ -238,10 +238,10 @@ def enrich_disasters(results):
         r_eventtype = r.get("eventtype") or r.get("event_type") or ""
         r_alertlevel = str(r.get("alert_level", "green")).lower()
         r["report_description"] = (
-            f"This {EVENT_TYPE_NAME.get(r_eventtype, 'event')} can have a "
-            f"{IMPACT_LEVEL.get(r_alertlevel, 'unknown')} humanitarian impact "
+            f"This {EVENT_TYPE_NAME.get(r_eventtype, 'event')} could have a "
+            f"{IMPACT_LEVEL.get(r_alertlevel, 'unknown')} impact on affected communities, "
             f"based on {IMPACT_BASIS.get(r_eventtype, 'the severity')} and the "
-            f"affected population and their vulnerability."
+            f"exposure and vulnerability of the population nearby."
         )
 
         eventtype = r.get("eventtype") or r.get("event_type")
