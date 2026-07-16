@@ -267,6 +267,7 @@ def enrich_disasters(results):
         sendai = props.get("sendai") or []
         severity = props.get("severitydata") or {}
         images = props.get("images") or {}
+        eq_details = props.get("earthquakedetails") or {}
 
         deaths = 0
         displaced = 0
@@ -312,6 +313,13 @@ def enrich_disasters(results):
         r["impact_description"] = (sendai_details[-1]["description"][:300] if sendai_details else None)
         r["overview_map_url"] = images.get("overviewmap") or images.get("overviewmap_cached")
         r["report_detail_url"] = detail_url
+
+        # 지진 상세 정보 (magnitude/depth/노출인구는 eventtype이 EQ일 때만 존재)
+        r["magnitude"] = eq_details.get("magnitude")
+        r["depth_km"] = eq_details.get("depth")
+        r["event_date_local"] = eq_details.get("episodedatelocal")
+        r["exposed_population"] = eq_details.get("rapidpop")
+        r["exposed_population_description"] = eq_details.get("rapidpopdescription")
 
         enriched_ok += 1
 
