@@ -9,7 +9,8 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept": "application/json",
 }
-DAYS_BACK = 30  # 최근 N일치 이벤트만 표시
+DAYS_BACK = 30  # 최근 N일치 이벤트만 표시 (ENABLE_DATE_FILTER=True일 때만 적용)
+ENABLE_DATE_FILTER = False  # False면 날짜 제한 없이 전부 가져옴 (디버깅/검증용)
 
 BASE_URL = ("https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
             "?eventlist=EQ%3BTC%3BFL%3BVO%3BWF%3BDR%3BTS&alertlevel=green%3Borange%3Bred")
@@ -187,7 +188,7 @@ def fetch_disaster_list():
             continue
 
         event_date = parse_gdacs_date(props.get("todate")) or parse_gdacs_date(props.get("fromdate"))
-        if event_date is not None and event_date < cutoff_date:
+        if ENABLE_DATE_FILTER and event_date is not None and event_date < cutoff_date:
             skipped_too_old += 1
             continue
 
