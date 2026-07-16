@@ -16,7 +16,7 @@ HEADERS = {
 
 BASE_URL = (
     "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
-    "?eventlist=EQ;TC;FL;VO;WF;DR;TS;EP&alertlevel=green;orange;red"
+    "?eventlist=EQ;TC;FL;VO;WF;DR;TS&alertlevel=green;orange;red"
 )
 
 GDACS_COUNTRY_MAP = {
@@ -36,19 +36,15 @@ SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
 # ==========================================
 # 2. 유틸리티 함수
 # ==========================================
-def fetch_json(url, timeout=15, max_retries=3):
-    """지정한 URL에서 JSON 데이터를 안전하게 수집하며, 실패 시 재시도합니다."""
-    for attempt in range(1, max_retries + 1):
-        try:
-            req = urllib.request.Request(url, headers=HEADERS)
-            with urllib.request.urlopen(req, timeout=timeout) as resp:
-                return json.loads(resp.read().decode("utf-8"))
-        except Exception as e:
-            print(f"  ⚠️ API 데이터 조회 실패 (시도 {attempt}/{max_retries}): {url} ({e})")
-            if attempt < max_retries:
-                time.sleep(2 * attempt)
-            else:
-                return None
+def fetch_json(url, timeout=15):
+    """지정한 URL에서 JSON 데이터를 안전하게 수집합니다."""
+    try:
+        req = urllib.request.Request(url, headers=HEADERS)
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except Exception as e:
+        print(f"  ⚠️ 상세정보 조회 실패: {url} ({e})")
+        return None
 
 
 def feature_key(feat):
@@ -91,9 +87,10 @@ def get_centroid(geom):
 
 
 def clean_html(raw_html):
-    """HTML 태그를 완전히 제거하고 연속된 공백 및 줄바꿈을 깔끔하게 정리합니다."""
+    """HTML 태그를 정밀하게 제거하고 불필요한 공백을 제거합니다."""
     if not raw_html:
         return ""
+    # HTML 태그 제거 및 공백 변환
     cleaned = re.sub(r'<[^>]*>', ' ', str(raw_html))
     cleaned = cleaned.replace("&nbsp;", " ").replace("&amp;", "&").replace("&quot;", '"')
     cleaned = re.sub(r'\s+', ' ', cleaned).strip()
@@ -114,46 +111,24 @@ def main():
     # --- [1단계] 목록 조회 루프 ---
     for page in range(1, MAX_PAGES + 1):
         url = f"{BASE_URL}&pagenumber={page}"
-        
-        status = None
-        body = None
-        page_fetch_failed = False
-
-        for attempt in range(1, 4):
-            try:
-                req = urllib.request.Request(url, headers=HEADERS)
-                with urllib.request.urlopen(req, timeout=20) as resp:
-                    status = resp.status
-                    body = resp.read()
-                break
-            except Exception as e:
-                print(f"⚠️ GDACS 페이지 {page} 요청 실패 (시도 {attempt}/3): {e}")
-                if attempt < 3:
-                    time.sleep(2 * attempt)
-                else:
-                    page_fetch_failed = True
-
-        if page_fetch_failed or status != 200 or not body:
-            print(f"⚠️ GDACS 페이지 {page} 데이터를 받아오는 데 실패했습니다.")
-            if all_features:
-                print(f"💡 이미 수집된 데이터({len(all_features)}건)가 존재하므로 가공 단계로 넘어갑니다.")
-                break
-            else:
-                print("❌ 수집된 데이터가 전혀 없는 상태에서 장애가 발생했습니다. 파이프라인을 중단합니다.")
-                sys.exit(1)
+        try:
+            req = urllib.request.Request(url, headers=HEADERS)
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                status = resp.status
+                body = resp.read()
+        except Exception as e:
+            print(f"⚠️ GDACS 페이지 {page} 요청 실패: {e}")
+            break
 
         print(f"GDACS 페이지 {page} 응답 HTTP 상태코드: {status}, 크기: {len(body)} bytes")
+        if status != 200 or not body:
+            break
 
         try:
             page_json = json.loads(body)
         except Exception as e:
             print(f"⚠️ 페이지 {page} JSON 파싱 실패: {e}")
-            if all_features:
-                print(f"💡 이미 수집된 데이터({len(all_features)}건)가 존재하므로 가공 단계로 넘어갑니다.")
-                break
-            else:
-                print("❌ 파싱할 수 있는 유효 데이터가 전혀 없습니다. 파이프라인을 중단합니다.")
-                sys.exit(1)
+            break
 
         page_features = page_json.get("features")
         if page_features is None:
@@ -186,11 +161,7 @@ def main():
         if new_in_page == 0:
             break
 
-    if not all_features:
-        print("❌ 최종적으로 수집된 원본 데이터(features)가 전혀 없습니다. 기존 데이터 보호를 위해 중단합니다.")
-        sys.exit(1)
-
-    # --- [2단계] 기본 파싱 및 1차 가공 ---
+    # --- [2단계] 기본 데이터 파싱 및 1차 가공 ---
     results = []
     skipped_not_current = 0
     skipped_duplicate = 0
@@ -235,6 +206,7 @@ def main():
         desc = props.get("description") or props.get("htmldescription") or ""
         desc_clean = clean_html(desc)
 
+        # 1차 예외 대비 기본 백업 생성 (상세조회 이전 단계)
         if not desc_clean:
             severity_str = (props.get("alertlevel") or "unknown").upper()
             desc_clean = f"A {severity_str} level {event_name} event has been detected near {clean_country or 'coordinates'}: {lat}, {lng}."
@@ -251,7 +223,7 @@ def main():
             "latitude": lat,
             "longitude": lng,
             "title": title,
-            "summary": desc_clean,
+            "summary": desc_clean,  # 1차 요약 데이터 저장
             "country": clean_country,
             "iso3": props.get("iso3", ""),
             "gdacs_id": f"{event_type_val}{event_id_val}",
@@ -265,16 +237,16 @@ def main():
             "last_updated": props.get("todate") or props.get("fromdate") or "",
             "severity": props.get("alertlevel", "green"),
             "is_current": True,
-            "report_description": "",  # 상세 API 결과로 대체 예정
+            "report_description": "",  # 상세 API를 활용해 실제 데이터로 보강 예정
         })
 
-    print(f"✅ 기본 데이터 가공 완료: 총 {len(results)}건")
+    print(f"✅ 1차 추출 완료: 총 {len(results)}건 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복)")
 
     if not results:
-        print("❌ 필터링 및 가공 완료된 재난 정보가 0건입니다. 기존 정상 데이터의 보호를 위해 중단합니다.")
+        print("❌ 추출된 재난 정보가 없습니다.")
         sys.exit(1)
 
-    # --- [3단계] 심각도 순 정렬 및 상세 정보 API 호출 보강 ---
+    # --- [3단계] 심각도 순 정렬 및 상세 API 호출 보강 ---
     results.sort(key=lambda r: SEVERITY_ORDER.get(str(r.get("alert_level", "green")).lower(), 3))
 
     enrich_count = 0
@@ -282,6 +254,9 @@ def main():
 
     print("🔍 각 재난 상세 API 보강 프로세스를 시작합니다...")
     for r in results:
+        # 보강이 실패할 경우를 대비하여 1차 요약본을 기본 백업값으로 사용
+        fallback_desc = r.get("summary")
+
         eventtype = r.get("eventtype") or r.get("event_type")
         eventid = r.get("eventid")
 
@@ -290,8 +265,7 @@ def main():
             if m:
                 eventid = m.group(1)
 
-        fallback_desc = r.get("summary")
-
+        # ID 정보가 부실한 경우 안전하게 통과
         if not eventtype or not eventid:
             r["report_description"] = fallback_desc
             continue
@@ -299,25 +273,22 @@ def main():
         detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
         detail = fetch_json(detail_url)
         enrich_count += 1
-        time.sleep(0.5)  # 서버 부담을 줄이기 위한 안전 지연
+        time.sleep(0.5)  # API 서버 과부하 및 차단 방지를 위한 보수적 대기시간
 
         if not detail:
             r["report_description"] = fallback_desc
             continue
 
         props = detail.get("properties", detail) or {}
-        
-        # ----------------------------------------------------------------------
-        # [수정/개선 핵심]
-        # 짧은 단순 제목("Earthquake in Philippines")을 품고 있는 'summary' 필드보다
-        # 긴 전체 요약 분석 문장이 들어있는 'htmldescription' 및 'description' 필드를
-        # 무조건 가장 먼저 가져오도록 순서를 우선 배치합니다.
-        # ----------------------------------------------------------------------
-        raw_detail_desc = props.get("htmldescription") or props.get("description") or props.get("summary") or ""
-        web_summary_cleaned = clean_html(raw_detail_desc)
 
-        if web_summary_cleaned:
-            r["report_description"] = web_summary_cleaned
+        # 🌟 [개선 핵심]
+        # 짧은 단순 제목("Earthquake in Philippines")을 갖는 'summary' 대신,
+        # 동적 분석 결과가 길게 들어 있는 'htmldescription'과 'description'을 최우선 매핑합니다.
+        api_desc = props.get("htmldescription") or props.get("description") or props.get("summary") or ""
+        api_desc_cleaned = clean_html(api_desc)
+
+        if api_desc_cleaned:
+            r["report_description"] = api_desc_cleaned
         else:
             r["report_description"] = fallback_desc
 
@@ -374,11 +345,11 @@ def main():
         enriched_ok += 1
 
     print(f"📊 상세정보 API 호출 {enrich_count}건 중 {enriched_ok}건 보강 완료")
-    
-    # --- [4단계] JSON 결과 저장 ---
+
+    # --- [4단계] JSON 저장 ---
     with open("data/realtime_disasters.json", "w", encoding="utf-8") as f:
         json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
-    print("🎉 모든 가공 데이터가 'data/realtime_disasters.json'에 정상 저장되었습니다.")
+    print("🎉 모든 데이터가 'data/realtime_disasters.json'에 정상 저장되었습니다.")
 
 
 if __name__ == "__main__":
