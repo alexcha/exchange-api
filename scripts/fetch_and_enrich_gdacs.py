@@ -1,5 +1,6 @@
 import json
 import re
+import sys
 import time
 import urllib.request
 import urllib.error
@@ -65,15 +66,19 @@ SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
 # ==========================================
 # 2. 유틸리티 함수
 # ==========================================
-def fetch_json(url, timeout=15):
-    """지정한 URL에서 JSON 데이터를 안전하게 수집합니다."""
-    try:
-        req = urllib.request.Request(url, headers=HEADERS)
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            return json.loads(resp.read().decode("utf-8"))
-    except Exception as e:
-        print(f"  ⚠️ API 데이터 조회 실패: {url} ({e})")
-        return None
+def fetch_json(url, timeout=15, max_retries=3):
+    """지정한 URL에서 JSON 데이터를 안전하게 수집하며, 실패 시 재시도합니다."""
+    for attempt in range(1, max_retries + 1):
+        try:
+            req = urllib.request.Request(url, headers=HEADERS)
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except Exception as e:
+            print(f"  ⚠️ API 데이터 조회 실패 (시도 {attempt}/{max_retries}): {url} ({e})")
+            if attempt < max_retries:
+                time.sleep(2 * attempt)  # 재시도 대기 시간 점진적 증가
+            else:
+                return None
 
 
 def feature_key(feat):
@@ -127,28 +132,41 @@ def main():
     seen_keys = set()
     MAX_PAGES = 10  
     prev_first_key = None
+    fetch_error_occurred = False
 
     # --- [1단계] 목록 조회 루프 ---
     for page in range(1, MAX_PAGES + 1):
         url = f"{BASE_URL}&pagenumber={page}"
-        try:
-            req = urllib.request.Request(url, headers=HEADERS)
-            with urllib.request.urlopen(req, timeout=20) as resp:
-                status = resp.status
-                body = resp.read()
-        except Exception as e:
-            print(f"GDACS 페이지 {page} 요청 실패: {e}")
-            break
+        
+        status = None
+        body = None
+        # 페이지 조회 단계에도 재시도(Retry) 적용
+        for attempt in range(1, 4):
+            try:
+                req = urllib.request.Request(url, headers=HEADERS)
+                with urllib.request.urlopen(req, timeout=20) as resp:
+                    status = resp.status
+                    body = resp.read()
+                break
+            except Exception as e:
+                print(f"⚠️ GDACS 페이지 {page} 요청 실패 (시도 {attempt}/3): {e}")
+                if attempt < 3:
+                    time.sleep(2 * attempt)
+                else:
+                    fetch_error_occurred = True
+
+        # 결국 응답을 받아오지 못한 경우 수집 중단
+        if fetch_error_occurred or status != 200 or not body:
+            print(f"❌ GDACS 페이지 {page}에서 데이터를 정상적으로 받아오지 못했습니다. 파이프라인을 중단합니다.")
+            sys.exit(1)
 
         print(f"GDACS 페이지 {page} 응답 HTTP 상태코드: {status}, 크기: {len(body)} bytes")
-        if status != 200 or not body:
-            break
 
         try:
             page_json = json.loads(body)
         except Exception as e:
-            print(f"페이지 {page} JSON 파싱 실패: {e}")
-            break
+            print(f"❌ 페이지 {page} JSON 파싱 실패: {e}. 기존 데이터 유실 방지를 위해 중단합니다.")
+            sys.exit(1)
 
         page_features = page_json.get("features")
         if page_features is None:
@@ -180,6 +198,11 @@ def main():
 
         if new_in_page == 0:
             break
+
+    # --- 수집된 기초 원본 데이터 유무 검증 ---
+    if not all_features:
+        print("❌ 수집된 원본 데이터(features)가 전혀 없습니다. 기존 데이터를 유지하기 위해 파이프라인을 중단합니다.")
+        sys.exit(1)
 
     # --- [2단계] 기본 파싱 및 1차 가공 ---
     results = []
@@ -261,7 +284,14 @@ def main():
 
     print(f"✅ 기본 데이터 가공 완료: 총 {len(results)}건 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복)")
 
-    # --- [3단계] 심각도 순 정렬 및 상세 정보 API 호출 보강 (이전 enrich 단계) ---
+    # --- 가공된 최종 재난 리스트 유무 최종 검증 ---
+    # 일시적으로 "현재 활성화된 재난"이 지구상에 한 건도 없을 수는 있지만, 
+    # API 오류로 인한 사이드 이펙트를 차단하기 위해 0건일 때 파일 덮어쓰기를 방지하고 프로세스를 중단시킵니다.
+    if not results:
+        print("❌ 필터링 및 가공 결과가 0건입니다. 기존 정상 데이터를 보존하기 위해 파일을 쓰지 않고 중단합니다.")
+        sys.exit(1)
+
+    # --- [3단계] 심각도 순 정렬 및 상세 정보 API 호출 보강 ---
     results.sort(key=lambda r: SEVERITY_ORDER.get(str(r.get("alert_level", "green")).lower(), 3))
 
     enrich_count = 0
@@ -292,6 +322,7 @@ def main():
             continue
 
         detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
+        # fetch_json 유틸리티 자체에서 재시도를 거쳐 수집함
         detail = fetch_json(detail_url)
         enrich_count += 1
         time.sleep(0.6)  # GDACS 트래픽 차단 방지용 안전 지연
@@ -354,9 +385,10 @@ def main():
     print(f"📊 상세정보 API 호출 {enrich_count}건 중 {enriched_ok}건 완벽 보강 완료")
     
     # --- [4단계] JSON 결과 저장 ---
+    # 안전장치들을 모두 거치고 리스트가 완벽할 때만 최종적으로 파일을 업데이트합니다.
     with open("data/realtime_disasters.json", "w", encoding="utf-8") as f:
         json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
-    print("🎉 모든 가공 데이터가 'data/realtime_disasters.json'에 정상 저장되었습니다.")
+    print("🎉 모든 가공 데이터가 'data/realtime_disasters.json'에 안전하게 저장되었습니다.")
 
 
 if __name__ == "__main__":
