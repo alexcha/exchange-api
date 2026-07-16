@@ -308,11 +308,13 @@ def main():
         props = detail.get("properties", detail) or {}
         
         # ----------------------------------------------------------------------
-        # [핵심] API 내부의 'summary' 혹은 'description' 필드에서 
-        # HTML 태그를 지우고 순수 텍스트 요약문을 확보합니다.
+        # [수정/개선 핵심]
+        # 짧은 단순 제목("Earthquake in Philippines")을 품고 있는 'summary' 필드보다
+        # 긴 전체 요약 분석 문장이 들어있는 'htmldescription' 및 'description' 필드를
+        # 무조건 가장 먼저 가져오도록 순서를 우선 배치합니다.
         # ----------------------------------------------------------------------
-        web_summary = props.get("summary") or props.get("description") or ""
-        web_summary_cleaned = clean_html(web_summary)
+        raw_detail_desc = props.get("htmldescription") or props.get("description") or props.get("summary") or ""
+        web_summary_cleaned = clean_html(raw_detail_desc)
 
         if web_summary_cleaned:
             r["report_description"] = web_summary_cleaned
