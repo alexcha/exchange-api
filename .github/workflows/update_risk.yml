@@ -202,8 +202,13 @@ jobs:
 
         rm -f state_dept_raw.xml
 
-    # 🌟 [2단계] GDACS 실시간 재난 데이터 연동 및 전처리 자동화 (페이지네이션 + centroid 대응판)
-    #   - [수정 1] GDACS는 1페이지 최대 100건만 반환하므로 pagenumber로 최대 10페이지(1,000건)까지 순회
+    # 🌟 [2단계] GDACS 실시간 재난 데이터 연동 및 전처리 자동화 (페이지네이션 무시 대응 + dedup판)
+    #   - [수정 1] GDACS는 1페이지 최대 100건만 반환하므로 pagenumber로 최대 10페이지(1,000건)까지 순회 시도
+    #   - [수정 10] 실측 결과 GDACS API가 pagenumber 파라미터를 무시하고 매번 동일한 최신
+    #     100건을 반환하는 것이 확인됨. 이로 인해 동일 이벤트가 최대 10벌까지 중복 수집되던
+    #     문제를 막기 위해, (a) 페이지 간 첫 이벤트 ID가 동일하면 즉시 페이지네이션을 중단하고
+    #     (b) 그와 별개로 결과를 합치는 단계에서도 eventtype+eventid 기준 dedup 세트를 둬서
+    #     이중으로 중복을 방지한다.
     #   - [수정 2] geometry가 Point가 아니라 Polygon/MultiPolygon(특히 가뭄 DR, 일부 홍수 FL)인 경우
     #     coordinates가 중첩 리스트로 오므로, 재귀적으로 평탄화해 centroid(중심점)를 계산
     #   - [수정 6] 이벤트 타입에 TS(쓰나미) 추가 → GDACS 전체 7종(EQ;TC;FL;VO;WF;DR;TS) 수집
@@ -225,8 +230,19 @@ jobs:
         BASE_URL = ("https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
                     "?eventlist=EQ;TC;FL;VO;WF;DR;TS&alertlevel=green;orange;red")
 
+        def feature_key(feat):
+            """이벤트를 유일하게 식별하는 키: eventtype+eventid (없으면 gdacs_id류 대체)"""
+            props = feat.get("properties", {}) or {}
+            etype = props.get("eventtype", "")
+            eid = props.get("eventid", "")
+            if etype or eid:
+                return f"{etype}{eid}"
+            return None
+
         all_features = []
-        MAX_PAGES = 10  # 페이지당 최대 100건 가정 → 최대 1,000건까지 안전하게 수집
+        seen_keys = set()
+        MAX_PAGES = 10  # 페이지당 최대 100건 가정 → 최대 1,000건까지 안전하게 수집 시도
+        prev_first_key = None
 
         for page in range(1, MAX_PAGES + 1):
             url = f"{BASE_URL}&pagenumber={page}"
@@ -266,13 +282,34 @@ jobs:
                 print(f"페이지 {page}: 이벤트 없음. 페이지네이션 종료.")
                 break
 
-            all_features.extend(page_features)
+            # [수정 10-a] pagenumber가 실제로 먹히는지 확인: 이번 페이지 첫 이벤트 키가
+            # 직전 페이지 첫 이벤트 키와 동일하면 API가 페이지네이션을 무시하고 있는 것이므로
+            # 더 순회해봐야 같은 100건만 반복 수집될 뿐이라 즉시 중단한다.
+            current_first_key = feature_key(page_features[0]) if page_features else None
+            if page > 1 and current_first_key is not None and current_first_key == prev_first_key:
+                print(f"⚠️ 페이지 {page}가 이전 페이지와 동일한 이벤트로 시작함 "
+                      f"→ GDACS API가 pagenumber를 무시하는 것으로 판단, 페이지네이션 중단.")
+                break
+            prev_first_key = current_first_key
+
+            # [수정 10-b] 페이지 병합 단계에서도 이벤트 키 기준 dedup 적용(이중 안전장치)
+            new_in_page = 0
+            for feat in page_features:
+                key = feature_key(feat)
+                if key is not None and key in seen_keys:
+                    continue
+                if key is not None:
+                    seen_keys.add(key)
+                all_features.append(feat)
+                new_in_page += 1
+
+            print(f"  → 페이지 {page}: 신규 이벤트 {new_in_page}건 추가 (누적 dedup 합계 {len(all_features)}건)")
 
             if len(page_features) < 100:
                 # 마지막 페이지로 판단 (100건 미만이면 다음 페이지는 비어있을 것)
                 break
 
-        print(f"총 {len(all_features)}건 원본 이벤트 수집 완료 (페이지네이션 포함)")
+        print(f"총 {len(all_features)}건 원본 이벤트 수집 완료 (페이지네이션 + dedup 적용)")
 
         with open("gdacs_all_features.json", "w", encoding="utf-8") as f:
             json.dump(all_features, f, ensure_ascii=False)
@@ -287,6 +324,8 @@ jobs:
 
         results = []
         skipped_not_current = 0
+        skipped_duplicate = 0
+        seen_result_keys = set()
 
         GDACS_COUNTRY_MAP = {
             "republic of korea": "South Korea",
@@ -343,6 +382,18 @@ jobs:
                 skipped_not_current += 1
                 continue
 
+            event_type_val = props.get("eventtype", "")
+            event_id_val = props.get("eventid", "")
+
+            # [수정 10-c] 최종 결과 조립 단계에서도 한 번 더 dedup (삼중 안전장치).
+            # eventtype+eventid가 최종 식별키이며, 값이 없는 이벤트는 걸러진 채로 넘어간다.
+            result_key = f"{event_type_val}{event_id_val}"
+            if event_type_val and event_id_val:
+                if result_key in seen_result_keys:
+                    skipped_duplicate += 1
+                    continue
+                seen_result_keys.add(result_key)
+
             centroid = get_centroid(geom)
             if centroid is None:
                 skipped_no_geom += 1
@@ -365,9 +416,6 @@ jobs:
             if not desc_clean:
                 severity_str = (props.get("alertlevel") or "unknown").upper()
                 desc_clean = f"A {severity_str} level {event_name} event has been detected near {clean_country or 'coordinates'}: {lat}, {lng}."
-
-            event_type_val = props.get("eventtype", "")
-            event_id_val = props.get("eventid", "")
 
             api_report_url = (props.get("url") or {}).get("report", "") if isinstance(props.get("url"), dict) else ""
             if api_report_url:
@@ -398,7 +446,8 @@ jobs:
             })
 
         print(f"총 {len(results)}건 재난 이벤트 정밀 추출 및 정제 완료 "
-              f"(좌표 누락 스킵: {skipped_no_geom}건, 진행중 아님 스킵: {skipped_not_current}건)")
+              f"(좌표 누락 스킵: {skipped_no_geom}건, 진행중 아님 스킵: {skipped_not_current}건, "
+              f"중복 스킵: {skipped_duplicate}건)")
 
         with open("data/realtime_disasters.json", "w", encoding="utf-8") as f:
             json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
@@ -412,7 +461,7 @@ jobs:
     #     report_description마저 비게 되던 문제 → continue로 변경
     #   - [수정 4] 사상자 0명이 정확히 보고된 경우도 `0 or None` 때문에 None으로
     #     뭉개지던 문제 → 값이 실제로 존재했는지 별도 플래그로 추적
-    #   - [수정 8] ENRICH_MAX 상한 제거 → 수집된(=현재 진행 중인) 모든 이벤트에 대해
+    #   - [수정 8] ENRICH_MAX 상한 제거 → 수집된(=현재 진행 중인, dedup된) 모든 이벤트에 대해
     #     사상자 상세정보를 보강. red→orange→green 순 정렬은 유지(중요한 이벤트 먼저 처리)
     - name: 재난 상세정보(사상자/영향인구) API 보강
       run: |
@@ -561,7 +610,7 @@ jobs:
         git add data/travel_risk.json data/realtime_disasters.json data/realtime_alerts.json data/unmatched_countries.log
 
         if ! git diff --cached --exit-code; then
-          git commit -m "✨ TS(쓰나미) 이벤트 타입 추가, 진행중 이벤트만 수집, 상세보강 건수 제한 제거(green 포함 전체)"
+          git commit -m "🐛 GDACS pagenumber 무시 현상 대응: eventtype+eventid 기준 dedup 3중 적용, 동일 페이지 감지 시 조기 중단"
           git push
         else
           echo "업데이트된 신규 위험 정보 없음"
