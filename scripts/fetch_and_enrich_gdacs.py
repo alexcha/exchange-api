@@ -90,7 +90,6 @@ def clean_html(raw_html):
     """HTML 태그를 정밀하게 제거하고 불필요한 공백을 제거합니다."""
     if not raw_html:
         return ""
-    # HTML 태그 제거 및 공백 변환
     cleaned = re.sub(r'<[^>]*>', ' ', str(raw_html))
     cleaned = cleaned.replace("&nbsp;", " ").replace("&amp;", "&").replace("&quot;", '"')
     cleaned = re.sub(r'\s+', ' ', cleaned).strip()
@@ -206,7 +205,6 @@ def main():
         desc = props.get("description") or props.get("htmldescription") or ""
         desc_clean = clean_html(desc)
 
-        # 1차 예외 대비 기본 백업 생성 (상세조회 이전 단계)
         if not desc_clean:
             severity_str = (props.get("alertlevel") or "unknown").upper()
             desc_clean = f"A {severity_str} level {event_name} event has been detected near {clean_country or 'coordinates'}: {lat}, {lng}."
@@ -223,7 +221,7 @@ def main():
             "latitude": lat,
             "longitude": lng,
             "title": title,
-            "summary": desc_clean,  # 1차 요약 데이터 저장
+            "summary": desc_clean,
             "country": clean_country,
             "iso3": props.get("iso3", ""),
             "gdacs_id": f"{event_type_val}{event_id_val}",
@@ -237,10 +235,11 @@ def main():
             "last_updated": props.get("todate") or props.get("fromdate") or "",
             "severity": props.get("alertlevel", "green"),
             "is_current": True,
-            "report_description": "",  # 상세 API를 활용해 실제 데이터로 보강 예정
+            "report_description": desc_clean,  # 1차 요약을 디폴트로 설정
+            "impact_description": None,        # 상세 API를 통해 스크린샷 문구로 보강 예정
         })
 
-    print(f"✅ 1차 추출 완료: 총 {len(results)}건 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복)")
+    print(f"✅ 1차 추출 완료: 총 {len(results)}건")
 
     if not results:
         print("❌ 추출된 재난 정보가 없습니다.")
@@ -254,7 +253,6 @@ def main():
 
     print("🔍 각 재난 상세 API 보강 프로세스를 시작합니다...")
     for r in results:
-        # 보강이 실패할 경우를 대비하여 1차 요약본을 기본 백업값으로 사용
         fallback_desc = r.get("summary")
 
         eventtype = r.get("eventtype") or r.get("event_type")
@@ -265,32 +263,33 @@ def main():
             if m:
                 eventid = m.group(1)
 
-        # ID 정보가 부실한 경우 안전하게 통과
+        # ID 정보가 없는 경우 안전하게 통과
         if not eventtype or not eventid:
-            r["report_description"] = fallback_desc
+            r["impact_description"] = fallback_desc
             continue
 
         detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
         detail = fetch_json(detail_url)
         enrich_count += 1
-        time.sleep(0.5)  # API 서버 과부하 및 차단 방지를 위한 보수적 대기시간
+        time.sleep(0.5)
 
         if not detail:
-            r["report_description"] = fallback_desc
+            r["impact_description"] = fallback_desc
             continue
 
         props = detail.get("properties", detail) or {}
 
-        # 🌟 [개선 핵심]
-        # 짧은 단순 제목("Earthquake in Philippines")을 갖는 'summary' 대신,
-        # 동적 분석 결과가 길게 들어 있는 'htmldescription'과 'description'을 최우선 매핑합니다.
+        # 🌟 [요청사항 반영 핵심]
+        # 스크린샷 속 "This earthquake can have a..." 분석 요약 문장(htmldescription)을
+        # 정확하게 `impact_description`에 매핑합니다. ( report_description 과 싱크를 맞춤 )
         api_desc = props.get("htmldescription") or props.get("description") or props.get("summary") or ""
         api_desc_cleaned = clean_html(api_desc)
 
         if api_desc_cleaned:
-            r["report_description"] = api_desc_cleaned
+            r["impact_description"] = api_desc_cleaned
+            r["report_description"] = api_desc_cleaned  # 필요시 리포트 본문 설명도 일치시킴
         else:
-            r["report_description"] = fallback_desc
+            r["impact_description"] = fallback_desc
 
         # 추가적인 피해 정보 추출 및 매핑
         sendai = props.get("sendai") or []
@@ -338,7 +337,6 @@ def main():
 
         r["severity_text"] = severity.get("severitytext")
         r["impact_history"] = sendai_details
-        r["impact_description"] = (sendai_details[-1]["description"][:300] if sendai_details else None)
         r["overview_map_url"] = images.get("overviewmap") or images.get("overviewmap_cached")
         r["report_detail_url"] = detail_url
 
