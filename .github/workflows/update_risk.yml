@@ -322,6 +322,34 @@ jobs:
         with open("gdacs_all_features.json", encoding="utf-8") as f:
             features = json.load(f)
 
+        # [수정 11] iscurrent=true 필터로 90/93건이 걸러진 원인을 진단하기 위한 디버그 로그.
+        # 이벤트 타입별로 iscurrent 값 분포를 집계해서, 특정 타입(특히 DR 가뭄)이
+        # 실제로는 진행중인데도 iscurrent 필드값이 다르게 들어오는지 확인한다.
+        from collections import Counter, defaultdict
+        type_current_counter = defaultdict(Counter)
+        for feat in features:
+            props = feat.get("properties", {}) or {}
+            etype = props.get("eventtype", "UNKNOWN")
+            raw_iscurrent = props.get("iscurrent", "<MISSING>")
+            type_current_counter[etype][str(raw_iscurrent)] += 1
+
+        print("=== [디버그] 이벤트 타입별 iscurrent 값 분포 ===")
+        for etype, counter in sorted(type_current_counter.items()):
+            detail = ", ".join(f"{val}:{cnt}건" for val, cnt in counter.items())
+            print(f"  {etype}: {detail}")
+
+        # 가뭄(DR)은 GDACS 웹사이트 기준 홈페이지에 나열된 모든 이벤트가 ongoing이므로,
+        # DR 이벤트 각각의 eventid/name/iscurrent/alertlevel을 개별적으로 찍어 실제값을 확인한다.
+        print("=== [디버그] DR(가뭄) 이벤트 개별 상세 ===")
+        for feat in features:
+            props = feat.get("properties", {}) or {}
+            if props.get("eventtype") != "DR":
+                continue
+            print(f"  eventid={props.get('eventid')} name={props.get('eventname') or props.get('name')} "
+                  f"iscurrent={props.get('iscurrent')!r} alertlevel={props.get('alertlevel')} "
+                  f"fromdate={props.get('fromdate')} todate={props.get('todate')}")
+        print("=== [디버그] 끝 ===")
+
         results = []
         skipped_not_current = 0
         skipped_duplicate = 0
