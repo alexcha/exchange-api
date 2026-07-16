@@ -27,7 +27,12 @@
       "impact_history": [],
       "impact_description": null,
       "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1551846/eq1718656_2.png",
-      "report_detail_url": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=EQ&eventid=1551846"
+      "report_detail_url": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=EQ&eventid=1551846",
+      "magnitude": "6.2",
+      "depth_km": "67.9",
+      "event_date_local": "2026-07-14T23:49:41",
+      "exposed_population": "301806",
+      "exposed_population_description": "300 thousand in MMI>=V"
     },
     {
       "latitude": -22.7889,
@@ -55,7 +60,12 @@
       "impact_history": [],
       "impact_description": null,
       "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1551647/eq1717944_2.png",
-      "report_detail_url": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=EQ&eventid=1551647"
+      "report_detail_url": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=EQ&eventid=1551647",
+      "magnitude": "6.7",
+      "depth_km": "10",
+      "event_date_local": "2026-07-14T01:45:54",
+      "exposed_population": "13",
+      "exposed_population_description": "Few people affected in MMI -"
     },
     {
       "latitude": -3.2207,
@@ -83,7 +93,12 @@
       "impact_history": [],
       "impact_description": null,
       "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1551590/eq1717883_2.png",
-      "report_detail_url": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=EQ&eventid=1551590"
+      "report_detail_url": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=EQ&eventid=1551590",
+      "magnitude": "6.5",
+      "depth_km": "47.8",
+      "event_date_local": "2026-07-13T18:53:30",
+      "exposed_population": "1940",
+      "exposed_population_description": "2 thousand in MMI V"
     }
   ]
 }
