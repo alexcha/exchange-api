@@ -14,7 +14,6 @@ HEADERS = {
     "Accept": "application/json",
 }
 
-# 전염병(EP)을 수집 목록에 추가하여 꼼꼼한 모니터링 대응
 BASE_URL = (
     "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
     "?eventlist=EQ;TC;FL;VO;WF;DR;TS;EP&alertlevel=green;orange;red"
@@ -29,35 +28,6 @@ GDACS_COUNTRY_MAP = {
     "russian federation": "Russia",
     "syrian arab republic": "Syria",
     "turkiye": "Turkey"
-}
-
-# 보강 및 리포트 작성용 매핑 (EP 포함)
-EVENT_TYPE_NAME = {
-    "EQ": "earthquake", 
-    "TC": "tropical cyclone", 
-    "FL": "flood",
-    "WF": "wildfire", 
-    "VO": "volcanic event", 
-    "DR": "drought",
-    "TS": "tsunami",
-    "EP": "epidemic"
-}
-
-IMPACT_LEVEL = {
-    "green": "low", 
-    "orange": "medium", 
-    "red": "significant"
-}
-
-IMPACT_BASIS = {
-    "EQ": "the magnitude", 
-    "TC": "the wind speed", 
-    "FL": "the flood extent",
-    "WF": "the affected area", 
-    "VO": "the eruption size", 
-    "DR": "the drought severity",
-    "TS": "the wave height",
-    "EP": "the outbreak scale"
 }
 
 SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
@@ -76,7 +46,7 @@ def fetch_json(url, timeout=15, max_retries=3):
         except Exception as e:
             print(f"  ⚠️ API 데이터 조회 실패 (시도 {attempt}/{max_retries}): {url} ({e})")
             if attempt < max_retries:
-                time.sleep(2 * attempt)  # 재시도 대기 시간 점진적 증가
+                time.sleep(2 * attempt)
             else:
                 return None
 
@@ -107,11 +77,9 @@ def get_centroid(geom):
         if not isinstance(curr, list) or not curr:
             continue
         
-        # [longitude, latitude] 단일 매핑 체크
         if len(curr) >= 2 and all(isinstance(x, (int, float)) for x in curr[:2]):
             pts.append((float(curr[0]), float(curr[1])))
         else:
-            # 하위 리스트(멀티 폴리곤 등의 레이어) 분해 후 스택에 보관
             stack.extend(curr)
 
     if not pts:
@@ -120,6 +88,18 @@ def get_centroid(geom):
     lng = sum(p[0] for p in pts) / len(pts)
     lat = sum(p[1] for p in pts) / len(pts)
     return lng, lat
+
+
+def clean_html(raw_html):
+    """HTML 태그를 완전히 제거하고 연속된 공백 및 줄바꿈을 깔끔하게 정리합니다."""
+    if not raw_html:
+        return ""
+    # HTML 태그 제거
+    cleaned = re.sub(r'<[^>]*>', ' ', str(raw_html))
+    # 엔티티 문자 처리 및 공백 압축
+    cleaned = cleaned.replace("&nbsp;", " ").replace("&amp;", "&").replace("&quot;", '"')
+    cleaned = re.sub(r'\s+', ' ', cleaned).strip()
+    return cleaned
 
 
 # ==========================================
@@ -141,7 +121,6 @@ def main():
         body = None
         page_fetch_failed = False
 
-        # 페이지 조회 단계 재시도(Retry) 적용
         for attempt in range(1, 4):
             try:
                 req = urllib.request.Request(url, headers=HEADERS)
@@ -156,15 +135,13 @@ def main():
                 else:
                     page_fetch_failed = True
 
-        # 특정 페이지에서 요청이 완전히 실패한 경우의 처리 (유연성 강화)
         if page_fetch_failed or status != 200 or not body:
             print(f"⚠️ GDACS 페이지 {page} 데이터를 받아오는 데 실패했습니다.")
-            # 이미 이전 페이지들에서 정상적으로 가져온 데이터가 일부라도 존재한다면 프로세스를 끝내지 않고 진행
             if all_features:
-                print(f"💡 이미 수집된 데이터({len(all_features)}건)가 존재하므로, 수집 루프를 종료하고 가공 단계로 넘어갑니다.")
+                print(f"💡 이미 수집된 데이터({len(all_features)}건)가 존재하므로 가공 단계로 넘어갑니다.")
                 break
             else:
-                print("❌ 수집된 데이터가 전혀 없는 상태에서 장애가 발생했습니다. 파이프라인을 안전하게 중단합니다.")
+                print("❌ 수집된 데이터가 전혀 없는 상태에서 장애가 발생했습니다. 파이프라인을 중단합니다.")
                 sys.exit(1)
 
         print(f"GDACS 페이지 {page} 응답 HTTP 상태코드: {status}, 크기: {len(body)} bytes")
@@ -174,7 +151,7 @@ def main():
         except Exception as e:
             print(f"⚠️ 페이지 {page} JSON 파싱 실패: {e}")
             if all_features:
-                print(f"💡 이미 수집된 데이터({len(all_features)}건)가 존재하므로, 수집 루프를 종료하고 가공 단계로 넘어갑니다.")
+                print(f"💡 이미 수집된 데이터({len(all_features)}건)가 존재하므로 가공 단계로 넘어갑니다.")
                 break
             else:
                 print("❌ 파싱할 수 있는 유효 데이터가 전혀 없습니다. 파이프라인을 중단합니다.")
@@ -211,9 +188,8 @@ def main():
         if new_in_page == 0:
             break
 
-    # --- 수집된 기초 원본 데이터 유무 최종 검증 ---
     if not all_features:
-        print("❌ 최종적으로 수집된 원본 데이터(features)가 전혀 없습니다. 기존 데이터 보호를 위해 파이프라인을 중단합니다.")
+        print("❌ 최종적으로 수집된 원본 데이터(features)가 전혀 없습니다. 기존 데이터 보호를 위해 중단합니다.")
         sys.exit(1)
 
     # --- [2단계] 기본 파싱 및 1차 가공 ---
@@ -230,7 +206,6 @@ def main():
         event_type_val = props.get("eventtype", "")
         event_id_val = props.get("eventid", "")
 
-        # 현재 진행중 필터링 (가뭄 DR은 예외 유지)
         is_current = str(props.get("iscurrent", "")).strip().lower()
         if is_current != "true" and event_type_val != "DR":
             skipped_not_current += 1
@@ -259,8 +234,9 @@ def main():
         event_name = props.get("eventname") or props.get("name") or props.get("eventtype", "Disaster")
         title = f"{event_name} - {clean_country}" if clean_country else event_name
 
+        # 기본 요약문 정제 (상세 API 조회 전 기본값 배치용)
         desc = props.get("description") or props.get("htmldescription") or ""
-        desc_clean = re.sub(r'<[^>]*>', '', desc).strip()
+        desc_clean = clean_html(desc)
 
         if not desc_clean:
             severity_str = (props.get("alertlevel") or "unknown").upper()
@@ -292,16 +268,16 @@ def main():
             "last_updated": props.get("todate") or props.get("fromdate") or "",
             "severity": props.get("alertlevel", "green"),
             "is_current": True,
+            "report_description": "",  # 상세 API에서 채워질 예정
         })
 
-    print(f"✅ 기본 데이터 가공 완료: 총 {len(results)}건 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복)")
+    print(f"✅ 기본 데이터 가공 완료: 총 {len(results)}건")
 
-    # --- 가공 결과 유무 최종 검증 ---
     if not results:
         print("❌ 필터링 및 가공 완료된 재난 정보가 0건입니다. 기존 정상 데이터의 보호를 위해 중단합니다.")
         sys.exit(1)
 
-    # --- [3단계] 심각도 순 정렬 및 상세 정보 API 호출 보강 (이전 enrich 단계) ---
+    # --- [3단계] 심각도 순 정렬 및 상세 정보 API 호출 보강 ---
     results.sort(key=lambda r: SEVERITY_ORDER.get(str(r.get("alert_level", "green")).lower(), 3))
 
     enrich_count = 0
@@ -309,17 +285,6 @@ def main():
 
     print("🔍 각 재난 상세 API 보강 프로세스를 시작합니다...")
     for r in results:
-        r_eventtype = r.get("eventtype") or r.get("event_type") or ""
-        r_alertlevel = str(r.get("alert_level", "green")).lower()
-        
-        # 1차 서술 설명 작성
-        r["report_description"] = (
-            f"This {EVENT_TYPE_NAME.get(r_eventtype, 'event')} can have a "
-            f"{IMPACT_LEVEL.get(r_alertlevel, 'unknown')} humanitarian impact "
-            f"based on {IMPACT_BASIS.get(r_eventtype, 'the severity')} and the "
-            f"affected population and their vulnerability."
-        )
-
         eventtype = r.get("eventtype") or r.get("event_type")
         eventid = r.get("eventid")
 
@@ -328,18 +293,42 @@ def main():
             if m:
                 eventid = m.group(1)
 
+        # Fallback용 임시 텍스트 설정 (API 실패 대비 기본 설명)
+        fallback_desc = r.get("summary")
+
         if not eventtype or not eventid:
+            r["report_description"] = fallback_desc
             continue
 
         detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
         detail = fetch_json(detail_url)
         enrich_count += 1
-        time.sleep(0.6)  # GDACS 트래픽 차단 방지용 안전 지연
+        time.sleep(0.6)  # 안전 지연
 
         if not detail:
+            r["report_description"] = fallback_desc
             continue
 
         props = detail.get("properties", detail) or {}
+        
+        # -------------------------------------------------------------
+        # [수정 핵심] 진짜 사람이 분석해 둔 웹 상세 설명 요약 우선 파싱
+        # display_description -> htmldescription -> description 순으로 탐색
+        # -------------------------------------------------------------
+        actual_desc = (
+            props.get("display_description") or 
+            props.get("htmldescription") or 
+            props.get("description") or 
+            props.get("summary") or 
+            ""
+        )
+        actual_desc_cleaned = clean_html(actual_desc)
+
+        if actual_desc_cleaned and len(actual_desc_cleaned) > 20:
+            r["report_description"] = actual_desc_cleaned
+        else:
+            r["report_description"] = fallback_desc
+
         sendai = props.get("sendai") or []
         severity = props.get("severitydata") or {}
         images = props.get("images") or {}
