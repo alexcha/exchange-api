@@ -3,6 +3,7 @@ import re
 import time
 import urllib.request
 import urllib.error
+import sys
 from datetime import datetime, timedelta, timezone
 from collections import Counter
 
@@ -13,15 +14,10 @@ HEADERS = {
 DAYS_BACK = 30  # 최근 N일치 이벤트만 표시 (ENABLE_DATE_FILTER=True일 때만 적용)
 ENABLE_DATE_FILTER = False  # False면 날짜 제한 없이 전부 가져옴 (디버깅/검증용)
 
-# 🌟 [추가] 최종 결과를 날짜(최신순) 기준 상위 N건으로 제한
-MAX_RESULTS = 40
-ENABLE_RESULT_LIMIT = True  # False면 제한 없이 전부 반환
+# 🌟 [요구사항 반영] 각 재난 타입별 최대로 남길 개수 지정
+MAX_ITEMS_PER_TYPE = 10
 
-# 🌟 [변경] 여러 타입을 한 번에 묶어서 요청하지 않고, 타입별로 개별 요청한다.
-# GDACS SEARCH API의 pagenumber 파라미터가 신뢰할 수 없게 동작하는 것을 확인했음
-# (페이지2가 페이지1과 동일한 내용을 반환하거나 204/빈 응답을 반환하는 경우가 있음).
-# 여러 타입을 한 쿼리로 묶으면, 이 불안정한 페이지네이션 때문에 일부 타입이
-# 통째로 누락될 위험이 있으므로 타입별로 쪼개서 요청해 위험을 분산시킨다.
+# GDACS SEARCH API 개별 요청 설정
 EVENT_TYPES = ["EQ", "TC", "FL", "VO", "WF", "DR", "TS"]
 
 BASE_URL_TEMPLATE = (
@@ -29,9 +25,9 @@ BASE_URL_TEMPLATE = (
     "?eventlist={eventtype}&alertlevel=green%3Borange%3Bred"
 )
 
-# 🌟 [추가] 페이지 요청 실패(비-200 또는 빈 body) 시 재시도 설정
-PAGE_RETRY_COUNT = 3        # 페이지당 최대 재시도 횟수
-PAGE_RETRY_DELAY_SEC = 2.0  # 재시도 간 대기 시간(초)
+# 페이지 요청 실패 시 재시도 설정 (타임아웃 방지 강화)
+PAGE_RETRY_COUNT = 3        
+PAGE_RETRY_DELAY_SEC = 2.0  
 
 GDACS_COUNTRY_MAP = {
     "republic of korea": "South Korea",
@@ -58,7 +54,6 @@ IMPACT_BASIS = {
 
 SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
 
-# True면 iscurrent=true(진행중)인 이벤트만 표시, False면 전부 표시(검증용)
 SHOW_ONLY_CURRENT = False
 
 
@@ -71,7 +66,6 @@ def feature_key(feat):
     return None
 
 
-# ⭐ [핵심 수정] 재귀 대신 깊이 우선 탐색(Stack DFS)을 활용해 Stack Overflow 방지
 def get_centroid(geom):
     if not isinstance(geom, dict):
         return None
@@ -87,11 +81,9 @@ def get_centroid(geom):
         if not isinstance(curr, list) or not curr:
             continue
 
-        # [longitude, latitude] 형태의 리프 노드에 도달했는지 검사
         if len(curr) >= 2 and all(isinstance(x, (int, float)) for x in curr[:2]):
             pts.append((float(curr[0]), float(curr[1])))
         else:
-            # 하위 리스트(폴리곤 등 복합 지오메트리 구조)가 있으면 스택에 주입
             stack.extend(curr)
 
     if not pts:
@@ -113,7 +105,6 @@ def fetch_json(url, timeout=15):
 
 
 def parse_gdacs_date(date_str):
-    """GDACS 날짜 문자열(YYYY-MM-DDTHH:MM:SS)을 timezone-aware datetime으로 변환"""
     if not date_str:
         return None
     try:
@@ -125,19 +116,13 @@ def parse_gdacs_date(date_str):
         return None
 
 
-# 🌟 [추가] 페이지 하나를 재시도 포함해서 가져오는 헬퍼 함수
 def fetch_page_with_retry(url, retries=PAGE_RETRY_COUNT, delay=PAGE_RETRY_DELAY_SEC):
-    """
-    페이지 요청 시 비-200 또는 빈 body가 오면 최대 `retries`번까지 재시도.
-    GDACS가 일시적으로 204/빈 응답을 주는 경우(레이트리밋, 서버 hiccup 등) 때문에
-    실제로는 더 많은 페이지가 남아있는데도 조기 종료되는 문제를 막기 위함.
-    반환값: (status, body) — 모든 재시도가 실패하면 마지막 시도의 (status, body) 반환
-    """
     status, body = None, None
     for attempt in range(1, retries + 1):
         try:
             req = urllib.request.Request(url, headers=HEADERS)
-            with urllib.request.urlopen(req, timeout=20) as resp:
+            # 타임아웃을 넉넉히 25초로 늘려 안정성을 확보합니다.
+            with urllib.request.urlopen(req, timeout=25) as resp:
                 status = resp.status
                 body = resp.read()
         except Exception as e:
@@ -156,11 +141,6 @@ def fetch_page_with_retry(url, retries=PAGE_RETRY_COUNT, delay=PAGE_RETRY_DELAY_
 
 
 def fetch_events_for_type(event_type, max_pages=5):
-    """
-    🌟 [추가] 단일 타입(EQ/TC/FL/VO/WF/DR/TS)에 대해서만 GDACS SEARCH API를 호출.
-    타입별로 결과 건수가 적어 페이지네이션이 거의 필요 없고, 설령 이 타입의
-    요청이 전부 실패하더라도 다른 타입 데이터에는 영향을 주지 않는다.
-    """
     base_url = BASE_URL_TEMPLATE.format(eventtype=event_type)
     all_features = []
     seen_keys = set()
@@ -196,9 +176,6 @@ def fetch_events_for_type(event_type, max_pages=5):
         if not page_features:
             break
 
-        # GDACS의 pagenumber가 신뢰할 수 없게 동작하는 걸 감안해,
-        # 이번 페이지의 첫 항목이 이전 페이지의 첫 항목과 같으면
-        # (즉 진짜 다음 페이지가 아니라 같은 내용을 다시 준 것이면) 중단
         current_first_key = feature_key(page_features[0])
         if page > 1 and current_first_key is not None and current_first_key == prev_first_key:
             break
@@ -221,20 +198,22 @@ def fetch_events_for_type(event_type, max_pages=5):
 
 
 def fetch_disaster_list():
-    """1단계: GDACS 이벤트 리스트 수집 및 파싱 (타입별 개별 요청 방식)"""
+    """1단계: GDACS 이벤트 리스트 수집 및 파싱"""
     all_features = []
 
-    # 🌟 [변경] 타입 하나씩 순회하며 개별 수집
-    for event_type in EVENT_TYPES:
-        print(f"GDACS [{event_type}] 수집 시작")
-        type_features = fetch_events_for_type(event_type)
-        print(f"GDACS [{event_type}] {len(type_features)}건 수집 완료")
-        all_features.extend(type_features)
-        time.sleep(0.5)  # 타입별 요청 사이 짧은 대기 (레이트리밋 방지)
+    print("==================================================")
+    print("🚀 실시간 재난 데이터 수집 가동 (GDACS API)")
+    print("==================================================")
 
-    # 원본 데이터의 타입별 분포를 로그로 남겨서, 특정 타입만 누락되는지 바로 확인 가능
+    for idx, event_type in enumerate(EVENT_TYPES, 1):
+        print(f"\n📡 [{idx}/{len(EVENT_TYPES)}] GDACS [{event_type}] 수집 시작")
+        type_features = fetch_events_for_type(event_type)
+        print(f"  ✅ [{event_type}] {len(type_features)}건 수집 완료")
+        all_features.extend(type_features)
+        time.sleep(0.5)  # 레이트리밋 방지 대기
+
     type_counts = Counter((f.get("properties", {}) or {}).get("eventtype", "?") for f in all_features)
-    print(f"수집된 원본 이벤트 타입 분포: {dict(type_counts)}")
+    print(f"\n📊 수집된 원본 이벤트 타입 분포: {dict(type_counts)}")
 
     # 파싱 진행
     results = []
@@ -320,28 +299,38 @@ def fetch_disaster_list():
             "is_current": is_current == "true",
         })
 
-    print(f"총 {len(results)}건 재난 추출 완료 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복, {skipped_too_old}기간초과({DAYS_BACK}일))")
+    print(f"\n⚙️  총 {len(results)}건 재난 추출 완료 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복, {skipped_too_old}기간초과)")
 
-    # 🌟 [추가] 최종 결과의 타입별 분포도 로그로 남겨 필터링 단계에서 특정 타입이
-    # 전부 사라지는 문제가 있는지 바로 확인할 수 있게 함
-    result_type_counts = Counter(r.get("eventtype", "?") for r in results)
-    print(f"최종 결과 타입별 분포: {dict(result_type_counts)}")
+    # 🌟 [요구사항 구현] 각 재난 항목(타입)별로 그룹화하여 최신순 상위 10건으로 엄격히 필터링
+    print("\n✂️  각 항목(타입)별 최신 10건으로 제한 프로세스 시작")
+    categorized = {etype: [] for etype in EVENT_TYPES}
+    
+    # 타입별 분류
+    for r in results:
+        etype = r.get("eventtype")
+        if etype in categorized:
+            categorized[etype].append(r)
+            
+    filtered_results = []
+    for etype, items in categorized.items():
+        # 날짜(last_updated) 기준 최신순 정렬
+        def _get_date_key(x):
+            dt = parse_gdacs_date(x.get("last_updated"))
+            return dt or datetime.min.replace(tzinfo=timezone.utc)
+            
+        items.sort(key=_get_date_key, reverse=True)
+        
+        # 최근 10개만 슬라이싱
+        trimmed_items = items[:MAX_ITEMS_PER_TYPE]
+        filtered_results.extend(trimmed_items)
+        print(f"  • [{etype}] 총 {len(items)}건 중 최신 {len(trimmed_items)}건만 유지 (초과 {max(0, len(items) - 10)}건 삭제)")
 
-    # 🌟 [추가] 날짜(last_updated) 기준 최신순 정렬 후 상위 MAX_RESULTS건으로 제한
-    # enrich_disasters()가 이벤트당 상세정보 API를 1건씩 호출하므로,
-    # 여기서 미리 잘라두면 불필요한 API 호출도 함께 줄어든다.
-    def _sort_date(r):
-        dt = parse_gdacs_date(r.get("last_updated"))
-        return dt or datetime.min.replace(tzinfo=timezone.utc)
+    # 최종 결과 타입별 분포 요약 출력
+    final_counts = Counter(r.get("eventtype") for r in filtered_results)
+    print(f"👉 필터링 후 최종 결과 타입별 분포: {dict(final_counts)}")
+    print(f"👉 총 수집 대상 목록 수: {len(filtered_results)}건")
 
-    results.sort(key=_sort_date, reverse=True)
-
-    if ENABLE_RESULT_LIMIT and len(results) > MAX_RESULTS:
-        trimmed = len(results) - MAX_RESULTS
-        results = results[:MAX_RESULTS]
-        print(f"최근 {MAX_RESULTS}건으로 제한 (초과분 {trimmed}건 제외)")
-
-    return results
+    return filtered_results
 
 
 def enrich_disasters(results):
@@ -350,6 +339,8 @@ def enrich_disasters(results):
 
     enrich_count = 0
     enriched_ok = 0
+
+    print(f"\n🔄 상세 정보(Enrich) 수집 및 보강 프로세스 진행 중... (총 {len(results)}개 대상)")
 
     for r in results:
         r_eventtype = r.get("eventtype") or r.get("event_type") or ""
@@ -375,6 +366,9 @@ def enrich_disasters(results):
         detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
         detail = fetch_json(detail_url)
         enrich_count += 1
+        
+        # 진행률 실시간 콘솔 출력
+        print(f"  [{enrich_count}/{len(results)}] 보강 진행 중... (타입: {eventtype}, ID: {eventid})")
         time.sleep(0.6)
 
         if not detail:
@@ -431,7 +425,6 @@ def enrich_disasters(results):
         r["overview_map_url"] = images.get("overviewmap") or images.get("overviewmap_cached")
         r["report_detail_url"] = detail_url
 
-        # 지진 상세 정보 (magnitude/depth/노출인구는 eventtype이 EQ일 때만 존재)
         r["magnitude"] = eq_details.get("magnitude")
         r["depth_km"] = eq_details.get("depth")
         r["event_date_local"] = eq_details.get("episodedatelocal")
@@ -440,16 +433,29 @@ def enrich_disasters(results):
 
         enriched_ok += 1
 
-    print(f"상세정보 API 호출 {enrich_count}건 중 {enriched_ok}건 보강 완료")
+    print(f"\n🎉 상세정보 API 호출 {enrich_count}건 중 {enriched_ok}건 완벽 보강 완료!")
     return results
 
 
 def main():
     results = fetch_disaster_list()
+    
+    # 🌟 [보호장치 구현] 만약 네트워크 장애, 타임아웃 등으로 최종 결과가 0건이라면 파일을 덮어쓰지 않고 종료
+    if not results:
+        print("\n🚨 [위험] 수집 및 필터링 완료된 데이터가 총 0건입니다.")
+        print("💡 API 서버 장애 혹은 네트워크 타임아웃으로 예상되며, 기존 JSON 데이터를 보호하기 위해 프로그램 쓰기를 건너뛰고 정상 안전 종료합니다.")
+        sys.exit(0)
+
     results = enrich_disasters(results)
 
-    with open("data/realtime_disasters.json", "w", encoding="utf-8") as f:
-        json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
+    # 최종 안전성 검증 후 파일 저장
+    try:
+        with open("data/realtime_disasters.json", "w", encoding="utf-8") as f:
+            json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
+        print("\n💾 파일 저장 성공: 'data/realtime_disasters.json' 업데이트 완료!")
+    except Exception as e:
+        print(f"\n❌ 파일 쓰기 오류 발생: {e}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
