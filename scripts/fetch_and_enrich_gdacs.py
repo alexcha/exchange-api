@@ -59,7 +59,8 @@ IMPACT_BASIS = {
 
 SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
 
-SHOW_ONLY_CURRENT = False
+# 🌟 현재 진행 중인(활성) 재난만 표시하도록 변경
+SHOW_ONLY_CURRENT = True
 
 
 def feature_key(feat):
