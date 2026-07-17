@@ -13,6 +13,10 @@ HEADERS = {
 DAYS_BACK = 30  # 최근 N일치 이벤트만 표시 (ENABLE_DATE_FILTER=True일 때만 적용)
 ENABLE_DATE_FILTER = False  # False면 날짜 제한 없이 전부 가져옴 (디버깅/검증용)
 
+# 🌟 [추가] 최종 결과를 날짜(최신순) 기준 상위 N건으로 제한
+MAX_RESULTS = 40
+ENABLE_RESULT_LIMIT = True  # False면 제한 없이 전부 반환
+
 # 🌟 [변경] 여러 타입을 한 번에 묶어서 요청하지 않고, 타입별로 개별 요청한다.
 # GDACS SEARCH API의 pagenumber 파라미터가 신뢰할 수 없게 동작하는 것을 확인했음
 # (페이지2가 페이지1과 동일한 내용을 반환하거나 204/빈 응답을 반환하는 경우가 있음).
@@ -322,6 +326,20 @@ def fetch_disaster_list():
     # 전부 사라지는 문제가 있는지 바로 확인할 수 있게 함
     result_type_counts = Counter(r.get("eventtype", "?") for r in results)
     print(f"최종 결과 타입별 분포: {dict(result_type_counts)}")
+
+    # 🌟 [추가] 날짜(last_updated) 기준 최신순 정렬 후 상위 MAX_RESULTS건으로 제한
+    # enrich_disasters()가 이벤트당 상세정보 API를 1건씩 호출하므로,
+    # 여기서 미리 잘라두면 불필요한 API 호출도 함께 줄어든다.
+    def _sort_date(r):
+        dt = parse_gdacs_date(r.get("last_updated"))
+        return dt or datetime.min.replace(tzinfo=timezone.utc)
+
+    results.sort(key=_sort_date, reverse=True)
+
+    if ENABLE_RESULT_LIMIT and len(results) > MAX_RESULTS:
+        trimmed = len(results) - MAX_RESULTS
+        results = results[:MAX_RESULTS]
+        print(f"최근 {MAX_RESULTS}건으로 제한 (초과분 {trimmed}건 제외)")
 
     return results
 
