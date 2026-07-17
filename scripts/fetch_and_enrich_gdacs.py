@@ -4,6 +4,7 @@ import time
 import urllib.request
 import urllib.error
 from datetime import datetime, timedelta, timezone
+from collections import Counter
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -12,8 +13,21 @@ HEADERS = {
 DAYS_BACK = 30  # 최근 N일치 이벤트만 표시 (ENABLE_DATE_FILTER=True일 때만 적용)
 ENABLE_DATE_FILTER = False  # False면 날짜 제한 없이 전부 가져옴 (디버깅/검증용)
 
-BASE_URL = ("https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
-            "?eventlist=EQ%3BTC%3BFL%3BVO%3BWF%3BDR%3BTS&alertlevel=green%3Borange%3Bred")
+# 🌟 [변경] 여러 타입을 한 번에 묶어서 요청하지 않고, 타입별로 개별 요청한다.
+# GDACS SEARCH API의 pagenumber 파라미터가 신뢰할 수 없게 동작하는 것을 확인했음
+# (페이지2가 페이지1과 동일한 내용을 반환하거나 204/빈 응답을 반환하는 경우가 있음).
+# 여러 타입을 한 쿼리로 묶으면, 이 불안정한 페이지네이션 때문에 일부 타입이
+# 통째로 누락될 위험이 있으므로 타입별로 쪼개서 요청해 위험을 분산시킨다.
+EVENT_TYPES = ["EQ", "TC", "FL", "VO", "WF", "DR", "TS"]
+
+BASE_URL_TEMPLATE = (
+    "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
+    "?eventlist={eventtype}&alertlevel=green%3Borange%3Bred"
+)
+
+# 🌟 [추가] 페이지 요청 실패(비-200 또는 빈 body) 시 재시도 설정
+PAGE_RETRY_COUNT = 3        # 페이지당 최대 재시도 횟수
+PAGE_RETRY_DELAY_SEC = 2.0  # 재시도 간 대기 시간(초)
 
 GDACS_COUNTRY_MAP = {
     "republic of korea": "South Korea",
@@ -107,32 +121,62 @@ def parse_gdacs_date(date_str):
         return None
 
 
-def fetch_disaster_list():
-    """1단계: GDACS 이벤트 리스트 수집 및 파싱"""
-    all_features = []
-    seen_keys = set()
-    MAX_PAGES = 10
-    prev_first_key = None
-
-    for page in range(1, MAX_PAGES + 1):
-        url = f"{BASE_URL}&pagenumber={page}"
+# 🌟 [추가] 페이지 하나를 재시도 포함해서 가져오는 헬퍼 함수
+def fetch_page_with_retry(url, retries=PAGE_RETRY_COUNT, delay=PAGE_RETRY_DELAY_SEC):
+    """
+    페이지 요청 시 비-200 또는 빈 body가 오면 최대 `retries`번까지 재시도.
+    GDACS가 일시적으로 204/빈 응답을 주는 경우(레이트리밋, 서버 hiccup 등) 때문에
+    실제로는 더 많은 페이지가 남아있는데도 조기 종료되는 문제를 막기 위함.
+    반환값: (status, body) — 모든 재시도가 실패하면 마지막 시도의 (status, body) 반환
+    """
+    status, body = None, None
+    for attempt in range(1, retries + 1):
         try:
             req = urllib.request.Request(url, headers=HEADERS)
             with urllib.request.urlopen(req, timeout=20) as resp:
                 status = resp.status
                 body = resp.read()
         except Exception as e:
-            print(f"GDACS 페이지 {page} 요청 실패: {e}")
-            break
+            print(f"    ⚠️ 페이지 요청 실패 (시도 {attempt}/{retries}): {e}")
+            status, body = None, None
 
-        print(f"GDACS 페이지 {page} 응답 HTTP 상태코드: {status}, 크기: {len(body)} bytes")
+        if status == 200 and body:
+            return status, body
+
+        if attempt < retries:
+            print(f"    ↻ 응답 이상 (status={status}, size={len(body) if body else 0}) "
+                  f"- {delay}초 후 재시도 ({attempt}/{retries})")
+            time.sleep(delay)
+
+    return status, body
+
+
+def fetch_events_for_type(event_type, max_pages=5):
+    """
+    🌟 [추가] 단일 타입(EQ/TC/FL/VO/WF/DR/TS)에 대해서만 GDACS SEARCH API를 호출.
+    타입별로 결과 건수가 적어 페이지네이션이 거의 필요 없고, 설령 이 타입의
+    요청이 전부 실패하더라도 다른 타입 데이터에는 영향을 주지 않는다.
+    """
+    base_url = BASE_URL_TEMPLATE.format(eventtype=event_type)
+    all_features = []
+    seen_keys = set()
+    prev_first_key = None
+
+    for page in range(1, max_pages + 1):
+        url = f"{base_url}&pagenumber={page}"
+        status, body = fetch_page_with_retry(url)
+
+        print(f"  [{event_type}] 페이지 {page} 응답 HTTP 상태코드: {status}, "
+              f"크기: {len(body) if body else 0} bytes")
+
         if status != 200 or not body:
+            print(f"  ⛔ [{event_type}] 페이지 {page} 재시도 {PAGE_RETRY_COUNT}회 모두 실패 - 이 타입 수집 중단")
             break
 
         try:
             page_json = json.loads(body)
         except Exception as e:
-            print(f"페이지 {page} JSON 파싱 실패: {e}")
+            print(f"  [{event_type}] 페이지 {page} JSON 파싱 실패: {e}")
             break
 
         page_features = page_json.get("features")
@@ -148,7 +192,10 @@ def fetch_disaster_list():
         if not page_features:
             break
 
-        current_first_key = feature_key(page_features[0]) if page_features else None
+        # GDACS의 pagenumber가 신뢰할 수 없게 동작하는 걸 감안해,
+        # 이번 페이지의 첫 항목이 이전 페이지의 첫 항목과 같으면
+        # (즉 진짜 다음 페이지가 아니라 같은 내용을 다시 준 것이면) 중단
+        current_first_key = feature_key(page_features[0])
         if page > 1 and current_first_key is not None and current_first_key == prev_first_key:
             break
         prev_first_key = current_first_key
@@ -165,6 +212,25 @@ def fetch_disaster_list():
 
         if new_in_page == 0:
             break
+
+    return all_features
+
+
+def fetch_disaster_list():
+    """1단계: GDACS 이벤트 리스트 수집 및 파싱 (타입별 개별 요청 방식)"""
+    all_features = []
+
+    # 🌟 [변경] 타입 하나씩 순회하며 개별 수집
+    for event_type in EVENT_TYPES:
+        print(f"GDACS [{event_type}] 수집 시작")
+        type_features = fetch_events_for_type(event_type)
+        print(f"GDACS [{event_type}] {len(type_features)}건 수집 완료")
+        all_features.extend(type_features)
+        time.sleep(0.5)  # 타입별 요청 사이 짧은 대기 (레이트리밋 방지)
+
+    # 원본 데이터의 타입별 분포를 로그로 남겨서, 특정 타입만 누락되는지 바로 확인 가능
+    type_counts = Counter((f.get("properties", {}) or {}).get("eventtype", "?") for f in all_features)
+    print(f"수집된 원본 이벤트 타입 분포: {dict(type_counts)}")
 
     # 파싱 진행
     results = []
@@ -251,6 +317,12 @@ def fetch_disaster_list():
         })
 
     print(f"총 {len(results)}건 재난 추출 완료 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복, {skipped_too_old}기간초과({DAYS_BACK}일))")
+
+    # 🌟 [추가] 최종 결과의 타입별 분포도 로그로 남겨 필터링 단계에서 특정 타입이
+    # 전부 사라지는 문제가 있는지 바로 확인할 수 있게 함
+    result_type_counts = Counter(r.get("eventtype", "?") for r in results)
+    print(f"최종 결과 타입별 분포: {dict(result_type_counts)}")
+
     return results
 
 
