@@ -60,6 +60,8 @@ IMPACT_BASIS = {
 SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
 
 # 🌟 현재 진행 중인(활성) 재난만 표시하도록 변경
+# SHOW_ONLY_CURRENT=True로 설정하면 iscurrent=true인 재난만 추출합니다
+# 모든 재난 타입(EQ, TC, FL, VO, WF, DR, TS 등)에 동일하게 적용됩니다
 SHOW_ONLY_CURRENT = True
 
 
@@ -236,8 +238,9 @@ def fetch_disaster_list():
         event_type_val = props.get("eventtype", "")
         event_id_val = props.get("eventid", "")
 
+        # 🌟 현재 진행 중인 재난만 필터링 (모든 타입에 동일하게 적용)
         is_current = str(props.get("iscurrent", "")).strip().lower()
-        if SHOW_ONLY_CURRENT and is_current != "true" and event_type_val != "DR":
+        if SHOW_ONLY_CURRENT and is_current != "true":
             skipped_not_current += 1
             continue
 
