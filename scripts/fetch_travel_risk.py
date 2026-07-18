@@ -1,4 +1,5 @@
 import json
+import os
 import re
 import unicodedata
 import xml.etree.ElementTree as ET
@@ -72,6 +73,10 @@ NAME_TO_ISO2 = {
 
 LEVEL_RE = re.compile(r"level\s*([1-4])", re.IGNORECASE)
 
+OUTPUT_PATH = "data/travel_risk.json"
+UNMATCHED_LOG_PATH = "data/unmatched_countries.log"
+
+
 def normalize(name):
     name = name.replace("\u2019", "'").replace("\u2018", "'")
     name = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
@@ -81,6 +86,7 @@ def normalize(name):
         name = name[4:]
     name = name.replace(",", "").replace(".", "")
     return name
+
 
 def extract_countries(country_part):
     whole_key = normalize(country_part)
@@ -95,13 +101,41 @@ def extract_countries(country_part):
             valid_countries.append(p_clean)
     return valid_countries if valid_countries else [country_part]
 
+
+def load_existing_results():
+    """
+    이전 실행에서 저장된 travel_risk.json을 불러와 iso_code -> row 딕셔너리로 반환.
+    파일이 없거나 형식이 깨져 있으면 빈 딕셔너리를 반환한다 (첫 실행 대비).
+    """
+    if not os.path.exists(OUTPUT_PATH):
+        return {}
+    try:
+        with open(OUTPUT_PATH, "r", encoding="utf-8") as f:
+            payload = json.load(f)
+        existing = {}
+        for row in payload.get("data", []):
+            iso = row.get("iso_code")
+            if iso:
+                existing[iso] = row
+        return existing
+    except (json.JSONDecodeError, OSError):
+        # 이전 파일이 손상되어 있어도 파이프라인이 멈추지 않도록 빈 상태로 시작
+        return {}
+
+
 def main():
     tree = ET.parse("state_dept_raw.xml")
     root = tree.getroot()
 
-    results = []
+    # 국무부 RSS(TAsTWs.xml)는 전체 국가의 영구 스냅샷이 아니라
+    # "최근 검토/갱신된" 항목만 담는 롤링(rolling) 피드다.
+    # 그래서 이번 실행에서 못 받은 국가라고 해서 광고 자체가 사라진 게 아니다.
+    # -> 매번 새로 덮어쓰지 않고, 기존 결과에 이번 실행 결과를 upsert(병합)한다.
+    existing_results = load_existing_results()
+    merged_results = dict(existing_results)  # iso_code -> row
+
     unmatched = []
-    seen_iso2 = set()
+    seen_iso2_this_run = set()
     total_items = len(list(root.iter("item")))
     print(f"RSS 원본 item 개수: {total_items}")
 
@@ -137,34 +171,46 @@ def main():
                 unmatched.append(country_name)
                 continue
 
-            if iso2 in seen_iso2:
+            if iso2 in seen_iso2_this_run:
                 continue
-            seen_iso2.add(iso2)
+            seen_iso2_this_run.add(iso2)
 
-            results.append({
+            # upsert: 이번 실행에서 확인된 국가는 최신 정보로 덮어씀
+            merged_results[iso2] = {
                 "iso_code": iso2,
                 "name": country_name,
                 "advisory_level": level,
                 "risk_score": 0.0,
                 "last_updated": pubdate_el.text if pubdate_el is not None else "",
-            })
+            }
 
-    if "US" not in seen_iso2:
-        results.append({
+    if "US" not in merged_results:
+        merged_results["US"] = {
             "iso_code": "US",
             "name": "United States",
             "advisory_level": 1,
             "risk_score": 0.0,
             "last_updated": "RSS Default Protection"
-        })
+        }
 
-    with open("data/unmatched_countries.log", "w", encoding="utf-8") as f:
+    skipped_countries = set(existing_results.keys()) - seen_iso2_this_run
+    if skipped_countries:
+        print(
+            f"이번 실행 피드에 없어 기존 값 유지한 국가 수: {len(skipped_countries)} "
+            f"(예: {sorted(skipped_countries)[:5]})"
+        )
+
+    os.makedirs("data", exist_ok=True)
+
+    with open(UNMATCHED_LOG_PATH, "w", encoding="utf-8") as f:
         if unmatched:
             f.write("\n".join(unmatched) + "\n")
 
-    print(f"총 {len(results)}개국 위험도 추출 완료")
-    with open("data/travel_risk.json", "w", encoding="utf-8") as f:
+    results = list(merged_results.values())
+    print(f"총 {len(results)}개국 위험도 추출 완료 (이번 실행 신규/갱신: {len(seen_iso2_this_run)}개)")
+    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
+
 
 if __name__ == "__main__":
     main()
