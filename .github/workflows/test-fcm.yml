@@ -21,16 +21,45 @@ jobs:
 
       - name: Execute Test Script
         env:
-          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }} # 저장소에 등록된 시크릿 변수명
+          # GitHub Secrets에 저장하신 새 변수명으로 매핑합니다.
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }} 
         run: |
-          python -c "
-          import os, json, firebase_admin
+          # 파이썬 코드가 쿼터(' or ") 때문에 꼬이지 않도록 파일로 임시 저장합니다.
+          cat << 'EOF' > test_fcm.py
+          import os
+          import json
+          import firebase_admin
           from firebase_admin import credentials, messaging
-          cred = credentials.Certificate(json.loads(os.environ['FIREBASE_SERVICE_ACCOUNT']))
-          firebase_admin.initialize_app(cred)
-          msg = messaging.Message(
-              notification=messaging.Notification(title='🧪 테스트 알림', body='GitHub Actions에서 보낸 수동 테스트입니다.'),
-              topic='all'
-          )
-          print('보낸 결과:', messaging.send(msg))
-          "
+
+          # 환경 변수에서 데이터를 안전하게 가져옵니다.
+          service_account_data = os.environ.get('FIREBASE_SERVICE_ACCOUNT_JSON')
+
+          if not service_account_data:
+              raise ValueError("FIREBASE_SERVICE_ACCOUNT_JSON 환경 변수가 비어 있습니다. GitHub Secrets 설정을 확인하세요.")
+
+          try:
+              # JSON 파싱 및 파이어베이스 초기화
+              cred_dict = json.loads(service_account_data)
+              cred = credentials.Certificate(cred_dict)
+              firebase_admin.initialize_app(cred)
+
+              # 테스트 알림 메시지 구성 (토픽: all)
+              msg = messaging.Message(
+                  notification=messaging.Notification(
+                      title='🧪 테스트 알림', 
+                      body='GitHub Actions에서 보낸 수동 테스트입니다.'
+                  ),
+                  topic='all'
+              )
+              
+              # 발송 및 결과 출력
+              result = messaging.send(msg)
+              print(f"✅ 푸시 알림 발송 성공! 결과 ID: {result}")
+
+          except json.JSONDecodeError as e:
+              print("❌ 에러: FIREBASE_SERVICE_ACCOUNT_JSON 값이 올바른 JSON 형식이 아닙니다.")
+              raise e
+          EOF
+
+          # 준비된 파이썬 파일 실행
+          python test_fcm.py
