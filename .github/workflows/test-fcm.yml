@@ -1,0 +1,36 @@
+name: 🧪 FCM Test Push
+
+on:
+  workflow_dispatch: # GitHub 웹 UI에서 수동으로 실행 버튼을 만들어주는 옵션
+
+jobs:
+  test-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install firebase-admin
+
+      - name: Execute Test Script
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }} # 저장소에 등록된 시크릿 변수명
+        run: |
+          python -c "
+          import os, json, firebase_admin
+          from firebase_admin import credentials, messaging
+          cred = credentials.Certificate(json.loads(os.environ['FIREBASE_SERVICE_ACCOUNT']))
+          firebase_admin.initialize_app(cred)
+          msg = messaging.Message(
+              notification=messaging.Notification(title='🧪 테스트 알림', body='GitHub Actions에서 보낸 수동 테스트입니다.'),
+              topic='all'
+          )
+          print('보낸 결과:', messaging.send(msg))
+          "
