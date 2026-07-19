@@ -4,10 +4,10 @@ import datetime
 import firebase_admin
 from firebase_admin import credentials, messaging
 
-def send_test_push():
-    print("🚀 Firebase FCM 멕시코 테스트 푸시 시작...")
+def send_mexico_test_push():
+    print("🚀 안드로이드 코드 매칭 - 멕시코 푸시 발송 시작...")
     
-    # 1. GitHub Secrets에서 서비스 계정 키 로드
+    # 1. 인증 및 초기화
     cred_json = os.environ.get("FIREBASE_SERVICE_ACCOUNT") 
     if not cred_json:
         print("❌ 에러: FIREBASE_SERVICE_ACCOUNT 환경변수가 없습니다.")
@@ -21,23 +21,24 @@ def send_test_push():
         
     topic_name = "all" 
     
-    # 현재 시간 생성 (앱의 날짜 파싱 형식인 ISO 8601 형태로 지정)
-    current_time = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    # 2. 안드로이드 parseAsUtc()가 인식할 수 있는 깔끔한 ISO 8601 UTC 시간 생성
+    # 예: 2026-07-19T18:30:00Z
+    current_utc_time = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
     
-    # ⭐️ 핵심 변경 사항: notification 대신 앱이 원하는 규격의 'data' 페이로드로 전송
+    # 3. ⭐️ 올려주신 자바 코드 규격에 맞춘 'data' 페이로드 구성
     message = messaging.Message(
         data={
-            "iso_code": "MX",               # 👈 안드로이드 앱이 체크할 멕시코 국가 코드
-            "last_updated": current_time,   # 👈 앱 내 formatUpdateTime()에서 파싱할 시간
-            "id": "test_mexico_999",        # 고유 이벤트 ID (알림 중복 방지용 문자열)
-            "country": "Mexico"
+            "iso_code": "MX",                  # resolveEventIso2() 에서 파싱
+            "last_updated": current_utc_time,  # onMessageReceived() 및 formatUpdateTime() 에서 파싱
+            "id": "mexico_test_event_777",     # eventKey 생성 및 알림 ID(hashCode)용
+            "country": "Mexico"                # 백업용 국가명 필드
         },
         topic=topic_name,
     )
     
-    # 3. 발송
+    # 4. 발송
     response = messaging.send(message)
-    print(f"✅ Successfully sent message: {response}") # 문법 오류 수정 완료
+    print(f"✅ 발송 성공! Message ID: {response}")
 
 if __name__ == "__main__":
-    send_test_push()
+    send_mexico_test_push()
