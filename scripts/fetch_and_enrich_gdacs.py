@@ -8,6 +8,9 @@ import os
 from datetime import datetime, timedelta, timezone
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
+# 🌟 파이어베이스 모듈 주입
+import firebase_admin
+from firebase_admin import credentials, messaging
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -63,6 +66,58 @@ SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
 # SHOW_ONLY_CURRENT=True로 설정하면 iscurrent=true인 재난만 추출합니다
 # 모든 재난 타입(EQ, TC, FL, VO, WF, DR, TS 등)에 동일하게 적용됩니다
 SHOW_ONLY_CURRENT = True
+
+
+# 🌟 파이어베이스 시스템 초기화 함수
+def init_firebase():
+    """깃허브 Secrets에 등록된 환경변수를 읽어 파이어베이스 관리를 시작합니다."""
+    if not firebase_admin._apps:
+        cred_json_str = os.environ.get('FIREBASE_SERVICE_ACCOUNT_JSON')
+        if not cred_json_str:
+            print("⚠️  [FCM] FIREBASE_SERVICE_ACCOUNT_JSON 환경변수가 없어서 알림 발송을 건너뜁니다.")
+            return False
+        try:
+            cred_json = json.loads(cred_json_str)
+            cred = credentials.Certificate(cred_json)
+            firebase_admin.initialize_app(cred)
+            return True
+        except Exception as e:
+            print(f"❌ [FCM] 파이어베이스 라이브러리 초기화 중 오류: {e}")
+            return False
+    return True
+
+
+# 🌟 실제 파이어베이스 토픽으로 푸시를 쏘는 함수
+def send_disaster_push(country_iso2, disaster_title, event_type, severity):
+    """지정된 국가의 식별 코드를 기반으로 토픽 푸시 알림을 발송합니다."""
+    if not country_iso2:
+        return
+        
+    # 안드로이드 앱과 약속한 소문자 토픽 규격 생성 (예: disaster_kr, disaster_jp)
+    topic_name = f"disaster_{str(country_iso2).strip().lower()}"
+    
+    # 심각도 레벨에 따른 시각적 이모지 및 재난 유형 한글화 정제
+    emoji = "🚨" if str(severity).lower() == "red" else "⚠️"
+    type_upper = str(event_type).upper()
+
+    try:
+        message = messaging.Message(
+            notification=messaging.Notification(
+                title=f"{emoji} [{type_upper}] 신규 재난 정보 알림",
+                body=disaster_title
+            ),
+            # 안드로이드 기기가 백그라운드/포그라운드 상태일 때 유연하게 파싱할 수 있도록 데이터도 함께 전송
+            data={
+                'country_iso2': str(country_iso2).upper(),
+                'event_type': type_upper,
+                'severity': str(severity).lower()
+            },
+            topic=topic_name
+        )
+        response = messaging.send(message)
+        print(f"  👉 [FCM 알림 발송 성공] 토픽 채널: {topic_name} (전송 ID: {response})")
+    except Exception as e:
+        print(f"  ❌ [FCM 알림 발송 실패] 토픽 채널: {topic_name} / 에러 내용: {e}")
 
 
 def feature_key(feat):
@@ -470,6 +525,50 @@ def main():
 
     # 상위 디렉터리가 없을 경우 생성
     os.makedirs(os.path.dirname(final_filepath), exist_ok=True)
+
+    # 🌟 [추가] 신규 파일 검증용 기존 재난 고유 ID 캐싱 프로세스
+    existing_ids = set()
+    if os.path.exists(final_filepath):
+        try:
+            with open(final_filepath, "r", encoding="utf-8") as f:
+                old_json = json.load(f)
+                # 제공된 구조인 {"status": "success", "data": [...]} 형태에 맞춰 안전하게 파싱합니다.
+                old_data = old_json.get("data", [])
+                existing_ids = {item["gdacs_id"] for item in old_data if "gdacs_id" in item}
+            print(f"\n🔍 기존 JSON 파일 검사 완료: {len(existing_ids)}개의 고유 ID를 조회했습니다.")
+        except Exception as e:
+            print(f"\n⚠️ 기존 JSON 파싱 스킵 (최초 생성이거나 데이터 파일 깨짐 포착): {e}")
+
+    # 🌟 파이어베이스 인증 가동
+    is_fcm_ready = init_firebase()
+
+    if is_fcm_ready:
+        print("\n📢 [정기 실행: 신규 재난 판별 및 푸시 알림 프로세스 가동]")
+        new_disaster_count = 0
+        
+        for r in results:
+            gdacs_id = r.get("gdacs_id")
+            
+            # 수집된 최신 항목 중 기존 파일에 없던 새로운 gdacs_id를 가진 항목이 있을 때만 분기 진입
+            if gdacs_id and gdacs_id not in existing_ids:
+                new_disaster_count += 1
+                
+                # 기기단에서 저장 및 토픽 매칭에 사용하는 식별 값 (예: ISO3 문자열 포맷 활용)
+                country_code = r.get("iso3") or r.get("country") or "Global"
+                
+                print(f"  🆕 [신규 재난 포착] 제목: {r.get('title')} (ID: {gdacs_id})")
+                
+                # 조건 부합 시 해당 국가 채널로 타겟 푸시 발송
+                send_disaster_push(
+                    country_iso2=country_code, 
+                    disaster_title=r.get("title", "재난 경보"), 
+                    event_type=r.get("eventtype", "EQ"), 
+                    severity=r.get("severity", "green")
+                )
+        if new_disaster_count == 0:
+            print("  - 지난 회차 대비 새롭게 발생한 재난 정보가 없으므로 알림 발송 처리를 안전하게 패스합니다.")
+    else:
+        print("\n⚠️ 파이어베이스 작동에 필요한 Secrets 값이 없으므로 신규 재난 비교 및 FCM 전송 엔진을 가동하지 않습니다.")
 
     try:
         # 1. 먼저 임시 파일(.tmp)에 온전히 씁니다.
