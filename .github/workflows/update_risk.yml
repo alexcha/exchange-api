@@ -3,7 +3,9 @@ name: Update Travel & Disaster Data
 on:
   schedule:
     - cron: '0 18 * * *' # 매일 한국 시간(KST) 새벽 3시 자동 실행
-  workflow_dispatch:     # 수동 실행 버튼 활성화
+  workflow_dispatch:     # 깃허브 웹에서 수동 실행 버튼 활성화
+  repository_dispatch:   # 🌟 구글 앱스 스크립트(GAS) 호출을 받기 위한 설정
+    types: [update-travel-disaster]
 
 jobs:
   fetch-and-clean:
@@ -16,20 +18,20 @@ jobs:
     - name: data 디렉토리 생성
       run: mkdir -p data
 
-    # 🌟 [1단계] 국가별 위험도 데이터 추출
+    # [1단계] 국가별 위험도 데이터 추출
     - name: 국가별 위험도 데이터 추출 (State Dept 공식 RSS)
       run: |
         curl -f -s "https://travel.state.gov/_res/rss/TAsTWs.xml" -o state_dept_raw.xml
         python3 scripts/fetch_travel_risk.py
         rm -f state_dept_raw.xml
 
-    # 🌟 [2단계] 실시간 재난(GDACS) 데이터 추출 및 상세정보 보강 (통합 스크립트 실행)
+    # [2단계] 실시간 재난(GDACS) 데이터 추출 및 상세정보 보강
     - name: 실시간 재난(GDACS) 데이터 추출 및 API 보강
       run: |
         python3 scripts/fetch_and_enrich_gdacs.py
         echo '{ "status": "success", "data": [] }' > data/realtime_alerts.json
 
-    # 🌟 [3단계] 최종 데이터 변경 감지 및 자동 배포
+    # [3단계] 최종 데이터 변경 감지 및 자동 배포
     - name: 변경사항 자동 커밋 및 푸시
       run: |
         git config --global user.name "github-actions[bot]"
