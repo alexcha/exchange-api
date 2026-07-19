@@ -63,8 +63,6 @@ IMPACT_BASIS = {
 SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
 
 # 🌟 현재 진행 중인(활성) 재난만 표시하도록 변경
-# SHOW_ONLY_CURRENT=True로 설정하면 iscurrent=true인 재난만 추출합니다
-# 모든 재난 타입(EQ, TC, FL, VO, WF, DR, TS 등)에 동일하게 적용됩니다
 SHOW_ONLY_CURRENT = True
 
 
@@ -87,37 +85,54 @@ def init_firebase():
     return True
 
 
-# 🌟 실제 파이어베이스 토픽으로 푸시를 쏘는 함수
-def send_disaster_push(country_iso2, disaster_title, event_type, severity):
-    """지정된 국가의 식별 코드를 기반으로 토픽 푸시 알림을 발송합니다."""
-    if not country_iso2:
-        return
-        
-    # 안드로이드 앱과 약속한 소문자 토픽 규격 생성 (예: disaster_kr, disaster_jp)
-    topic_name = f"disaster_{str(country_iso2).strip().lower()}"
+# 🌟 [수정 완료] 실제 파이어베이스 'all' 토픽으로 데이터 페이로드 폭탄을 쏘는 함수
+def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title, event_id, last_updated):
+    """
+    모든 사용자가 수신할 수 있도록 'all' 토픽으로 푸시를 전송하되,
+    안드로이드 앱 내부에서 즐겨찾기 필터에 무조건 걸리도록 풍부한 데이터 포맷을 구성하여 전송합니다.
+    """
+    topic_name = "all"
     
-    # 심각도 레벨에 따른 시각적 이모지 및 재난 유형 한글화 정제
-    emoji = "🚨" if str(severity).lower() == "red" else "⚠️"
-    type_upper = str(event_type).upper()
+    # 안드로이드의 parseAsUtc()가 읽을 수 있도록 시간 값 포맷 안전 검증
+    # 만약 기존 데이터에 시간 값이 누락되어 있다면 현재 UTC 시간으로 백업 적용
+    if not last_updated:
+        last_updated = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    elif not (last_updated.endswith('Z') or last_updated.endswith('z')):
+        last_updated = str(last_updated).replace(" ", "T") + "Z"
+
+    # 안드로이드가 수신 시 언어 번역에 참고할 수 있도록 국가명 정제
+    c_name = country_name if country_name else "Global"
 
     try:
         message = messaging.Message(
-            notification=messaging.Notification(
-                title=f"{emoji} [{type_upper}] 신규 재난 정보 알림",
-                body=disaster_title
-            ),
-            # 안드로이드 기기가 백그라운드/포그라운드 상태일 때 유연하게 파싱할 수 있도록 데이터도 함께 전송
+            # ⭐️ [핵심 보완] 앱 내부의 즐겨찾기 파싱 로직(resolveEventIso2)의 모든 분기점을 원천 통과하도록 
+            # 가능한 모든 형태의 국가 코드 및 텍스트 데이터 후보군을 변수 폭탄으로 주입
             data={
-                'country_iso2': str(country_iso2).upper(),
-                'event_type': type_upper,
-                'severity': str(severity).lower()
+                "iso_code": str(country_iso2).upper(),  # 1순위 (예: MX)
+                "isoCode": str(country_iso2).upper(),   # 2순위 (예: MX)
+                "iso3": str(country_iso3).upper(),      # 3순위 (예: MEX) -> 내장 맵을 통해 ISO2로 역변환됨
+                "country": c_name,                      # 4순위 텍스트 분기 대응 (예: Mexico)
+                "countries": json.dumps([c_name, str(country_iso2).upper(), str(country_iso3).upper()]), # 배열 분기 대응
+                
+                # 시간 및 식별 데이터 연동 (알림 고유 키 발급 및 시간 파싱용)
+                "last_updated": last_updated,
+                "event_date": last_updated,
+                "id": str(event_id) if event_id else "disaster_evt_999"
             },
+            # ⭐️ [핵심 보완] 백그라운드 및 도즈(Doze) 모드 상태인 스마트폰 배터리 제약을 뚫고 
+            # 즉시 앱의 onMessageReceived 코드를 실행하기 위한 기기 우선순위 상향 강제화
+            android=messaging.AndroidConfig(
+                priority="high",
+                notification=messaging.AndroidNotification(
+                    channel_id="favorite_risk_alarm_channel"  # 앱 내부 노티 채널과 매칭
+                )
+            ),
             topic=topic_name
         )
         response = messaging.send(message)
-        print(f"  👉 [FCM 알림 발송 성공] 토픽 채널: {topic_name} (전송 ID: {response})")
+        print(f"  👉 [FCM 알림 방송 성공] 토픽 채널: {topic_name} / 대상 국가: {c_name}({country_iso2}) (전송 ID: {response})")
     except Exception as e:
-        print(f"  ❌ [FCM 알림 발송 실패] 토픽 채널: {topic_name} / 에러 내용: {e}")
+        print(f"  ❌ [FCM 알림 방송 실패] 토픽 채널: {topic_name} / 에러 내용: {e}")
 
 
 def feature_key(feat):
@@ -157,7 +172,6 @@ def get_centroid(geom):
     return lng, lat
 
 
-# 타임아웃을 5초로 줄여 병목을 원천 방지합니다.
 def fetch_json(url, timeout=5):
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
@@ -185,7 +199,6 @@ def fetch_page_with_retry(url, retries=PAGE_RETRY_COUNT, delay=PAGE_RETRY_DELAY_
     for attempt in range(1, retries + 1):
         try:
             req = urllib.request.Request(url, headers=HEADERS)
-            # 목록 요청 타임아웃 15초로 최적화
             with urllib.request.urlopen(req, timeout=15) as resp:
                 status = resp.status
                 body = resp.read()
@@ -273,7 +286,7 @@ def fetch_disaster_list():
         type_features = fetch_events_for_type(event_type)
         print(f"  ✅ [{event_type}] {len(type_features)}건 수집 완료")
         all_features.extend(type_features)
-        time.sleep(0.3)  # 레이트리밋 방지 대기 시간 소폭 단축
+        time.sleep(0.3)
 
     type_counts = Counter((f.get("properties", {}) or {}).get("eventtype", "?") for f in all_features)
     print(f"\n📊 수집된 원본 이벤트 타입 분포: {dict(type_counts)}")
@@ -293,7 +306,6 @@ def fetch_disaster_list():
         event_type_val = props.get("eventtype", "")
         event_id_val = props.get("eventid", "")
 
-        # 🌟 현재 진행 중인 재난만 필터링 (모든 타입에 동일하게 적용)
         is_current = str(props.get("iscurrent", "")).strip().lower()
         if SHOW_ONLY_CURRENT and is_current != "true":
             skipped_not_current += 1
@@ -390,7 +402,6 @@ def fetch_disaster_list():
     return filtered_results
 
 
-# 개별 항목 상세 정보(Enrich)를 가져오는 스레드용 작업 함수
 def process_single_enrich(r):
     r_eventtype = r.get("eventtype") or r.get("event_type") or ""
     r_alertlevel = str(r.get("alert_level", "green")).lower()
@@ -479,7 +490,6 @@ def process_single_enrich(r):
 
 
 def enrich_disasters_parallel(results):
-    """2단계: 병렬(Thread) 처리를 통한 각 이벤트 상세정보 조회 및 보강"""
     results.sort(key=lambda r: SEVERITY_ORDER.get(str(r.get("alert_level", "green")).lower(), 3))
 
     print(f"\n🔄 [병렬 스레드 적용] 상세 정보(Enrich) 수집 시작... (총 {len(results)}개 대상, Workers: {MAX_WORKERS})")
@@ -488,7 +498,6 @@ def enrich_disasters_parallel(results):
     enriched_ok = 0
     total_count = len(results)
 
-    # ThreadPoolExecutor를 사용한 비동기 병렬 HTTP 요청 수행
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = {executor.submit(process_single_enrich, r): r for r in results}
         
@@ -498,7 +507,6 @@ def enrich_disasters_parallel(results):
             if success:
                 enriched_ok += 1
             
-            # 실시간 진행 상황 콘솔 출력
             etype = updated_record.get("eventtype", "?")
             eid = updated_record.get("eventid", "?")
             status_text = "성공" if success else "실패"
@@ -516,23 +524,18 @@ def main():
         print("💡 API 서버 장애 혹은 네트워크 타임아웃으로 예상되며, 기존 JSON 데이터를 보호하기 위해 프로그램 쓰기를 건너뛰고 정상 안전 종료합니다.")
         sys.exit(0)
 
-    # 수집 성능 향상을 위해 기존 동기 함수를 "병렬 함수"로 전면 대체
     results = enrich_disasters_parallel(results)
 
-    # [보호 장치] 임시 파일 생성 후 안전 교체 (Atomic Write)
     temp_filepath = "data/realtime_disasters.json.tmp"
     final_filepath = "data/realtime_disasters.json"
 
-    # 상위 디렉터리가 없을 경우 생성
     os.makedirs(os.path.dirname(final_filepath), exist_ok=True)
 
-    # 🌟 [추가] 신규 파일 검증용 기존 재난 고유 ID 캐싱 프로세스
     existing_ids = set()
     if os.path.exists(final_filepath):
         try:
             with open(final_filepath, "r", encoding="utf-8") as f:
                 old_json = json.load(f)
-                # 제공된 구조인 {"status": "success", "data": [...]} 형태에 맞춰 안전하게 파싱합니다.
                 old_data = old_json.get("data", [])
                 existing_ids = {item["gdacs_id"] for item in old_data if "gdacs_id" in item}
             print(f"\n🔍 기존 JSON 파일 검사 완료: {len(existing_ids)}개의 고유 ID를 조회했습니다.")
@@ -549,21 +552,28 @@ def main():
         for r in results:
             gdacs_id = r.get("gdacs_id")
             
-            # 수집된 최신 항목 중 기존 파일에 없던 새로운 gdacs_id를 가진 항목이 있을 때만 분기 진입
+            # 수집된 최신 항목 중 기존 파일에 없던 새로운 gdacs_id를 가진 항목이 있을 때만 푸시 진입
             if gdacs_id and gdacs_id not in existing_ids:
                 new_disaster_count += 1
                 
-                # 기기단에서 저장 및 토픽 매칭에 사용하는 식별 값 (예: ISO3 문자열 포맷 활용)
-                country_code = r.get("iso3") or r.get("country") or "Global"
+                # ⭐️ [수정 완료] 기기 내부에서 ISO3 -> ISO2 역매핑을 지원하므로 
+                # GDACS의 기본 세 가지 포맷(iso3, country, iso2 후보군생성)을 명확히 추출하여 배달
+                iso3_val = str(r.get("iso3", "")).upper().strip()
+                country_name = r.get("country", "Global")
+                
+                # 역매핑용 백업 ISO2 추정 (만약 iso3의 길이 규격이 안 맞는 경우 예외처리)
+                iso2_backup = iso3_val[:2] if len(iso3_val) == 3 else ""
                 
                 print(f"  🆕 [신규 재난 포착] 제목: {r.get('title')} (ID: {gdacs_id})")
                 
-                # 조건 부합 시 해당 국가 채널로 타겟 푸시 발송
+                # 토픽 전체 방송(all) 및 기기단 완벽 매칭용 파라미터 전달
                 send_disaster_push(
-                    country_iso2=country_code, 
-                    disaster_title=r.get("title", "재난 경보"), 
-                    event_type=r.get("eventtype", "EQ"), 
-                    severity=r.get("severity", "green")
+                    country_iso2=iso2_backup,
+                    country_iso3=iso3_val,
+                    country_name=country_name,
+                    disaster_title=r.get("title", "재난 경보"),
+                    event_id=gdacs_id,
+                    last_updated=r.get("last_updated", "")
                 )
         if new_disaster_count == 0:
             print("  - 지난 회차 대비 새롭게 발생한 재난 정보가 없으므로 알림 발송 처리를 안전하게 패스합니다.")
@@ -571,12 +581,9 @@ def main():
         print("\n⚠️ 파이어베이스 작동에 필요한 Secrets 값이 없으므로 신규 재난 비교 및 FCM 전송 엔진을 가동하지 않습니다.")
 
     try:
-        # 1. 먼저 임시 파일(.tmp)에 온전히 씁니다.
         with open(temp_filepath, "w", encoding="utf-8") as f:
             json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
         
-        # 2. 파일 쓰기가 에러 없이 완전하게 끝나면, 원자적(Atomic)으로 기존 파일을 덮어씁니다.
-        # 이 작업은 OS 레벨에서 찰나의 순간에 처리되므로 도중에 프로세스가 종료되어도 파일이 잘리지 않습니다.
         os.replace(temp_filepath, final_filepath)
         print(f"\n💾 파일 원자적 저장 성공: '{final_filepath}' 업데이트 완료!")
     except Exception as e:
