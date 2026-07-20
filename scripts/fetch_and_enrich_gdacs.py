@@ -136,6 +136,16 @@ def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title,
     """
     모든 사용자가 수신할 수 있도록 'all' 토픽으로 푸시를 전송하되,
     안드로이드 앱 내부에서 즐겨찾기 필터에 무조건 걸리도록 풍부한 데이터 포맷을 구성하여 전송합니다.
+
+    ⭐️ [버그 수정] android.notification(channel_id=...) 블록을 제거함.
+    이 블록이 있으면 앱이 백그라운드/종료 상태일 때 FCM이 MyFirebaseMessagingService의
+    onMessageReceived()를 거치지 않고 시스템이 직접 알림을 그리는데, title/body를
+    notification 블록에 안 넣었기 때문에 시스템은 앱 이름만 표시하는 빈 알림을 띄웠음.
+    (앱이 포그라운드일 때만 onMessageReceived가 호출되어 정상 작동했던 것)
+    data-only 메시지로 보내면 백그라운드에서도 항상 onMessageReceived가 호출되어
+    앱이 직접 국가명/시간을 조합한 알림을 만들 수 있음. channel_id는 앱 쪽
+    postNotification()에서 NotificationCompat.Builder(context, CHANNEL_ID)로
+    이미 지정하고 있으므로 여기서 중복 지정할 필요 없음.
     """
     topic_name = "all"
     
@@ -165,13 +175,10 @@ def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title,
                 "event_date": last_updated,
                 "id": str(event_id) if event_id else "disaster_evt_999"
             },
-            # ⭐️ [핵심 보완] 백그라운드 및 도즈(Doze) 모드 상태인 스마트폰 배터리 제약을 뚫고 
-            # 즉시 앱의 onMessageReceived 코드를 실행하기 위한 기기 우선순위 상향 강제화
+            # ⭐️ [수정 완료] notification 블록 제거 -> data-only 메시지로 변경.
+            # 백그라운드/종료 상태에서도 항상 onMessageReceived()가 호출되도록 함.
             android=messaging.AndroidConfig(
-                priority="high",
-                notification=messaging.AndroidNotification(
-                    channel_id="favorite_risk_alarm_channel"  # 앱 내부 노티 채널과 매칭
-                )
+                priority="high"
             ),
             topic=topic_name
         )
