@@ -10,6 +10,9 @@ on:
 jobs:
   fetch-and-clean:
     runs-on: ubuntu-latest
+    concurrency:
+      group: travel-disaster-data
+      cancel-in-progress: false
 
     steps:
     - name: 저장소 코드 가져오기
@@ -54,6 +57,7 @@ jobs:
 
         if ! git diff --cached --exit-code; then
           git commit -m "🚀 GDACS 수집-보강 단일 파이프라인 통합 및 FCM 푸시 알림 발송 완료"
+          git pull --rebase origin main
           git push
         else
           echo "업데이트된 신규 위험 정보 없음"
