@@ -19,8 +19,14 @@ HEADERS = {
 DAYS_BACK = 30  # 최근 N일치 이벤트만 표시 (ENABLE_DATE_FILTER=True일 때만 적용)
 ENABLE_DATE_FILTER = False  # False면 날짜 제한 없이 전부 가져옴 (디버깅/검증용)
 
-# 각 재난 타입별 최대로 남길 개수 지정
-MAX_ITEMS_PER_TYPE = 10
+# ⭐️ [수정] 개수 기반 top-N 방식을 완전히 제거하고 "최근성 기준" 필터로 교체.
+# 기존 MAX_ITEMS_PER_TYPE=10 방식은 진행중인 재난(is_current=true)이라도
+# 순위 경쟁에서 밀리면 화면/알림 목록에서 사라졌다가, last_updated가
+# 살짝만 갱신돼도 다시 나타나는 churn(들쭉날쭉함)을 유발했음. 이는 지도 표시
+# 불안정성뿐 아니라 "이미 보낸 재난을 신규로 재판정"하는 알림 중복 문제의
+# 근본 원인이기도 했음.
+# 새 방식: EVENT_TYPE_MAX_AGE_DAYS 이내에 갱신된 진행중 재난은 개수 상관없이 전부 유지.
+EVENT_TYPE_MAX_AGE_DAYS = 7
 
 # 병렬 처리에 사용할 최대 스레드 수 (너무 높으면 GDACS 서버에서 차단당할 수 있으므로 8이 적당합니다)
 MAX_WORKERS = 8
@@ -36,6 +42,15 @@ BASE_URL_TEMPLATE = (
 # 페이지 요청 실패 시 재시도 설정 (타임아웃 방지 강화)
 PAGE_RETRY_COUNT = 3        
 PAGE_RETRY_DELAY_SEC = 2.0  
+
+# ⭐️ [신규] 발송 이력(sent_disaster_ids.json) 관련 설정.
+# - 무제한 누적 리스트가 아니라 "gdacs_id -> 마지막으로 알림 보낸 시점의 last_updated"
+#   형태로 저장. 같은 last_updated면 재발송하지 않고, last_updated가 실제로
+#   바뀌면(=상황이 진짜 갱신됨) 정당한 재알림으로 간주해서 다시 보냄.
+# - PRUNE_AFTER_DAYS보다 오래된 기록은 매 실행마다 자동으로 정리되어
+#   파일이 무한정 커지지 않음(영구 보관 문제 없음).
+SENT_IDS_FILEPATH = "data/sent_disaster_ids.json"
+PRUNE_AFTER_DAYS = 45
 
 GDACS_COUNTRY_MAP = {
     "republic of korea": "South Korea",
@@ -66,9 +81,6 @@ SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
 SHOW_ONLY_CURRENT = True
 
 # ⭐️ [추가] ISO 3166-1 alpha-3 -> alpha-2 정식 매핑 테이블.
-# 안드로이드 MyFirebaseMessagingService.java의 buildIso3ToIso2Map()과 동일한 매핑.
-# 기존에는 iso3_val[:2] (앞 2글자 자르기)로 근사했는데, 예를 들어 MEX(멕시코)의
-# 앞 2글자는 "ME"라서 실제로는 몬테네그로 코드와 충돌하는 등 오답이 잦았음.
 ISO3_TO_ISO2 = {
     "AFG":"AF","ALA":"AX","ALB":"AL","DZA":"DZ","ASM":"AS","AND":"AD","AGO":"AO","AIA":"AI",
     "ATA":"AQ","ATG":"AG","ARG":"AR","ARM":"AM","ABW":"AW","AUS":"AU","AUT":"AT","AZE":"AZ",
@@ -112,7 +124,6 @@ def iso3_to_iso2(iso3_val: str) -> str:
     return iso3_val[:2] if len(iso3_val) == 3 else ""
 
 
-# 🌟 파이어베이스 시스템 초기화 함수
 def init_firebase():
     """깃허브 Secrets에 등록된 환경변수를 읽어 파이어베이스 관리를 시작합니다."""
     if not firebase_admin._apps:
@@ -131,7 +142,6 @@ def init_firebase():
     return True
 
 
-# 🌟 [수정 완료] 실제 파이어베이스 'all' 토픽으로 데이터 페이로드 폭탄을 쏘는 함수
 def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title, event_id, last_updated):
     """
     모든 사용자가 수신할 수 있도록 'all' 토픽으로 푸시를 전송하되,
@@ -141,42 +151,30 @@ def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title,
     이 블록이 있으면 앱이 백그라운드/종료 상태일 때 FCM이 MyFirebaseMessagingService의
     onMessageReceived()를 거치지 않고 시스템이 직접 알림을 그리는데, title/body를
     notification 블록에 안 넣었기 때문에 시스템은 앱 이름만 표시하는 빈 알림을 띄웠음.
-    (앱이 포그라운드일 때만 onMessageReceived가 호출되어 정상 작동했던 것)
     data-only 메시지로 보내면 백그라운드에서도 항상 onMessageReceived가 호출되어
-    앱이 직접 국가명/시간을 조합한 알림을 만들 수 있음. channel_id는 앱 쪽
-    postNotification()에서 NotificationCompat.Builder(context, CHANNEL_ID)로
-    이미 지정하고 있으므로 여기서 중복 지정할 필요 없음.
+    앱이 직접 국가명/시간을 조합한 알림을 만들 수 있음.
     """
     topic_name = "all"
-    
-    # 안드로이드의 parseAsUtc()가 읽을 수 있도록 시간 값 포맷 안전 검증
-    # 만약 기존 데이터에 시간 값이 누락되어 있다면 현재 UTC 시간으로 백업 적용
+
     if not last_updated:
         last_updated = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     elif not (last_updated.endswith('Z') or last_updated.endswith('z')):
         last_updated = str(last_updated).replace(" ", "T") + "Z"
 
-    # 안드로이드가 수신 시 언어 번역에 참고할 수 있도록 국가명 정제
     c_name = country_name if country_name else "Global"
 
     try:
         message = messaging.Message(
-            # ⭐️ [핵심 보완] 앱 내부의 즐겨찾기 파싱 로직(resolveEventIso2)의 모든 분기점을 원천 통과하도록 
-            # 가능한 모든 형태의 국가 코드 및 텍스트 데이터 후보군을 변수 폭탄으로 주입
             data={
-                "iso_code": str(country_iso2).upper(),  # 1순위 (예: MX)
-                "isoCode": str(country_iso2).upper(),   # 2순위 (예: MX)
-                "iso3": str(country_iso3).upper(),      # 3순위 (예: MEX) -> 내장 맵을 통해 ISO2로 역변환됨
-                "country": c_name,                      # 4순위 텍스트 분기 대응 (예: Mexico)
-                "countries": json.dumps([c_name, str(country_iso2).upper(), str(country_iso3).upper()]), # 배열 분기 대응
-                
-                # 시간 및 식별 데이터 연동 (알림 고유 키 발급 및 시간 파싱용)
+                "iso_code": str(country_iso2).upper(),
+                "isoCode": str(country_iso2).upper(),
+                "iso3": str(country_iso3).upper(),
+                "country": c_name,
+                "countries": json.dumps([c_name, str(country_iso2).upper(), str(country_iso3).upper()]),
                 "last_updated": last_updated,
                 "event_date": last_updated,
                 "id": str(event_id) if event_id else "disaster_evt_999"
             },
-            # ⭐️ [수정 완료] notification 블록 제거 -> data-only 메시지로 변경.
-            # 백그라운드/종료 상태에서도 항상 onMessageReceived()가 호출되도록 함.
             android=messaging.AndroidConfig(
                 priority="high"
             ),
@@ -429,24 +427,32 @@ def fetch_disaster_list():
 
     print(f"\n⚙️  총 {len(results)}건 재난 추출 완료 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복, {skipped_too_old}기간초과)")
 
-    print("\n✂️  각 항목(타입)별 최신 10건으로 제한 프로세스 시작")
+    # ⭐️ [수정] 개수 기반 top-N("MAX_ITEMS_PER_TYPE")을 완전히 제거하고
+    # "최근성 기준" 필터로 교체. 진행중(is_current=true)인 재난은 EVENT_TYPE_MAX_AGE_DAYS
+    # 이내에 갱신됐다면 개수 상관없이 전부 유지한다. 인위적인 상한을 두지 않음으로써
+    # "순위 경쟁으로 밀려났다가 다시 나타나는" churn을 원천 차단한다.
+    print(f"\n✂️  각 타입별 최근 {EVENT_TYPE_MAX_AGE_DAYS}일 이내 갱신된 진행중 재난만 유지 (개수 제한 없음)")
     categorized = {etype: [] for etype in EVENT_TYPES}
-    
+
     for r in results:
         etype = r.get("eventtype")
         if etype in categorized:
             categorized[etype].append(r)
-            
+
+    age_cutoff = datetime.now(timezone.utc) - timedelta(days=EVENT_TYPE_MAX_AGE_DAYS)
     filtered_results = []
+
     for etype, items in categorized.items():
         def _get_date_key(x):
             dt = parse_gdacs_date(x.get("last_updated"))
             return dt or datetime.min.replace(tzinfo=timezone.utc)
-            
-        items.sort(key=_get_date_key, reverse=True)
-        trimmed_items = items[:MAX_ITEMS_PER_TYPE]
-        filtered_results.extend(trimmed_items)
-        print(f"  • [{etype}] 총 {len(items)}건 중 최신 {len(trimmed_items)}건만 유지 (초과 {max(0, len(items) - 10)}건 삭제)")
+
+        recent_items = [it for it in items if _get_date_key(it) >= age_cutoff]
+        recent_items.sort(key=_get_date_key, reverse=True)
+
+        filtered_results.extend(recent_items)
+        dropped = len(items) - len(recent_items)
+        print(f"  • [{etype}] 총 {len(items)}건 중 최근 {len(recent_items)}건 유지 ({dropped}건은 {EVENT_TYPE_MAX_AGE_DAYS}일 초과로 제외)")
 
     final_counts = Counter(r.get("eventtype") for r in filtered_results)
     print(f"👉 필터링 후 최종 결과 타입별 분포: {dict(final_counts)}")
@@ -546,20 +552,20 @@ def enrich_disasters_parallel(results):
     results.sort(key=lambda r: SEVERITY_ORDER.get(str(r.get("alert_level", "green")).lower(), 3))
 
     print(f"\n🔄 [병렬 스레드 적용] 상세 정보(Enrich) 수집 시작... (총 {len(results)}개 대상, Workers: {MAX_WORKERS})")
-    
+
     enriched_results = []
     enriched_ok = 0
     total_count = len(results)
 
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = {executor.submit(process_single_enrich, r): r for r in results}
-        
+
         for idx, future in enumerate(as_completed(futures), 1):
             updated_record, success = future.result()
             enriched_results.append(updated_record)
             if success:
                 enriched_ok += 1
-            
+
             etype = updated_record.get("eventtype", "?")
             eid = updated_record.get("eventid", "?")
             status_text = "성공" if success else "실패"
@@ -569,9 +575,52 @@ def enrich_disasters_parallel(results):
     return enriched_results
 
 
+def load_sent_ids_history():
+    """
+    ⭐️ [신규] 발송 이력 로드. {gdacs_id: last_updated} 형태.
+    PRUNE_AFTER_DAYS보다 오래된 항목은 이 시점에 걸러내서 반환하므로
+    파일이 무한정 누적되지 않는다.
+    """
+    if not os.path.exists(SENT_IDS_FILEPATH):
+        return {}
+    try:
+        with open(SENT_IDS_FILEPATH, "r", encoding="utf-8") as f:
+            raw = json.load(f)
+        history = raw.get("history", {})
+    except Exception as e:
+        print(f"⚠️ 발송 이력 파일 파싱 스킵 (최초 생성이거나 파일 깨짐 포착): {e}")
+        return {}
+
+    prune_cutoff = datetime.now(timezone.utc) - timedelta(days=PRUNE_AFTER_DAYS)
+    pruned = {}
+    for gdacs_id, entry in history.items():
+        recorded_at = parse_gdacs_date(entry.get("recorded_at"))
+        if recorded_at is not None and recorded_at < prune_cutoff:
+            continue  # 오래된 기록은 자동 정리
+        pruned[gdacs_id] = entry
+
+    dropped = len(history) - len(pruned)
+    print(f"🔍 발송 이력 파일 검사 완료: {len(pruned)}건 유지 ({dropped}건은 {PRUNE_AFTER_DAYS}일 초과로 정리)")
+    return pruned
+
+
+def save_sent_ids_history(history):
+    """⭐️ [신규] 발송 이력 저장 (원자적 쓰기)."""
+    tmp_path = SENT_IDS_FILEPATH + ".tmp"
+    try:
+        with open(tmp_path, "w", encoding="utf-8") as f:
+            json.dump({"history": history}, f, ensure_ascii=False, indent=2)
+        os.replace(tmp_path, SENT_IDS_FILEPATH)
+        print(f"💾 발송 이력 파일 갱신 완료: 총 {len(history)}건 기록")
+    except Exception as e:
+        print(f"⚠️ 발송 이력 파일 저장 실패: {e}")
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
+
+
 def main():
     results = fetch_disaster_list()
-    
+
     if not results:
         print("\n🚨 [위험] 수집 및 필터링 완료된 데이터가 총 0건입니다.")
         print("💡 API 서버 장애 혹은 네트워크 타임아웃으로 예상되며, 기존 JSON 데이터를 보호하기 위해 프로그램 쓰기를 건너뛰고 정상 안전 종료합니다.")
@@ -584,60 +633,68 @@ def main():
 
     os.makedirs(os.path.dirname(final_filepath), exist_ok=True)
 
-    existing_ids = set()
-    if os.path.exists(final_filepath):
-        try:
-            with open(final_filepath, "r", encoding="utf-8") as f:
-                old_json = json.load(f)
-                old_data = old_json.get("data", [])
-                existing_ids = {item["gdacs_id"] for item in old_data if "gdacs_id" in item}
-            print(f"\n🔍 기존 JSON 파일 검사 완료: {len(existing_ids)}개의 고유 ID를 조회했습니다.")
-        except Exception as e:
-            print(f"\n⚠️ 기존 JSON 파싱 스킵 (최초 생성이거나 데이터 파일 깨짐 포착): {e}")
+    # ⭐️ [수정] "이미 보냈는지" 판단 기준을 표시용 파일(realtime_disasters.json)이 아니라
+    # 별도의 발송 이력 파일(sent_disaster_ids.json)로 완전히 분리.
+    # 표시용 목록은 이제 날짜 기준 필터라 개수 churn은 줄었지만, 그래도 이중 안전장치로
+    # "gdacs_id + last_updated" 조합 기준 이력 관리를 유지한다.
+    sent_history = load_sent_ids_history()
 
     # 🌟 파이어베이스 인증 가동
     is_fcm_ready = init_firebase()
 
     if is_fcm_ready:
-        print("\n📢 [정기 실행: 신규 재난 판별 및 푸시 알림 프로세스 가동]")
+        print("\n📢 [정기 실행: 신규/갱신 재난 판별 및 푸시 알림 프로세스 가동]")
         new_disaster_count = 0
-        
+        now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
         for r in results:
             gdacs_id = r.get("gdacs_id")
-            
-            # 수집된 최신 항목 중 기존 파일에 없던 새로운 gdacs_id를 가진 항목이 있을 때만 푸시 진입
-            if gdacs_id and gdacs_id not in existing_ids:
+            if not gdacs_id:
+                continue
+
+            current_last_updated = r.get("last_updated", "")
+            prior_entry = sent_history.get(gdacs_id)
+
+            # ⭐️ 신규 이벤트이거나, 이미 보낸 적 있지만 last_updated가 실제로
+            # 바뀐(=상황이 갱신된) 경우에만 재발송. 단순히 목록에서 사라졌다
+            # 다시 나타난 것만으로는 재발송하지 않음.
+            is_new_or_updated = (prior_entry is None) or (prior_entry.get("last_updated") != current_last_updated)
+
+            if is_new_or_updated:
                 new_disaster_count += 1
-                
-                # ⭐️ [수정 완료] 기기 내부에서 ISO3 -> ISO2 역매핑을 지원하므로 
-                # GDACS의 기본 세 가지 포맷(iso3, country, iso2 후보군생성)을 명확히 추출하여 배달
+
                 iso3_val = str(r.get("iso3", "")).upper().strip()
                 country_name = r.get("country", "Global")
-                
-                # ⭐️ [수정] 정식 ISO3->ISO2 매핑 테이블 사용 (기존의 앞 2글자 자르기 방식은
-                # MEX->ME, KOR->KO처럼 오답이 많아서 제거함)
                 iso2_backup = iso3_to_iso2(iso3_val)
-                
-                print(f"  🆕 [신규 재난 포착] 제목: {r.get('title')} (ID: {gdacs_id})")
-                
-                # 토픽 전체 방송(all) 및 기기단 완벽 매칭용 파라미터 전달
+
+                reason = "신규" if prior_entry is None else "갱신"
+                print(f"  🆕 [{reason} 재난 포착] 제목: {r.get('title')} (ID: {gdacs_id})")
+
                 send_disaster_push(
                     country_iso2=iso2_backup,
                     country_iso3=iso3_val,
                     country_name=country_name,
                     disaster_title=r.get("title", "재난 경보"),
                     event_id=gdacs_id,
-                    last_updated=r.get("last_updated", "")
+                    last_updated=current_last_updated
                 )
+
+                sent_history[gdacs_id] = {
+                    "last_updated": current_last_updated,
+                    "recorded_at": now_iso
+                }
+
         if new_disaster_count == 0:
-            print("  - 지난 회차 대비 새롭게 발생한 재난 정보가 없으므로 알림 발송 처리를 안전하게 패스합니다.")
+            print("  - 지난 회차 대비 새롭게 발생하거나 갱신된 재난 정보가 없으므로 알림 발송 처리를 안전하게 패스합니다.")
     else:
         print("\n⚠️ 파이어베이스 작동에 필요한 Secrets 값이 없으므로 신규 재난 비교 및 FCM 전송 엔진을 가동하지 않습니다.")
+
+    save_sent_ids_history(sent_history)
 
     try:
         with open(temp_filepath, "w", encoding="utf-8") as f:
             json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
-        
+
         os.replace(temp_filepath, final_filepath)
         print(f"\n💾 파일 원자적 저장 성공: '{final_filepath}' 업데이트 완료!")
     except Exception as e:
