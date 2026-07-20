@@ -19,8 +19,8 @@ HEADERS = {
 DAYS_BACK = 30  # 최근 N일치 이벤트만 표시 (ENABLE_DATE_FILTER=True일 때만 적용)
 ENABLE_DATE_FILTER = False  # False면 날짜 제한 없이 전부 가져옴 (디버깅/검증용)
 
-# ⭐️ [수정] 개수 기반 top-N 방식을 완전히 제거하고 "최근성 기준" 필터로 교체.
-# 기존 MAX_ITEMS_PER_TYPE=10 방식은 진행중인 재난(is_current=true)이라도
+# ⭐️ [수정] 개수 기반 top-N("MAX_ITEMS_PER_TYPE") 방식을 완전히 제거하고
+# "최근성 기준" 필터로 교체. 기존 방식은 진행중인 재난(is_current=true)이라도
 # 순위 경쟁에서 밀리면 화면/알림 목록에서 사라졌다가, last_updated가
 # 살짝만 갱신돼도 다시 나타나는 churn(들쭉날쭉함)을 유발했음. 이는 지도 표시
 # 불안정성뿐 아니라 "이미 보낸 재난을 신규로 재판정"하는 알림 중복 문제의
@@ -81,6 +81,7 @@ SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
 SHOW_ONLY_CURRENT = True
 
 # ⭐️ [추가] ISO 3166-1 alpha-3 -> alpha-2 정식 매핑 테이블.
+# 안드로이드 MyFirebaseMessagingService.java의 buildIso3ToIso2Map()과 동일한 매핑.
 ISO3_TO_ISO2 = {
     "AFG":"AF","ALA":"AX","ALB":"AL","DZA":"DZ","ASM":"AS","AND":"AD","AGO":"AO","AIA":"AI",
     "ATA":"AQ","ATG":"AG","ARG":"AR","ARM":"AM","ABW":"AW","AUS":"AU","AUT":"AT","AZE":"AZ",
@@ -427,9 +428,9 @@ def fetch_disaster_list():
 
     print(f"\n⚙️  총 {len(results)}건 재난 추출 완료 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복, {skipped_too_old}기간초과)")
 
-    # ⭐️ [수정] 개수 기반 top-N("MAX_ITEMS_PER_TYPE")을 완전히 제거하고
-    # "최근성 기준" 필터로 교체. 진행중(is_current=true)인 재난은 EVENT_TYPE_MAX_AGE_DAYS
-    # 이내에 갱신됐다면 개수 상관없이 전부 유지한다. 인위적인 상한을 두지 않음으로써
+    # ⭐️ [수정] 개수 기반 top-N을 완전히 제거하고 "최근성 기준" 필터로 교체.
+    # 진행중(is_current=true)인 재난은 EVENT_TYPE_MAX_AGE_DAYS 이내에 갱신됐다면
+    # 개수 상관없이 전부 유지한다. 인위적인 상한을 두지 않음으로써
     # "순위 경쟁으로 밀려났다가 다시 나타나는" churn을 원천 차단한다.
     print(f"\n✂️  각 타입별 최근 {EVENT_TYPE_MAX_AGE_DAYS}일 이내 갱신된 진행중 재난만 유지 (개수 제한 없음)")
     categorized = {etype: [] for etype in EVENT_TYPES}
@@ -577,19 +578,27 @@ def enrich_disasters_parallel(results):
 
 def load_sent_ids_history():
     """
-    ⭐️ [신규] 발송 이력 로드. {gdacs_id: last_updated} 형태.
+    ⭐️ [신규] 발송 이력 로드. {gdacs_id: {last_updated, recorded_at}} 형태.
     PRUNE_AFTER_DAYS보다 오래된 항목은 이 시점에 걸러내서 반환하므로
     파일이 무한정 누적되지 않는다.
+
+    ⭐️ [부트스트랩 보정] 반환값에 더해 "이 파일이 원래 존재했는지" 여부도
+    함께 반환한다. 파일이 아예 없던 최초 실행(새 이력 시스템을 막 도입한 직후)에는
+    현재 활성 재난 전부가 "신규"로 오판되어 즐겨찾기 국가에 한꺼번에 알림이
+    몰리는 문제가 있었음. 파일이 원래 없었다면 이번 실행은 발송 없이 이력만
+    조용히 채워서(seed), 다음 실행부터 정상적으로 증분 비교되게 한다.
     """
-    if not os.path.exists(SENT_IDS_FILEPATH):
-        return {}
+    file_existed = os.path.exists(SENT_IDS_FILEPATH)
+    if not file_existed:
+        return {}, False
+
     try:
         with open(SENT_IDS_FILEPATH, "r", encoding="utf-8") as f:
             raw = json.load(f)
         history = raw.get("history", {})
     except Exception as e:
-        print(f"⚠️ 발송 이력 파일 파싱 스킵 (최초 생성이거나 파일 깨짐 포착): {e}")
-        return {}
+        print(f"⚠️ 발송 이력 파일 파싱 스킵 (파일 깨짐 포착): {e}")
+        return {}, False
 
     prune_cutoff = datetime.now(timezone.utc) - timedelta(days=PRUNE_AFTER_DAYS)
     pruned = {}
@@ -601,7 +610,7 @@ def load_sent_ids_history():
 
     dropped = len(history) - len(pruned)
     print(f"🔍 발송 이력 파일 검사 완료: {len(pruned)}건 유지 ({dropped}건은 {PRUNE_AFTER_DAYS}일 초과로 정리)")
-    return pruned
+    return pruned, True
 
 
 def save_sent_ids_history(history):
@@ -635,57 +644,70 @@ def main():
 
     # ⭐️ [수정] "이미 보냈는지" 판단 기준을 표시용 파일(realtime_disasters.json)이 아니라
     # 별도의 발송 이력 파일(sent_disaster_ids.json)로 완전히 분리.
-    # 표시용 목록은 이제 날짜 기준 필터라 개수 churn은 줄었지만, 그래도 이중 안전장치로
-    # "gdacs_id + last_updated" 조합 기준 이력 관리를 유지한다.
-    sent_history = load_sent_ids_history()
+    sent_history, history_existed = load_sent_ids_history()
 
     # 🌟 파이어베이스 인증 가동
     is_fcm_ready = init_firebase()
 
     if is_fcm_ready:
-        print("\n📢 [정기 실행: 신규/갱신 재난 판별 및 푸시 알림 프로세스 가동]")
-        new_disaster_count = 0
         now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-        for r in results:
-            gdacs_id = r.get("gdacs_id")
-            if not gdacs_id:
-                continue
+        if not history_existed:
+            # ⭐️ [부트스트랩] 이력 파일이 처음 생기는 실행 -> 현재 활성 재난 전부를
+            # "이미 처리됨"으로 조용히 기록만 하고 푸시는 보내지 않음.
+            # (없으면 기존 활성 재난 20~30건이 전부 "신규"로 오판되어
+            #  즐겨찾기 국가에 한꺼번에 알림이 몰리는 문제가 있었음)
+            print("\n📢 [최초 실행 감지] 발송 이력 파일이 없어 현재 활성 재난을 이력에만 기록하고, 이번 회차는 푸시를 발송하지 않습니다.")
+            for r in results:
+                gdacs_id = r.get("gdacs_id")
+                if gdacs_id:
+                    sent_history[gdacs_id] = {
+                        "last_updated": r.get("last_updated", ""),
+                        "recorded_at": now_iso
+                    }
+        else:
+            print("\n📢 [정기 실행: 신규/갱신 재난 판별 및 푸시 알림 프로세스 가동]")
+            new_disaster_count = 0
 
-            current_last_updated = r.get("last_updated", "")
-            prior_entry = sent_history.get(gdacs_id)
+            for r in results:
+                gdacs_id = r.get("gdacs_id")
+                if not gdacs_id:
+                    continue
 
-            # ⭐️ 신규 이벤트이거나, 이미 보낸 적 있지만 last_updated가 실제로
-            # 바뀐(=상황이 갱신된) 경우에만 재발송. 단순히 목록에서 사라졌다
-            # 다시 나타난 것만으로는 재발송하지 않음.
-            is_new_or_updated = (prior_entry is None) or (prior_entry.get("last_updated") != current_last_updated)
+                current_last_updated = r.get("last_updated", "")
+                prior_entry = sent_history.get(gdacs_id)
 
-            if is_new_or_updated:
-                new_disaster_count += 1
+                # ⭐️ 신규 이벤트이거나, 이미 보낸 적 있지만 last_updated가 실제로
+                # 바뀐(=상황이 갱신된) 경우에만 재발송. 단순히 목록에서 사라졌다
+                # 다시 나타난 것만으로는 재발송하지 않음.
+                is_new_or_updated = (prior_entry is None) or (prior_entry.get("last_updated") != current_last_updated)
 
-                iso3_val = str(r.get("iso3", "")).upper().strip()
-                country_name = r.get("country", "Global")
-                iso2_backup = iso3_to_iso2(iso3_val)
+                if is_new_or_updated:
+                    new_disaster_count += 1
 
-                reason = "신규" if prior_entry is None else "갱신"
-                print(f"  🆕 [{reason} 재난 포착] 제목: {r.get('title')} (ID: {gdacs_id})")
+                    iso3_val = str(r.get("iso3", "")).upper().strip()
+                    country_name = r.get("country", "Global")
+                    iso2_backup = iso3_to_iso2(iso3_val)
 
-                send_disaster_push(
-                    country_iso2=iso2_backup,
-                    country_iso3=iso3_val,
-                    country_name=country_name,
-                    disaster_title=r.get("title", "재난 경보"),
-                    event_id=gdacs_id,
-                    last_updated=current_last_updated
-                )
+                    reason = "신규" if prior_entry is None else "갱신"
+                    print(f"  🆕 [{reason} 재난 포착] 제목: {r.get('title')} (ID: {gdacs_id})")
 
-                sent_history[gdacs_id] = {
-                    "last_updated": current_last_updated,
-                    "recorded_at": now_iso
-                }
+                    send_disaster_push(
+                        country_iso2=iso2_backup,
+                        country_iso3=iso3_val,
+                        country_name=country_name,
+                        disaster_title=r.get("title", "재난 경보"),
+                        event_id=gdacs_id,
+                        last_updated=current_last_updated
+                    )
 
-        if new_disaster_count == 0:
-            print("  - 지난 회차 대비 새롭게 발생하거나 갱신된 재난 정보가 없으므로 알림 발송 처리를 안전하게 패스합니다.")
+                    sent_history[gdacs_id] = {
+                        "last_updated": current_last_updated,
+                        "recorded_at": now_iso
+                    }
+
+            if new_disaster_count == 0:
+                print("  - 지난 회차 대비 새롭게 발생하거나 갱신된 재난 정보가 없으므로 알림 발송 처리를 안전하게 패스합니다.")
     else:
         print("\n⚠️ 파이어베이스 작동에 필요한 Secrets 값이 없으므로 신규 재난 비교 및 FCM 전송 엔진을 가동하지 않습니다.")
 
