@@ -1,6 +1,7 @@
 import json
 import re
 import time
+import hashlib
 import urllib.request
 import urllib.error
 import sys
@@ -125,6 +126,38 @@ def iso3_to_iso2(iso3_val: str) -> str:
     return iso3_val[:2] if len(iso3_val) == 3 else ""
 
 
+def compute_disaster_fingerprint(r):
+    """
+    ⭐️ [신규] "실제로 내용이 바뀌었는지"를 판단하기 위한 지문(fingerprint).
+
+    배경: GDACS는 is_current=true(진행중)인 재난의 last_updated(todate)를
+    실질적인 내용 변화 없이도 "아직 진행중"이라는 의미로 계속 갱신한다.
+    기존엔 last_updated 문자열이 조금이라도 바뀌면 무조건 재발송했기 때문에,
+    이미 며칠 전부터 알려진 재난이 있는 국가를 막 즐겨찾기한 사용자가
+    "지나간(이미 알고 있던) 재난"에 대한 알림을 받는 것처럼 느껴지는 문제가 있었다.
+
+    last_updated는 지문에서 의도적으로 제외하고, 알림을 받을 가치가 있는
+    "실제 상황 변화"만 담은 필드들로 지문을 구성한다. 이 지문이 이전과
+    동일하면 last_updated만 갱신됐어도 재발송하지 않는다.
+    """
+    parts = [
+        str(r.get("alert_level", "")),
+        str(r.get("alert_score", "")),
+        str(r.get("title", "")),
+        str(r.get("summary", ""))[:200],
+        str(r.get("deaths")),
+        str(r.get("displaced")),
+        str(r.get("missing")),
+        str(r.get("severity_text", "")),
+        str(r.get("magnitude", "")),
+    ]
+    fingerprint_source = "|".join(parts)
+    # ⚠️ 내장 hash()는 프로세스마다 무작위 솔트가 적용되는 해시 랜덤화 때문에
+    # 같은 문자열이라도 매 GitHub Actions 실행(=매 프로세스)마다 다른 값이 나온다.
+    # 반드시 hashlib처럼 결정론적인 해시를 써야 "실제로 안 바뀜"을 올바르게 판정할 수 있다.
+    return hashlib.sha256(fingerprint_source.encode("utf-8")).hexdigest()
+
+
 def init_firebase():
     """깃허브 Secrets에 등록된 환경변수를 읽어 파이어베이스 관리를 시작합니다."""
     if not firebase_admin._apps:
@@ -154,6 +187,12 @@ def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title,
     notification 블록에 안 넣었기 때문에 시스템은 앱 이름만 표시하는 빈 알림을 띄웠음.
     data-only 메시지로 보내면 백그라운드에서도 항상 onMessageReceived가 호출되어
     앱이 직접 국가명/시간을 조합한 알림을 만들 수 있음.
+
+    ⭐️ [신규] data에 "type": "travel_risk" 필드를 명시적으로 추가.
+    클라이언트(MyFirebaseMessagingService)가 이 필드로 어떤 기능인지 라우팅하는
+    구조로 바뀌었기 때문에, 필드가 없으면 하위호환을 위해 travel_risk로 간주하긴
+    하지만 신규 발송분부터는 항상 명시적으로 보내는 것이 맞다(향후 다른 기능이
+    추가되면 서버 쪽도 그 기능에 맞는 type을 명시적으로 채워 보내야 함).
     """
     topic_name = "all"
 
@@ -167,6 +206,7 @@ def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title,
     try:
         message = messaging.Message(
             data={
+                "type": "travel_risk",
                 "iso_code": str(country_iso2).upper(),
                 "isoCode": str(country_iso2).upper(),
                 "iso3": str(country_iso3).upper(),
@@ -663,6 +703,7 @@ def main():
                 if gdacs_id:
                     sent_history[gdacs_id] = {
                         "last_updated": r.get("last_updated", ""),
+                        "fingerprint": compute_disaster_fingerprint(r),
                         "recorded_at": now_iso
                     }
         else:
@@ -675,12 +716,17 @@ def main():
                     continue
 
                 current_last_updated = r.get("last_updated", "")
+                current_fingerprint = compute_disaster_fingerprint(r)
                 prior_entry = sent_history.get(gdacs_id)
 
-                # ⭐️ 신규 이벤트이거나, 이미 보낸 적 있지만 last_updated가 실제로
-                # 바뀐(=상황이 갱신된) 경우에만 재발송. 단순히 목록에서 사라졌다
-                # 다시 나타난 것만으로는 재발송하지 않음.
-                is_new_or_updated = (prior_entry is None) or (prior_entry.get("last_updated") != current_last_updated)
+                # ⭐️ [수정] last_updated(GDACS todate) 대신 fingerprint(실제 내용) 비교로 변경.
+                # GDACS는 진행중(is_current=true) 재난의 todate를 내용 변화 없이도 계속
+                # 갱신하므로, last_updated만 보고 판단하면 "이미 알려진 재난"이 계속
+                # 신규/갱신으로 오판되어 재발송된다 — 특히 막 즐겨찾기한 사용자에게는
+                # "지나간 재난"에 대한 알림처럼 느껴지는 원인이었다.
+                # fingerprint는 심각도/사망자/변위/실종/제목/요약처럼 알림을 받을
+                # 가치가 있는 실제 변화만 담으므로, todate만 흘러가는 경우는 걸러진다.
+                is_new_or_updated = (prior_entry is None) or (prior_entry.get("fingerprint") != current_fingerprint)
 
                 if is_new_or_updated:
                     new_disaster_count += 1
@@ -703,6 +749,7 @@ def main():
 
                     sent_history[gdacs_id] = {
                         "last_updated": current_last_updated,
+                        "fingerprint": current_fingerprint,
                         "recorded_at": now_iso
                     }
 
