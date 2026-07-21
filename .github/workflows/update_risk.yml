@@ -47,7 +47,24 @@ jobs:
         # 알림용 임시 파일 생성이 필요 없는 구조이지만, 파이프라인 호환성을 위해 유지합니다.
         echo '{ "status": "success", "data": [] }' > data/realtime_alerts.json
 
-    # [3단계] 최종 데이터 변경 감지 및 자동 배포
+    # ⭐️ [신규 3단계] 재난 이벤트 없이 "국가 위험도만" 바뀐 경우를 위한 FCM 동기화 신호.
+    # 클라이언트가 1시간 폴링을 제거하고 FCM 수신 시에만 데이터를 재동기화하는
+    # 구조로 바뀌었기 때문에, GDACS 재난 이벤트가 없어도 travel_risk.json이
+    # 실제로 바뀌었다면(git diff로 판별) 반드시 한 번은 신호를 보내야
+    # 클라이언트 지도가 구버전 위험도로 멈춰있지 않는다.
+    # git add/commit 이전(작업 트리 vs 마지막 커밋)에 판별해야 정확하다.
+    - name: 위험도 변경 감지 시 FCM 동기화 신호 발송
+      env:
+        FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+      run: |
+        if ! git diff --quiet -- data/travel_risk.json; then
+          echo "🔔 travel_risk.json 변경 감지 - FCM 동기화 신호를 발송합니다."
+          python3 scripts/send_risk_sync_push.py
+        else
+          echo "travel_risk.json 변경 없음 - 동기화 신호를 건너뜁니다."
+        fi
+
+    # [4단계] 최종 데이터 변경 감지 및 자동 배포
     - name: 변경사항 자동 커밋 및 푸시
       run: |
         git config --global user.name "github-actions[bot]"
