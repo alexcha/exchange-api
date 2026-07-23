@@ -1,7 +1,6 @@
-name: Update Travel & Disaster Data
+Name: Update Travel & Disaster Data
 
 on:
-  
   workflow_dispatch:     # 깃허브 웹에서 수동 실행 버튼 활성화
   repository_dispatch:   # 🌟 구글 앱스 스크립트(GAS) 호출을 받기 위한 설정
     types: [update-travel-disaster]
@@ -47,24 +46,31 @@ jobs:
         # 알림용 임시 파일 생성이 필요 없는 구조이지만, 파이프라인 호환성을 위해 유지합니다.
         echo '{ "status": "success", "data": [] }' > data/realtime_alerts.json
 
-    # ⭐️ [신규] GDACS 처리 직후, 발송 이력 파일만 별도로 즉시 커밋.
-    # cancel-in-progress: true 때문에 이후 단계(위험도 동기화 신호, 최종 커밋)에서
-    # 다음 트리거로 인해 실행이 취소될 수 있다. 이 단계가 없으면, 방금 실제로
-    # FCM push를 보낸 이벤트들의 발송 이력이 로컬 파일에만 존재하다가 취소와 함께
-    # 통째로 사라지고(=git에는 반영 안 됨), 다음 실행이 "이력에 없으니 신규"로
-    # 오판해서 같은 이벤트를 중복 발송하게 된다. GDACS 단계 완료 직후 이 파일만
-    # 빠르게 커밋/푸시해두면, 이후 어느 단계에서 취소되더라도 이미 보낸 push는
-    # 안전하게 이력에 남는다.
+    # ⭐️ [수정] GDACS 처리 직후, 발송 이력 파일만 별도로 즉시 커밋 (Stash 안전장치 추가)
+    # cancel-in-progress: true 때문에 이후 단계에서 실행이 취소되더라도 
+    # 중복 push가 가지 않도록 발송 이력 파일만 먼저 푸시합니다. 
+    # 이때 다른 변경된 파일들(travel_risk.json 등)로 인해 rebase 에러가 나지 않도록 stash 처리를 합니다.
     - name: 재난 발송 이력 즉시 커밋 (실행 취소 대비 안전장치)
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+        # 1. 발송 이력 파일만 스테이징
         git add data/sent_disaster_ids.json
+        
+        # 2. 스테이징된 변경 사항이 있는지 확인
         if ! git diff --cached --exit-code; then
           git commit -m "📌 재난 발송 이력 갱신 (안전 커밋)"
+          
+          # 3. 스테이징되지 않은 나머지 변경 파일들을 잠시 숨김 (rebase 에러 방지)
+          git stash --keep-index --include-untracked
+          
+          # 4. 원격 저장소 갱신 및 푸시
           git pull --rebase origin main
           git push
+          
+          # 5. 숨겨두었던 나머지 파일들의 변경 사항을 다시 복구
+          git stash pop
         else
           echo "발송 이력 변경 없음 - 커밋 생략"
         fi
