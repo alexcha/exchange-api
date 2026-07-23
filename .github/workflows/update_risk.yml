@@ -1,8 +1,7 @@
 name: Update Travel & Disaster Data
 
 on:
-  schedule:
-    - cron: '0 18 * * *' # 매일 한국 시간(KST) 새벽 3시 자동 실행
+  
   workflow_dispatch:     # 깃허브 웹에서 수동 실행 버튼 활성화
   repository_dispatch:   # 🌟 구글 앱스 스크립트(GAS) 호출을 받기 위한 설정
     types: [update-travel-disaster]
@@ -10,9 +9,10 @@ on:
 jobs:
   fetch-and-clean:
     runs-on: ubuntu-latest
+    
     concurrency:
       group: travel-disaster-data
-      cancel-in-progress: false
+      cancel-in-progress: true
 
     steps:
     - name: 저장소 코드 가져오기
@@ -46,6 +46,28 @@ jobs:
         python3 scripts/fetch_and_enrich_gdacs.py
         # 알림용 임시 파일 생성이 필요 없는 구조이지만, 파이프라인 호환성을 위해 유지합니다.
         echo '{ "status": "success", "data": [] }' > data/realtime_alerts.json
+
+    # ⭐️ [신규] GDACS 처리 직후, 발송 이력 파일만 별도로 즉시 커밋.
+    # cancel-in-progress: true 때문에 이후 단계(위험도 동기화 신호, 최종 커밋)에서
+    # 다음 트리거로 인해 실행이 취소될 수 있다. 이 단계가 없으면, 방금 실제로
+    # FCM push를 보낸 이벤트들의 발송 이력이 로컬 파일에만 존재하다가 취소와 함께
+    # 통째로 사라지고(=git에는 반영 안 됨), 다음 실행이 "이력에 없으니 신규"로
+    # 오판해서 같은 이벤트를 중복 발송하게 된다. GDACS 단계 완료 직후 이 파일만
+    # 빠르게 커밋/푸시해두면, 이후 어느 단계에서 취소되더라도 이미 보낸 push는
+    # 안전하게 이력에 남는다.
+    - name: 재난 발송 이력 즉시 커밋 (실행 취소 대비 안전장치)
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+        git add data/sent_disaster_ids.json
+        if ! git diff --cached --exit-code; then
+          git commit -m "📌 재난 발송 이력 갱신 (안전 커밋)"
+          git pull --rebase origin main
+          git push
+        else
+          echo "발송 이력 변경 없음 - 커밋 생략"
+        fi
 
     # ⭐️ [신규 3단계] 재난 이벤트 없이 "국가 위험도만" 바뀐 경우를 위한 FCM 동기화 신호.
     # 클라이언트가 1시간 폴링을 제거하고 FCM 수신 시에만 데이터를 재동기화하는
