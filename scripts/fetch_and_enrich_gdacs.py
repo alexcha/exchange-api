@@ -753,11 +753,21 @@ def main():
                         "recorded_at": now_iso
                     }
 
+                    # ⭐️ [신규] push를 보낸 "직후" 즉시 이력을 디스크에 저장.
+                    # 기존엔 루프가 다 끝난 뒤(save_sent_ids_history(sent_history)) 한 번에만
+                    # 저장했는데, 이제 워크플로가 cancel-in-progress: true라 실행이
+                    # 중간에 취소될 수 있다. 만약 push는 이미 나갔는데 이력 저장 전에
+                    # 취소되면, 다음 실행이 같은 이벤트를 "또 신규"로 오판해서
+                    # 중복 알림을 보내게 된다. push마다 즉시 저장하면 이 위험이 없다.
+                    save_sent_ids_history(sent_history)
+
             if new_disaster_count == 0:
                 print("  - 지난 회차 대비 새롭게 발생하거나 갱신된 재난 정보가 없으므로 알림 발송 처리를 안전하게 패스합니다.")
     else:
         print("\n⚠️ 파이어베이스 작동에 필요한 Secrets 값이 없으므로 신규 재난 비교 및 FCM 전송 엔진을 가동하지 않습니다.")
 
+    # ⭐️ 루프 중간중간 이미 저장됐더라도, 부트스트랩 시딩 등 다른 갱신분까지
+    # 포함해 마지막에 한 번 더 전체 상태를 저장(멱등 연산이라 안전함).
     save_sent_ids_history(sent_history)
 
     try:
