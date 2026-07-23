@@ -1,4 +1,4 @@
-Name: Update Travel & Disaster Data
+name: Update Travel & Disaster Data
 
 on:
   workflow_dispatch:     # 깃허브 웹에서 수동 실행 버튼 활성화
