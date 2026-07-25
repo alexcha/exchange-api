@@ -2,6 +2,7 @@ import json
 import re
 import time
 import hashlib
+import uuid
 import urllib.request
 import urllib.error
 import sys
@@ -193,6 +194,11 @@ def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title,
     구조로 바뀌었기 때문에, 필드가 없으면 하위호환을 위해 travel_risk로 간주하긴
     하지만 신규 발송분부터는 항상 명시적으로 보내는 것이 맞다(향후 다른 기능이
     추가되면 서버 쪽도 그 기능에 맞는 type을 명시적으로 채워 보내야 함).
+
+    ⭐️ [신규] data에 "alarm_id" 필드 추가. gdacs_id(재난 자체의 ID)와는 별개로,
+    "이 발송(알람) 자체"를 식별하는 고유 ID다. 같은 재난이라도 여러 번 갱신되면서
+    push가 여러 번 나갈 수 있는데, 각 발송 건을 개별적으로 추적/디버깅하고 싶을 때
+    (예: Logcat에서 특정 알림이 언제 어떤 값으로 발송됐는지 추적) 이 값으로 구분한다.
     """
     topic_name = "all"
 
@@ -202,11 +208,13 @@ def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title,
         last_updated = str(last_updated).replace(" ", "T") + "Z"
 
     c_name = country_name if country_name else "Global"
+    alarm_id = uuid.uuid4().hex  # ⭐️ [신규] 이 발송 건 고유 식별자
 
     try:
         message = messaging.Message(
             data={
                 "type": "travel_risk",
+                "alarm_id": alarm_id,
                 "iso_code": str(country_iso2).upper(),
                 "isoCode": str(country_iso2).upper(),
                 "iso3": str(country_iso3).upper(),
@@ -222,7 +230,7 @@ def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title,
             topic=topic_name
         )
         response = messaging.send(message)
-        print(f"  👉 [FCM 알림 방송 성공] 토픽 채널: {topic_name} / 대상 국가: {c_name}({country_iso2}) (전송 ID: {response})")
+        print(f"  👉 [FCM 알림 방송 성공] 토픽 채널: {topic_name} / 대상 국가: {c_name}({country_iso2}) / 알람ID: {alarm_id} (전송 ID: {response})")
     except Exception as e:
         print(f"  ❌ [FCM 알림 방송 실패] 토픽 채널: {topic_name} / 에러 내용: {e}")
 
