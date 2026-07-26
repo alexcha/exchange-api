@@ -558,15 +558,25 @@ def process_single_enrich(r):
         except ValueError:
             val = 0
 
-        if "death" in name:
-            deaths += val
-            deaths_found = True
-        elif "displaced" in name or "evacuat" in name:
-            displaced += val
-            displaced_found = True
-        elif "missing" in name:
-            missing += val
-            missing_found = True
+        # ⭐️ [버그 수정] GDACS API는 sendai 항목마다 "latest" 플래그를 내려준다 -
+        # 같은 지역/항목에 대해 시간이 지나며 수치가 갱신되면, 과거 값은 latest=false로
+        # 남아있고 가장 최근 값만 latest=true가 된다. 그런데 기존 코드는 이 플래그를
+        # sendai_details에 캡처만 해두고 실제 합산(deaths/displaced/missing) 로직에서는
+        # 전혀 쓰지 않아서, "이미 무효화된 과거 수치"까지 전부 더해버리는 문제가 있었다.
+        # 그 결과 GDACS 공식 리포트 페이지의 "현재 유효한 총계"와 앱에 표시되는 숫자가
+        # 서로 달라졌다(예: 사망자 13명 vs 공식 20명). latest=true인 항목만 합산한다.
+        is_latest = str(s.get("latest", "")).strip().lower() in ("true", "1", "yes")
+
+        if is_latest:
+            if "death" in name:
+                deaths += val
+                deaths_found = True
+            elif "displaced" in name or "evacuat" in name:
+                displaced += val
+                displaced_found = True
+            elif "missing" in name:
+                missing += val
+                missing_found = True
 
         sendai_details.append({
             "type": s.get("sendaitype"),
