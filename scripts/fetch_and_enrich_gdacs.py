@@ -607,7 +607,43 @@ def process_single_enrich(r):
     r["severity_text"] = severity.get("severitytext")
     r["impact_history"] = sendai_details
     r["impact_description"] = (sendai_details[-1]["description"][:300] if sendai_details else None)
-    r["overview_map_url"] = images.get("overviewmap") or images.get("overviewmap_cached")
+
+    # ⭐️ [신규] "요약(summary)"이 아니라 상세 페이지의 실제 본문 설명을 최대한 끌어온다.
+    # 기존엔 report_description이 타입/심각도만 보고 템플릿으로 찍어낸 문장이라
+    # ("이 홍수는 ~영향을 미칠 수 있습니다" 식) 이벤트마다 사실상 똑같은 뻔한 문장이었다.
+    # geteventdata 상세 응답(props)에는 이벤트별로 실제 작성된 설명 텍스트가 들어있는
+    # 경우가 있는데, GDACS API 응답에 따라 필드명이 조금씩 다를 수 있어서 알려진
+    # 후보 필드명을 순서대로 시도하고, 그중 실제로 내용이 있는(그리고 템플릿과
+    # 다른) 첫 번째 값을 상세 설명으로 채택한다. 전부 비어있으면 기존 템플릿 문장으로
+    # 안전하게 폴백한다 - 필드명이 바뀌어도 앱이 빈 화면을 보여주는 일은 없게.
+    detail_desc_candidates = [
+        props.get("description"),
+        props.get("htmldescription"),
+        props.get("eventdescription"),
+        props.get("longdescription"),
+        detail.get("description") if isinstance(detail, dict) else None,
+        detail.get("htmldescription") if isinstance(detail, dict) else None,
+    ]
+    detail_description = None
+    for candidate in detail_desc_candidates:
+        if not candidate:
+            continue
+        cleaned = re.sub(r'<[^>]*>', '', str(candidate)).strip()
+        if cleaned and cleaned.lower() != str(r.get("title", "")).lower():
+            detail_description = cleaned
+            break
+    r["detail_description"] = detail_description  # 없으면 None - 클라이언트가 report_description으로 폴백
+
+    # ⭐️ [신규] overview map 하나만이 아니라 images 딕셔너리에 들어있는 이미지를 전부 수집.
+    # geteventdata가 지진의 경우 진도맵/인구노출맵 등 여러 장을 내려주는 경우가 있는데
+    # 기존엔 overviewmap 하나만 골라서 나머지는 버리고 있었다.
+    image_urls = []
+    if isinstance(images, dict):
+        for key, val in images.items():
+            if isinstance(val, str) and val.strip().lower().startswith(("http://", "https://")):
+                image_urls.append(val.strip())
+    r["image_urls"] = image_urls  # 여러 장(없으면 빈 리스트)
+    r["overview_map_url"] = images.get("overviewmap") or images.get("overviewmap_cached") or (image_urls[0] if image_urls else None)
     r["report_detail_url"] = detail_url
 
     r["magnitude"] = eq_details.get("magnitude")
