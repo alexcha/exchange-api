@@ -21,14 +21,22 @@ HEADERS = {
 DAYS_BACK = 30  # 최근 N일치 이벤트만 표시 (ENABLE_DATE_FILTER=True일 때만 적용)
 ENABLE_DATE_FILTER = False  # False면 날짜 제한 없이 전부 가져옴 (디버깅/검증용)
 
-# ⭐️ [수정] 개수 기반 top-N("MAX_ITEMS_PER_TYPE") 방식을 완전히 제거하고
-# "최근성 기준" 필터로 교체. 기존 방식은 진행중인 재난(is_current=true)이라도
-# 순위 경쟁에서 밀리면 화면/알림 목록에서 사라졌다가, last_updated가
-# 살짝만 갱신돼도 다시 나타나는 churn(들쭉날쭉함)을 유발했음. 이는 지도 표시
-# 불안정성뿐 아니라 "이미 보낸 재난을 신규로 재판정"하는 알림 중복 문제의
-# 근본 원인이기도 했음.
-# 새 방식: EVENT_TYPE_MAX_AGE_DAYS 이내에 갱신된 진행중 재난은 개수 상관없이 전부 유지.
-EVENT_TYPE_MAX_AGE_DAYS = 7
+# ⭐️ [버그 수정] 기존엔 EVENT_TYPE_MAX_AGE_DAYS = 7 하나로 모든 재난 타입을 동일하게
+# 취급했다. 그런데 "얼마나 오래 지나야 사실상 끝난 걸로 봐도 되는지"는 재난 종류마다
+# 완전히 다르다 — 산불/쓰나미는 열 감지·파고 관측이 끊기면 사실상 종료된 것과 마찬가지고,
+# 가뭄/화산은 원래 몇 주~몇 달씩 느리게 지속되는 게 정상이다. 하나의 7일 기준을 전부에
+# 적용하다 보니, 산불처럼 빨리 끝나는 재난이 며칠씩 더 "진행중"인 것처럼 화면에 남아있는
+# 문제(체감상 "지나간 데이터가 계속 보인다")가 있었다. 재난 타입별로 기준을 따로 둔다.
+EVENT_TYPE_MAX_AGE_DAYS_BY_TYPE = {
+    "EQ": 3,    # 지진 - 본진 이후 여진 정도만 짧게 추적
+    "WF": 2,    # 산불 - 위성 열 감지가 끊기면 사실상 진화된 것으로 봄
+    "TS": 2,    # 쓰나미 - 발생 후 파고 관측이 끝나면 빠르게 종료
+    "TC": 5,    # 태풍/사이클론 - 소멸까지 며칠 정도 걸림
+    "FL": 7,    # 홍수 - 배수/복구까지 시간이 걸려 기존 기준 유지
+    "VO": 10,   # 화산 - 분화 활동이 길게 이어질 수 있음
+    "DR": 14,   # 가뭄 - 원래 변화가 느린 재난이라 가장 길게 유지
+}
+DEFAULT_EVENT_TYPE_MAX_AGE_DAYS = 7  # 매핑에 없는 타입 대비 기본값(기존 동작과 동일)
 
 # 병렬 처리에 사용할 최대 스레드 수 (너무 높으면 GDACS 서버에서 차단당할 수 있으므로 8이 적당합니다)
 MAX_WORKERS = 8
@@ -477,10 +485,10 @@ def fetch_disaster_list():
     print(f"\n⚙️  총 {len(results)}건 재난 추출 완료 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복, {skipped_too_old}기간초과)")
 
     # ⭐️ [수정] 개수 기반 top-N을 완전히 제거하고 "최근성 기준" 필터로 교체.
-    # 진행중(is_current=true)인 재난은 EVENT_TYPE_MAX_AGE_DAYS 이내에 갱신됐다면
-    # 개수 상관없이 전부 유지한다. 인위적인 상한을 두지 않음으로써
+    # 진행중(is_current=true)인 재난은 타입별 기준일(EVENT_TYPE_MAX_AGE_DAYS_BY_TYPE)
+    # 이내에 갱신됐다면 개수 상관없이 전부 유지한다. 인위적인 상한을 두지 않음으로써
     # "순위 경쟁으로 밀려났다가 다시 나타나는" churn을 원천 차단한다.
-    print(f"\n✂️  각 타입별 최근 {EVENT_TYPE_MAX_AGE_DAYS}일 이내 갱신된 진행중 재난만 유지 (개수 제한 없음)")
+    print(f"\n✂️  각 타입별 기준일(타입마다 다름) 이내 갱신된 진행중 재난만 유지 (개수 제한 없음)")
     categorized = {etype: [] for etype in EVENT_TYPES}
 
     for r in results:
@@ -488,7 +496,7 @@ def fetch_disaster_list():
         if etype in categorized:
             categorized[etype].append(r)
 
-    age_cutoff = datetime.now(timezone.utc) - timedelta(days=EVENT_TYPE_MAX_AGE_DAYS)
+    now_utc = datetime.now(timezone.utc)
     filtered_results = []
 
     for etype, items in categorized.items():
@@ -496,12 +504,16 @@ def fetch_disaster_list():
             dt = parse_gdacs_date(x.get("last_updated"))
             return dt or datetime.min.replace(tzinfo=timezone.utc)
 
+        # ⭐️ [버그 수정] 타입마다 다른 기준일 적용 (없으면 기본값)
+        max_age_days = EVENT_TYPE_MAX_AGE_DAYS_BY_TYPE.get(etype, DEFAULT_EVENT_TYPE_MAX_AGE_DAYS)
+        age_cutoff = now_utc - timedelta(days=max_age_days)
+
         recent_items = [it for it in items if _get_date_key(it) >= age_cutoff]
         recent_items.sort(key=_get_date_key, reverse=True)
 
         filtered_results.extend(recent_items)
         dropped = len(items) - len(recent_items)
-        print(f"  • [{etype}] 총 {len(items)}건 중 최근 {len(recent_items)}건 유지 ({dropped}건은 {EVENT_TYPE_MAX_AGE_DAYS}일 초과로 제외)")
+        print(f"  • [{etype}] 총 {len(items)}건 중 최근 {len(recent_items)}건 유지 (기준: {max_age_days}일, {dropped}건은 기준일 초과로 제외)")
 
     final_counts = Counter(r.get("eventtype") for r in filtered_results)
     print(f"👉 필터링 후 최종 결과 타입별 분포: {dict(final_counts)}")
