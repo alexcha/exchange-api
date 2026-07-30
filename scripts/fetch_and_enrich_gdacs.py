@@ -4,6 +4,7 @@ import time
 import hashlib
 import uuid
 import urllib.request
+import urllib.parse
 import urllib.error
 import sys
 import os
@@ -18,7 +19,10 @@ HEADERS = {
     "Accept": "application/json",
 }
 
-GDACS_GEOJSON_URL = "https://www.gdacs.org/gdacsapi/api/events/geteventlist/geojson"
+# -------------------------------------------------------------
+# 🔗 [수정] GDACS 공식 SEARCH API 엔드포인트
+# -------------------------------------------------------------
+GDACS_GEOJSON_URL = "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
 
 FETCH_DAYS_BACK = 30
 MAX_WORKERS = 8
@@ -28,7 +32,7 @@ PAGE_RETRY_DELAY_SEC = 2.0
 SENT_IDS_FILEPATH = "data/sent_disaster_ids.json"
 PRUNE_AFTER_DAYS = 45
 
-# GDACS 카테고리별 전용 리포트 페이지 경로
+# GDACS 카테고리별 전용 리포트 페이지 경로 매핑
 CATEGORY_PATH_MAP = {
     "TC": "Cyclones/report.aspx",
     "EQ": "Earthquakes/report_smpreliminary.aspx",
@@ -243,7 +247,16 @@ def fetch_events_from_gdacs_geojson(days_back=FETCH_DAYS_BACK, retries=PAGE_RETR
     from_date = (now_utc - timedelta(days=days_back)).strftime("%Y-%m-%d")
     to_date = (now_utc + timedelta(days=1)).strftime("%Y-%m-%d")
 
-    url = f"{GDACS_GEOJSON_URL}?fromDate={from_date}&toDate={to_date}"
+    # -------------------------------------------------------------
+    # 🔗 [수정] GDACS SEARCH API 파라미터 적용 (SEARCH?eventlist=...&fromdate=...&todate=...)
+    # -------------------------------------------------------------
+    event_list = "EQ;TC;FL;VO;WF;DR;TS"
+    params = {
+        "eventlist": event_list,
+        "fromdate": from_date,
+        "todate": to_date
+    }
+    url = f"{GDACS_GEOJSON_URL}?{urllib.parse.urlencode(params)}"
     print(f"📡 GDACS GeoJSON API 요청: {from_date} ~ {to_date}")
 
     for attempt in range(1, retries + 1):
@@ -429,7 +442,7 @@ def process_single_enrich(r):
 
     props = detail.get("properties", detail) or {}
 
-    # episodeid 보강 (GeoJSON 단계에 없었던 경우 백업 수집)
+    # episodeid 보강 (GeoJSON 단계에 없었던 경우 백업 수집 및 전용 페이지 URL 업데이트)
     if not r.get("episodeid"):
         ep_id = props.get("episodeid") or props.get("episode_id") or ""
         if ep_id:
