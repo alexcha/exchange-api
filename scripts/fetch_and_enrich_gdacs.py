@@ -20,16 +20,17 @@ HEADERS = {
 DAYS_BACK = 30  # 최근 N일치 이벤트만 표시 (ENABLE_DATE_FILTER=True일 때만 적용)
 ENABLE_DATE_FILTER = False  # False면 날짜 제한 없이 전부 가져옴 (디버깅/검증용)
 
+# 비활성(is_current=False) 상태인 재난에만 적용되는 과거 데이터 정리 기준일
 EVENT_TYPE_MAX_AGE_DAYS_BY_TYPE = {
-    "EQ": 3,    # 지진 - 본진 이후 여진 정도만 짧게 추적
-    "WF": 2,    # 산불 - 위성 열 감지가 끊기면 사실상 진화된 것으로 봄
-    "TS": 2,    # 쓰나미 - 발생 후 파고 관측이 끝나면 빠르게 종료
-    "TC": 5,    # 태풍/사이클론 - 소멸까지 며칠 정도 걸림
-    "FL": 7,    # 홍수 - 배수/복구까지 시간이 걸려 기존 기준 유지
-    "VO": 10,   # 화산 - 분화 활동이 길게 이어질 수 있음
-    "DR": 14,   # 가뭄 - 원래 변화가 느린 재난이라 가장 길게 유지
+    "EQ": 7,
+    "WF": 7,
+    "TS": 7,
+    "TC": 30,   # 태풍 보존 기간을 30일로 대폭 확장
+    "FL": 14,
+    "VO": 30,
+    "DR": 60,
 }
-DEFAULT_EVENT_TYPE_MAX_AGE_DAYS = 7  # 매핑에 없는 타입 대비 기본값
+DEFAULT_EVENT_TYPE_MAX_AGE_DAYS = 14  # 매핑에 없는 타입 대비 기본값
 
 MAX_WORKERS = 8
 EVENT_TYPES = ["EQ", "TC", "FL", "VO", "WF", "DR", "TS"]
@@ -37,7 +38,7 @@ EVENT_TYPES = ["EQ", "TC", "FL", "VO", "WF", "DR", "TS"]
 # GDACS SEARCH API는 날짜 범위(fromdate, todate) 파라미터가 없으면 결과를 빈 값으로 반환함
 def get_base_url(event_type):
     now = datetime.now(timezone.utc)
-    from_date = (now - timedelta(days=30)).strftime("%Y-%m-%d")
+    from_date = (now - timedelta(days=60)).strftime("%Y-%m-%d")  # API 조회 범위도 60일로 여유있게 확장
     to_date = now.strftime("%Y-%m-%d")
     return (
         f"https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
@@ -431,7 +432,7 @@ def fetch_disaster_list():
 
     print(f"\n⚙️  총 {len(results)}건 재난 추출 완료 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복, {skipped_too_old}기간초과)")
 
-    print(f"\n✂️  각 타입별 기준일 이내 갱신된 진행중 재난만 유지")
+    print(f"\n✂️  진행 중(is_current=True)인 재난은 무조건 유지, 비활성 재난만 유효기간 검사")
     categorized = {etype: [] for etype in EVENT_TYPES}
 
     for r in results:
@@ -450,12 +451,19 @@ def fetch_disaster_list():
         max_age_days = EVENT_TYPE_MAX_AGE_DAYS_BY_TYPE.get(etype, DEFAULT_EVENT_TYPE_MAX_AGE_DAYS)
         age_cutoff = now_utc - timedelta(days=max_age_days)
 
-        recent_items = [it for it in items if _get_date_key(it) >= age_cutoff]
-        recent_items.sort(key=_get_date_key, reverse=True)
+        valid_items = []
+        for it in items:
+            # 💡 [핵심 수정] GDACS가 '진행 중'으로 표시한 재난은 날짜에 구애받지 않고 무조건 포함
+            if it.get("is_current") is True:
+                valid_items.append(it)
+            elif _get_date_key(it) >= age_cutoff:
+                valid_items.append(it)
 
-        filtered_results.extend(recent_items)
-        dropped = len(items) - len(recent_items)
-        print(f"  • [{etype}] 총 {len(items)}건 중 최근 {len(recent_items)}건 유지 (기준: {max_age_days}일, {dropped}건은 기준일 초과로 제외)")
+        valid_items.sort(key=_get_date_key, reverse=True)
+
+        filtered_results.extend(valid_items)
+        dropped = len(items) - len(valid_items)
+        print(f"  • [{etype}] 총 {len(items)}건 중 {len(valid_items)}건 유지 (삭제: {dropped}건)")
 
     final_counts = Counter(r.get("eventtype") for r in filtered_results)
     print(f"👉 필터링 후 최종 결과 타입별 분포: {dict(final_counts)}")
