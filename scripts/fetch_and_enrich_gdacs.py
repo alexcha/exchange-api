@@ -19,20 +19,23 @@ HEADERS = {
     "Accept": "application/json",
 }
 
-# GDACS 공식 엔드포인트 목록 (Primary / Fallback)
-GDACS_SEARCH_URL = "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
+# -------------------------------------------------------------
+# 🔗 GDACS API 엔드포인트 설정
+# -------------------------------------------------------------
 GDACS_APP_URL = "https://www.gdacs.org/gdacsapi/api/events/geteventlist/events4app"
+GDACS_SEARCH_URL = "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
+GDACS_RSS_GEOJSON_URL = "https://www.gdacs.org/xml/rss_7d.geojson"
 
 FETCH_DAYS_BACK = 30
 MAX_WORKERS = 8
-PAGE_RETRY_COUNT = 3
-PAGE_RETRY_DELAY_SEC = 3.0  # 타임아웃 완화를 위해 재시도 대기시간 증가
-API_TIMEOUT_SEC = 30       # 읽기 타임아웃을 30초로 연장
+PAGE_RETRY_COUNT = 2
+PAGE_RETRY_DELAY_SEC = 2.0
+API_TIMEOUT_SEC = 15
 
 SENT_IDS_FILEPATH = "data/sent_disaster_ids.json"
 PRUNE_AFTER_DAYS = 45
 
-# GDACS 카테고리별 전용 리포트 페이지 경로 매핑
+# 재난 카테고리별 전용 리포트 웹페이지 경로 매핑
 CATEGORY_PATH_MAP = {
     "TC": "Cyclones/report.aspx",
     "EQ": "Earthquakes/report_smpreliminary.aspx",
@@ -181,9 +184,7 @@ def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title,
                 "event_date": last_updated,
                 "id": str(event_id) if event_id else "disaster_evt_999"
             },
-            android=messaging.AndroidConfig(
-                priority="high"
-            ),
+            android=messaging.AndroidConfig(priority="high"),
             topic=topic_name
         )
         response = messaging.send(message)
@@ -242,58 +243,59 @@ def parse_gdacs_date(date_str):
         return None
 
 
-def fetch_events_from_gdacs_geojson(days_back=FETCH_DAYS_BACK, retries=PAGE_RETRY_COUNT, delay=PAGE_RETRY_DELAY_SEC):
+def fetch_events_from_gdacs_geojson():
     """
-    SEARCH API 및 Fallback URL을 순차 시도하여 GeoJSON 데이터 수집
+    GDACS Quick Start 공식 문서 반영:
+    1. alertlevel(red;orange;green) 조건 명시로 캐시된 데이터 최적화 수집
+    2. 100건 제한(pagenumber=1) 가이드 준수
     """
     now_utc = datetime.now(timezone.utc)
-    from_date = (now_utc - timedelta(days=days_back)).strftime("%Y-%m-%d")
+    from_date = (now_utc - timedelta(days=FETCH_DAYS_BACK)).strftime("%Y-%m-%d")
     to_date = (now_utc + timedelta(days=1)).strftime("%Y-%m-%d")
 
-    event_list = "EQ;TC;FL;VO;WF;DR;TS"
-    params = {
-        "eventlist": event_list,
+    # GDACS 공식 문서 권장 쿼리 파라미터[span_1](start_span)[span_1](end_span)
+    search_params = urllib.parse.urlencode({
+        "eventlist": "EQ;TC;FL;VO;WF;DR;TS",
         "fromdate": from_date,
-        "todate": to_date
-    }
-    
-    # 시도할 candidate URL 리스트
+        "todate": to_date,
+        "alertlevel": "red;orange;green",  # 조건 명시로 무한 대기 방지[span_2](start_span)[span_2](end_span)
+        "pagenumber": "1"                  # 최대 100건 페이징[span_3](start_span)[span_3](end_span)
+    })
+
     target_urls = [
-        f"{GDACS_SEARCH_URL}?{urllib.parse.urlencode(params)}",
-        f"{GDACS_APP_URL}",
-        f"{GDACS_SEARCH_URL}?eventlist={event_list}"
+        ("events4app (캐시 권장)", GDACS_APP_URL),
+        ("SEARCH API (필터링)", f"{GDACS_SEARCH_URL}?{search_params}"),
+        ("RSS GeoJSON 피드", GDACS_RSS_GEOJSON_URL)
     ]
 
-    print(f"📡 GDACS GeoJSON API 요청 범위: {from_date} ~ {to_date}")
-
-    for url_idx, target_url in enumerate(target_urls, 1):
-        print(f"  🌐 [시도 {url_idx}/{len(target_urls)}] 요청 URL: {target_url}")
-        for attempt in range(1, retries + 1):
+    for label, target_url in target_urls:
+        print(f" 🌐 [{label}] 엔드포인트 수집 시도: {target_url}")
+        for attempt in range(1, PAGE_RETRY_COUNT + 1):
             try:
                 req = urllib.request.Request(target_url, headers=HEADERS)
-                # 타임아웃을 30초로 지정하여 연장
                 with urllib.request.urlopen(req, timeout=API_TIMEOUT_SEC) as resp:
                     if resp.status == 200:
                         body = resp.read()
                         data = json.loads(body.decode("utf-8"))
                         features = data.get("features", [])
-                        print(f"  ✅ [GeoJSON API] 데이터 수집 성공! (HTTP 200, Total Features: {len(features)})")
-                        return features
+                        if features:
+                            print(f"  ✅ [{label}] 데이터 수집 성공! (Features: {len(features)}건)")
+                            return features
             except Exception as e:
-                print(f"  ⚠️ [GeoJSON API] 요청 실패 (시도 {attempt}/{retries}): {e}")
+                print(f"  ⚠️ [{label}] 시도 {attempt}/{PAGE_RETRY_COUNT} 실패: {e}")
 
-            if attempt < retries:
-                time.sleep(delay)
+            if attempt < PAGE_RETRY_COUNT:
+                time.sleep(PAGE_RETRY_DELAY_SEC)
 
     return []
 
 
 def fetch_disaster_list():
     print("==================================================")
-    print("🚀 실시간 재난 데이터 수집 가동 (GDACS GeoJSON API)")
+    print("🚀 실시간 재난 데이터 수집 가동 (GDACS API)")
     print("==================================================")
 
-    all_features = fetch_events_from_gdacs_geojson(days_back=FETCH_DAYS_BACK)
+    all_features = fetch_events_from_gdacs_geojson()
     type_counts = Counter((f.get("properties", {}) or {}).get("eventtype", "?") for f in all_features)
     print(f"\n📊 수집된 원본 이벤트 타입 분포: {dict(type_counts)}")
 
@@ -351,8 +353,8 @@ def fetch_disaster_list():
             severity_str = (props.get("alertlevel") or "unknown").upper()
             desc_clean = f"A {severity_str} level {event_name} event has been detected near {clean_country or 'coordinates'}: {lat}, {lng}."
 
+        # 🔗 episodeid 포함 URL 자동 매핑
         cat_path = CATEGORY_PATH_MAP.get(event_type_val, "report.aspx")
-        
         if episode_id_val:
             category_report_url = f"https://www.gdacs.org/{cat_path}?eventid={event_id_val}&episodeid={episode_id_val}&eventtype={event_type_val}"
             common_report_url = f"https://www.gdacs.org/report.aspx?eventid={event_id_val}&episodeid={episode_id_val}&eventtype={event_type_val}"
@@ -447,6 +449,7 @@ def process_single_enrich(r):
 
     props = detail.get("properties", detail) or {}
 
+    # episodeid가 2차 상세 데이터에서 보완된 경우 URL 재갱신
     if not r.get("episodeid"):
         ep_id = props.get("episodeid") or props.get("episode_id") or ""
         if ep_id:
@@ -456,6 +459,7 @@ def process_single_enrich(r):
             r["common_report_url"] = f"https://www.gdacs.org/report.aspx?eventid={eventid}&episodeid={ep_id}&eventtype={eventtype}"
             r["report_url"] = r["category_report_url"]
 
+    # 재난 유형별 상세 수치 추출
     tc_details = props.get("cyclonedetails") or {}
     eq_details = props.get("earthquakedetails") or {}
     fl_details = props.get("flooddetails") or {}
@@ -479,26 +483,22 @@ def process_single_enrich(r):
         r["max_wind_speed_text"] = f"{max_wind} km/h" if max_wind else None
         r["max_storm_surge"] = tc_details.get("maxstormsurge")
         r["exposed_countries"] = tc_details.get("affectedcountries") or r.get("country")
-
     elif eventtype == "EQ":
         r["magnitude"] = eq_details.get("magnitude")
         r["depth_km"] = eq_details.get("depth")
         r["event_date_local"] = eq_details.get("episodedatelocal")
-
     elif eventtype == "FL":
         r["flood_area_sqkm"] = fl_details.get("area") or fl_details.get("floodedarea")
         r["severity_score"] = fl_details.get("severity")
-
     elif eventtype == "VO":
         r["vei"] = vo_details.get("vei")
         r["plume_height_m"] = vo_details.get("plumeheight")
-
     elif eventtype == "WF":
         r["burned_area_ha"] = wf_details.get("burnedarea") or wf_details.get("area")
-
     elif eventtype == "DR":
         r["drought_index"] = dr_details.get("droughtindex")
 
+    # 🖼️ 이미지 및 지도 자원(resources / images) 수집
     resources = props.get("resources") or detail.get("resources") or []
     images_dict = props.get("images") or {}
 
