@@ -17,39 +17,28 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept": "application/json",
 }
-DAYS_BACK = 30  # 최근 N일치 이벤트만 표시 (ENABLE_DATE_FILTER=True일 때만 적용)
-ENABLE_DATE_FILTER = False  # False면 날짜 제한 없이 전부 가져옴 (디버깅/검증용)
 
-# 비활성(is_current=False) 상태인 재난에만 적용되는 과거 데이터 정리 기준일
-EVENT_TYPE_MAX_AGE_DAYS_BY_TYPE = {
-    "EQ": 7,
-    "WF": 7,
-    "TS": 7,
-    "TC": 30,   # 태풍 보존 기간을 30일로 대폭 확장
-    "FL": 14,
-    "VO": 30,
-    "DR": 60,
-}
-DEFAULT_EVENT_TYPE_MAX_AGE_DAYS = 14  # 매핑에 없는 타입 대비 기본값
+# GDACS 공식 앱 전용 종합 이벤트 목록 API
+EVENTS_4_APP_URL = "https://www.gdacs.org/gdacsapi/api/events/geteventlist/events4app"
 
 MAX_WORKERS = 8
-EVENT_TYPES = ["EQ", "TC", "FL", "VO", "WF", "DR", "TS"]
-
-# GDACS SEARCH API는 날짜 범위(fromdate, todate) 파라미터가 없으면 결과를 빈 값으로 반환함
-def get_base_url(event_type):
-    now = datetime.now(timezone.utc)
-    from_date = (now - timedelta(days=60)).strftime("%Y-%m-%d")  # API 조회 범위도 60일로 여유있게 확장
-    to_date = now.strftime("%Y-%m-%d")
-    return (
-        f"https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
-        f"?eventlist={event_type}&fromdate={from_date}&todate={to_date}&alertlevel=green%3Borange%3Bred"
-    )
-
 PAGE_RETRY_COUNT = 3
 PAGE_RETRY_DELAY_SEC = 2.0
 
 SENT_IDS_FILEPATH = "data/sent_disaster_ids.json"
 PRUNE_AFTER_DAYS = 45
+
+# 비활성(is_current=False) 상태인 재난 정리 기준일
+EVENT_TYPE_MAX_AGE_DAYS_BY_TYPE = {
+    "EQ": 7,
+    "WF": 7,
+    "TS": 7,
+    "TC": 30,
+    "FL": 14,
+    "VO": 30,
+    "DR": 60,
+}
+DEFAULT_EVENT_TYPE_MAX_AGE_DAYS = 14
 
 GDACS_COUNTRY_MAP = {
     "republic of korea": "South Korea",
@@ -75,8 +64,6 @@ IMPACT_BASIS = {
 }
 
 SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
-
-SHOW_ONLY_CURRENT = True
 
 ISO3_TO_ISO2 = {
     "AFG":"AF","ALA":"AX","ALB":"AL","DZA":"DZ","ASM":"AS","AND":"AD","AGO":"AO","AIA":"AI",
@@ -189,15 +176,6 @@ def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title,
         print(f"  ❌ [FCM 알림 방송 실패] 토픽 채널: {topic_name} / 에러 내용: {e}")
 
 
-def feature_key(feat):
-    props = feat.get("properties", {}) or {}
-    etype = props.get("eventtype", "")
-    eid = props.get("eventid", "")
-    if etype or eid:
-        return f"{etype}{eid}"
-    return None
-
-
 def get_centroid(geom):
     if not isinstance(geom, dict):
         return None
@@ -228,7 +206,7 @@ def get_centroid(geom):
 
 def fetch_json(url, timeout=5):
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        req = urllib.request.Request(url, headers=HEADERS)
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             return json.loads(resp.read().decode("utf-8"))
     except Exception as e:
@@ -248,7 +226,8 @@ def parse_gdacs_date(date_str):
         return None
 
 
-def fetch_page_with_retry(url, retries=PAGE_RETRY_COUNT, delay=PAGE_RETRY_DELAY_SEC):
+def fetch_events_from_events4app(retries=PAGE_RETRY_COUNT, delay=PAGE_RETRY_DELAY_SEC):
+    url = EVENTS_4_APP_URL
     status, body = None, None
     for attempt in range(1, retries + 1):
         try:
@@ -257,101 +236,38 @@ def fetch_page_with_retry(url, retries=PAGE_RETRY_COUNT, delay=PAGE_RETRY_DELAY_
                 status = resp.status
                 body = resp.read()
         except Exception as e:
-            print(f"    ⚠️ 페이지 요청 실패 (시도 {attempt}/{retries}): {e}")
+            print(f"  ⚠️ [events4app] 요청 실패 (시도 {attempt}/{retries}): {e}")
             status, body = None, None
 
         if status == 200 and body:
-            return status, body
+            try:
+                data = json.loads(body.decode("utf-8"))
+                features = data.get("features", [])
+                print(f"  ✅ [events4app] 데이터 수집 완료 (HTTP {status}, Total Features: {len(features)})")
+                return features
+            except Exception as e:
+                print(f"  ❌ [events4app] JSON 파싱 실패: {e}")
 
         if attempt < retries:
-            print(f"    ↻ 응답 이상 (status={status}, size={len(body) if body else 0}) "
-                  f"- {delay}초 후 재시도 ({attempt}/{retries})")
             time.sleep(delay)
 
-    return status, body
-
-
-def fetch_events_for_type(event_type, max_pages=5):
-    base_url = get_base_url(event_type)
-    all_features = []
-    seen_keys = set()
-    prev_first_key = None
-
-    for page in range(1, max_pages + 1):
-        url = f"{base_url}&pagenumber={page}"
-        status, body = fetch_page_with_retry(url)
-
-        print(f"  [{event_type}] 페이지 {page} 응답 HTTP 상태코드: {status}, "
-              f"크기: {len(body) if body else 0} bytes")
-
-        if status != 200 or not body:
-            print(f"  ⛔ [{event_type}] 페이지 {page} 재시도 {PAGE_RETRY_COUNT}회 모두 실패 - 이 타입 수집 중단")
-            break
-
-        try:
-            page_json = json.loads(body)
-        except Exception as e:
-            print(f"  [{event_type}] 페이지 {page} JSON 파싱 실패: {e}")
-            break
-
-        page_features = page_json.get("features")
-        if page_features is None:
-            for alt_key in ("data", "results", "events", "FeatureCollection"):
-                candidate = page_json.get(alt_key)
-                if isinstance(candidate, dict):
-                    candidate = candidate.get("features")
-                if isinstance(candidate, list):
-                    page_features = candidate
-                    break
-
-        if not page_features:
-            break
-
-        current_first_key = feature_key(page_features[0])
-        if page > 1 and current_first_key is not None and current_first_key == prev_first_key:
-            break
-        prev_first_key = current_first_key
-
-        new_in_page = 0
-        for feat in page_features:
-            key = feature_key(feat)
-            if key is not None and key in seen_keys:
-                continue
-            if key is not None:
-                seen_keys.add(key)
-            all_features.append(feat)
-            new_in_page += 1
-
-        if new_in_page == 0:
-            break
-
-    return all_features
+    return []
 
 
 def fetch_disaster_list():
-    all_features = []
-
     print("==================================================")
-    print("🚀 실시간 재난 데이터 수집 가동 (GDACS API)")
+    print("🚀 실시간 재난 데이터 수집 가동 (GDACS events4app API)")
     print("==================================================")
 
-    for idx, event_type in enumerate(EVENT_TYPES, 1):
-        print(f"\n📡 [{idx}/{len(EVENT_TYPES)}] GDACS [{event_type}] 수집 시작")
-        type_features = fetch_events_for_type(event_type)
-        print(f"  ✅ [{event_type}] {len(type_features)}건 수집 완료")
-        all_features.extend(type_features)
-        time.sleep(0.3)
-
+    all_features = fetch_events_from_events4app()
     type_counts = Counter((f.get("properties", {}) or {}).get("eventtype", "?") for f in all_features)
     print(f"\n📊 수집된 원본 이벤트 타입 분포: {dict(type_counts)}")
 
     results = []
-    skipped_not_current = 0
     skipped_duplicate = 0
     skipped_no_geom = 0
-    skipped_too_old = 0
     seen_result_keys = set()
-    cutoff_date = datetime.now(timezone.utc) - timedelta(days=DAYS_BACK)
+    now_utc = datetime.now(timezone.utc)
 
     for feat in all_features:
         props = feat.get("properties", {}) or {}
@@ -360,17 +276,17 @@ def fetch_disaster_list():
         event_type_val = props.get("eventtype", "")
         event_id_val = props.get("eventid", "")
 
-        raw_is_current = props.get("iscurrent")
+        # is_current 속성 감지
+        raw_is_current = props.get("iscurrent") if props.get("iscurrent") is not None else props.get("isCurrent")
+        if raw_is_current is None:
+            raw_is_current = props.get("current")
+
         is_current_bool = (raw_is_current is True) or (str(raw_is_current).strip().lower() in ("true", "1", "yes"))
 
-        if SHOW_ONLY_CURRENT and not is_current_bool:
-            skipped_not_current += 1
-            continue
-
-        event_date = parse_gdacs_date(props.get("todate")) or parse_gdacs_date(props.get("fromdate"))
-        if ENABLE_DATE_FILTER and event_date is not None and event_date < cutoff_date:
-            skipped_too_old += 1
-            continue
+        # 백업 판단: todate가 최근 24시간 이내이거나 미래인 경우 활성 재난으로 간주
+        todate_dt = parse_gdacs_date(props.get("todate"))
+        if not is_current_bool and todate_dt and todate_dt >= (now_utc - timedelta(hours=24)):
+            is_current_bool = True
 
         if event_type_val and event_id_val:
             result_key = f"{event_type_val}{event_id_val}"
@@ -430,19 +346,15 @@ def fetch_disaster_list():
             "is_current": is_current_bool,
         })
 
-    print(f"\n⚙️  총 {len(results)}건 재난 추출 완료 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복, {skipped_too_old}기간초과)")
+    print(f"\n⚙️  총 {len(results)}건 재난 추출 완료 (스킵: {skipped_no_geom}좌표누락, {skipped_duplicate}중복)")
 
-    print(f"\n✂️  진행 중(is_current=True)인 재난은 무조건 유지, 비활성 재난만 유효기간 검사")
-    categorized = {etype: [] for etype in EVENT_TYPES}
-
+    # 활성 재난 유지 및 비활성 재난 보존 기간 필터링
+    categorized = {}
     for r in results:
-        etype = r.get("eventtype")
-        if etype in categorized:
-            categorized[etype].append(r)
+        etype = r.get("eventtype", "UNKNOWN")
+        categorized.setdefault(etype, []).append(r)
 
-    now_utc = datetime.now(timezone.utc)
     filtered_results = []
-
     for etype, items in categorized.items():
         def _get_date_key(x):
             dt = parse_gdacs_date(x.get("last_updated"))
@@ -453,20 +365,16 @@ def fetch_disaster_list():
 
         valid_items = []
         for it in items:
-            # 💡 [핵심 수정] GDACS가 '진행 중'으로 표시한 재난은 날짜에 구애받지 않고 무조건 포함
             if it.get("is_current") is True:
                 valid_items.append(it)
             elif _get_date_key(it) >= age_cutoff:
                 valid_items.append(it)
 
         valid_items.sort(key=_get_date_key, reverse=True)
-
         filtered_results.extend(valid_items)
-        dropped = len(items) - len(valid_items)
-        print(f"  • [{etype}] 총 {len(items)}건 중 {len(valid_items)}건 유지 (삭제: {dropped}건)")
 
     final_counts = Counter(r.get("eventtype") for r in filtered_results)
-    print(f"👉 필터링 후 최종 결과 타입별 분포: {dict(final_counts)}")
+    print(f"👉 최종 데이터 타입별 분포: {dict(final_counts)}")
     print(f"👉 총 수집 대상 목록 수: {len(filtered_results)}건")
 
     return filtered_results
