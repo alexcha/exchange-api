@@ -18,12 +18,9 @@ HEADERS = {
     "Accept": "application/json",
 }
 
-# GDACS 공식 기간별 GeoJSON API (모든 재난 유형 수집)
 GDACS_GEOJSON_URL = "https://www.gdacs.org/gdacsapi/api/events/geteventlist/geojson"
 
-# 최근 며칠 간의 재난 데이터를 가져올지 설정 (기본 30일)
 FETCH_DAYS_BACK = 30
-
 MAX_WORKERS = 8
 PAGE_RETRY_COUNT = 3
 PAGE_RETRY_DELAY_SEC = 2.0
@@ -31,7 +28,17 @@ PAGE_RETRY_DELAY_SEC = 2.0
 SENT_IDS_FILEPATH = "data/sent_disaster_ids.json"
 PRUNE_AFTER_DAYS = 45
 
-# 비활성(is_current=False) 상태인 재난 종류별 보존 기준일
+# GDACS 카테고리별 전용 리포트 페이지 경로
+CATEGORY_PATH_MAP = {
+    "TC": "Cyclones/report.aspx",
+    "EQ": "Earthquakes/report_smpreliminary.aspx",
+    "FL": "Floods/report.aspx",
+    "VO": "Volcanoes/report.aspx",
+    "WF": "Wildfires/report.aspx",
+    "DR": "Droughts/report.aspx",
+    "TS": "Tsunami/report.aspx"
+}
+
 EVENT_TYPE_MAX_AGE_DAYS_BY_TYPE = {
     "EQ": 7,    # 지진
     "WF": 7,    # 산불
@@ -279,6 +286,7 @@ def fetch_disaster_list():
 
         event_type_val = props.get("eventtype", "")
         event_id_val = props.get("eventid", "")
+        episode_id_val = props.get("episodeid") or props.get("episode_id") or ""
 
         # is_current 속성 감지
         raw_is_current = props.get("iscurrent") if props.get("iscurrent") is not None else props.get("isCurrent")
@@ -287,7 +295,6 @@ def fetch_disaster_list():
 
         is_current_bool = (raw_is_current is True) or (str(raw_is_current).strip().lower() in ("true", "1", "yes"))
 
-        # 백업 판단: todate가 최근 24시간 이내이거나 미래인 경우 활성 재난으로 간주
         todate_dt = parse_gdacs_date(props.get("todate"))
         if not is_current_bool and todate_dt and todate_dt >= (now_utc - timedelta(hours=24)):
             is_current_bool = True
@@ -322,13 +329,20 @@ def fetch_disaster_list():
             severity_str = (props.get("alertlevel") or "unknown").upper()
             desc_clean = f"A {severity_str} level {event_name} event has been detected near {clean_country or 'coordinates'}: {lat}, {lng}."
 
-        api_report_url = (props.get("url") or {}).get("report", "") if isinstance(props.get("url"), dict) else ""
-        if api_report_url:
-            report_url = api_report_url
-        elif event_type_val and event_id_val:
-            report_url = f"https://www.gdacs.org/report.aspx?eventtype={event_type_val}&eventid={event_id_val}"
+        # -------------------------------------------------------------
+        # 🔗 재난 유형별 전용 웹페이지 URL 및 공통 URL 동시 생성
+        # -------------------------------------------------------------
+        cat_path = CATEGORY_PATH_MAP.get(event_type_val, "report.aspx")
+        
+        if episode_id_val:
+            category_report_url = f"https://www.gdacs.org/{cat_path}?eventid={event_id_val}&episodeid={episode_id_val}&eventtype={event_type_val}"
+            common_report_url = f"https://www.gdacs.org/report.aspx?eventid={event_id_val}&episodeid={episode_id_val}&eventtype={event_type_val}"
         else:
-            report_url = ""
+            category_report_url = f"https://www.gdacs.org/{cat_path}?eventid={event_id_val}&eventtype={event_type_val}"
+            common_report_url = f"https://www.gdacs.org/report.aspx?eventid={event_id_val}&eventtype={event_type_val}"
+
+        # 전용 페이지 URL을 메인 report_url로 할당
+        report_url = category_report_url
 
         results.append({
             "latitude": lat,
@@ -340,11 +354,14 @@ def fetch_disaster_list():
             "gdacs_id": f"{event_type_val}{event_id_val}",
             "eventtype": event_type_val,
             "eventid": event_id_val,
+            "episodeid": episode_id_val,
             "activation_number": props.get("glide"),
             "event_type": event_type_val,
             "alert_level": props.get("alertlevel", "green"),
             "alert_score": props.get("alertscore", 0),
-            "report_url": report_url,
+            "report_url": report_url,                      # 메인 전용 페이지 URL
+            "category_report_url": category_report_url,    # 전용 페이지 URL
+            "common_report_url": common_report_url,        # 범용 공통 URL
             "last_updated": props.get("todate") or props.get("fromdate") or "",
             "severity": props.get("alertlevel", "green"),
             "is_current": is_current_bool,
@@ -352,7 +369,6 @@ def fetch_disaster_list():
 
     print(f"\n⚙️  총 {len(results)}건 재난 추출 완료 (스킵: {skipped_no_geom}좌표누락, {skipped_duplicate}중복)")
 
-    # 활성 재난 유지 및 비활성 재난 보존 기간 필터링
     categorized = {}
     for r in results:
         etype = r.get("eventtype", "UNKNOWN")
@@ -413,8 +429,18 @@ def process_single_enrich(r):
 
     props = detail.get("properties", detail) or {}
 
+    # episodeid 보강 (GeoJSON 단계에 없었던 경우 백업 수집)
+    if not r.get("episodeid"):
+        ep_id = props.get("episodeid") or props.get("episode_id") or ""
+        if ep_id:
+            r["episodeid"] = ep_id
+            cat_path = CATEGORY_PATH_MAP.get(eventtype, "report.aspx")
+            r["category_report_url"] = f"https://www.gdacs.org/{cat_path}?eventid={eventid}&episodeid={ep_id}&eventtype={eventtype}"
+            r["common_report_url"] = f"https://www.gdacs.org/report.aspx?eventid={eventid}&episodeid={ep_id}&eventtype={eventtype}"
+            r["report_url"] = r["category_report_url"]
+
     # =============================================================
-    # 1. 재난 유형별(TC, EQ, FL, VO, WF, DR 등) 특화 수치 데이터 수집
+    # 1. 재난 유형별(TC, EQ, FL, VO, WF, DR 등) 특화 수치 수집
     # =============================================================
     tc_details = props.get("cyclonedetails") or {}
     eq_details = props.get("earthquakedetails") or {}
@@ -423,7 +449,6 @@ def process_single_enrich(r):
     wf_details = props.get("wildfiredetails") or {}
     dr_details = props.get("droughtdetails") or {}
 
-    # 노출 인구 및 취약도 공통 처리
     r["exposed_population"] = (
         tc_details.get("rapidpop") or eq_details.get("rapidpop") or
         fl_details.get("rapidpop") or props.get("affectedpopulation")
@@ -434,31 +459,30 @@ def process_single_enrich(r):
     )
     r["vulnerability"] = props.get("vulnerabilitytext") or props.get("vulnerability")
 
-    # 유형별 분기 추출
-    if eventtype == "TC":  # 태풍 / 열대저기압
+    if eventtype == "TC":
         max_wind = tc_details.get("maxwindspeed")
         r["max_wind_speed_kmh"] = max_wind
         r["max_wind_speed_text"] = f"{max_wind} km/h" if max_wind else None
         r["max_storm_surge"] = tc_details.get("maxstormsurge")
         r["exposed_countries"] = tc_details.get("affectedcountries") or r.get("country")
 
-    elif eventtype == "EQ":  # 지진
+    elif eventtype == "EQ":
         r["magnitude"] = eq_details.get("magnitude")
         r["depth_km"] = eq_details.get("depth")
         r["event_date_local"] = eq_details.get("episodedatelocal")
 
-    elif eventtype == "FL":  # 홍수
+    elif eventtype == "FL":
         r["flood_area_sqkm"] = fl_details.get("area") or fl_details.get("floodedarea")
         r["severity_score"] = fl_details.get("severity")
 
-    elif eventtype == "VO":  # 화산
+    elif eventtype == "VO":
         r["vei"] = vo_details.get("vei")
         r["plume_height_m"] = vo_details.get("plumeheight")
 
-    elif eventtype == "WF":  # 산불
+    elif eventtype == "WF":
         r["burned_area_ha"] = wf_details.get("burnedarea") or wf_details.get("area")
 
-    elif eventtype == "DR":  # 가뭄
+    elif eventtype == "DR":
         r["drought_index"] = dr_details.get("droughtindex")
 
     # =============================================================
