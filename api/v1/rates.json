@@ -1,15 +1,15 @@
 {
   "base": "USD",
-  "last_updated": "2026-07-30T17:22:44Z",
+  "last_updated": "2026-07-30T19:22:27Z",
   "currencies": [
     {
       "code": "AED",
-      "rate": 3.67286,
+      "rate": 3.673,
       "name": "United Arab Emirates Dirham"
     },
     {
       "code": "AFN",
-      "rate": 65.500004,
+      "rate": 64.999999,
       "name": "Afghan Afghani"
     },
     {
@@ -34,12 +34,12 @@
     },
     {
       "code": "ARS",
-      "rate": 1491.2869,
+      "rate": 1488.9865,
       "name": "Argentine Peso"
     },
     {
       "code": "AUD",
-      "rate": 1.423234,
+      "rate": 1.422638,
       "name": "Australian Dollar"
     },
     {
@@ -69,17 +69,17 @@
     },
     {
       "code": "BGN",
-      "rate": 1.69702,
+      "rate": 1.69596,
       "name": "Bulgarian Lev"
     },
     {
       "code": "BHD",
-      "rate": 0.377133,
+      "rate": 0.3771,
       "name": "Bahraini Dinar"
     },
     {
       "code": "BIF",
-      "rate": 2986.838468,
+      "rate": 2987.5,
       "name": "Burundian Franc"
     },
     {
@@ -99,7 +99,7 @@
     },
     {
       "code": "BRL",
-      "rate": 5.0865,
+      "rate": 5.0866,
       "name": "Brazilian Real"
     },
     {
@@ -109,7 +109,7 @@
     },
     {
       "code": "BTC",
-      "rate": 0.000015441592,
+      "rate": 0.000015473232,
       "name": "Bitcoin"
     },
     {
@@ -134,42 +134,42 @@
     },
     {
       "code": "CAD",
-      "rate": 1.399515,
+      "rate": 1.399546,
       "name": "Canadian Dollar"
     },
     {
       "code": "CDF",
-      "rate": 2313.761936,
+      "rate": 2275,
       "name": "Congolese Franc"
     },
     {
       "code": "CHF",
-      "rate": 0.804803,
+      "rate": 0.8039,
       "name": "Swiss Franc"
     },
     {
       "code": "CLF",
-      "rate": 0.023587,
+      "rate": 0.023598,
       "name": "Chilean Unit of Account (UF)"
     },
     {
       "code": "CLP",
-      "rate": 928.41,
+      "rate": 925.8,
       "name": "Chilean Peso"
     },
     {
       "code": "CNH",
-      "rate": 6.74751,
+      "rate": 6.746958,
       "name": "Chinese Yuan (Offshore)"
     },
     {
       "code": "CNY",
-      "rate": 6.7663,
+      "rate": 6.7569,
       "name": "Chinese Yuan"
     },
     {
       "code": "COP",
-      "rate": 3149.2,
+      "rate": 3123.89,
       "name": "Colombian Peso"
     },
     {
@@ -194,17 +194,17 @@
     },
     {
       "code": "CZK",
-      "rate": 21.002551,
+      "rate": 20.980986,
       "name": "Czech Republic Koruna"
     },
     {
       "code": "DJF",
-      "rate": 178.102046,
+      "rate": 177.827972,
       "name": "Djiboutian Franc"
     },
     {
       "code": "DKK",
-      "rate": 6.484016,
+      "rate": 6.480134,
       "name": "Danish Krone"
     },
     {
@@ -214,12 +214,12 @@
     },
     {
       "code": "DZD",
-      "rate": 132.73298,
+      "rate": 132.702722,
       "name": "Algerian Dinar"
     },
     {
       "code": "EGP",
-      "rate": 51.0648,
+      "rate": 51.0678,
       "name": "Egyptian Pound"
     },
     {
@@ -234,22 +234,22 @@
     },
     {
       "code": "EUR",
-      "rate": 0.867416,
+      "rate": 0.866918,
       "name": "Euro"
     },
     {
       "code": "FJD",
-      "rate": 2.2179,
+      "rate": 2.2159,
       "name": "Fijian Dollar"
     },
     {
       "code": "FKP",
-      "rate": 0.742702,
+      "rate": 0.742112,
       "name": "Falkland Islands Pound"
     },
     {
       "code": "GBP",
-      "rate": 0.742702,
+      "rate": 0.742112,
       "name": "British Pound Sterling"
     },
     {
@@ -259,7 +259,7 @@
     },
     {
       "code": "GGP",
-      "rate": 0.742702,
+      "rate": 0.742112,
       "name": "Guernsey Pound"
     },
     {
@@ -269,7 +269,7 @@
     },
     {
       "code": "GIP",
-      "rate": 0.742702,
+      "rate": 0.742112,
       "name": "Gibraltar Pound"
     },
     {
@@ -294,7 +294,7 @@
     },
     {
       "code": "HKD",
-      "rate": 7.842695,
+      "rate": 7.842596,
       "name": "Hong Kong Dollar"
     },
     {
@@ -304,7 +304,7 @@
     },
     {
       "code": "HRK",
-      "rate": 6.537481,
+      "rate": 6.533396,
       "name": "Croatian Kuna"
     },
     {
@@ -314,12 +314,12 @@
     },
     {
       "code": "HUF",
-      "rate": 314.715239,
+      "rate": 314.081228,
       "name": "Hungarian Forint"
     },
     {
       "code": "IDR",
-      "rate": 18045.829591,
+      "rate": 18042.666303,
       "name": "Indonesian Rupiah"
     },
     {
@@ -329,12 +329,12 @@
     },
     {
       "code": "IMP",
-      "rate": 0.742702,
+      "rate": 0.742112,
       "name": "Manx pound"
     },
     {
       "code": "INR",
-      "rate": 95.455725,
+      "rate": 95.507748,
       "name": "Indian Rupee"
     },
     {
@@ -349,12 +349,12 @@
     },
     {
       "code": "ISK",
-      "rate": 123.7,
+      "rate": 123.63,
       "name": "Icelandic Króna"
     },
     {
       "code": "JEP",
-      "rate": 0.742702,
+      "rate": 0.742112,
       "name": "Jersey Pound"
     },
     {
@@ -369,7 +369,7 @@
     },
     {
       "code": "JPY",
-      "rate": 159.58523913,
+      "rate": 158.9105,
       "name": "Japanese Yen"
     },
     {
@@ -399,7 +399,7 @@
     },
     {
       "code": "KRW",
-      "rate": 1423.347934,
+      "rate": 1420.990069,
       "name": "South Korean Won"
     },
     {
@@ -454,7 +454,7 @@
     },
     {
       "code": "MDL",
-      "rate": 17.470391,
+      "rate": 17.577873,
       "name": "Moldovan Leu"
     },
     {
@@ -504,12 +504,12 @@
     },
     {
       "code": "MXN",
-      "rate": 17.351752,
+      "rate": 17.355884,
       "name": "Mexican Peso"
     },
     {
       "code": "MYR",
-      "rate": 4.0897,
+      "rate": 4.0898,
       "name": "Malaysian Ringgit"
     },
     {
@@ -524,7 +524,7 @@
     },
     {
       "code": "NGN",
-      "rate": 1363.54,
+      "rate": 1362.75,
       "name": "Nigerian Naira"
     },
     {
@@ -534,7 +534,7 @@
     },
     {
       "code": "NOK",
-      "rate": 9.531398,
+      "rate": 9.523899,
       "name": "Norwegian Krone"
     },
     {
@@ -544,12 +544,12 @@
     },
     {
       "code": "NZD",
-      "rate": 1.701519,
+      "rate": 1.700194,
       "name": "New Zealand Dollar"
     },
     {
       "code": "OMR",
-      "rate": 0.384503,
+      "rate": 0.384498,
       "name": "Omani Rial"
     },
     {
@@ -569,7 +569,7 @@
     },
     {
       "code": "PHP",
-      "rate": 61.356,
+      "rate": 61.303005,
       "name": "Philippine Peso"
     },
     {
@@ -579,7 +579,7 @@
     },
     {
       "code": "PLN",
-      "rate": 3.7369,
+      "rate": 3.733498,
       "name": "Polish Zloty"
     },
     {
@@ -594,17 +594,17 @@
     },
     {
       "code": "RON",
-      "rate": 4.5506,
+      "rate": 4.5479,
       "name": "Romanian Leu"
     },
     {
       "code": "RSD",
-      "rate": 101.852,
+      "rate": 101.789,
       "name": "Serbian Dinar"
     },
     {
       "code": "RUB",
-      "rate": 79.724322,
+      "rate": 79.724312,
       "name": "Russian Ruble"
     },
     {
@@ -624,7 +624,7 @@
     },
     {
       "code": "SCR",
-      "rate": 13.429296,
+      "rate": 13.437811,
       "name": "Seychellois Rupee"
     },
     {
@@ -634,17 +634,17 @@
     },
     {
       "code": "SEK",
-      "rate": 9.527974,
+      "rate": 9.51897,
       "name": "Swedish Krona"
     },
     {
       "code": "SGD",
-      "rate": 1.282207,
+      "rate": 1.281364,
       "name": "Singapore Dollar"
     },
     {
       "code": "SHP",
-      "rate": 0.742702,
+      "rate": 0.742112,
       "name": "Saint Helena Pound"
     },
     {
@@ -699,7 +699,7 @@
     },
     {
       "code": "THB",
-      "rate": 33.3835,
+      "rate": 33.37,
       "name": "Thai Baht"
     },
     {
@@ -734,12 +734,12 @@
     },
     {
       "code": "TWD",
-      "rate": 32.4233,
+      "rate": 32.423501,
       "name": "New Taiwan Dollar"
     },
     {
       "code": "TZS",
-      "rate": 2647.498,
+      "rate": 2647.503,
       "name": "Tanzanian Shilling"
     },
     {
@@ -759,7 +759,7 @@
     },
     {
       "code": "UYU",
-      "rate": 40.247712,
+      "rate": 40.199167,
       "name": "Uruguayan Peso"
     },
     {
@@ -794,7 +794,7 @@
     },
     {
       "code": "ZAR",
-      "rate": 16.502263,
+      "rate": 16.496595,
       "name": "South African Rand"
     },
     {
