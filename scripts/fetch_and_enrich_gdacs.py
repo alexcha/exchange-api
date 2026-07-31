@@ -576,34 +576,38 @@ def process_single_enrich(r):
     images = props.get("images") or {}
     eq_details = props.get("earthquakedetails") or {}
 
-    # ⭐️ [신규/디버그용] geteventdata 응답의 실제 최상위 키 구조를 로그로 남긴다.
-    # 노출인구(exposedpopulation)/행정구역(affectedcountries 등) 필드명을 이 환경에서
-    # 직접 조회로 확인할 방법이 없어서, 실행 로그에서 실제 키 목록을 보고 정확한
-    # 필드명을 확정하기 위한 임시 진단 로그. 다음 실행 로그를 확인한 뒤
-    # 정확한 필드명으로 바꾸고 이 로그는 지워도 된다.
+    # ⭐️ [1차 완료 → 2차 진단] 지난 실행 로그로 실제 키 목록은 확인됨:
+    # props 키에 description/htmldescription/affectedcountries/impacts/episodes/
+    # severitydata가 실제로 존재함을 확인했다. exposedpopulation류 필드는 없고,
+    # 대신 "impacts"가 그 역할을 하는 것으로 보인다. 이번엔 "키가 있는지"가 아니라
+    # "그 안에 실제로 뭐가 들었는지"(타입/구조/일부 값)를 확인하기 위한 2차 진단 로그.
+    # 다음 실행 로그를 확인한 뒤 정확한 파싱 로직으로 바꾸고 이 로그는 지워도 된다.
     try:
-        print(f"    🔍 [필드탐색] {eventtype}{eventid} detail 최상위 키: {list(detail.keys())}")
-        print(f"    🔍 [필드탐색] {eventtype}{eventid} props 키: {list(props.keys())}")
-    except Exception:
-        pass
+        def _peek(val, label):
+            if isinstance(val, list):
+                print(f"    🔎 [구조탐색] {eventtype}{eventid} {label}: list(len={len(val)})"
+                      f" 첫 항목: {json.dumps(val[0], ensure_ascii=False)[:400] if val else '(비어있음)'}")
+            elif isinstance(val, dict):
+                print(f"    🔎 [구조탐색] {eventtype}{eventid} {label}: dict keys={list(val.keys())}"
+                      f" 내용: {json.dumps(val, ensure_ascii=False)[:400]}")
+            else:
+                print(f"    🔎 [구조탐색] {eventtype}{eventid} {label}: {type(val).__name__} = {str(val)[:200]}")
 
-    # ⭐️ [신규] 노출인구/행정구역 - 정확한 필드명이 확인되기 전까지는 여러 후보
-    # 필드명을 시도해서 있으면 채우고, 없으면 조용히 None/빈 값으로 둔다(에러 없음).
-    exposed_population_by_radius = (
-        props.get("exposedpopulation")
-        or props.get("populationexposure")
-        or props.get("population_exposure")
-        or None
-    )
-    r["exposed_population_by_radius"] = exposed_population_by_radius
+        _peek(props.get("impacts"), "impacts")
+        _peek(props.get("episodes"), "episodes")
+        _peek(props.get("affectedcountries"), "affectedcountries")
+        _peek(props.get("severitydata"), "severitydata")
+        print(f"    🔎 [구조탐색] {eventtype}{eventid} description: {str(props.get('description'))[:200]}")
+        print(f"    🔎 [구조탐색] {eventtype}{eventid} htmldescription: {str(props.get('htmldescription'))[:200]}")
+    except Exception as e:
+        print(f"    ⚠️ [구조탐색] 로그 출력 중 오류(무시하고 계속 진행): {e}")
 
-    affected_provinces = (
-        props.get("affectedcountries")
-        or props.get("affectedprovinces")
-        or props.get("countries")
-        or None
-    )
-    r["affected_provinces"] = affected_provinces
+    # ⭐️ [수정] 확인된 실제 필드명 반영. exposedpopulation류는 존재하지 않는 필드였음 -
+    # impacts로 교체(정확한 내부 구조는 위 진단 로그로 다음 실행에서 확정 예정).
+    r["exposed_population_by_radius"] = props.get("impacts")
+
+    # affectedcountries는 실제 존재가 확인된 필드
+    r["affected_provinces"] = props.get("affectedcountries")
 
     deaths = 0
     displaced = 0
