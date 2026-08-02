@@ -21,22 +21,11 @@ HEADERS = {
 DAYS_BACK = 30  # 최근 N일치 이벤트만 표시 (ENABLE_DATE_FILTER=True일 때만 적용)
 ENABLE_DATE_FILTER = False  # False면 날짜 제한 없이 전부 가져옴 (디버깅/검증용)
 
-# ⭐️ [버그 수정] 기존엔 EVENT_TYPE_MAX_AGE_DAYS = 7 하나로 모든 재난 타입을 동일하게
-# 취급했다. 그런데 "얼마나 오래 지나야 사실상 끝난 걸로 봐도 되는지"는 재난 종류마다
-# 완전히 다르다 — 산불/쓰나미는 열 감지·파고 관측이 끊기면 사실상 종료된 것과 마찬가지고,
-# 가뭄/화산은 원래 몇 주~몇 달씩 느리게 지속되는 게 정상이다. 하나의 7일 기준을 전부에
-# 적용하다 보니, 산불처럼 빨리 끝나는 재난이 며칠씩 더 "진행중"인 것처럼 화면에 남아있는
-# 문제(체감상 "지나간 데이터가 계속 보인다")가 있었다. 재난 타입별로 기준을 따로 둔다.
-EVENT_TYPE_MAX_AGE_DAYS_BY_TYPE = {
-    "EQ": 3,    # 지진 - 본진 이후 여진 정도만 짧게 추적
-    "WF": 2,    # 산불 - 위성 열 감지가 끊기면 사실상 진화된 것으로 봄
-    "TS": 2,    # 쓰나미 - 발생 후 파고 관측이 끝나면 빠르게 종료
-    "TC": 5,    # 태풍/사이클론 - 소멸까지 며칠 정도 걸림
-    "FL": 7,    # 홍수 - 배수/복구까지 시간이 걸려 기존 기준 유지
-    "VO": 10,   # 화산 - 분화 활동이 길게 이어질 수 있음
-    "DR": 14,   # 가뭄 - 원래 변화가 느린 재난이라 가장 길게 유지
-}
-DEFAULT_EVENT_TYPE_MAX_AGE_DAYS = 7  # 매핑에 없는 타입 대비 기본값(기존 동작과 동일)
+# ⭐️ [제거됨] 한때 재난 타입별로 다른 "최대 유지일"을 뒀었는데(EVENT_TYPE_MAX_AGE_DAYS_BY_TYPE),
+# 이게 GDACS 공식 사이트(default.aspx)보다 더 적게 보여주는 원인이었다. 공식 사이트는
+# iscurrent 값 하나만으로 표시 여부를 정하는데, 우리가 그 위에 "최근 N일 이내 갱신"이라는
+# 추가 조건을 덧씌워서 GDACS가 여전히 진행중으로 보는 태풍/산불이 목록에서 빠지곤 했다.
+# 공식 사이트와 동일하게 iscurrent만 신뢰하기로 하고 이 필터는 완전히 제거함.
 
 # 병렬 처리에 사용할 최대 스레드 수 (너무 높으면 GDACS 서버에서 차단당할 수 있으므로 8이 적당합니다)
 MAX_WORKERS = 8
@@ -505,39 +494,21 @@ def fetch_disaster_list():
 
     print(f"\n⚙️  총 {len(results)}건 재난 추출 완료 (스킵: {skipped_no_geom}좌표누락, {skipped_not_current}비활성, {skipped_duplicate}중복, {skipped_too_old}기간초과)")
 
-    # ⭐️ [수정] 개수 기반 top-N을 완전히 제거하고 "최근성 기준" 필터로 교체.
-    # 진행중(is_current=true)인 재난은 타입별 기준일(EVENT_TYPE_MAX_AGE_DAYS_BY_TYPE)
-    # 이내에 갱신됐다면 개수 상관없이 전부 유지한다. 인위적인 상한을 두지 않음으로써
-    # "순위 경쟁으로 밀려났다가 다시 나타나는" churn을 원천 차단한다.
-    print(f"\n✂️  각 타입별 기준일(타입마다 다름) 이내 갱신된 진행중 재난만 유지 (개수 제한 없음)")
-    categorized = {etype: [] for etype in EVENT_TYPES}
+    # ⭐️ [버그 수정] 타입별 날짜 상한(EVENT_TYPE_MAX_AGE_DAYS_BY_TYPE) 필터를 완전히 제거.
+    # GDACS 공식 사이트(default.aspx)는 "iscurrent" 값 하나만으로 표시 여부를 정하는데,
+    # 우리는 그 위에 "최근 N일 이내 갱신"이라는 우리만의 추가 조건을 덧씌우고 있었다.
+    # 그 결과 GDACS가 여전히 진행중으로 보는 태풍/산불이 우리 쪽 기준일(예: 산불 2일)을
+    # 넘겼다는 이유로 목록에서 빠져버려서 "공식 사이트보다 적게 보인다"는 문제가 생겼다.
+    # 공식 사이트와 동일하게 iscurrent만 신뢰하고(이미 앞에서 필터링됨), 여기서는
+    # 추가로 걸러내지 않고 최신순 정렬만 한다.
+    def _get_date_key(x):
+        dt = parse_gdacs_date(x.get("last_updated"))
+        return dt or datetime.min.replace(tzinfo=timezone.utc)
 
-    for r in results:
-        etype = r.get("eventtype")
-        if etype in categorized:
-            categorized[etype].append(r)
-
-    now_utc = datetime.now(timezone.utc)
-    filtered_results = []
-
-    for etype, items in categorized.items():
-        def _get_date_key(x):
-            dt = parse_gdacs_date(x.get("last_updated"))
-            return dt or datetime.min.replace(tzinfo=timezone.utc)
-
-        # ⭐️ [버그 수정] 타입마다 다른 기준일 적용 (없으면 기본값)
-        max_age_days = EVENT_TYPE_MAX_AGE_DAYS_BY_TYPE.get(etype, DEFAULT_EVENT_TYPE_MAX_AGE_DAYS)
-        age_cutoff = now_utc - timedelta(days=max_age_days)
-
-        recent_items = [it for it in items if _get_date_key(it) >= age_cutoff]
-        recent_items.sort(key=_get_date_key, reverse=True)
-
-        filtered_results.extend(recent_items)
-        dropped = len(items) - len(recent_items)
-        print(f"  • [{etype}] 총 {len(items)}건 중 최근 {len(recent_items)}건 유지 (기준: {max_age_days}일, {dropped}건은 기준일 초과로 제외)")
+    filtered_results = sorted(results, key=_get_date_key, reverse=True)
 
     final_counts = Counter(r.get("eventtype") for r in filtered_results)
-    print(f"👉 필터링 후 최종 결과 타입별 분포: {dict(final_counts)}")
+    print(f"👉 최종 결과 타입별 분포 (iscurrent 기준, 공식 사이트와 동일): {dict(final_counts)}")
     print(f"👉 총 수집 대상 목록 수: {len(filtered_results)}건")
 
     return filtered_results
@@ -662,6 +633,13 @@ def process_single_enrich(r):
         if not candidate:
             continue
         cleaned = re.sub(r'<[^>]*>', '', str(candidate)).strip()
+        # ⭐️ [버그 수정] htmldescription 등에는 보통 뒤에 "Duration: from: 27 Jul 2026
+        # to: 31 Jul 2026." 같은 날짜 범위 문구가 붙어있는데, 이 부분은 자동번역을 거치면
+        # "기간: ~부터: ~까지" 식으로 깨져서 어색하게 표시된다. 날짜/기간은 이미 상세시트에
+        # 별도 UI(날짜 표시, 기간 칩)로 깔끔하게 보여주고 있으므로, 설명 문구에서는
+        # "Duration:"이나 "from:"이 나오는 지점부터 통째로 잘라내서 중복/어색한 표시를 없앤다.
+        cleaned = re.split(r'\s*(?:Duration:|from:|\bat:)\s*', cleaned, maxsplit=1, flags=re.IGNORECASE)[0].strip()
+        cleaned = cleaned.rstrip('.').strip()
         if cleaned and cleaned.lower() != str(r.get("title", "")).lower():
             detail_description = cleaned
             break
