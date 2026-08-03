@@ -118,6 +118,41 @@ def sanitize_severity_text(raw_text):
     return result
 
 
+def is_url_accessible(url, timeout=3.5):
+    """HEAD 요청으로 이미지 URL의 실제 접근 가능 여부(200 OK)를 빠르게 검증합니다."""
+    if not url or not isinstance(url, str):
+        return False
+    # 미치환 템플릿 변수가 포함되어 있다면 즉시 검증 실패 처리
+    if "{" in url or "}" in url:
+        return False
+    try:
+        req = urllib.request.Request(url, headers=HEADERS, method="HEAD")
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return resp.status == 200
+    except Exception:
+        return False
+
+
+def validate_image_urls_parallel(url_list):
+    """이미지 URL 리스트 중 404가 나지 않는 유효 URL만 병렬 검증하여 수집합니다."""
+    if not url_list:
+        return []
+    
+    unique_urls = list(dict.fromkeys(url_list))  # 순서 보장 중복 제거
+    valid_urls = []
+    
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        future_to_url = {executor.submit(is_url_accessible, url): url for url in unique_urls}
+        for future in as_completed(future_to_url):
+            url = future_to_url[future]
+            try:
+                if future.result():
+                    valid_urls.append(url)
+            except Exception:
+                pass
+    return valid_urls
+
+
 def compute_disaster_fingerprint(r):
     parts = [
         str(r.get("alert_level", "")),
@@ -232,18 +267,6 @@ def fetch_json(url, timeout=8):
         return None
 
 
-def parse_gdacs_date(date_str):
-    if not date_str:
-        return None
-    try:
-        dt = datetime.fromisoformat(str(date_str).replace("Z", ""))
-        if dt.tzinfo is None:
-            dt = dt.replace(tzinfo=timezone.utc)
-        return dt
-    except ValueError:
-        return None
-
-
 def fetch_page_with_retry(url, retries=PAGE_RETRY_COUNT, delay=PAGE_RETRY_DELAY_SEC):
     status, body = None, None
     for attempt in range(1, retries + 1):
@@ -252,7 +275,7 @@ def fetch_page_with_retry(url, retries=PAGE_RETRY_COUNT, delay=PAGE_RETRY_DELAY_
             with urllib.request.urlopen(req, timeout=15) as resp:
                 status = resp.status
                 body = resp.read()
-        except Exception as e:
+        except Exception:
             status, body = None, None
 
         if status == 200 and body:
@@ -270,7 +293,6 @@ def fetch_events_for_type(event_type):
     seen_keys = set()
     page = 1
 
-    # 무한 루프 순회로 뒷페이지 누락 완전 방지
     while True:
         url = f"{base_url}&pagenumber={page}"
         status, body = fetch_page_with_retry(url)
@@ -399,7 +421,6 @@ def process_single_enrich(r):
     if not eventtype or not eventid:
         return r, True
 
-    # GDACS 공식 사이트 상세 API 호출
     detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
     detail = fetch_json(detail_url)
 
@@ -446,17 +467,32 @@ def process_single_enrich(r):
     r["impact_history"] = sendai_details
     r["impact_description"] = (sendai_details[-1]["description"][:300] if sendai_details else None)
 
-    # 공식 지도 및 이미지 수집
-    image_urls = []
+    # -------------------------------------------------------------
+    # 🔍 이미지 URL 추출 및 404 실시간 검증 보강
+    # -------------------------------------------------------------
+    raw_image_candidates = []
     if isinstance(images, dict):
         for key, val in images.items():
             if isinstance(val, str) and val.strip().lower().startswith(("http://", "https://")):
-                image_urls.append(val.strip())
-                
-    r["image_urls"] = image_urls
-    r["overview_map_url"] = images.get("overviewmap") or images.get("overviewmap_cached") or (image_urls[0] if image_urls else None)
+                # 템플릿 변수가 들어간 링크는 사전 필터링
+                if "{" not in val and "}" not in val:
+                    raw_image_candidates.append(val.strip())
 
-    # 지진 특화 파라미터 보강
+    # HTTP HEAD 요청을 통해 실시간 200 OK 링크만 검증
+    valid_image_urls = validate_image_urls_parallel(raw_image_candidates)
+    
+    # 기본 아이콘 URL (Fallback용)
+    alert_cap = r_alertlevel.capitalize()
+    fallback_icon = f"https://www.gdacs.org/images/gdacs_icons/big/{alert_cap}/{r_eventtype}.png"
+
+    r["image_urls"] = valid_image_urls
+    
+    # 404가 나지 않는 정상 지도가 있을 경우 메인 지도 설정, 없을 경우 Fallback 아이콘 부여
+    if valid_image_urls:
+        r["overview_map_url"] = valid_image_urls[0]
+    else:
+        r["overview_map_url"] = fallback_icon
+
     r["magnitude"] = eq_details.get("magnitude")
     r["depth_km"] = eq_details.get("depth")
     r["exposed_population"] = eq_details.get("rapidpop")
@@ -467,7 +503,7 @@ def process_single_enrich(r):
 def enrich_disasters_parallel(results):
     results.sort(key=lambda r: SEVERITY_ORDER.get(str(r.get("alert_level", "green")).lower(), 3))
 
-    print(f"\n🔄 공식 리포트 상세 데이터(Enrich) 수집 중... ({len(results)}건 대상)")
+    print(f"\n🔄 공식 리포트 상세 및 이미지 유효성(404) 검증 중... ({len(results)}건 대상)")
 
     enriched_results = []
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -476,7 +512,7 @@ def enrich_disasters_parallel(results):
             updated_record, _ = future.result()
             enriched_results.append(updated_record)
 
-    print("🎉 상세 데이터 동기화 완료!")
+    print("🎉 상세 데이터 및 이미지 유효성 검증 완료!")
     return enriched_results
 
 
@@ -508,7 +544,6 @@ def main():
         print("🚨 수집된 데이터가 없습니다. 응답 실패 방지를 위해 기존 데이터를 보존합니다.")
         sys.exit(0)
 
-    # 공식 사이트 수준으로 정보 강화
     results = enrich_disasters_parallel(results)
 
     temp_filepath = "data/realtime_disasters.json.tmp"
@@ -560,13 +595,12 @@ def main():
 
     save_sent_ids_history(sent_history)
 
-    # JSON 저장
     try:
         with open(temp_filepath, "w", encoding="utf-8") as f:
             json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
 
         os.replace(temp_filepath, final_filepath)
-        print(f"\n💾 공식 데이터 스펙 반영 저장 완료: '{final_filepath}'")
+        print(f"\n💾 404 필터링 적용 최종 데이터 저장 완료: '{final_filepath}'")
     except Exception as e:
         print(f"❌ 저장 오류: {e}")
         sys.exit(1)
