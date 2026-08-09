@@ -4,52 +4,58 @@ import time
 import hashlib
 import uuid
 import urllib.request
+import urllib.parse
 import urllib.error
 import sys
 import os
 from datetime import datetime, timedelta, timezone
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
-
 import firebase_admin
 from firebase_admin import credentials, messaging
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept": "application/json",
-    "Accept-Language": "en-US,en;q=0.9",
-    "Referer": "https://www.gdacs.org/",
 }
 
-# geteventdata 상세조회 재시도 설정 (403/429/5xx에 대해서만 재시도)
-DETAIL_RETRY_COUNT = 3
-DETAIL_RETRY_DELAY_SEC = 3.0
+# -------------------------------------------------------------
+# 🔗 GDACS API 엔드포인트 설정
+# -------------------------------------------------------------
+GDACS_APP_URL = "https://www.gdacs.org/gdacsapi/api/events/geteventlist/events4app"
+GDACS_SEARCH_URL = "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
+GDACS_RSS_GEOJSON_URL = "https://www.gdacs.org/xml/rss_7d.geojson"
 
-DAYS_BACK = 4
-ENABLE_DATE_FILTER = True
-
-DATE_FILTER_EXEMPT_TYPES = {"DR", "WF"}
-
-WF_GREEN_AREA_THRESHOLD_HA = 10000
-
-IMAGE_VALIDATE_WORKERS = 2
-
-EVENT_TYPES = ["EQ", "TC", "FL", "VO", "WF", "DR", "TS"]
-
-BASE_URL_TEMPLATE = (
-    "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
-    "?eventlist={eventtype}&alertlevel=green%3Borange%3Bred"
-)
-
-PAGE_RETRY_COUNT = 3        
-PAGE_RETRY_DELAY_SEC = 2.0  
+FETCH_DAYS_BACK = 30
+MAX_WORKERS = 8
+PAGE_RETRY_COUNT = 2
+PAGE_RETRY_DELAY_SEC = 2.0
+API_TIMEOUT_SEC = 15
 
 SENT_IDS_FILEPATH = "data/sent_disaster_ids.json"
 PRUNE_AFTER_DAYS = 45
 
-DETAIL_CACHE_FILEPATH = "data/event_detail_cache.json"
-DETAIL_CACHE_PRUNE_DAYS = 10
-DETAIL_REQUEST_INTERVAL_SEC = 1.2  # 순차 상세조회 사이 최소 간격
+# 재난 카테고리별 전용 리포트 웹페이지 경로 매핑
+CATEGORY_PATH_MAP = {
+    "TC": "Cyclones/report.aspx",
+    "EQ": "Earthquakes/report_smpreliminary.aspx",
+    "FL": "Floods/report.aspx",
+    "VO": "Volcanoes/report.aspx",
+    "WF": "Wildfires/report.aspx",
+    "DR": "Droughts/report.aspx",
+    "TS": "Tsunami/report.aspx"
+}
+
+EVENT_TYPE_MAX_AGE_DAYS_BY_TYPE = {
+    "EQ": 7,    # 지진
+    "WF": 7,    # 산불
+    "TS": 7,    # 쓰나미
+    "TC": 30,   # 태풍 / 열대저기압
+    "FL": 14,   # 홍수
+    "VO": 30,   # 화산
+    "DR": 60,   # 가뭄
+}
+DEFAULT_EVENT_TYPE_MAX_AGE_DAYS = 14
 
 GDACS_COUNTRY_MAP = {
     "republic of korea": "South Korea",
@@ -75,7 +81,6 @@ IMPACT_BASIS = {
 }
 
 SEVERITY_ORDER = {"red": 0, "orange": 1, "green": 2}
-SHOW_ONLY_CURRENT = True
 
 ISO3_TO_ISO2 = {
     "AFG":"AF","ALA":"AX","ALB":"AL","DZA":"DZ","ASM":"AS","AND":"AD","AGO":"AO","AIA":"AI",
@@ -119,108 +124,6 @@ def iso3_to_iso2(iso3_val: str) -> str:
     return iso3_val[:2] if len(iso3_val) == 3 else ""
 
 
-def sanitize_severity_text(raw_text):
-    if not raw_text:
-        return raw_text
-    replacements = [
-        (r"\bgreen\b", "low"),
-        (r"\borange\b", "moderate"),
-        (r"\bred\b", "high"),
-    ]
-    result = str(raw_text)
-    for pattern, replacement in replacements:
-        result = re.sub(pattern, replacement, result, flags=re.IGNORECASE)
-    return result
-
-
-def parse_gdacs_datetime(date_str):
-    if not date_str or not isinstance(date_str, str):
-        return None
-
-    s = date_str.strip()
-    if not s:
-        return None
-
-    if s.endswith("Z") or s.endswith("z"):
-        s = s[:-1] + "+00:00"
-
-    try:
-        dt = datetime.fromisoformat(s)
-    except ValueError:
-        for fmt in ("%Y-%m-%dT%H:%M:%S.%f", "%Y-%m-%dT%H:%M:%S", "%Y-%m-%d %H:%M:%S"):
-            try:
-                dt = datetime.strptime(s, fmt)
-                break
-            except ValueError:
-                dt = None
-        if dt is None:
-            return None
-
-    if dt.tzinfo is None:
-        dt = dt.replace(tzinfo=timezone.utc)
-
-    return dt
-
-
-def is_within_recent_window(event_type_val, fromdate_str, todate_str, days_back, now_utc):
-    if event_type_val in DATE_FILTER_EXEMPT_TYPES:
-        return True
-
-    ref_dt = parse_gdacs_datetime(todate_str) or parse_gdacs_datetime(fromdate_str)
-    if ref_dt is None:
-        return False
-
-    cutoff = now_utc - timedelta(days=days_back)
-    return ref_dt >= cutoff
-
-
-def is_url_accessible(url, timeout=3.5):
-    if not url or not isinstance(url, str):
-        return False
-    if "{" in url or "}" in url:
-        return False
-
-    # 🔧 [버그 수정] GDACS의 일부 이미지 후보 URL(예: .../meteo/)은 실제 파일이 아니라
-    # 디렉토리 인덱스 페이지인데, 이런 URL에도 HTTP 200이 응답되어 기존 코드가
-    # "유효한 이미지"로 잘못 판정했음. 그 결과 realtime_disasters JSON의
-    # overview_map_url/image_urls에 디렉토리 URL이 섞여 들어가 앱에서 이미지가
-    # 표시되지 않는 문제가 있었음(요청 155건 중 68건, 44%).
-    # 1) URL이 '/'로 끝나는 디렉토리 형태면 네트워크 요청 없이 즉시 제외.
-    if url.rstrip().endswith("/"):
-        return False
-
-    try:
-        req = urllib.request.Request(url, headers=HEADERS, method="HEAD")
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            if resp.status != 200:
-                return False
-            # 2) 상태 코드가 200이어도 실제 이미지 파일인지 Content-Type으로 재확인.
-            #    (디렉토리 인덱스는 보통 text/html을 반환하므로 이 검사로 추가 차단됨)
-            content_type = (resp.headers.get("Content-Type") or "").strip().lower()
-            return content_type.startswith("image/")
-    except Exception:
-        return False
-
-
-def validate_image_urls_parallel(url_list):
-    if not url_list:
-        return []
-    
-    unique_urls = list(dict.fromkeys(url_list))
-    valid_urls = []
-    
-    with ThreadPoolExecutor(max_workers=IMAGE_VALIDATE_WORKERS) as executor:
-        future_to_url = {executor.submit(is_url_accessible, url): url for url in unique_urls}
-        for future in as_completed(future_to_url):
-            url = future_to_url[future]
-            try:
-                if future.result():
-                    valid_urls.append(url)
-            except Exception:
-                pass
-    return valid_urls
-
-
 def compute_disaster_fingerprint(r):
     parts = [
         str(r.get("alert_level", "")),
@@ -232,6 +135,8 @@ def compute_disaster_fingerprint(r):
         str(r.get("missing")),
         str(r.get("severity_text", "")),
         str(r.get("magnitude", "")),
+        str(r.get("max_wind_speed_kmh", "")),
+        str(r.get("flood_area_sqkm", "")),
     ]
     fingerprint_source = "|".join(parts)
     return hashlib.sha256(fingerprint_source.encode("utf-8")).hexdigest()
@@ -241,7 +146,7 @@ def init_firebase():
     if not firebase_admin._apps:
         cred_json_str = os.environ.get('FIREBASE_SERVICE_ACCOUNT_JSON')
         if not cred_json_str:
-            print("⚠️ [FCM] FIREBASE_SERVICE_ACCOUNT_JSON 환경변수가 없어 알림을 건너뜁니다.")
+            print("⚠️  [FCM] FIREBASE_SERVICE_ACCOUNT_JSON 환경변수가 없어서 알림 발송을 건너뜁니다.")
             return False
         try:
             cred_json = json.loads(cred_json_str)
@@ -249,12 +154,12 @@ def init_firebase():
             firebase_admin.initialize_app(cred)
             return True
         except Exception as e:
-            print(f"❌ [FCM] 파이어베이스 초기화 실패: {e}")
+            print(f"❌ [FCM] 파이어베이스 라이브러리 초기화 중 오류: {e}")
             return False
     return True
 
 
-def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title, alert_level, event_id, last_updated):
+def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title, event_id, last_updated):
     topic_name = "all"
 
     if not last_updated:
@@ -263,7 +168,7 @@ def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title,
         last_updated = str(last_updated).replace(" ", "T") + "Z"
 
     c_name = country_name if country_name else "Global"
-    alarm_id = uuid.uuid4().hex  
+    alarm_id = uuid.uuid4().hex
 
     try:
         message = messaging.Message(
@@ -274,27 +179,18 @@ def send_disaster_push(country_iso2, country_iso3, country_name, disaster_title,
                 "isoCode": str(country_iso2).upper(),
                 "iso3": str(country_iso3).upper(),
                 "country": c_name,
-                "disaster_title": str(disaster_title),
-                "alert_level": str(alert_level).lower(),
+                "countries": json.dumps([c_name, str(country_iso2).upper(), str(country_iso3).upper()]),
                 "last_updated": last_updated,
+                "event_date": last_updated,
                 "id": str(event_id) if event_id else "disaster_evt_999"
             },
             android=messaging.AndroidConfig(priority="high"),
             topic=topic_name
         )
         response = messaging.send(message)
-        print(f"  👉 [FCM 알림 전송] [{alert_level.upper()}] {c_name}({country_iso2}) - {disaster_title} (ID: {response})")
+        print(f"  👉 [FCM 알림 방송 성공] 토픽 채널: {topic_name} / 대상 국가: {c_name}({country_iso2}) / 알람ID: {alarm_id} (전송 ID: {response})")
     except Exception as e:
-        print(f"  ❌ [FCM 전송 실패] {e}")
-
-
-def feature_key(feat):
-    props = feat.get("properties", {}) or {}
-    etype = props.get("eventtype", "")
-    eid = props.get("eventid", "")
-    if etype or eid:
-        return f"{etype}{eid}"
-    return None
+        print(f"  ❌ [FCM 알림 방송 실패] 토픽 채널: {topic_name} / 에러 내용: {e}")
 
 
 def get_centroid(geom):
@@ -325,113 +221,89 @@ def get_centroid(geom):
     return lng, lat
 
 
-def fetch_json(url, timeout=8, retries=DETAIL_RETRY_COUNT, delay=DETAIL_RETRY_DELAY_SEC):
-    last_err_msg = None
+def fetch_json(url, timeout=10):
+    try:
+        req = urllib.request.Request(url, headers=HEADERS)
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except Exception as e:
+        print(f"  ⚠️ 상세정보 조회 실패: {url} ({e})")
+        return None
 
-    for attempt in range(1, retries + 1):
-        try:
-            req = urllib.request.Request(url, headers=HEADERS)
-            with urllib.request.urlopen(req, timeout=timeout) as resp:
-                return json.loads(resp.read().decode("utf-8"))
-        except urllib.error.HTTPError as e:
+
+def parse_gdacs_date(date_str):
+    if not date_str:
+        return None
+    try:
+        dt = datetime.fromisoformat(str(date_str).replace("Z", ""))
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt
+    except ValueError:
+        return None
+
+
+def fetch_events_from_gdacs_geojson():
+    """
+    GDACS Quick Start 공식 문서 반영:
+    1. alertlevel(red;orange;green) 조건 명시로 캐시된 데이터 최적화 수집
+    2. 100건 제한(pagenumber=1) 가이드 준수
+    """
+    now_utc = datetime.now(timezone.utc)
+    from_date = (now_utc - timedelta(days=FETCH_DAYS_BACK)).strftime("%Y-%m-%d")
+    to_date = (now_utc + timedelta(days=1)).strftime("%Y-%m-%d")
+
+    # GDACS 공식 문서 권장 쿼리 파라미터[span_1](start_span)[span_1](end_span)
+    search_params = urllib.parse.urlencode({
+        "eventlist": "EQ;TC;FL;VO;WF;DR;TS",
+        "fromdate": from_date,
+        "todate": to_date,
+        "alertlevel": "red;orange;green",  # 조건 명시로 무한 대기 방지[span_2](start_span)[span_2](end_span)
+        "pagenumber": "1"                  # 최대 100건 페이징[span_3](start_span)[span_3](end_span)
+    })
+
+    target_urls = [
+        ("events4app (캐시 권장)", GDACS_APP_URL),
+        ("SEARCH API (필터링)", f"{GDACS_SEARCH_URL}?{search_params}"),
+        ("RSS GeoJSON 피드", GDACS_RSS_GEOJSON_URL)
+    ]
+
+    for label, target_url in target_urls:
+        print(f" 🌐 [{label}] 엔드포인트 수집 시도: {target_url}")
+        for attempt in range(1, PAGE_RETRY_COUNT + 1):
             try:
-                body_preview = e.read().decode("utf-8", errors="replace")[:300]
-            except Exception:
-                body_preview = "(본문 읽기 실패)"
-            last_err_msg = f"{e} / 응답 헤더: {dict(e.headers)} / 본문 일부: {body_preview}"
+                req = urllib.request.Request(target_url, headers=HEADERS)
+                with urllib.request.urlopen(req, timeout=API_TIMEOUT_SEC) as resp:
+                    if resp.status == 200:
+                        body = resp.read()
+                        data = json.loads(body.decode("utf-8"))
+                        features = data.get("features", [])
+                        if features:
+                            print(f"  ✅ [{label}] 데이터 수집 성공! (Features: {len(features)}건)")
+                            return features
+            except Exception as e:
+                print(f"  ⚠️ [{label}] 시도 {attempt}/{PAGE_RETRY_COUNT} 실패: {e}")
 
-            if e.code not in (403, 429, 500, 502, 503, 504):
-                break
-        except Exception as e:
-            last_err_msg = str(e)
+            if attempt < PAGE_RETRY_COUNT:
+                time.sleep(PAGE_RETRY_DELAY_SEC)
 
-        if attempt < retries:
-            time.sleep(delay * attempt)
-
-    print(f"  ⚠️ 상세정보 조회 실패: {url} ({last_err_msg})")
-    return None
-
-
-def fetch_page_with_retry(url, retries=PAGE_RETRY_COUNT, delay=PAGE_RETRY_DELAY_SEC):
-    status, body = None, None
-    for attempt in range(1, retries + 1):
-        try:
-            req = urllib.request.Request(url, headers=HEADERS)
-            with urllib.request.urlopen(req, timeout=15) as resp:
-                status = resp.status
-                body = resp.read()
-        except Exception:
-            status, body = None, None
-
-        if status == 200 and body:
-            return status, body
-
-        if attempt < retries:
-            time.sleep(delay)
-
-    return status, body
-
-
-def fetch_events_for_type(event_type):
-    base_url = BASE_URL_TEMPLATE.format(eventtype=event_type)
-    all_features = []
-    seen_keys = set()
-    page = 1
-
-    while True:
-        url = f"{base_url}&pagenumber={page}"
-        status, body = fetch_page_with_retry(url)
-
-        if status != 200 or not body:
-            break
-
-        try:
-            page_json = json.loads(body)
-        except Exception:
-            break
-
-        page_features = page_json.get("features")
-        if not page_features:
-            break
-
-        new_in_page = 0
-        for feat in page_features:
-            key = feature_key(feat)
-            if key is not None and key in seen_keys:
-                continue
-            if key is not None:
-                seen_keys.add(key)
-            all_features.append(feat)
-            new_in_page += 1
-
-        if new_in_page == 0:
-            break
-
-        page += 1
-
-    return all_features
+    return []
 
 
 def fetch_disaster_list():
-    all_features = []
-
     print("==================================================")
     print("🚀 실시간 재난 데이터 수집 가동 (GDACS API)")
     print("==================================================")
 
-    for idx, event_type in enumerate(EVENT_TYPES, 1):
-        type_features = fetch_events_for_type(event_type)
-        print(f"📡 [{idx}/{len(EVENT_TYPES)}] GDACS [{event_type}] 수집 완료 ({len(type_features)}건)")
-        all_features.extend(type_features)
-        time.sleep(0.2)
+    all_features = fetch_events_from_gdacs_geojson()
+    type_counts = Counter((f.get("properties", {}) or {}).get("eventtype", "?") for f in all_features)
+    print(f"\n📊 수집된 원본 이벤트 타입 분포: {dict(type_counts)}")
 
     results = []
+    skipped_duplicate = 0
+    skipped_no_geom = 0
     seen_result_keys = set()
     now_utc = datetime.now(timezone.utc)
-
-    skipped_old = 0
-    skipped_not_current = 0
-    skipped_wf_small = 0
 
     for feat in all_features:
         props = feat.get("properties", {}) or {}
@@ -439,46 +311,33 @@ def fetch_disaster_list():
 
         event_type_val = props.get("eventtype", "")
         event_id_val = props.get("eventid", "")
+        episode_id_val = props.get("episodeid") or props.get("episode_id") or ""
 
-        is_current = str(props.get("iscurrent", "")).strip().lower()
-        if SHOW_ONLY_CURRENT and is_current != "true":
-            skipped_not_current += 1
-            continue
+        raw_is_current = props.get("iscurrent") if props.get("iscurrent") is not None else props.get("isCurrent")
+        if raw_is_current is None:
+            raw_is_current = props.get("current")
 
-        if event_type_val == "WF":
-            alertlevel_lower = str(props.get("alertlevel", "")).strip().lower()
-            if alertlevel_lower not in ("orange", "red"):
-                try:
-                    area_ha = float(props.get("severitydata", {}).get("severity", 0) or 0)
-                except (TypeError, ValueError):
-                    area_ha = 0.0
+        is_current_bool = (raw_is_current is True) or (str(raw_is_current).strip().lower() in ("true", "1", "yes"))
 
-                if area_ha <= WF_GREEN_AREA_THRESHOLD_HA:
-                    skipped_wf_small += 1
-                    continue
-        elif ENABLE_DATE_FILTER:
-            if not is_within_recent_window(
-                event_type_val,
-                props.get("fromdate"),
-                props.get("todate"),
-                DAYS_BACK,
-                now_utc,
-            ):
-                skipped_old += 1
-                continue
+        todate_dt = parse_gdacs_date(props.get("todate"))
+        if not is_current_bool and todate_dt and todate_dt >= (now_utc - timedelta(hours=24)):
+            is_current_bool = True
 
         if event_type_val and event_id_val:
             result_key = f"{event_type_val}{event_id_val}"
             if result_key in seen_result_keys:
+                skipped_duplicate += 1
                 continue
             seen_result_keys.add(result_key)
 
         centroid = get_centroid(geom)
         if centroid is None:
+            skipped_no_geom += 1
             continue
         lng, lat = centroid
 
         if not (-180 <= lng <= 180 and -90 <= lat <= 90):
+            skipped_no_geom += 1
             continue
 
         raw_country = (props.get("country") or "").strip()
@@ -494,7 +353,16 @@ def fetch_disaster_list():
             severity_str = (props.get("alertlevel") or "unknown").upper()
             desc_clean = f"A {severity_str} level {event_name} event has been detected near {clean_country or 'coordinates'}: {lat}, {lng}."
 
-        report_url = f"https://www.gdacs.org/report.aspx?eventtype={event_type_val}&eventid={event_id_val}"
+        # 🔗 episodeid 포함 URL 자동 매핑
+        cat_path = CATEGORY_PATH_MAP.get(event_type_val, "report.aspx")
+        if episode_id_val:
+            category_report_url = f"https://www.gdacs.org/{cat_path}?eventid={event_id_val}&episodeid={episode_id_val}&eventtype={event_type_val}"
+            common_report_url = f"https://www.gdacs.org/report.aspx?eventid={event_id_val}&episodeid={episode_id_val}&eventtype={event_type_val}"
+        else:
+            category_report_url = f"https://www.gdacs.org/{cat_path}?eventid={event_id_val}&eventtype={event_type_val}"
+            common_report_url = f"https://www.gdacs.org/report.aspx?eventid={event_id_val}&eventtype={event_type_val}"
+
+        report_url = category_report_url
 
         results.append({
             "latitude": lat,
@@ -506,101 +374,55 @@ def fetch_disaster_list():
             "gdacs_id": f"{event_type_val}{event_id_val}",
             "eventtype": event_type_val,
             "eventid": event_id_val,
-            "glide": props.get("glide"),
+            "episodeid": episode_id_val,
+            "activation_number": props.get("glide"),
+            "event_type": event_type_val,
             "alert_level": props.get("alertlevel", "green"),
             "alert_score": props.get("alertscore", 0),
             "report_url": report_url,
+            "category_report_url": category_report_url,
+            "common_report_url": common_report_url,
             "last_updated": props.get("todate") or props.get("fromdate") or "",
-            "is_current": is_current == "true",
+            "severity": props.get("alertlevel", "green"),
+            "is_current": is_current_bool,
         })
 
-    print(
-        f"🧹 필터링: iscurrent 아님 {skipped_not_current}건 / "
-        f"{DAYS_BACK}일 초과(DR·WF 제외) {skipped_old}건 / "
-        f"Green 산불 면적 미달 {skipped_wf_small}건 "
-        f"제외 → 최종 {len(results)}건"
-    )
+    print(f"\n⚙️  총 {len(results)}건 재난 추출 완료 (스킵: {skipped_no_geom}좌표누락, {skipped_duplicate}중복)")
 
-    return results
+    categorized = {}
+    for r in results:
+        etype = r.get("eventtype", "UNKNOWN")
+        categorized.setdefault(etype, []).append(r)
+
+    filtered_results = []
+    for etype, items in categorized.items():
+        def _get_date_key(x):
+            dt = parse_gdacs_date(x.get("last_updated"))
+            return dt or datetime.min.replace(tzinfo=timezone.utc)
+
+        max_age_days = EVENT_TYPE_MAX_AGE_DAYS_BY_TYPE.get(etype, DEFAULT_EVENT_TYPE_MAX_AGE_DAYS)
+        age_cutoff = now_utc - timedelta(days=max_age_days)
+
+        valid_items = []
+        for it in items:
+            if it.get("is_current") is True:
+                valid_items.append(it)
+            elif _get_date_key(it) >= age_cutoff:
+                valid_items.append(it)
+
+        valid_items.sort(key=_get_date_key, reverse=True)
+        filtered_results.extend(valid_items)
+
+    final_counts = Counter(r.get("eventtype") for r in filtered_results)
+    print(f"👉 최종 데이터 타입별 분포: {dict(final_counts)}")
+    print(f"👉 총 수집 대상 목록 수: {len(filtered_results)}건")
+
+    return filtered_results
 
 
-def apply_enrich_from_props(r, props):
-    r_eventtype = r.get("eventtype", "")
+def process_single_enrich(r):
+    r_eventtype = r.get("eventtype") or r.get("event_type") or ""
     r_alertlevel = str(r.get("alert_level", "green")).lower()
-
-    sendai = props.get("sendai") or []
-    severity = props.get("severitydata") or {}
-    images = props.get("images") or {}
-    eq_details = props.get("earthquakedetails") or {}
-
-    r["affected_countries"] = props.get("affectedcountries") or []
-
-    deaths, displaced, missing = None, None, None
-    sendai_details = []
-
-    for s in sendai:
-        name = (s.get("sendainame") or "").lower()
-        raw_value = s.get("sendaivalue", "0")
-
-        try:
-            val = int(re.sub(r"[^\d]", "", str(raw_value)) or 0)
-        except ValueError:
-            val = 0
-
-        is_latest_raw = s.get("latest", "")
-        is_latest = str(is_latest_raw).strip().lower() in ("true", "1", "yes")
-
-        if is_latest:
-            if "death" in name:
-                deaths = (deaths or 0) + val
-            elif "displaced" in name or "evacuat" in name:
-                displaced = (displaced or 0) + val
-            elif "missing" in name:
-                missing = (missing or 0) + val
-
-        sendai_details.append({
-            "type": s.get("sendaitype"),
-            "name": s.get("sendainame"),
-            "value": s.get("sendaivalue"),
-            "description": s.get("description"),
-            "date": s.get("dateinsert"),
-        })
-
-    r["deaths"] = deaths
-    r["displaced"] = displaced
-    r["missing"] = missing
-    r["severity_text"] = sanitize_severity_text(severity.get("severitytext"))
-    r["impact_history"] = sendai_details
-    r["impact_description"] = (sendai_details[-1]["description"][:300] if sendai_details else None)
-
-    raw_image_candidates = []
-    if isinstance(images, dict):
-        for key, val in images.items():
-            if isinstance(val, str) and val.strip().lower().startswith(("http://", "https://")):
-                if "{" not in val and "}" not in val:
-                    raw_image_candidates.append(val.strip())
-
-    valid_image_urls = validate_image_urls_parallel(raw_image_candidates)
-
-    alert_cap = r_alertlevel.capitalize()
-    fallback_icon = f"https://www.gdacs.org/images/gdacs_icons/big/{alert_cap}/{r_eventtype}.png"
-
-    r["image_urls"] = valid_image_urls
-
-    if valid_image_urls:
-        r["overview_map_url"] = valid_image_urls[0]
-    else:
-        r["overview_map_url"] = fallback_icon
-
-    r["magnitude"] = eq_details.get("magnitude")
-    r["depth_km"] = eq_details.get("depth")
-    r["exposed_population"] = eq_details.get("rapidpop")
-
-
-def process_single_enrich(r, detail_cache):
-    r_eventtype = r.get("eventtype", "")
-    r_alertlevel = str(r.get("alert_level", "green")).lower()
-
     r["report_description"] = (
         f"This {EVENT_TYPE_NAME.get(r_eventtype, 'event')} could have a "
         f"{IMPACT_LEVEL.get(r_alertlevel, 'unknown')} impact on affected communities, "
@@ -608,104 +430,222 @@ def process_single_enrich(r, detail_cache):
         f"exposure and vulnerability of the population nearby."
     )
 
-    eventtype = r.get("eventtype")
+    eventtype = r.get("eventtype") or r.get("event_type")
     eventid = r.get("eventid")
-    gdacs_id = r.get("gdacs_id")
-    last_updated = r.get("last_updated", "")
+
+    if not eventid:
+        m = re.search(r"(\d+)$", str(r.get("gdacs_id", "")))
+        if m:
+            eventid = m.group(1)
 
     if not eventtype or not eventid:
-        return r, False, None
-
-    cached_entry = detail_cache.get(gdacs_id) if gdacs_id else None
-    if cached_entry and cached_entry.get("last_updated") == last_updated and cached_entry.get("properties"):
-        apply_enrich_from_props(r, cached_entry["properties"])
-        return r, False, None
+        return r, False
 
     detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
-    detail = fetch_json(detail_url)
+    detail = fetch_json(detail_url, timeout=10)
 
     if not detail:
-        if cached_entry and cached_entry.get("properties"):
-            apply_enrich_from_props(r, cached_entry["properties"])
-        return r, True, None
+        return r, False
 
     props = detail.get("properties", detail) or {}
-    apply_enrich_from_props(r, props)
 
-    new_cache_entry = {
-        "last_updated": last_updated,
-        "properties": props,
-        "recorded_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-    }
-    return r, True, new_cache_entry
+    # episodeid가 2차 상세 데이터에서 보완된 경우 URL 재갱신
+    if not r.get("episodeid"):
+        ep_id = props.get("episodeid") or props.get("episode_id") or ""
+        if ep_id:
+            r["episodeid"] = ep_id
+            cat_path = CATEGORY_PATH_MAP.get(eventtype, "report.aspx")
+            r["category_report_url"] = f"https://www.gdacs.org/{cat_path}?eventid={eventid}&episodeid={ep_id}&eventtype={eventtype}"
+            r["common_report_url"] = f"https://www.gdacs.org/report.aspx?eventid={eventid}&episodeid={ep_id}&eventtype={eventtype}"
+            r["report_url"] = r["category_report_url"]
+
+    # 재난 유형별 상세 수치 추출
+    tc_details = props.get("cyclonedetails") or {}
+    eq_details = props.get("earthquakedetails") or {}
+    fl_details = props.get("flooddetails") or {}
+    vo_details = props.get("volcanodetails") or {}
+    wf_details = props.get("wildfiredetails") or {}
+    dr_details = props.get("droughtdetails") or {}
+
+    r["exposed_population"] = (
+        tc_details.get("rapidpop") or eq_details.get("rapidpop") or
+        fl_details.get("rapidpop") or props.get("affectedpopulation")
+    )
+    r["exposed_population_description"] = (
+        tc_details.get("rapidpopdescription") or eq_details.get("rapidpopdescription") or
+        fl_details.get("rapidpopdescription")
+    )
+    r["vulnerability"] = props.get("vulnerabilitytext") or props.get("vulnerability")
+
+    if eventtype == "TC":
+        max_wind = tc_details.get("maxwindspeed")
+        r["max_wind_speed_kmh"] = max_wind
+        r["max_wind_speed_text"] = f"{max_wind} km/h" if max_wind else None
+        r["max_storm_surge"] = tc_details.get("maxstormsurge")
+        r["exposed_countries"] = tc_details.get("affectedcountries") or r.get("country")
+    elif eventtype == "EQ":
+        r["magnitude"] = eq_details.get("magnitude")
+        r["depth_km"] = eq_details.get("depth")
+        r["event_date_local"] = eq_details.get("episodedatelocal")
+    elif eventtype == "FL":
+        r["flood_area_sqkm"] = fl_details.get("area") or fl_details.get("floodedarea")
+        r["severity_score"] = fl_details.get("severity")
+    elif eventtype == "VO":
+        r["vei"] = vo_details.get("vei")
+        r["plume_height_m"] = vo_details.get("plumeheight")
+    elif eventtype == "WF":
+        r["burned_area_ha"] = wf_details.get("burnedarea") or wf_details.get("area")
+    elif eventtype == "DR":
+        r["drought_index"] = dr_details.get("droughtindex")
+
+    # 🖼️ 이미지 및 지도 자원(resources / images) 수집
+    resources = props.get("resources") or detail.get("resources") or []
+    images_dict = props.get("images") or {}
+
+    image_urls = []
+    map_urls = []
+
+    if isinstance(resources, list):
+        for res in resources:
+            res_url = res.get("url") if isinstance(res, dict) else str(res)
+            if not res_url or not str(res_url).startswith(("http://", "https://")):
+                continue
+
+            res_url_clean = str(res_url).strip()
+            if any(res_url_clean.lower().endswith(ext) for ext in [".png", ".jpg", ".jpeg", ".gif"]):
+                image_urls.append(res_url_clean)
+                if any(k in res_url_clean.lower() for k in ["map", "track", "wind", "overall", "current", "flood", "sat"]):
+                    map_urls.append(res_url_clean)
+
+    if isinstance(images_dict, dict):
+        for key, val in images_dict.items():
+            if isinstance(val, str) and val.strip().lower().startswith(("http://", "https://")):
+                clean_v = val.strip()
+                if clean_v not in image_urls:
+                    image_urls.append(clean_v)
+
+    r["image_urls"] = list(set(image_urls))
+    r["map_urls"] = list(set(map_urls))
+    r["overview_map_url"] = (
+        images_dict.get("overviewmap") or images_dict.get("overviewmap_cached") or
+        (map_urls[0] if map_urls else (image_urls[0] if image_urls else None))
+    )
+
+    sendai = props.get("sendai") or []
+    severity = props.get("severitydata") or {}
+
+    deaths, displaced, missing = 0, 0, 0
+    deaths_found, displaced_found, missing_found = False, False, False
+    sendai_details = []
+
+    for s in sendai:
+        name = (s.get("sendainame") or "").lower()
+        try:
+            val = int(re.sub(r"[^\d]", "", str(s.get("sendaivalue", "0"))) or 0)
+        except ValueError:
+            val = 0
+
+        is_latest = str(s.get("latest", "")).strip().lower() in ("true", "1", "yes")
+
+        if is_latest:
+            if "death" in name:
+                deaths += val; deaths_found = True
+            elif "displaced" in name or "evacuat" in name:
+                displaced += val; displaced_found = True
+            elif "missing" in name:
+                missing += val; missing_found = True
+
+        sendai_details.append({
+            "type": s.get("sendaitype"),
+            "name": s.get("sendainame"),
+            "value": s.get("sendaivalue"),
+            "region": s.get("region"),
+            "description": s.get("description"),
+            "date": s.get("dateinsert"),
+            "latest": s.get("latest"),
+        })
+
+    r["deaths"] = deaths if deaths_found else None
+    r["displaced"] = displaced if displaced_found else None
+    r["missing"] = missing if missing_found else None
+
+    r["severity_text"] = severity.get("severitytext")
+    r["impact_history"] = sendai_details
+    r["impact_description"] = (sendai_details[-1]["description"][:300] if sendai_details else None)
+
+    detail_desc_candidates = [
+        props.get("description"),
+        props.get("htmldescription"),
+        props.get("eventdescription"),
+        props.get("longdescription"),
+        detail.get("description") if isinstance(detail, dict) else None,
+        detail.get("htmldescription") if isinstance(detail, dict) else None,
+    ]
+    detail_description = None
+    for candidate in detail_desc_candidates:
+        if not candidate:
+            continue
+        cleaned = re.sub(r'<[^>]*>', '', str(candidate)).strip()
+        if cleaned and cleaned.lower() != str(r.get("title", "")).lower():
+            detail_description = cleaned
+            break
+    r["detail_description"] = detail_description
+    r["report_detail_url"] = detail_url
+
+    return r, True
 
 
-def enrich_disasters_sequential(results, detail_cache):
+def enrich_disasters_parallel(results):
     results.sort(key=lambda r: SEVERITY_ORDER.get(str(r.get("alert_level", "green")).lower(), 3))
 
-    print(f"\n🔄 공식 리포트 상세 및 이미지 유효성(404) 검증 중... ({len(results)}건 대상, 순차/캐시 우선)")
+    print(f"\n🔄 [병렬 스레드 적용] 상세 정보(Enrich) 수집 시작... (총 {len(results)}개 대상, Workers: {MAX_WORKERS})")
 
     enriched_results = []
-    fetched_count = 0
-    cached_count = 0
+    enriched_ok = 0
+    total_count = len(results)
 
-    for r in results:
-        updated_record, fetched_fresh, new_cache_entry = process_single_enrich(r, detail_cache)
-        enriched_results.append(updated_record)
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        futures = {executor.submit(process_single_enrich, r): r for r in results}
 
-        if new_cache_entry and updated_record.get("gdacs_id"):
-            detail_cache[updated_record["gdacs_id"]] = new_cache_entry
+        for idx, future in enumerate(as_completed(futures), 1):
+            updated_record, success = future.result()
+            enriched_results.append(updated_record)
+            if success:
+                enriched_ok += 1
 
-        if fetched_fresh:
-            fetched_count += 1
-            time.sleep(DETAIL_REQUEST_INTERVAL_SEC)
-        else:
-            cached_count += 1
+            etype = updated_record.get("eventtype", "?")
+            eid = updated_record.get("eventid", "?")
+            status_text = "성공" if success else "실패"
+            print(f"  ⚡ [{idx}/{total_count}] 완료: {etype}{eid} ({status_text})")
 
-    print(f"🎉 상세 데이터 및 이미지 유효성 검증 완료! (신규 조회 {fetched_count}건 / 캐시 재사용 {cached_count}건)")
+    print(f"\n🎉 상세정보 API 호출 {total_count}건 중 {enriched_ok}건 완벽 보강 완료!")
     return enriched_results
 
 
-def load_detail_cache():
-    if not os.path.exists(DETAIL_CACHE_FILEPATH):
-        return {}
-    try:
-        with open(DETAIL_CACHE_FILEPATH, "r", encoding="utf-8") as f:
-            raw = json.load(f)
-        return raw.get("cache", {})
-    except Exception:
-        return {}
-
-
-def save_detail_cache(cache):
-    cutoff = datetime.now(timezone.utc) - timedelta(days=DETAIL_CACHE_PRUNE_DAYS)
-    pruned = {}
-    for gdacs_id, entry in cache.items():
-        recorded_at = parse_gdacs_datetime(entry.get("recorded_at"))
-        if recorded_at is None or recorded_at >= cutoff:
-            pruned[gdacs_id] = entry
-
-    tmp_path = DETAIL_CACHE_FILEPATH + ".tmp"
-    try:
-        os.makedirs(os.path.dirname(DETAIL_CACHE_FILEPATH), exist_ok=True)
-        with open(tmp_path, "w", encoding="utf-8") as f:
-            json.dump({"cache": pruned}, f, ensure_ascii=False, indent=2)
-        os.replace(tmp_path, DETAIL_CACHE_FILEPATH)
-    except Exception as e:
-        print(f"  ⚠️ 상세정보 캐시 저장 실패: {e}")
-        if os.path.exists(tmp_path):
-            os.remove(tmp_path)
-
-
 def load_sent_ids_history():
-    if not os.path.exists(SENT_IDS_FILEPATH):
+    file_existed = os.path.exists(SENT_IDS_FILEPATH)
+    if not file_existed:
         return {}, False
+
     try:
         with open(SENT_IDS_FILEPATH, "r", encoding="utf-8") as f:
             raw = json.load(f)
-        return raw.get("history", {}), True
-    except Exception:
+        history = raw.get("history", {})
+    except Exception as e:
+        print(f"⚠️ 발송 이력 파일 파싱 스킵 (파일 깨짐 포착): {e}")
         return {}, False
+
+    prune_cutoff = datetime.now(timezone.utc) - timedelta(days=PRUNE_AFTER_DAYS)
+    pruned = {}
+    for gdacs_id, entry in history.items():
+        recorded_at = parse_gdacs_date(entry.get("recorded_at"))
+        if recorded_at is not None and recorded_at < prune_cutoff:
+            continue
+        pruned[gdacs_id] = entry
+
+    dropped = len(history) - len(pruned)
+    print(f"🔍 발송 이력 파일 검사 완료: {len(pruned)}건 유지 ({dropped}건은 {PRUNE_AFTER_DAYS}일 초과로 정리)")
+    return pruned, True
 
 
 def save_sent_ids_history(history):
@@ -714,20 +654,22 @@ def save_sent_ids_history(history):
         with open(tmp_path, "w", encoding="utf-8") as f:
             json.dump({"history": history}, f, ensure_ascii=False, indent=2)
         os.replace(tmp_path, SENT_IDS_FILEPATH)
-    except Exception:
-        if os.path.exists(tmp_path): os.remove(tmp_path)
+        print(f"💾 발송 이력 파일 갱신 완료: 총 {len(history)}건 기록")
+    except Exception as e:
+        print(f"⚠️ 발송 이력 파일 저장 실패: {e}")
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
 
 
 def main():
     results = fetch_disaster_list()
 
     if not results:
-        print("🚨 수집된 데이터가 없습니다. 응답 실패 방지를 위해 기존 데이터를 보존합니다.")
+        print("\n🚨 [위험] 수집 및 필터링 완료된 데이터가 총 0건입니다.")
+        print("💡 API 서버 장애 혹은 네트워크 타임아웃으로 예상되며, 기존 JSON 데이터를 보호하기 위해 프로그램 쓰기를 건너뜁니다.")
         sys.exit(0)
 
-    detail_cache = load_detail_cache()
-    results = enrich_disasters_sequential(results, detail_cache)
-    save_detail_cache(detail_cache)
+    results = enrich_disasters_parallel(results)
 
     temp_filepath = "data/realtime_disasters.json.tmp"
     final_filepath = "data/realtime_disasters.json"
@@ -735,12 +677,14 @@ def main():
     os.makedirs(os.path.dirname(final_filepath), exist_ok=True)
 
     sent_history, history_existed = load_sent_ids_history()
+
     is_fcm_ready = init_firebase()
 
     if is_fcm_ready:
         now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
         if not history_existed:
+            print("\n📢 [최초 실행 감지] 발송 이력 파일이 없어 현재 활성 재난을 이력에만 기록하고 푸시를 발송하지 않습니다.")
             for r in results:
                 gdacs_id = r.get("gdacs_id")
                 if gdacs_id:
@@ -750,31 +694,51 @@ def main():
                         "recorded_at": now_iso
                     }
         else:
+            print("\n📢 [정기 실행: 신규/갱신 재난 판별 및 푸시 알림 프로세스 가동]")
+            new_disaster_count = 0
+
             for r in results:
                 gdacs_id = r.get("gdacs_id")
-                if not gdacs_id: continue
+                if not gdacs_id:
+                    continue
 
+                current_last_updated = r.get("last_updated", "")
                 current_fingerprint = compute_disaster_fingerprint(r)
                 prior_entry = sent_history.get(gdacs_id)
 
-                if (prior_entry is None) or (prior_entry.get("fingerprint") != current_fingerprint):
+                is_new_or_updated = (prior_entry is None) or (prior_entry.get("fingerprint") != current_fingerprint)
+
+                if is_new_or_updated:
+                    new_disaster_count += 1
+
                     iso3_val = str(r.get("iso3", "")).upper().strip()
+                    country_name = r.get("country", "Global")
+                    iso2_backup = iso3_to_iso2(iso3_val)
+
+                    reason = "신규" if prior_entry is None else "갱신"
+                    print(f"  🆕 [{reason} 재난 포착] 제목: {r.get('title')} (ID: {gdacs_id})")
 
                     send_disaster_push(
-                        country_iso2=iso3_to_iso2(iso3_val),
+                        country_iso2=iso2_backup,
                         country_iso3=iso3_val,
-                        country_name=r.get("country", "Global"),
-                        disaster_title=r.get("title", "Disaster Alert"),
-                        alert_level=r.get("alert_level", "green"),
+                        country_name=country_name,
+                        disaster_title=r.get("title", "재난 경보"),
                         event_id=gdacs_id,
-                        last_updated=r.get("last_updated", "")
+                        last_updated=current_last_updated
                     )
 
                     sent_history[gdacs_id] = {
-                        "last_updated": r.get("last_updated", ""),
+                        "last_updated": current_last_updated,
                         "fingerprint": current_fingerprint,
                         "recorded_at": now_iso
                     }
+
+                    save_sent_ids_history(sent_history)
+
+            if new_disaster_count == 0:
+                print("  - 지난 회차 대비 새롭게 발생하거나 갱신된 재난 정보가 없으므로 알림 발송 처리를 패스합니다.")
+    else:
+        print("\n⚠️ 파이어베이스 Secrets 환경변수가 없으므로 FCM 전송 엔진을 가동하지 않습니다.")
 
     save_sent_ids_history(sent_history)
 
@@ -783,9 +747,11 @@ def main():
             json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
 
         os.replace(temp_filepath, final_filepath)
-        print(f"\n💾 필터링 적용 최종 데이터 저장 완료: '{final_filepath}'")
+        print(f"\n💾 파일 원자적 저장 성공: '{final_filepath}' 업데이트 완료!")
     except Exception as e:
-        print(f"❌ 저장 오류: {e}")
+        print(f"\n❌ 파일 쓰기 오류 발생: {e}")
+        if os.path.exists(temp_filepath):
+            os.remove(temp_filepath)
         sys.exit(1)
 
 
