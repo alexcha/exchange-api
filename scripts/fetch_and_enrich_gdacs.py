@@ -17,7 +17,13 @@ from firebase_admin import credentials, messaging
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept": "application/json",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://www.gdacs.org/",
 }
+
+# geteventdata 상세조회 재시도 설정 (403/429/5xx에 대해서만 재시도)
+DETAIL_RETRY_COUNT = 3
+DETAIL_RETRY_DELAY_SEC = 3.0
 
 # 🔧 GDACS 공식 홈페이지(gdacs.org/default.aspx)는
 #    "Map of disaster alerts in the past 4 days" 라고 명시하고 있음.
@@ -37,7 +43,12 @@ DATE_FILTER_EXEMPT_TYPES = {"DR", "WF"}
 # 산불(WF) 전용 기준 (GDACS 홈페이지 정책)
 WF_GREEN_AREA_THRESHOLD_HA = 10000
 
-MAX_WORKERS = 8
+# 상세조회(geteventdata)와 이미지 검증은 gdacs.org에 동시에 몰리면
+# WAF의 "짧은 시간 내 동시 연결 수" 탐지에 걸려 403을 유발할 수 있어
+# 훨씬 보수적인 동시성을 별도로 사용한다.
+ENRICH_WORKERS = 3         # geteventdata 동시 호출 수 (outer)
+IMAGE_VALIDATE_WORKERS = 2 # 이미지 URL 검증 동시 호출 수 (inner, enrich 스레드마다)
+ENRICH_STAGGER_SEC = 0.3   # 스레드 제출 사이 최소 간격(지터)
 
 EVENT_TYPES = ["EQ", "TC", "FL", "VO", "WF", "DR", "TS"]
 
@@ -205,7 +216,7 @@ def validate_image_urls_parallel(url_list):
     unique_urls = list(dict.fromkeys(url_list))
     valid_urls = []
     
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+    with ThreadPoolExecutor(max_workers=IMAGE_VALIDATE_WORKERS) as executor:
         future_to_url = {executor.submit(is_url_accessible, url): url for url in unique_urls}
         for future in as_completed(future_to_url):
             url = future_to_url[future]
@@ -321,14 +332,32 @@ def get_centroid(geom):
     return lng, lat
 
 
-def fetch_json(url, timeout=8):
-    try:
-        req = urllib.request.Request(url, headers=HEADERS)
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            return json.loads(resp.read().decode("utf-8"))
-    except Exception as e:
-        print(f"  ⚠️ 상세정보 조회 실패: {url} ({e})")
-        return None
+def fetch_json(url, timeout=8, retries=DETAIL_RETRY_COUNT, delay=DETAIL_RETRY_DELAY_SEC):
+    last_err_msg = None
+
+    for attempt in range(1, retries + 1):
+        try:
+            req = urllib.request.Request(url, headers=HEADERS)
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            try:
+                body_preview = e.read().decode("utf-8", errors="replace")[:300]
+            except Exception:
+                body_preview = "(본문 읽기 실패)"
+            last_err_msg = f"{e} / 응답 헤더: {dict(e.headers)} / 본문 일부: {body_preview}"
+
+            # 403/429/5xx는 일시적 차단·과부하일 수 있으니 재시도, 그 외(404 등)는 즉시 포기
+            if e.code not in (403, 429, 500, 502, 503, 504):
+                break
+        except Exception as e:
+            last_err_msg = str(e)
+
+        if attempt < retries:
+            time.sleep(delay * attempt)  # 점증 대기 (3s, 6s, ...)
+
+    print(f"  ⚠️ 상세정보 조회 실패: {url} ({last_err_msg})")
+    return None
 
 
 def fetch_page_with_retry(url, retries=PAGE_RETRY_COUNT, delay=PAGE_RETRY_DELAY_SEC):
@@ -611,8 +640,11 @@ def enrich_disasters_parallel(results):
     print(f"\n🔄 공식 리포트 상세 및 이미지 유효성(404) 검증 중... ({len(results)}건 대상)")
 
     enriched_results = []
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        futures = {executor.submit(process_single_enrich, r): r for r in results}
+    with ThreadPoolExecutor(max_workers=ENRICH_WORKERS) as executor:
+        futures = {}
+        for r in results:
+            futures[executor.submit(process_single_enrich, r)] = r
+            time.sleep(ENRICH_STAGGER_SEC)  # gdacs.org에 몰리는 동시 연결을 완화
         for future in as_completed(futures):
             updated_record, _ = future.result()
             enriched_results.append(updated_record)
