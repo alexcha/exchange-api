@@ -119,10 +119,8 @@ def sanitize_severity_text(raw_text):
 
 
 def is_url_accessible(url, timeout=3.5):
-    """HEAD 요청으로 이미지 URL의 실제 접근 가능 여부(200 OK)를 빠르게 검증합니다."""
     if not url or not isinstance(url, str):
         return False
-    # 미치환 템플릿 변수가 포함되어 있다면 즉시 검증 실패 처리
     if "{" in url or "}" in url:
         return False
     try:
@@ -134,11 +132,10 @@ def is_url_accessible(url, timeout=3.5):
 
 
 def validate_image_urls_parallel(url_list):
-    """이미지 URL 리스트 중 404가 나지 않는 유효 URL만 병렬 검증하여 수집합니다."""
     if not url_list:
         return []
     
-    unique_urls = list(dict.fromkeys(url_list))  # 순서 보장 중복 제거
+    unique_urls = list(dict.fromkeys(url_list))
     valid_urls = []
     
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -438,19 +435,48 @@ def process_single_enrich(r):
     deaths, displaced, missing = None, None, None
     sendai_details = []
 
+    # 🔍 디버그: 전체 sendai 배열 구조 로깅
+    gdacs_id = r.get("gdacs_id", f"{eventtype}{eventid}")
+    if sendai:
+        print(f"\n{'='*80}")
+        print(f"[DEBUG {gdacs_id}] 🔍 원본 sendai 배열 구조 (총 {len(sendai)}개 항목):")
+        print(f"{'='*80}")
+        for idx, s in enumerate(sendai):
+            print(f"\n  [{idx}] sendaitype={s.get('sendaitype')}")
+            print(f"       sendainame={s.get('sendainame')}")
+            print(f"       sendaivalue={s.get('sendaivalue')}")
+            print(f"       latest={s.get('latest')}")
+            print(f"       description={s.get('description')}")
+            print(f"       dateinsert={s.get('dateinsert')}")
+        print(f"\n{'='*80}\n")
+
     for s in sendai:
         name = (s.get("sendainame") or "").lower()
+        raw_value = s.get("sendaivalue", "0")
+        
         try:
-            val = int(re.sub(r"[^\d]", "", str(s.get("sendaivalue", "0"))) or 0)
+            val = int(re.sub(r"[^\d]", "", str(raw_value)) or 0)
         except ValueError:
             val = 0
 
-        is_latest = str(s.get("latest", "")).strip().lower() in ("true", "1", "yes")
+        is_latest_raw = s.get("latest", "")
+        is_latest = str(is_latest_raw).strip().lower() in ("true", "1", "yes")
+
+        # 🔍 디버그: 각 항목별 파싱 결과
+        print(f"[파싱] sendainame='{name}' | 원본={raw_value} → 정수={val} | latest={is_latest_raw}({is_latest})")
 
         if is_latest:
-            if "death" in name: deaths = (deaths or 0) + val
-            elif "displaced" in name or "evacuat" in name: displaced = (displaced or 0) + val
-            elif "missing" in name: missing = (missing or 0) + val
+            if "death" in name:
+                print(f"  ✅ deaths 증가: {deaths or 0} + {val}")
+                deaths = (deaths or 0) + val
+            elif "displaced" in name or "evacuat" in name:
+                print(f"  ✅ displaced 증가: {displaced or 0} + {val}")
+                displaced = (displaced or 0) + val
+            elif "missing" in name:
+                print(f"  ✅ missing 증가: {missing or 0} + {val}")
+                missing = (missing or 0) + val
+        else:
+            print(f"  ⏭️  latest=False 스킵")
 
         sendai_details.append({
             "type": s.get("sendaitype"),
@@ -459,6 +485,8 @@ def process_single_enrich(r):
             "description": s.get("description"),
             "date": s.get("dateinsert"),
         })
+    
+    print(f"\n[최종] deaths={deaths} | displaced={displaced} | missing={missing}\n")
 
     r["deaths"] = deaths
     r["displaced"] = displaced
@@ -467,27 +495,21 @@ def process_single_enrich(r):
     r["impact_history"] = sendai_details
     r["impact_description"] = (sendai_details[-1]["description"][:300] if sendai_details else None)
 
-    # -------------------------------------------------------------
-    # 🔍 이미지 URL 추출 및 404 실시간 검증 보강
-    # -------------------------------------------------------------
+    # 이미지 URL 추출 및 404 실시간 검증
     raw_image_candidates = []
     if isinstance(images, dict):
         for key, val in images.items():
             if isinstance(val, str) and val.strip().lower().startswith(("http://", "https://")):
-                # 템플릿 변수가 들어간 링크는 사전 필터링
                 if "{" not in val and "}" not in val:
                     raw_image_candidates.append(val.strip())
 
-    # HTTP HEAD 요청을 통해 실시간 200 OK 링크만 검증
     valid_image_urls = validate_image_urls_parallel(raw_image_candidates)
     
-    # 기본 아이콘 URL (Fallback용)
     alert_cap = r_alertlevel.capitalize()
     fallback_icon = f"https://www.gdacs.org/images/gdacs_icons/big/{alert_cap}/{r_eventtype}.png"
 
     r["image_urls"] = valid_image_urls
     
-    # 404가 나지 않는 정상 지도가 있을 경우 메인 지도 설정, 없을 경우 Fallback 아이콘 부여
     if valid_image_urls:
         r["overview_map_url"] = valid_image_urls[0]
     else:
@@ -506,7 +528,7 @@ def enrich_disasters_parallel(results):
     print(f"\n🔄 공식 리포트 상세 및 이미지 유효성(404) 검증 중... ({len(results)}건 대상)")
 
     enriched_results = []
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+    with ThreadPoolExecutor(max_workers=1) as executor:  # 디버그 시엔 단일 스레드로
         futures = {executor.submit(process_single_enrich, r): r for r in results}
         for future in as_completed(futures):
             updated_record, _ = future.result()
