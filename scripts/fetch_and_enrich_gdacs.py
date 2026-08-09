@@ -434,6 +434,20 @@ def _is_icon_url(url):
     return any(marker in u for marker in ICON_URL_MARKERS)
 
 
+def _has_unresolved_template(url):
+    # GDACS가 가끔 "{eventid}", "{source}", "{episodedate|yyyyMMdd.HH}" 같은
+    # 치환되지 않은 템플릿 자리표시자를 그대로 내려줄 때가 있다.
+    # 이런 URL은 항상 404가 나므로 미리 걸러낸다.
+    return "{" in (url or "") or "}" in (url or "")
+
+
+def _dedupe_keep_order(items):
+    # list(set(...))는 실행할 때마다 순서가 달라져서, 같은 이벤트인데도
+    # 앱이 첫 번째 이미지를 보여줄 때 결과가 매번 바뀌는 문제가 있었다.
+    # dict.fromkeys는 삽입 순서를 그대로 유지하면서 중복만 제거한다.
+    return list(dict.fromkeys(items))
+
+
 def process_single_enrich(r):
     r_eventtype = r.get("eventtype") or r.get("event_type") or ""
     r_alertlevel = str(r.get("alert_level", "green")).lower()
@@ -526,7 +540,7 @@ def process_single_enrich(r):
                 continue
 
             res_url_clean = str(res_url).strip()
-            if _is_icon_url(res_url_clean):
+            if _is_icon_url(res_url_clean) or _has_unresolved_template(res_url_clean):
                 continue
             if res_url_clean.lower().endswith(IMAGE_EXTS):
                 image_urls.append(res_url_clean)
@@ -537,7 +551,7 @@ def process_single_enrich(r):
         for key, val in images_dict.items():
             if isinstance(val, str) and val.strip().lower().startswith(("http://", "https://")):
                 clean_v = val.strip()
-                if _is_icon_url(clean_v):
+                if _is_icon_url(clean_v) or _has_unresolved_template(clean_v):
                     continue
                 if not clean_v.lower().endswith(IMAGE_EXTS):
                     # 폴더 링크(".../meteo/", ".../img/mslp/")나 .tif 원본 데이터처럼
@@ -546,8 +560,8 @@ def process_single_enrich(r):
                 if clean_v not in image_urls:
                     image_urls.append(clean_v)
 
-    r["image_urls"] = list(set(image_urls))
-    r["map_urls"] = list(set(map_urls))
+    r["image_urls"] = _dedupe_keep_order(image_urls)
+    r["map_urls"] = _dedupe_keep_order(map_urls)
     r["overview_map_url"] = (
         images_dict.get("overviewmap") or images_dict.get("overviewmap_cached") or
         (map_urls[0] if map_urls else (image_urls[0] if image_urls else None))
