@@ -420,6 +420,16 @@ def fetch_disaster_list():
     return filtered_results
 
 
+# GDACS가 심각도/재난유형별로 항상 동일하게 내려주는 고정 아이콘(맵 범례, 방사능 표시 등)은
+# 실제 재난 사진/위성지도가 아니므로 image_urls / map_urls 수집 대상에서 제외한다.
+ICON_URL_MARKERS = ["gdacs_icons", "/icons/", "iconmap", "/icon/"]
+
+
+def _is_icon_url(url):
+    u = (url or "").lower()
+    return any(marker in u for marker in ICON_URL_MARKERS)
+
+
 def process_single_enrich(r):
     r_eventtype = r.get("eventtype") or r.get("event_type") or ""
     r_alertlevel = str(r.get("alert_level", "green")).lower()
@@ -512,6 +522,8 @@ def process_single_enrich(r):
                 continue
 
             res_url_clean = str(res_url).strip()
+            if _is_icon_url(res_url_clean):
+                continue
             if any(res_url_clean.lower().endswith(ext) for ext in [".png", ".jpg", ".jpeg", ".gif"]):
                 image_urls.append(res_url_clean)
                 if any(k in res_url_clean.lower() for k in ["map", "track", "wind", "overall", "current", "flood", "sat"]):
@@ -521,6 +533,8 @@ def process_single_enrich(r):
         for key, val in images_dict.items():
             if isinstance(val, str) and val.strip().lower().startswith(("http://", "https://")):
                 clean_v = val.strip()
+                if _is_icon_url(clean_v):
+                    continue
                 if clean_v not in image_urls:
                     image_urls.append(clean_v)
 
