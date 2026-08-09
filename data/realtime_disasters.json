@@ -2,107 +2,6 @@
   "status": "success",
   "data": [
     {
-      "latitude": 5.1812,
-      "longitude": 125.276,
-      "title": "Earthquake in Philippines - Philippines",
-      "summary": "Earthquake in Philippines",
-      "country": "Philippines",
-      "iso3": "PHL",
-      "gdacs_id": "EQ1556215",
-      "eventtype": "EQ",
-      "eventid": 1556215,
-      "glide": "",
-      "alert_level": "Orange",
-      "alert_score": 2,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556215",
-      "last_updated": "2026-08-05T04:14:06",
-      "is_current": true,
-      "report_description": "This earthquake could have a medium impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "PH",
-          "iso3": "PHL",
-          "countryname": "Philippines"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "Magnitude 6.3M, Depth:10km",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556215/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556215/meteo/",
-      "magnitude": "6.3",
-      "depth_km": "10",
-      "exposed_population": "3136"
-    },
-    {
-      "latitude": 27.8,
-      "longitude": 123.2,
-      "title": "DOLPHIN-26 - Marshall Islands, Japan, China",
-      "summary": "Tropical Cyclone DOLPHIN-26",
-      "country": "Marshall Islands, Japan, China",
-      "iso3": "MHL",
-      "gdacs_id": "TC1001297",
-      "eventtype": "TC",
-      "eventid": 1001297,
-      "glide": "TC-2026-000144-JPN",
-      "alert_level": "Orange",
-      "alert_score": 2,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001297",
-      "last_updated": "2026-08-09T00:00:00",
-      "is_current": true,
-      "report_description": "This tropical cyclone could have a medium impact on affected communities, based on the wind speed and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "JP",
-          "iso3": "JPN",
-          "countryname": "Japan"
-        },
-        {
-          "iso2": "CN",
-          "iso3": "CHN",
-          "countryname": "China"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "Hurricane/Typhoon > 74 mph (maximum wind speed of 269 km/h)",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/current_rain_1001297_53.png",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/ECMWF/3/final/outres1.gif",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/1001297_53_tn.png",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/ECMWF/3/final/run2/shoreline.map.png",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/ECMWF/3/final/run2/inundationHeight.tif.png",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/HWRF/1/final/outres1.gif",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/HWRF/1/final/run2/inundationHeight.tif.png",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/GFS/3/final/outres1.gif",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/HWRF/1/final/run2/shoreline.map.png",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/GFS/3/final/run2/inundationHeight.tif.png",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/GFS/3/final/run2/shoreline.map.png",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/clouds_zoomed_1001297_53.png",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/meteo/",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/final/run2/inundationHeight.tif.png",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/final/run2/shoreline.map.png",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/final/run2/inundationHeight.tif.png",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/final/outres1.gif",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/final/P1_MAXHEIGHT_END.jpg",
-        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/final/run2/shoreline.map.png",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/current_rain_1001297_53.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
-    },
-    {
       "latitude": 1.187,
       "longitude": 33.25,
       "title": "Uganda-2026 - Democratic Republic of Congo, Kenya, Tanzania, Uganda",
@@ -155,46 +54,6 @@
       "magnitude": null,
       "depth_km": null,
       "exposed_population": null
-    },
-    {
-      "latitude": 7.017,
-      "longitude": 94.1402,
-      "title": "Earthquake in India - India",
-      "summary": "Earthquake in India",
-      "country": "India",
-      "iso3": "IND",
-      "gdacs_id": "EQ1557016",
-      "eventtype": "EQ",
-      "eventid": 1557016,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1557016",
-      "last_updated": "2026-08-09T03:02:07",
-      "is_current": true,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "IN",
-          "iso3": "IND",
-          "countryname": "India"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "Magnitude 5M, Depth:10km",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1557016/1557016_1723958_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1557016/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1557016/1557016_1723958_alertfatal_small.png",
-      "magnitude": "5",
-      "depth_km": "10",
-      "exposed_population": "7374"
     },
     {
       "latitude": -17.848,
@@ -277,6 +136,86 @@
       "exposed_population": "28967"
     },
     {
+      "latitude": 51.829,
+      "longitude": -173.25,
+      "title": "Earthquake in United States - United States",
+      "summary": "Earthquake in United States",
+      "country": "United States",
+      "iso3": "USA",
+      "gdacs_id": "EQ1557020",
+      "eventtype": "EQ",
+      "eventid": 1557020,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1557020",
+      "last_updated": "2026-08-09T03:36:15",
+      "is_current": true,
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
+      "affected_countries": [
+        {
+          "iso2": "US",
+          "iso3": "USA",
+          "countryname": "United States"
+        }
+      ],
+      "deaths": null,
+      "displaced": null,
+      "missing": null,
+      "severity_text": "Magnitude 4.9M, Depth:60.301km",
+      "impact_history": [],
+      "impact_description": null,
+      "image_urls": [
+        "https://www.gdacs.org/contentdata/resources/EQ/1557020/1557020_1723962_alertfatal_small.png",
+        "https://www.gdacs.org/contentdata/resources/EQ/1557020/meteo/",
+        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
+      ],
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1557020/1557020_1723962_alertfatal_small.png",
+      "magnitude": "5",
+      "depth_km": "16.7",
+      "exposed_population": "48"
+    },
+    {
+      "latitude": 7.017,
+      "longitude": 94.1402,
+      "title": "Earthquake in India - India",
+      "summary": "Earthquake in India",
+      "country": "India",
+      "iso3": "IND",
+      "gdacs_id": "EQ1557016",
+      "eventtype": "EQ",
+      "eventid": 1557016,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1557016",
+      "last_updated": "2026-08-09T03:02:07",
+      "is_current": true,
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
+      "affected_countries": [
+        {
+          "iso2": "IN",
+          "iso3": "IND",
+          "countryname": "India"
+        }
+      ],
+      "deaths": null,
+      "displaced": null,
+      "missing": null,
+      "severity_text": "Magnitude 5M, Depth:10km",
+      "impact_history": [],
+      "impact_description": null,
+      "image_urls": [
+        "https://www.gdacs.org/contentdata/resources/EQ/1557016/1557016_1723958_alertfatal_small.png",
+        "https://www.gdacs.org/contentdata/resources/EQ/1557016/meteo/",
+        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
+      ],
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1557016/1557016_1723958_alertfatal_small.png",
+      "magnitude": "5",
+      "depth_km": "10",
+      "exposed_population": "7374"
+    },
+    {
       "latitude": 33.7777,
       "longitude": -38.0334,
       "title": "Earthquake in Northern Mid-Atlantic Ridge - Northern Mid-Atlantic Ridge",
@@ -301,14 +240,92 @@
       "impact_history": [],
       "impact_description": null,
       "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556974/1556974_1723910_alertfatal_small.png",
         "https://www.gdacs.org/contentdata/resources/EQ/1556974/meteo/",
+        "https://www.gdacs.org/contentdata/resources/EQ/1556974/1556974_1723910_alertfatal_small.png",
         "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
       ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556974/1556974_1723910_alertfatal_small.png",
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556974/meteo/",
       "magnitude": "4.8",
       "depth_km": "10",
       "exposed_population": "0"
+    },
+    {
+      "latitude": 5.1812,
+      "longitude": 125.276,
+      "title": "Earthquake in Philippines - Philippines",
+      "summary": "Earthquake in Philippines",
+      "country": "Philippines",
+      "iso3": "PHL",
+      "gdacs_id": "EQ1556215",
+      "eventtype": "EQ",
+      "eventid": 1556215,
+      "glide": "",
+      "alert_level": "Orange",
+      "alert_score": 2,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556215",
+      "last_updated": "2026-08-05T04:14:06",
+      "is_current": true,
+      "report_description": "This earthquake could have a medium impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
+      "affected_countries": [
+        {
+          "iso2": "PH",
+          "iso3": "PHL",
+          "countryname": "Philippines"
+        }
+      ],
+      "deaths": null,
+      "displaced": null,
+      "missing": null,
+      "severity_text": "Magnitude 6.3M, Depth:10km",
+      "impact_history": [],
+      "impact_description": null,
+      "image_urls": [
+        "https://www.gdacs.org/contentdata/resources/EQ/1556215/meteo/",
+        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
+      ],
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556215/meteo/",
+      "magnitude": "6.3",
+      "depth_km": "10",
+      "exposed_population": "3136"
+    },
+    {
+      "latitude": 40.1723,
+      "longitude": 142.3107,
+      "title": "Earthquake in Japan - Japan",
+      "summary": "Earthquake in Japan",
+      "country": "Japan",
+      "iso3": "JPN",
+      "gdacs_id": "EQ1556955",
+      "eventtype": "EQ",
+      "eventid": 1556955,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556955",
+      "last_updated": "2026-08-08T17:58:00",
+      "is_current": true,
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
+      "affected_countries": [
+        {
+          "iso2": "JP",
+          "iso3": "JPN",
+          "countryname": "Japan"
+        }
+      ],
+      "deaths": null,
+      "displaced": null,
+      "missing": null,
+      "severity_text": "Magnitude 5.6M, Depth:34km",
+      "impact_history": [],
+      "impact_description": null,
+      "image_urls": [
+        "https://www.gdacs.org/contentdata/resources/EQ/1556955/meteo/",
+        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
+      ],
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556955/meteo/",
+      "magnitude": "5.6",
+      "depth_km": "52.9",
+      "exposed_population": "181097"
     },
     {
       "latitude": -28.5661,
@@ -375,53 +392,14 @@
       "impact_history": [],
       "impact_description": null,
       "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556960/1556960_1723891_alertfatal_small.png",
         "https://www.gdacs.org/contentdata/resources/EQ/1556960/meteo/",
+        "https://www.gdacs.org/contentdata/resources/EQ/1556960/1556960_1723891_alertfatal_small.png",
         "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
       ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556960/1556960_1723891_alertfatal_small.png",
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556960/meteo/",
       "magnitude": "4.6",
       "depth_km": "75.4",
       "exposed_population": "18991"
-    },
-    {
-      "latitude": 40.1723,
-      "longitude": 142.3107,
-      "title": "Earthquake in Japan - Japan",
-      "summary": "Earthquake in Japan",
-      "country": "Japan",
-      "iso3": "JPN",
-      "gdacs_id": "EQ1556955",
-      "eventtype": "EQ",
-      "eventid": 1556955,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556955",
-      "last_updated": "2026-08-08T17:58:00",
-      "is_current": true,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "JP",
-          "iso3": "JPN",
-          "countryname": "Japan"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "Magnitude 5.6M, Depth:34km",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556955/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556955/meteo/",
-      "magnitude": "5.6",
-      "depth_km": "52.9",
-      "exposed_population": "181097"
     },
     {
       "latitude": -24.392,
@@ -571,84 +549,66 @@
       "exposed_population": "351551"
     },
     {
-      "latitude": 49.8507,
-      "longitude": 155.753,
-      "title": "Earthquake in Russia - Russia",
-      "summary": "Earthquake in Russia",
-      "country": "Russia",
-      "iso3": "RUS",
-      "gdacs_id": "EQ1556861",
-      "eventtype": "EQ",
-      "eventid": 1556861,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556861",
-      "last_updated": "2026-08-08T05:39:39",
+      "latitude": 27.8,
+      "longitude": 123.2,
+      "title": "DOLPHIN-26 - Marshall Islands, Japan, China",
+      "summary": "Tropical Cyclone DOLPHIN-26",
+      "country": "Marshall Islands, Japan, China",
+      "iso3": "MHL",
+      "gdacs_id": "TC1001297",
+      "eventtype": "TC",
+      "eventid": 1001297,
+      "glide": "TC-2026-000144-JPN",
+      "alert_level": "Orange",
+      "alert_score": 2,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001297",
+      "last_updated": "2026-08-09T00:00:00",
       "is_current": true,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
+      "report_description": "This tropical cyclone could have a medium impact on affected communities, based on the wind speed and the exposure and vulnerability of the population nearby.",
       "affected_countries": [
         {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
+          "iso2": "JP",
+          "iso3": "JPN",
+          "countryname": "Japan"
+        },
+        {
+          "iso2": "CN",
+          "iso3": "CHN",
+          "countryname": "China"
         }
       ],
       "deaths": null,
       "displaced": null,
       "missing": null,
-      "severity_text": "Magnitude 4.8M, Depth:82.521km",
+      "severity_text": "Hurricane/Typhoon > 74 mph (maximum wind speed of 269 km/h)",
       "impact_history": [],
       "impact_description": null,
       "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556861/1556861_1723786_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556861/meteo/",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/current_rain_1001297_53.png",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/ECMWF/3/final/outres1.gif",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/1001297_53_tn.png",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/ECMWF/3/final/run2/inundationHeight.tif.png",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/ECMWF/3/final/run2/shoreline.map.png",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/HWRF/1/final/outres1.gif",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/HWRF/1/final/run2/inundationHeight.tif.png",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/HWRF/1/final/run2/shoreline.map.png",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/GFS/3/final/outres1.gif",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/GFS/3/final/run2/inundationHeight.tif.png",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/clouds_zoomed_1001297_53.png",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/GFS/3/final/run2/shoreline.map.png",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/meteo/",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/final/run2/inundationHeight.tif.png",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/final/run2/shoreline.map.png",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/final/run2/inundationHeight.tif.png",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/final/outres1.gif",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/final/P1_MAXHEIGHT_END.jpg",
+        "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/final/run2/shoreline.map.png",
         "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
       ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556861/1556861_1723786_alertfatal_small.png",
-      "magnitude": "4.8",
-      "depth_km": "82.5",
-      "exposed_population": "1764"
-    },
-    {
-      "latitude": 62.269,
-      "longitude": -152.314,
-      "title": "Earthquake in United States - United States",
-      "summary": "Earthquake in United States",
-      "country": "United States",
-      "iso3": "USA",
-      "gdacs_id": "EQ1556854",
-      "eventtype": "EQ",
-      "eventid": 1556854,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556854",
-      "last_updated": "2026-08-08T04:50:34",
-      "is_current": true,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "US",
-          "iso3": "USA",
-          "countryname": "United States"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "Magnitude 5.6M, Depth:10km",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556854/1556854_1723777_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556854/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556854/1556854_1723777_alertfatal_small.png",
-      "magnitude": "5.5",
-      "depth_km": "1",
-      "exposed_population": "151"
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/TC/1001297/JTWC/53/current_rain_1001297_53.png",
+      "magnitude": null,
+      "depth_km": null,
+      "exposed_population": null
     },
     {
       "latitude": -28.4766,
@@ -685,6 +645,86 @@
       "exposed_population": "0"
     },
     {
+      "latitude": 49.8507,
+      "longitude": 155.753,
+      "title": "Earthquake in Russia - Russia",
+      "summary": "Earthquake in Russia",
+      "country": "Russia",
+      "iso3": "RUS",
+      "gdacs_id": "EQ1556861",
+      "eventtype": "EQ",
+      "eventid": 1556861,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556861",
+      "last_updated": "2026-08-08T05:39:39",
+      "is_current": true,
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
+      "affected_countries": [
+        {
+          "iso2": "RU",
+          "iso3": "RUS",
+          "countryname": "Russia"
+        }
+      ],
+      "deaths": null,
+      "displaced": null,
+      "missing": null,
+      "severity_text": "Magnitude 4.8M, Depth:82.521km",
+      "impact_history": [],
+      "impact_description": null,
+      "image_urls": [
+        "https://www.gdacs.org/contentdata/resources/EQ/1556861/meteo/",
+        "https://www.gdacs.org/contentdata/resources/EQ/1556861/1556861_1723786_alertfatal_small.png",
+        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
+      ],
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556861/meteo/",
+      "magnitude": "4.8",
+      "depth_km": "82.5",
+      "exposed_population": "1764"
+    },
+    {
+      "latitude": 62.269,
+      "longitude": -152.314,
+      "title": "Earthquake in United States - United States",
+      "summary": "Earthquake in United States",
+      "country": "United States",
+      "iso3": "USA",
+      "gdacs_id": "EQ1556854",
+      "eventtype": "EQ",
+      "eventid": 1556854,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556854",
+      "last_updated": "2026-08-08T04:50:34",
+      "is_current": true,
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
+      "affected_countries": [
+        {
+          "iso2": "US",
+          "iso3": "USA",
+          "countryname": "United States"
+        }
+      ],
+      "deaths": null,
+      "displaced": null,
+      "missing": null,
+      "severity_text": "Magnitude 5.6M, Depth:10km",
+      "impact_history": [],
+      "impact_description": null,
+      "image_urls": [
+        "https://www.gdacs.org/contentdata/resources/EQ/1556854/meteo/",
+        "https://www.gdacs.org/contentdata/resources/EQ/1556854/1556854_1723777_alertfatal_small.png",
+        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
+      ],
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556854/meteo/",
+      "magnitude": "5.5",
+      "depth_km": "1",
+      "exposed_population": "151"
+    },
+    {
       "latitude": 39.6351,
       "longitude": 82.875,
       "title": "Earthquake in China - China",
@@ -715,11 +755,11 @@
       "impact_history": [],
       "impact_description": null,
       "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556846/1556846_1723765_alertfatal_small.png",
         "https://www.gdacs.org/contentdata/resources/EQ/1556846/meteo/",
+        "https://www.gdacs.org/contentdata/resources/EQ/1556846/1556846_1723765_alertfatal_small.png",
         "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
       ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556846/1556846_1723765_alertfatal_small.png",
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556846/meteo/",
       "magnitude": "4.8",
       "depth_km": "10",
       "exposed_population": "6350"
@@ -765,46 +805,6 @@
       "exposed_population": "380674"
     },
     {
-      "latitude": 5.1189,
-      "longitude": 125.3651,
-      "title": "Earthquake in Philippines - Philippines",
-      "summary": "Earthquake in Philippines",
-      "country": "Philippines",
-      "iso3": "PHL",
-      "gdacs_id": "EQ1556841",
-      "eventtype": "EQ",
-      "eventid": 1556841,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556841",
-      "last_updated": "2026-08-08T02:44:59",
-      "is_current": true,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "PH",
-          "iso3": "PHL",
-          "countryname": "Philippines"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "Magnitude 4.6M, Depth:10km",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556841/1556841_1723758_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556841/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556841/1556841_1723758_alertfatal_small.png",
-      "magnitude": "4.6",
-      "depth_km": "10",
-      "exposed_population": "295518"
-    },
-    {
       "latitude": 0.2552,
       "longitude": 122.0018,
       "title": "Earthquake in Indonesia - Indonesia",
@@ -835,14 +835,54 @@
       "impact_history": [],
       "impact_description": null,
       "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556808/1556808_1723736_alertfatal_small.png",
         "https://www.gdacs.org/contentdata/resources/EQ/1556808/meteo/",
+        "https://www.gdacs.org/contentdata/resources/EQ/1556808/1556808_1723736_alertfatal_small.png",
         "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
       ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556808/1556808_1723736_alertfatal_small.png",
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556808/meteo/",
       "magnitude": "4.5",
       "depth_km": "199",
       "exposed_population": "613494"
+    },
+    {
+      "latitude": 5.1189,
+      "longitude": 125.3651,
+      "title": "Earthquake in Philippines - Philippines",
+      "summary": "Earthquake in Philippines",
+      "country": "Philippines",
+      "iso3": "PHL",
+      "gdacs_id": "EQ1556841",
+      "eventtype": "EQ",
+      "eventid": 1556841,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556841",
+      "last_updated": "2026-08-08T02:44:59",
+      "is_current": true,
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
+      "affected_countries": [
+        {
+          "iso2": "PH",
+          "iso3": "PHL",
+          "countryname": "Philippines"
+        }
+      ],
+      "deaths": null,
+      "displaced": null,
+      "missing": null,
+      "severity_text": "Magnitude 4.6M, Depth:10km",
+      "impact_history": [],
+      "impact_description": null,
+      "image_urls": [
+        "https://www.gdacs.org/contentdata/resources/EQ/1556841/meteo/",
+        "https://www.gdacs.org/contentdata/resources/EQ/1556841/1556841_1723758_alertfatal_small.png",
+        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
+      ],
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556841/meteo/",
+      "magnitude": "4.6",
+      "depth_km": "10",
+      "exposed_population": "295518"
     },
     {
       "latitude": -12.1235,
@@ -883,46 +923,6 @@
       "magnitude": "4.7",
       "depth_km": "10",
       "exposed_population": "7717"
-    },
-    {
-      "latitude": 5.8489,
-      "longitude": 125.622,
-      "title": "Earthquake in Philippines - Philippines",
-      "summary": "Earthquake in Philippines",
-      "country": "Philippines",
-      "iso3": "PHL",
-      "gdacs_id": "EQ1556803",
-      "eventtype": "EQ",
-      "eventid": 1556803,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556803",
-      "last_updated": "2026-08-07T22:53:49",
-      "is_current": true,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "PH",
-          "iso3": "PHL",
-          "countryname": "Philippines"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "Magnitude 4.6M, Depth:139.805km",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556803/1556803_1723734_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556803/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556803/1556803_1723734_alertfatal_small.png",
-      "magnitude": "4.6",
-      "depth_km": "139.8",
-      "exposed_population": "2683923"
     },
     {
       "latitude": -21.5086,
@@ -989,11 +989,11 @@
       "impact_history": [],
       "impact_description": null,
       "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556777/1556777_1723705_alertfatal_small.png",
         "https://www.gdacs.org/contentdata/resources/EQ/1556777/meteo/",
+        "https://www.gdacs.org/contentdata/resources/EQ/1556777/1556777_1723705_alertfatal_small.png",
         "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
       ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556777/1556777_1723705_alertfatal_small.png",
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556777/meteo/",
       "magnitude": "4.5",
       "depth_km": "10",
       "exposed_population": "142652"
@@ -1029,14 +1029,54 @@
       "impact_history": [],
       "impact_description": null,
       "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556769/1556769_1723680_alertfatal_small.png",
         "https://www.gdacs.org/contentdata/resources/EQ/1556769/meteo/",
+        "https://www.gdacs.org/contentdata/resources/EQ/1556769/1556769_1723680_alertfatal_small.png",
         "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
       ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556769/1556769_1723680_alertfatal_small.png",
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556769/meteo/",
       "magnitude": "4.5",
       "depth_km": "10",
       "exposed_population": "3841"
+    },
+    {
+      "latitude": 5.8489,
+      "longitude": 125.622,
+      "title": "Earthquake in Philippines - Philippines",
+      "summary": "Earthquake in Philippines",
+      "country": "Philippines",
+      "iso3": "PHL",
+      "gdacs_id": "EQ1556803",
+      "eventtype": "EQ",
+      "eventid": 1556803,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556803",
+      "last_updated": "2026-08-07T22:53:49",
+      "is_current": true,
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
+      "affected_countries": [
+        {
+          "iso2": "PH",
+          "iso3": "PHL",
+          "countryname": "Philippines"
+        }
+      ],
+      "deaths": null,
+      "displaced": null,
+      "missing": null,
+      "severity_text": "Magnitude 4.6M, Depth:139.805km",
+      "impact_history": [],
+      "impact_description": null,
+      "image_urls": [
+        "https://www.gdacs.org/contentdata/resources/EQ/1556803/1556803_1723734_alertfatal_small.png",
+        "https://www.gdacs.org/contentdata/resources/EQ/1556803/meteo/",
+        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
+      ],
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556803/1556803_1723734_alertfatal_small.png",
+      "magnitude": "4.6",
+      "depth_km": "139.8",
+      "exposed_population": "2683923"
     },
     {
       "latitude": 50.4235,
@@ -1079,46 +1119,6 @@
       "exposed_population": "1959"
     },
     {
-      "latitude": -5.6385,
-      "longitude": 110.2192,
-      "title": "Earthquake in Indonesia - Indonesia",
-      "summary": "Earthquake in Indonesia",
-      "country": "Indonesia",
-      "iso3": "IDN",
-      "gdacs_id": "EQ1556732",
-      "eventtype": "EQ",
-      "eventid": 1556732,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556732",
-      "last_updated": "2026-08-07T14:07:39",
-      "is_current": true,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "ID",
-          "iso3": "IDN",
-          "countryname": "Indonesia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "Magnitude 4.8M, Depth:534.964km",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556732/1556732_1723639_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556732/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556732/1556732_1723639_alertfatal_small.png",
-      "magnitude": "4.8",
-      "depth_km": "535",
-      "exposed_population": "528914"
-    },
-    {
       "latitude": 5.1687,
       "longitude": 125.0613,
       "title": "Earthquake in Philippines - Philippines",
@@ -1157,6 +1157,46 @@
       "magnitude": "4.6",
       "depth_km": "43.5",
       "exposed_population": "513605"
+    },
+    {
+      "latitude": -5.6385,
+      "longitude": 110.2192,
+      "title": "Earthquake in Indonesia - Indonesia",
+      "summary": "Earthquake in Indonesia",
+      "country": "Indonesia",
+      "iso3": "IDN",
+      "gdacs_id": "EQ1556732",
+      "eventtype": "EQ",
+      "eventid": 1556732,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556732",
+      "last_updated": "2026-08-07T14:07:39",
+      "is_current": true,
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
+      "affected_countries": [
+        {
+          "iso2": "ID",
+          "iso3": "IDN",
+          "countryname": "Indonesia"
+        }
+      ],
+      "deaths": null,
+      "displaced": null,
+      "missing": null,
+      "severity_text": "Magnitude 4.8M, Depth:534.964km",
+      "impact_history": [],
+      "impact_description": null,
+      "image_urls": [
+        "https://www.gdacs.org/contentdata/resources/EQ/1556732/1556732_1723639_alertfatal_small.png",
+        "https://www.gdacs.org/contentdata/resources/EQ/1556732/meteo/",
+        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
+      ],
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556732/1556732_1723639_alertfatal_small.png",
+      "magnitude": "4.8",
+      "depth_km": "535",
+      "exposed_population": "528914"
     },
     {
       "latitude": 4.4892,
@@ -1239,6 +1279,46 @@
       "exposed_population": "65571"
     },
     {
+      "latitude": -33.1527,
+      "longitude": -68.8413,
+      "title": "Earthquake in Argentina - Argentina",
+      "summary": "Earthquake in Argentina",
+      "country": "Argentina",
+      "iso3": "ARG",
+      "gdacs_id": "EQ1556637",
+      "eventtype": "EQ",
+      "eventid": 1556637,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556637",
+      "last_updated": "2026-08-07T00:00:38",
+      "is_current": true,
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
+      "affected_countries": [
+        {
+          "iso2": "AR",
+          "iso3": "ARG",
+          "countryname": "Argentina"
+        }
+      ],
+      "deaths": null,
+      "displaced": null,
+      "missing": null,
+      "severity_text": "Magnitude 4.5M, Depth:10km",
+      "impact_history": [],
+      "impact_description": null,
+      "image_urls": [
+        "https://www.gdacs.org/contentdata/resources/EQ/1556637/meteo/",
+        "https://www.gdacs.org/contentdata/resources/EQ/1556637/1556637_1723555_alertfatal_small.png",
+        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
+      ],
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556637/meteo/",
+      "magnitude": "4.5",
+      "depth_km": "10",
+      "exposed_population": "3962"
+    },
+    {
       "latitude": 13.3855,
       "longitude": 120.6108,
       "title": "Earthquake in Philippines - Philippines",
@@ -1279,46 +1359,6 @@
       "exposed_population": "3424625"
     },
     {
-      "latitude": -33.1527,
-      "longitude": -68.8413,
-      "title": "Earthquake in Argentina - Argentina",
-      "summary": "Earthquake in Argentina",
-      "country": "Argentina",
-      "iso3": "ARG",
-      "gdacs_id": "EQ1556637",
-      "eventtype": "EQ",
-      "eventid": 1556637,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556637",
-      "last_updated": "2026-08-07T00:00:38",
-      "is_current": true,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AR",
-          "iso3": "ARG",
-          "countryname": "Argentina"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "Magnitude 4.5M, Depth:10km",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556637/1556637_1723555_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556637/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556637/1556637_1723555_alertfatal_small.png",
-      "magnitude": "4.5",
-      "depth_km": "10",
-      "exposed_population": "3962"
-    },
-    {
       "latitude": -38.2308,
       "longitude": 178.5415,
       "title": "Earthquake in New Zealand - New Zealand",
@@ -1356,46 +1396,6 @@
       "magnitude": "4.9",
       "depth_km": "22.8",
       "exposed_population": "2214"
-    },
-    {
-      "latitude": 52.0723,
-      "longitude": 160.1111,
-      "title": "Earthquake in Russia - Russia",
-      "summary": "Earthquake in Russia",
-      "country": "Russia",
-      "iso3": "RUS",
-      "gdacs_id": "EQ1556597",
-      "eventtype": "EQ",
-      "eventid": 1556597,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556597",
-      "last_updated": "2026-08-06T20:07:24",
-      "is_current": true,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "Magnitude 4.6M, Depth:40.732km",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556597/1556597_1723498_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556597/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556597/1556597_1723498_alertfatal_small.png",
-      "magnitude": "4.6",
-      "depth_km": "40.7",
-      "exposed_population": "3717"
     },
     {
       "latitude": -12.1948,
@@ -1438,6 +1438,46 @@
       "exposed_population": "22866"
     },
     {
+      "latitude": 52.0723,
+      "longitude": 160.1111,
+      "title": "Earthquake in Russia - Russia",
+      "summary": "Earthquake in Russia",
+      "country": "Russia",
+      "iso3": "RUS",
+      "gdacs_id": "EQ1556597",
+      "eventtype": "EQ",
+      "eventid": 1556597,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556597",
+      "last_updated": "2026-08-06T20:07:24",
+      "is_current": true,
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
+      "affected_countries": [
+        {
+          "iso2": "RU",
+          "iso3": "RUS",
+          "countryname": "Russia"
+        }
+      ],
+      "deaths": null,
+      "displaced": null,
+      "missing": null,
+      "severity_text": "Magnitude 4.6M, Depth:40.732km",
+      "impact_history": [],
+      "impact_description": null,
+      "image_urls": [
+        "https://www.gdacs.org/contentdata/resources/EQ/1556597/1556597_1723498_alertfatal_small.png",
+        "https://www.gdacs.org/contentdata/resources/EQ/1556597/meteo/",
+        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
+      ],
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556597/1556597_1723498_alertfatal_small.png",
+      "magnitude": "4.6",
+      "depth_km": "40.7",
+      "exposed_population": "3717"
+    },
+    {
       "latitude": 39.6385,
       "longitude": 143.67,
       "title": "Earthquake in Off East Coast Of Honshu, Japan - Off East Coast Of Honshu, Japan",
@@ -1468,11 +1508,11 @@
       "impact_history": [],
       "impact_description": null,
       "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556585/1556585_1723482_alertfatal_small.png",
         "https://www.gdacs.org/contentdata/resources/EQ/1556585/meteo/",
+        "https://www.gdacs.org/contentdata/resources/EQ/1556585/1556585_1723482_alertfatal_small.png",
         "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
       ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556585/1556585_1723482_alertfatal_small.png",
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556585/meteo/",
       "magnitude": "4.6",
       "depth_km": "10",
       "exposed_population": "0"
@@ -1517,6 +1557,24 @@
       "exposed_population": "0"
     },
     {
+      "latitude": 32.491,
+      "longitude": 130.485,
+      "title": "Earthquake in Japan - Japan",
+      "summary": "Earthquake in Japan",
+      "country": "Japan",
+      "iso3": "JPN",
+      "gdacs_id": "EQ1556410",
+      "eventtype": "EQ",
+      "eventid": 1556410,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556410",
+      "last_updated": "2026-08-05T22:59:25",
+      "is_current": true,
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby."
+    },
+    {
       "latitude": -3.3233,
       "longitude": 148.4767,
       "title": "Earthquake in Bismarck Sea - Bismarck Sea",
@@ -1542,53 +1600,12 @@
       "impact_description": null,
       "image_urls": [
         "https://www.gdacs.org/contentdata/resources/EQ/1556559/1556559_1723453_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556559/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
+        "https://www.gdacs.org/contentdata/resources/EQ/1556559/meteo/"
       ],
       "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556559/1556559_1723453_alertfatal_small.png",
       "magnitude": "4.9",
       "depth_km": "10",
       "exposed_population": "0"
-    },
-    {
-      "latitude": -8.0025,
-      "longitude": 158.5995,
-      "title": "Earthquake in Solomon Islands - Solomon Islands",
-      "summary": "Earthquake in Solomon Islands",
-      "country": "Solomon Islands",
-      "iso3": "SLB",
-      "gdacs_id": "EQ1556535",
-      "eventtype": "EQ",
-      "eventid": 1556535,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556535",
-      "last_updated": "2026-08-06T13:42:11",
-      "is_current": true,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "SB",
-          "iso3": "SLB",
-          "countryname": "Solomon Is."
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "Magnitude 5.1M, Depth:54.348km",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556535/1556535_1723427_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556535/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556535/1556535_1723427_alertfatal_small.png",
-      "magnitude": "5.1",
-      "depth_km": "54.3",
-      "exposed_population": "13146"
     },
     {
       "latitude": 32.6611,
@@ -1621,14 +1638,48 @@
       "impact_history": [],
       "impact_description": null,
       "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556524/1556524_1723416_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556524/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
+        "https://www.gdacs.org/contentdata/resources/EQ/1556524/meteo/"
       ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556524/1556524_1723416_alertfatal_small.png",
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556524/meteo/",
       "magnitude": "4.6",
       "depth_km": "10",
       "exposed_population": "223240"
+    },
+    {
+      "latitude": -8.0025,
+      "longitude": 158.5995,
+      "title": "Earthquake in Solomon Islands - Solomon Islands",
+      "summary": "Earthquake in Solomon Islands",
+      "country": "Solomon Islands",
+      "iso3": "SLB",
+      "gdacs_id": "EQ1556535",
+      "eventtype": "EQ",
+      "eventid": 1556535,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556535",
+      "last_updated": "2026-08-06T13:42:11",
+      "is_current": true,
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
+      "affected_countries": [
+        {
+          "iso2": "SB",
+          "iso3": "SLB",
+          "countryname": "Solomon Is."
+        }
+      ],
+      "deaths": null,
+      "displaced": null,
+      "missing": null,
+      "severity_text": "Magnitude 5.1M, Depth:54.348km",
+      "impact_history": [],
+      "impact_description": null,
+      "image_urls": [],
+      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/big/Green/EQ.png",
+      "magnitude": "5.1",
+      "depth_km": "54.3",
+      "exposed_population": "13146"
     },
     {
       "latitude": 42.4079,
@@ -1654,55 +1705,11 @@
       "severity_text": "Magnitude 4.9M, Depth:10km",
       "impact_history": [],
       "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556513/1556513_1723403_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556513/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556513/1556513_1723403_alertfatal_small.png",
+      "image_urls": [],
+      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/big/Green/EQ.png",
       "magnitude": "4.9",
       "depth_km": "10",
       "exposed_population": "0"
-    },
-    {
-      "latitude": -21.0594,
-      "longitude": -175.6733,
-      "title": "Earthquake in Tonga - Tonga",
-      "summary": "Earthquake in Tonga",
-      "country": "Tonga",
-      "iso3": "TON",
-      "gdacs_id": "EQ1556492",
-      "eventtype": "EQ",
-      "eventid": 1556492,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556492",
-      "last_updated": "2026-08-06T06:44:05",
-      "is_current": true,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "TO",
-          "iso3": "TON",
-          "countryname": "Tonga"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "Magnitude 4.6M, Depth:126.513km",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556492/1556492_1723381_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556492/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556492/1556492_1723381_alertfatal_small.png",
-      "magnitude": "4.6",
-      "depth_km": "126.5",
-      "exposed_population": "83669"
     },
     {
       "latitude": 5.2096,
@@ -1734,12 +1741,8 @@
       "severity_text": "Magnitude 4.6M, Depth:35km",
       "impact_history": [],
       "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556446/1556446_1723335_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556446/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556446/1556446_1723335_alertfatal_small.png",
+      "image_urls": [],
+      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/big/Green/EQ.png",
       "magnitude": "4.6",
       "depth_km": "35",
       "exposed_population": "984524"
@@ -1774,55 +1777,11 @@
       "severity_text": "Magnitude 4.8M, Depth:10km",
       "impact_history": [],
       "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556418/1556418_1723303_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556418/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556418/1556418_1723303_alertfatal_small.png",
+      "image_urls": [],
+      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/big/Green/EQ.png",
       "magnitude": "4.8",
       "depth_km": "10",
       "exposed_population": "10951"
-    },
-    {
-      "latitude": 32.491,
-      "longitude": 130.485,
-      "title": "Earthquake in Japan - Japan",
-      "summary": "Earthquake in Japan",
-      "country": "Japan",
-      "iso3": "JPN",
-      "gdacs_id": "EQ1556410",
-      "eventtype": "EQ",
-      "eventid": 1556410,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556410",
-      "last_updated": "2026-08-05T22:59:25",
-      "is_current": true,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "JP",
-          "iso3": "JPN",
-          "countryname": "Japan"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "Magnitude 4.9M, Depth:10km",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556410/1556410_1723293_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556410/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556410/1556410_1723293_alertfatal_small.png",
-      "magnitude": "4.9",
-      "depth_km": "10",
-      "exposed_population": "5589"
     },
     {
       "latitude": 40.0192,
@@ -1840,30 +1799,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556399",
       "last_updated": "2026-08-05T22:21:57",
       "is_current": true,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "US",
-          "iso3": "USA",
-          "countryname": "United States"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "Magnitude 4.5M, Depth:4.53999996185303km",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/EQ/1556399/1556399_1723278_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556399/shakemap/eq1556399_1723278_6_1.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556399/meteo/",
-        "https://www.gdacs.org/contentdata/resources/EQ/1556399/shakemap/eq1556399_1723278_6_2.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1556399/1556399_1723278_alertfatal_small.png",
-      "magnitude": "4.5",
-      "depth_km": "4.5",
-      "exposed_population": "45"
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 5.0849,
@@ -1882,6 +1818,42 @@
       "last_updated": "2026-08-05T22:11:44",
       "is_current": true,
       "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": -21.0594,
+      "longitude": -175.6733,
+      "title": "Earthquake in Tonga - Tonga",
+      "summary": "Earthquake in Tonga",
+      "country": "Tonga",
+      "iso3": "TON",
+      "gdacs_id": "EQ1556492",
+      "eventtype": "EQ",
+      "eventid": 1556492,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556492",
+      "last_updated": "2026-08-06T06:44:05",
+      "is_current": true,
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
+      "affected_countries": [
+        {
+          "iso2": "TO",
+          "iso3": "TON",
+          "countryname": "Tonga"
+        }
+      ],
+      "deaths": null,
+      "displaced": null,
+      "missing": null,
+      "severity_text": "Magnitude 4.6M, Depth:126.513km",
+      "impact_history": [],
+      "impact_description": null,
+      "image_urls": [],
+      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/big/Green/EQ.png",
+      "magnitude": "4.6",
+      "depth_km": "126.5",
+      "exposed_population": "83669"
     },
     {
       "latitude": 5.1283,
@@ -1920,24 +1892,6 @@
       "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby."
     },
     {
-      "latitude": -6.5225,
-      "longitude": 143.8444,
-      "title": "Earthquake in Papua New Guinea - Papua New Guinea",
-      "summary": "Earthquake in Papua New Guinea",
-      "country": "Papua New Guinea",
-      "iso3": "PNG",
-      "gdacs_id": "EQ1556377",
-      "eventtype": "EQ",
-      "eventid": 1556377,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556377",
-      "last_updated": "2026-08-05T19:46:26",
-      "is_current": true,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby."
-    },
-    {
       "latitude": 5.1249,
       "longitude": 125.3857,
       "title": "Earthquake in Philippines - Philippines",
@@ -1952,6 +1906,24 @@
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556751",
       "last_updated": "2026-08-05T19:32:26",
+      "is_current": true,
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": -6.5225,
+      "longitude": 143.8444,
+      "title": "Earthquake in Papua New Guinea - Papua New Guinea",
+      "summary": "Earthquake in Papua New Guinea",
+      "country": "Papua New Guinea",
+      "iso3": "PNG",
+      "gdacs_id": "EQ1556377",
+      "eventtype": "EQ",
+      "eventid": 1556377,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1556377",
+      "last_updated": "2026-08-05T19:46:26",
       "is_current": true,
       "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby."
     },
@@ -2208,24 +2180,6 @@
       "report_description": "This tropical cyclone could have a low impact on affected communities, based on the wind speed and the exposure and vulnerability of the population nearby."
     },
     {
-      "latitude": 32.4,
-      "longitude": 151.0,
-      "title": "CHAN-HOM-26 - Japan",
-      "summary": "Tropical Cyclone CHAN-HOM-26",
-      "country": "Japan",
-      "iso3": "JPN",
-      "gdacs_id": "TC1001299",
-      "eventtype": "TC",
-      "eventid": 1001299,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001299",
-      "last_updated": "2026-08-09T00:00:00",
-      "is_current": true,
-      "report_description": "This tropical cyclone could have a low impact on affected communities, based on the wind speed and the exposure and vulnerability of the population nearby."
-    },
-    {
       "latitude": 31.4417,
       "longitude": -109.916,
       "title": "Flood in United States - United States",
@@ -2242,6 +2196,24 @@
       "last_updated": "2026-08-08T01:00:00",
       "is_current": true,
       "report_description": "This flood could have a low impact on affected communities, based on the flood extent and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": 32.4,
+      "longitude": 151.0,
+      "title": "CHAN-HOM-26 - Japan",
+      "summary": "Tropical Cyclone CHAN-HOM-26",
+      "country": "Japan",
+      "iso3": "JPN",
+      "gdacs_id": "TC1001299",
+      "eventtype": "TC",
+      "eventid": 1001299,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001299",
+      "last_updated": "2026-08-09T00:00:00",
+      "is_current": true,
+      "report_description": "This tropical cyclone could have a low impact on affected communities, based on the wind speed and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 20.0645,
@@ -2352,24 +2324,6 @@
       "report_description": "This flood could have a low impact on affected communities, based on the flood extent and the exposure and vulnerability of the population nearby."
     },
     {
-      "latitude": 4.6027,
-      "longitude": 9.414,
-      "title": "Flood in Cameroon - Cameroon",
-      "summary": "Flood in Cameroon",
-      "country": "Cameroon",
-      "iso3": "CMR",
-      "gdacs_id": "FL1104078",
-      "eventtype": "FL",
-      "eventid": 1104078,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=FL&eventid=1104078",
-      "last_updated": "2026-08-06T01:00:00",
-      "is_current": true,
-      "report_description": "This flood could have a low impact on affected communities, based on the flood extent and the exposure and vulnerability of the population nearby."
-    },
-    {
       "latitude": 21.2277,
       "longitude": 104.1576,
       "title": "Flood in Vietnam - Vietnam",
@@ -2383,6 +2337,24 @@
       "alert_level": "Green",
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=FL&eventid=1104029",
+      "last_updated": "2026-08-06T01:00:00",
+      "is_current": true,
+      "report_description": "This flood could have a low impact on affected communities, based on the flood extent and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": 4.6027,
+      "longitude": 9.414,
+      "title": "Flood in Cameroon - Cameroon",
+      "summary": "Flood in Cameroon",
+      "country": "Cameroon",
+      "iso3": "CMR",
+      "gdacs_id": "FL1104078",
+      "eventtype": "FL",
+      "eventid": 1104078,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=FL&eventid=1104078",
       "last_updated": "2026-08-06T01:00:00",
       "is_current": true,
       "report_description": "This flood could have a low impact on affected communities, based on the flood extent and the exposure and vulnerability of the population nearby."
@@ -2478,8 +2450,8 @@
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
-      "latitude": 42.4893,
-      "longitude": -116.917,
+      "latitude": 42.4826,
+      "longitude": -116.916,
       "title": "Forest fires in United States - United States",
       "summary": "Forest fires in United States",
       "country": "United States",
@@ -2568,6 +2540,24 @@
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
+      "latitude": 48.7353,
+      "longitude": -119.6886,
+      "title": "Forest fires in United States - United States",
+      "summary": "Forest fires in United States",
+      "country": "United States",
+      "iso3": "USA",
+      "gdacs_id": "WF1029900",
+      "eventtype": "WF",
+      "eventid": 1029900,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029900",
+      "last_updated": "2026-08-08T00:00:00",
+      "is_current": true,
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
+    },
+    {
       "latitude": 66.128,
       "longitude": 118.8788,
       "title": "Forest fires in Russian Federation - Russia",
@@ -2581,24 +2571,6 @@
       "alert_level": "Green",
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029895",
-      "last_updated": "2026-08-08T00:00:00",
-      "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
-    },
-    {
-      "latitude": 48.7349,
-      "longitude": -119.688,
-      "title": "Forest fires in United States - United States",
-      "summary": "Forest fires in United States",
-      "country": "United States",
-      "iso3": "USA",
-      "gdacs_id": "WF1029900",
-      "eventtype": "WF",
-      "eventid": 1029900,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029900",
       "last_updated": "2026-08-08T00:00:00",
       "is_current": true,
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
@@ -3378,24 +3350,6 @@
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
-      "latitude": -8.3102,
-      "longitude": 18.6891,
-      "title": "Forest fires in Angola - Angola",
-      "summary": "Forest fires in Angola",
-      "country": "Angola",
-      "iso3": "AGO",
-      "gdacs_id": "WF1030115",
-      "eventtype": "WF",
-      "eventid": 1030115,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030115",
-      "last_updated": "2026-08-08T00:00:00",
-      "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
-    },
-    {
       "latitude": -11.1548,
       "longitude": 16.3496,
       "title": "Forest fires in Angola - Angola",
@@ -3409,6 +3363,24 @@
       "alert_level": "Green",
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030117",
+      "last_updated": "2026-08-08T00:00:00",
+      "is_current": true,
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": -8.3102,
+      "longitude": 18.6891,
+      "title": "Forest fires in Angola - Angola",
+      "summary": "Forest fires in Angola",
+      "country": "Angola",
+      "iso3": "AGO",
+      "gdacs_id": "WF1030115",
+      "eventtype": "WF",
+      "eventid": 1030115,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030115",
       "last_updated": "2026-08-08T00:00:00",
       "is_current": true,
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
@@ -4332,24 +4304,6 @@
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
-      "latitude": 66.4407,
-      "longitude": 116.6921,
-      "title": "Forest fires in Russian Federation - Russia",
-      "summary": "Forest fires in Russian Federation",
-      "country": "Russia",
-      "iso3": "RUS",
-      "gdacs_id": "WF1030207",
-      "eventtype": "WF",
-      "eventid": 1030207,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030207",
-      "last_updated": "2026-08-08T00:00:00",
-      "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
-    },
-    {
       "latitude": -10.7245,
       "longitude": 14.7635,
       "title": "Forest fires in Angola - Angola",
@@ -4363,6 +4317,24 @@
       "alert_level": "Green",
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030208",
+      "last_updated": "2026-08-08T00:00:00",
+      "is_current": true,
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": 66.4407,
+      "longitude": 116.6921,
+      "title": "Forest fires in Russian Federation - Russia",
+      "summary": "Forest fires in Russian Federation",
+      "country": "Russia",
+      "iso3": "RUS",
+      "gdacs_id": "WF1030207",
+      "eventtype": "WF",
+      "eventid": 1030207,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030207",
       "last_updated": "2026-08-08T00:00:00",
       "is_current": true,
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
@@ -4476,24 +4448,6 @@
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
-      "latitude": -10.9577,
-      "longitude": 16.2748,
-      "title": "Forest fires in Angola - Angola",
-      "summary": "Forest fires in Angola",
-      "country": "Angola",
-      "iso3": "AGO",
-      "gdacs_id": "WF1030239",
-      "eventtype": "WF",
-      "eventid": 1030239,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030239",
-      "last_updated": "2026-08-08T00:00:00",
-      "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
-    },
-    {
       "latitude": 49.6253,
       "longitude": -119.7751,
       "title": "Forest fires in Canada - Canada",
@@ -4507,6 +4461,24 @@
       "alert_level": "Green",
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030240",
+      "last_updated": "2026-08-08T00:00:00",
+      "is_current": true,
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": -10.9577,
+      "longitude": 16.2748,
+      "title": "Forest fires in Angola - Angola",
+      "summary": "Forest fires in Angola",
+      "country": "Angola",
+      "iso3": "AGO",
+      "gdacs_id": "WF1030239",
+      "eventtype": "WF",
+      "eventid": 1030239,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030239",
       "last_updated": "2026-08-08T00:00:00",
       "is_current": true,
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
@@ -4908,24 +4880,6 @@
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
-      "latitude": -10.4287,
-      "longitude": 29.3554,
-      "title": "Forest fires in Zambia - Zambia",
-      "summary": "Forest fires in Zambia",
-      "country": "Zambia",
-      "iso3": "ZMB",
-      "gdacs_id": "WF1030263",
-      "eventtype": "WF",
-      "eventid": 1030263,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030263",
-      "last_updated": "2026-08-08T00:00:00",
-      "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
-    },
-    {
       "latitude": -5.5155,
       "longitude": 19.8749,
       "title": "Forest fires in The Democratic Republic of Congo - The Democratic Republic of Congo",
@@ -4939,6 +4893,24 @@
       "alert_level": "Green",
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030264",
+      "last_updated": "2026-08-08T00:00:00",
+      "is_current": true,
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": -10.4287,
+      "longitude": 29.3554,
+      "title": "Forest fires in Zambia - Zambia",
+      "summary": "Forest fires in Zambia",
+      "country": "Zambia",
+      "iso3": "ZMB",
+      "gdacs_id": "WF1030263",
+      "eventtype": "WF",
+      "eventid": 1030263,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030263",
       "last_updated": "2026-08-08T00:00:00",
       "is_current": true,
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
@@ -5052,24 +5024,6 @@
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
-      "latitude": -7.0262,
-      "longitude": 17.0355,
-      "title": "Forest fires in The Democratic Republic of Congo, Angola - The Democratic Republic of Congo, Angola",
-      "summary": "Forest fires in The Democratic Republic of Congo, Angola",
-      "country": "The Democratic Republic of Congo, Angola",
-      "iso3": "COD",
-      "gdacs_id": "WF1030211",
-      "eventtype": "WF",
-      "eventid": 1030211,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030211",
-      "last_updated": "2026-08-08T00:00:00",
-      "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
-    },
-    {
       "latitude": -10.0418,
       "longitude": 18.7862,
       "title": "Forest fires in Angola - Angola",
@@ -5083,6 +5037,24 @@
       "alert_level": "Green",
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030212",
+      "last_updated": "2026-08-08T00:00:00",
+      "is_current": true,
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": -7.0262,
+      "longitude": 17.0355,
+      "title": "Forest fires in The Democratic Republic of Congo, Angola - The Democratic Republic of Congo, Angola",
+      "summary": "Forest fires in The Democratic Republic of Congo, Angola",
+      "country": "The Democratic Republic of Congo, Angola",
+      "iso3": "COD",
+      "gdacs_id": "WF1030211",
+      "eventtype": "WF",
+      "eventid": 1030211,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030211",
       "last_updated": "2026-08-08T00:00:00",
       "is_current": true,
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
@@ -5196,24 +5168,6 @@
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
-      "latitude": -8.9843,
-      "longitude": 16.9402,
-      "title": "Forest fires in Angola - Angola",
-      "summary": "Forest fires in Angola",
-      "country": "Angola",
-      "iso3": "AGO",
-      "gdacs_id": "WF1030220",
-      "eventtype": "WF",
-      "eventid": 1030220,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030220",
-      "last_updated": "2026-08-08T00:00:00",
-      "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
-    },
-    {
       "latitude": -10.0235,
       "longitude": 19.7678,
       "title": "Forest fires in Angola - Angola",
@@ -5227,6 +5181,24 @@
       "alert_level": "Green",
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030221",
+      "last_updated": "2026-08-08T00:00:00",
+      "is_current": true,
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": -8.9843,
+      "longitude": 16.9402,
+      "title": "Forest fires in Angola - Angola",
+      "summary": "Forest fires in Angola",
+      "country": "Angola",
+      "iso3": "AGO",
+      "gdacs_id": "WF1030220",
+      "eventtype": "WF",
+      "eventid": 1030220,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030220",
       "last_updated": "2026-08-08T00:00:00",
       "is_current": true,
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
@@ -5340,24 +5312,6 @@
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
-      "latitude": -8.7504,
-      "longitude": 30.02,
-      "title": "Forest fires in Zambia - Zambia",
-      "summary": "Forest fires in Zambia",
-      "country": "Zambia",
-      "iso3": "ZMB",
-      "gdacs_id": "WF1030228",
-      "eventtype": "WF",
-      "eventid": 1030228,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030228",
-      "last_updated": "2026-08-08T00:00:00",
-      "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
-    },
-    {
       "latitude": -8.9076,
       "longitude": 19.1705,
       "title": "Forest fires in Angola - Angola",
@@ -5371,6 +5325,24 @@
       "alert_level": "Green",
       "alert_score": 1,
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030229",
+      "last_updated": "2026-08-08T00:00:00",
+      "is_current": true,
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": -8.7504,
+      "longitude": 30.02,
+      "title": "Forest fires in Zambia - Zambia",
+      "summary": "Forest fires in Zambia",
+      "country": "Zambia",
+      "iso3": "ZMB",
+      "gdacs_id": "WF1030228",
+      "eventtype": "WF",
+      "eventid": 1030228,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030228",
       "last_updated": "2026-08-08T00:00:00",
       "is_current": true,
       "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
@@ -5499,28 +5471,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030202",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 12329 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030202/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 65.9163,
@@ -5538,28 +5489,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030198",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 7516 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030198/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -9.6794,
@@ -5577,28 +5507,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030185",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5972 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030185/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -9.955,
@@ -5616,28 +5525,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030109",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 6922 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030109/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -8.3079,
@@ -5655,28 +5543,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030149",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "CD",
-          "iso3": "COD",
-          "countryname": "Democratic Republic of Congo"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 7050 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030149/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -6.6965,
@@ -5694,28 +5561,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030181",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "CD",
-          "iso3": "COD",
-          "countryname": "Democratic Republic of Congo"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5296 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030181/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -7.8953,
@@ -5733,28 +5579,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030182",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "CD",
-          "iso3": "COD",
-          "countryname": "Democratic Republic of Congo"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 6186 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030182/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -15.8539,
@@ -5772,28 +5597,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030175",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "ZM",
-          "iso3": "ZMB",
-          "countryname": "Zambia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 6230 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030175/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 68.6705,
@@ -5811,28 +5615,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030176",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 8957 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030176/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 69.0516,
@@ -5850,28 +5633,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030171",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 7200 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030171/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 66.2691,
@@ -5889,28 +5651,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030172",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 12248 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030172/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 68.7166,
@@ -5928,28 +5669,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030173",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 8184 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030173/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -7.3607,
@@ -5967,28 +5687,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030161",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "CD",
-          "iso3": "COD",
-          "countryname": "Democratic Republic of Congo"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 6861 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030161/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -10.9869,
@@ -6006,28 +5705,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030162",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "CD",
-          "iso3": "COD",
-          "countryname": "Democratic Republic of Congo"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5049 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030162/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -8.369,
@@ -6045,28 +5723,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030153",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 6277 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030153/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 64.4874,
@@ -6084,28 +5741,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030147",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 6244 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/WF/1030147/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/WF/1030147/meteo/",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 64.5193,
@@ -6123,28 +5759,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030143",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5142 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030143/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 68.7839,
@@ -6162,28 +5777,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030137",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 7246 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030137/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 68.6568,
@@ -6201,28 +5795,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030138",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 7390 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030138/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -10.7764,
@@ -6240,28 +5813,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030122",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 9172 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030122/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -8.7255,
@@ -6279,28 +5831,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030120",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 7765 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030120/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -12.8624,
@@ -6318,28 +5849,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030082",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AU",
-          "iso3": "AUS",
-          "countryname": "Australia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 7882 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030082/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 65.1945,
@@ -6357,28 +5867,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030105",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 6397 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030105/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 64.3466,
@@ -6396,28 +5885,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030106",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 8402 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030106/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -12.0892,
@@ -6435,67 +5903,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030100",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AU",
-          "iso3": "AUS",
-          "countryname": "Australia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5395 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030100/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
-    },
-    {
-      "latitude": -12.6031,
-      "longitude": 131.4443,
-      "title": "Forest fires in Australia - Australia",
-      "summary": "Forest fires in Australia",
-      "country": "Australia",
-      "iso3": "AUS",
-      "gdacs_id": "WF1030098",
-      "eventtype": "WF",
-      "eventid": 1030098,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030098",
-      "last_updated": "2026-08-07T00:00:00",
-      "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AU",
-          "iso3": "AUS",
-          "countryname": "Australia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5808 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030098/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -19.157,
@@ -6513,28 +5921,25 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030052",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "NA",
-          "iso3": "NAM",
-          "countryname": "Namibia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 8609 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030052/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": -12.6031,
+      "longitude": 131.4443,
+      "title": "Forest fires in Australia - Australia",
+      "summary": "Forest fires in Australia",
+      "country": "Australia",
+      "iso3": "AUS",
+      "gdacs_id": "WF1030098",
+      "eventtype": "WF",
+      "eventid": 1030098,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030098",
+      "last_updated": "2026-08-07T00:00:00",
+      "is_current": true,
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 65.7674,
@@ -6552,28 +5957,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030070",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 18929 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030070/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -10.2214,
@@ -6591,28 +5975,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030062",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 17073 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030062/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 39.1341,
@@ -6630,28 +5993,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030046",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "US",
-          "iso3": "USA",
-          "countryname": "United States"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 6014 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030046/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -9.3656,
@@ -6669,28 +6011,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030058",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "CD",
-          "iso3": "COD",
-          "countryname": "Democratic Republic of Congo"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 8304 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/WF/1030058/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/WF/1030058/meteo/",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -5.8916,
@@ -6708,28 +6029,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030035",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "CD",
-          "iso3": "COD",
-          "countryname": "Democratic Republic of Congo"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 8472 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030035/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 64.36,
@@ -6747,67 +6047,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030031",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "RU",
-          "iso3": "RUS",
-          "countryname": "Russia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 36818 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030031/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
-    },
-    {
-      "latitude": -17.5655,
-      "longitude": 128.7859,
-      "title": "Forest fires in Australia - Australia",
-      "summary": "Forest fires in Australia",
-      "country": "Australia",
-      "iso3": "AUS",
-      "gdacs_id": "WF1030023",
-      "eventtype": "WF",
-      "eventid": 1030023,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030023",
-      "last_updated": "2026-08-07T00:00:00",
-      "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AU",
-          "iso3": "AUS",
-          "countryname": "Australia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 9906 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030023/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -17.7221,
@@ -6825,28 +6065,25 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029967",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AU",
-          "iso3": "AUS",
-          "countryname": "Australia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 15333 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1029967/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": -17.5655,
+      "longitude": 128.7859,
+      "title": "Forest fires in Australia - Australia",
+      "summary": "Forest fires in Australia",
+      "country": "Australia",
+      "iso3": "AUS",
+      "gdacs_id": "WF1030023",
+      "eventtype": "WF",
+      "eventid": 1030023,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030023",
+      "last_updated": "2026-08-07T00:00:00",
+      "is_current": true,
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -10.1606,
@@ -6864,28 +6101,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029943",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 12692 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1029943/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -15.8828,
@@ -6903,28 +6119,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029929",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "ZM",
-          "iso3": "ZMB",
-          "countryname": "Zambia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 22551 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1029929/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -10.8875,
@@ -6942,28 +6137,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029909",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 8065 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1029909/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -10.4622,
@@ -6981,28 +6155,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029910",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 17325 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1029910/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -10.6237,
@@ -7020,28 +6173,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029911",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 12505 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1029911/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -10.0023,
@@ -7059,67 +6191,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029912",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 19434 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1029912/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
-    },
-    {
-      "latitude": -13.5219,
-      "longitude": 132.2703,
-      "title": "Forest fires in Australia - Australia",
-      "summary": "Forest fires in Australia",
-      "country": "Australia",
-      "iso3": "AUS",
-      "gdacs_id": "WF1029877",
-      "eventtype": "WF",
-      "eventid": 1029877,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029877",
-      "last_updated": "2026-08-07T00:00:00",
-      "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AU",
-          "iso3": "AUS",
-          "countryname": "Australia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 7787 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1029877/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 39.6432,
@@ -7137,28 +6209,25 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029868",
       "last_updated": "2026-08-07T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "US",
-          "iso3": "USA",
-          "countryname": "United States"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 17041 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1029868/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": -13.5219,
+      "longitude": 132.2703,
+      "title": "Forest fires in Australia - Australia",
+      "summary": "Forest fires in Australia",
+      "country": "Australia",
+      "iso3": "AUS",
+      "gdacs_id": "WF1029877",
+      "eventtype": "WF",
+      "eventid": 1029877,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029877",
+      "last_updated": "2026-08-07T00:00:00",
+      "is_current": true,
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -8.5794,
@@ -7176,28 +6245,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029971",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 8188 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1029971/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -8.9043,
@@ -7215,28 +6263,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029972",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 9005 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/WF/1029972/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/WF/1029972/meteo/",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -13.0056,
@@ -7254,67 +6281,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029980",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "ZM",
-          "iso3": "ZMB",
-          "countryname": "Zambia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 9100 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1029980/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
-    },
-    {
-      "latitude": -23.6086,
-      "longitude": 23.3329,
-      "title": "Forest fires in Botswana - Botswana",
-      "summary": "Forest fires in Botswana",
-      "country": "Botswana",
-      "iso3": "BWA",
-      "gdacs_id": "WF1030048",
-      "eventtype": "WF",
-      "eventid": 1030048,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030048",
-      "last_updated": "2026-08-06T00:00:00",
-      "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "BW",
-          "iso3": "BWA",
-          "countryname": "Botswana"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 13582 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030048/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -7.4263,
@@ -7332,28 +6299,25 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030049",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "TZ",
-          "iso3": "TZA",
-          "countryname": "Tanzania"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5694 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030049/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": -23.6086,
+      "longitude": 23.3329,
+      "title": "Forest fires in Botswana - Botswana",
+      "summary": "Forest fires in Botswana",
+      "country": "Botswana",
+      "iso3": "BWA",
+      "gdacs_id": "WF1030048",
+      "eventtype": "WF",
+      "eventid": 1030048,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030048",
+      "last_updated": "2026-08-06T00:00:00",
+      "is_current": true,
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -10.3613,
@@ -7371,28 +6335,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030019",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 11857 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030019/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -12.5346,
@@ -7410,28 +6353,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030005",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 8116 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030005/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 66.5216,
@@ -7503,28 +6425,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030092",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5031 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/WF/1030092/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/WF/1030092/meteo/",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -23.3313,
@@ -7542,28 +6443,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030095",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "BW",
-          "iso3": "BWA",
-          "countryname": "Botswana"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5990 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/WF/1030095/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/WF/1030095/meteo/",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -17.6708,
@@ -7581,28 +6461,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030096",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AU",
-          "iso3": "AUS",
-          "countryname": "Australia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 6904 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/WF/1030096/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/WF/1030096/meteo/",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -17.2288,
@@ -7620,28 +6479,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030087",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 6139 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030087/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -24.6538,
@@ -7659,28 +6497,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030088",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "BW",
-          "iso3": "BWA",
-          "countryname": "Botswana"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 9440 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030088/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -31.1231,
@@ -7698,28 +6515,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030108",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "ZA",
-          "iso3": "ZAF",
-          "countryname": "South Africa"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5270 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/WF/1030108/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/WF/1030108/meteo/",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -8.104,
@@ -7737,28 +6533,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030118",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "CD",
-          "iso3": "COD",
-          "countryname": "Democratic Republic of Congo"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5299 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030118/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -9.0745,
@@ -7776,28 +6551,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030123",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "ZM",
-          "iso3": "ZMB",
-          "countryname": "Zambia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5772 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/WF/1030123/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/WF/1030123/meteo/",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -19.5939,
@@ -7815,28 +6569,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030136",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AU",
-          "iso3": "AUS",
-          "countryname": "Australia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 7291 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030136/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -12.3508,
@@ -7854,28 +6587,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030126",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "ZM",
-          "iso3": "ZMB",
-          "countryname": "Zambia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 6188 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030126/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -19.1261,
@@ -7893,28 +6605,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030139",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AU",
-          "iso3": "AUS",
-          "countryname": "Australia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 7158 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030139/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -18.438,
@@ -7932,28 +6623,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030132",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "NA",
-          "iso3": "NAM",
-          "countryname": "Namibia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 17011 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/WF/1030132/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/WF/1030132/meteo/",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -27.447,
@@ -7971,28 +6641,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030148",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "ZA",
-          "iso3": "ZAF",
-          "countryname": "South Africa"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5411 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030148/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -8.9967,
@@ -8010,28 +6659,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030157",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "ZM",
-          "iso3": "ZMB",
-          "countryname": "Zambia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5037 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030157/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -11.0452,
@@ -8049,28 +6677,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030166",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5046 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030166/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -10.5366,
@@ -8088,28 +6695,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030167",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5289 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030167/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": 49.4783,
@@ -8127,28 +6713,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030168",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "KZ",
-          "iso3": "KAZ",
-          "countryname": "Kazakhstan"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5010 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030168/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -4.5395,
@@ -8166,28 +6731,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030177",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "CD",
-          "iso3": "COD",
-          "countryname": "Democratic Republic of Congo"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 8963 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030177/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -10.7809,
@@ -8205,28 +6749,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030196",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AO",
-          "iso3": "AGO",
-          "countryname": "Angola"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 5288 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030196/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -4.8193,
@@ -8244,67 +6767,7 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1030188",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "CD",
-          "iso3": "COD",
-          "countryname": "Democratic Republic of Congo"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 6122 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1030188/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
-    },
-    {
-      "latitude": -7.2707,
-      "longitude": 34.5806,
-      "title": "Forest fires in Tanzania - Tanzania",
-      "summary": "Forest fires in Tanzania",
-      "country": "Tanzania",
-      "iso3": "TZA",
-      "gdacs_id": "WF1029759",
-      "eventtype": "WF",
-      "eventid": 1029759,
-      "glide": "",
-      "alert_level": "Green",
-      "alert_score": 1,
-      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029759",
-      "last_updated": "2026-08-06T00:00:00",
-      "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "TZ",
-          "iso3": "TZA",
-          "countryname": "Tanzania"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 27772 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/contentdata/resources/WF/1029759/meteo/",
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png"
-      ],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/WF/1029759/meteo/",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     },
     {
       "latitude": -18.5563,
@@ -8322,28 +6785,25 @@
       "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029740",
       "last_updated": "2026-08-06T00:00:00",
       "is_current": true,
-      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby.",
-      "affected_countries": [
-        {
-          "iso2": "AU",
-          "iso3": "AUS",
-          "countryname": "Australia"
-        }
-      ],
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "low impact for forestfire in 61749 ha",
-      "impact_history": [],
-      "impact_description": null,
-      "image_urls": [
-        "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-        "https://www.gdacs.org/contentdata/resources/WF/1029740/meteo/"
-      ],
-      "overview_map_url": "https://www.gdacs.org/images/gdacs_icons/iconmap/Nuclear.png",
-      "magnitude": null,
-      "depth_km": null,
-      "exposed_population": null
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
+    },
+    {
+      "latitude": -7.2707,
+      "longitude": 34.5806,
+      "title": "Forest fires in Tanzania - Tanzania",
+      "summary": "Forest fires in Tanzania",
+      "country": "Tanzania",
+      "iso3": "TZA",
+      "gdacs_id": "WF1029759",
+      "eventtype": "WF",
+      "eventid": 1029759,
+      "glide": "",
+      "alert_level": "Green",
+      "alert_score": 1,
+      "report_url": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=1029759",
+      "last_updated": "2026-08-06T00:00:00",
+      "is_current": true,
+      "report_description": "This wildfire could have a low impact on affected communities, based on the affected area and the exposure and vulnerability of the population nearby."
     }
   ]
 }
