@@ -424,6 +424,10 @@ def fetch_disaster_list():
 # 실제 재난 사진/위성지도가 아니므로 image_urls / map_urls 수집 대상에서 제외한다.
 ICON_URL_MARKERS = ["gdacs_icons", "/icons/", "iconmap", "/icon/"]
 
+# 브라우저/앱에서 바로 렌더링 가능한 실제 이미지 확장자만 허용.
+# .tif(원본 강수량 데이터) 등은 이미지 뷰어로 열 수 없어 제외한다.
+IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".gif", ".webp")
+
 
 def _is_icon_url(url):
     u = (url or "").lower()
@@ -524,7 +528,7 @@ def process_single_enrich(r):
             res_url_clean = str(res_url).strip()
             if _is_icon_url(res_url_clean):
                 continue
-            if any(res_url_clean.lower().endswith(ext) for ext in [".png", ".jpg", ".jpeg", ".gif"]):
+            if res_url_clean.lower().endswith(IMAGE_EXTS):
                 image_urls.append(res_url_clean)
                 if any(k in res_url_clean.lower() for k in ["map", "track", "wind", "overall", "current", "flood", "sat"]):
                     map_urls.append(res_url_clean)
@@ -534,6 +538,10 @@ def process_single_enrich(r):
             if isinstance(val, str) and val.strip().lower().startswith(("http://", "https://")):
                 clean_v = val.strip()
                 if _is_icon_url(clean_v):
+                    continue
+                if not clean_v.lower().endswith(IMAGE_EXTS):
+                    # 폴더 링크(".../meteo/", ".../img/mslp/")나 .tif 원본 데이터처럼
+                    # 브라우저에서 바로 표시할 수 없는 리소스는 제외
                     continue
                 if clean_v not in image_urls:
                     image_urls.append(clean_v)
