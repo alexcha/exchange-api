@@ -18,8 +18,16 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept": "application/json",
 }
-DAYS_BACK = 30  
-ENABLE_DATE_FILTER = False  
+
+# 🔧 GDACS 공식 홈페이지(gdacs.org/default.aspx)는
+#    "Map of disaster alerts in the past 4 days" 라고 명시하고 있음.
+#    즉 지도에 뿌려지는 마커는 최근 4일 이내 이벤트로 한정됨.
+#    (단, 가뭄(DR)은 예외로 "진행 중인 이벤트는 모두" 표시)
+DAYS_BACK = 4
+ENABLE_DATE_FILTER = True
+
+# 날짜 필터를 적용하지 않을 이벤트 타입 (GDACS 홈페이지 정책과 동일)
+DATE_FILTER_EXEMPT_TYPES = {"DR"}
 
 MAX_WORKERS = 8
 
@@ -116,6 +124,57 @@ def sanitize_severity_text(raw_text):
     for pattern, replacement in replacements:
         result = re.sub(pattern, replacement, result, flags=re.IGNORECASE)
     return result
+
+
+def parse_gdacs_datetime(date_str):
+    """GDACS API가 내려주는 다양한 날짜 포맷을 안전하게 파싱해서
+    timezone-aware(UTC) datetime으로 반환. 실패 시 None."""
+    if not date_str or not isinstance(date_str, str):
+        return None
+
+    s = date_str.strip()
+    if not s:
+        return None
+
+    # 'Z' 접미사는 fromisoformat이 파이썬 버전에 따라 못 읽을 수 있어 치환
+    if s.endswith("Z") or s.endswith("z"):
+        s = s[:-1] + "+00:00"
+
+    try:
+        dt = datetime.fromisoformat(s)
+    except ValueError:
+        # 밀리초 등 fromisoformat이 못 읽는 케이스에 대한 폴백
+        for fmt in ("%Y-%m-%dT%H:%M:%S.%f", "%Y-%m-%dT%H:%M:%S", "%Y-%m-%d %H:%M:%S"):
+            try:
+                dt = datetime.strptime(s, fmt)
+                break
+            except ValueError:
+                dt = None
+        if dt is None:
+            return None
+
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+
+    return dt
+
+
+def is_within_recent_window(event_type_val, fromdate_str, todate_str, days_back, now_utc):
+    """GDACS 홈페이지 지도 로직 재현:
+    - 가뭄(DR)은 날짜와 무관하게 진행 중이면 항상 포함
+    - 그 외 타입은 최근 days_back일 이내 이벤트만 포함
+      (todate 우선, 없으면 fromdate 사용)
+    """
+    if event_type_val in DATE_FILTER_EXEMPT_TYPES:
+        return True
+
+    ref_dt = parse_gdacs_datetime(todate_str) or parse_gdacs_datetime(fromdate_str)
+    if ref_dt is None:
+        # 날짜를 못 읽으면 안전하게 제외 (오래된 잔재 데이터가 새 마커처럼 남는 것 방지)
+        return False
+
+    cutoff = now_utc - timedelta(days=days_back)
+    return ref_dt >= cutoff
 
 
 def is_url_accessible(url, timeout=3.5):
@@ -339,6 +398,10 @@ def fetch_disaster_list():
 
     results = []
     seen_result_keys = set()
+    now_utc = datetime.now(timezone.utc)
+
+    skipped_old = 0
+    skipped_not_current = 0
 
     for feat in all_features:
         props = feat.get("properties", {}) or {}
@@ -349,7 +412,21 @@ def fetch_disaster_list():
 
         is_current = str(props.get("iscurrent", "")).strip().lower()
         if SHOW_ONLY_CURRENT and is_current != "true":
+            skipped_not_current += 1
             continue
+
+        # 🔧 GDACS 홈페이지 지도와 동일하게 "최근 N일" 이내 이벤트만 표시
+        #    (가뭄은 예외적으로 진행 중이면 항상 포함)
+        if ENABLE_DATE_FILTER:
+            if not is_within_recent_window(
+                event_type_val,
+                props.get("fromdate"),
+                props.get("todate"),
+                DAYS_BACK,
+                now_utc,
+            ):
+                skipped_old += 1
+                continue
 
         if event_type_val and event_id_val:
             result_key = f"{event_type_val}{event_id_val}"
@@ -398,6 +475,8 @@ def fetch_disaster_list():
             "is_current": is_current == "true",
         })
 
+    print(f"🧹 필터링: iscurrent 아님 {skipped_not_current}건 제외, {DAYS_BACK}일 초과(DR 제외) {skipped_old}건 제외 → 최종 {len(results)}건")
+
     return results
 
 
@@ -435,25 +514,10 @@ def process_single_enrich(r):
     deaths, displaced, missing = None, None, None
     sendai_details = []
 
-    # 🔍 디버그: 전체 sendai 배열 구조 로깅
-    gdacs_id = r.get("gdacs_id", f"{eventtype}{eventid}")
-    if sendai:
-        print(f"\n{'='*80}")
-        print(f"[DEBUG {gdacs_id}] 🔍 원본 sendai 배열 구조 (총 {len(sendai)}개 항목):")
-        print(f"{'='*80}")
-        for idx, s in enumerate(sendai):
-            print(f"\n  [{idx}] sendaitype={s.get('sendaitype')}")
-            print(f"       sendainame={s.get('sendainame')}")
-            print(f"       sendaivalue={s.get('sendaivalue')}")
-            print(f"       latest={s.get('latest')}")
-            print(f"       description={s.get('description')}")
-            print(f"       dateinsert={s.get('dateinsert')}")
-        print(f"\n{'='*80}\n")
-
     for s in sendai:
         name = (s.get("sendainame") or "").lower()
         raw_value = s.get("sendaivalue", "0")
-        
+
         try:
             val = int(re.sub(r"[^\d]", "", str(raw_value)) or 0)
         except ValueError:
@@ -462,21 +526,13 @@ def process_single_enrich(r):
         is_latest_raw = s.get("latest", "")
         is_latest = str(is_latest_raw).strip().lower() in ("true", "1", "yes")
 
-        # 🔍 디버그: 각 항목별 파싱 결과
-        print(f"[파싱] sendainame='{name}' | 원본={raw_value} → 정수={val} | latest={is_latest_raw}({is_latest})")
-
         if is_latest:
             if "death" in name:
-                print(f"  ✅ deaths 증가: {deaths or 0} + {val}")
                 deaths = (deaths or 0) + val
             elif "displaced" in name or "evacuat" in name:
-                print(f"  ✅ displaced 증가: {displaced or 0} + {val}")
                 displaced = (displaced or 0) + val
             elif "missing" in name:
-                print(f"  ✅ missing 증가: {missing or 0} + {val}")
                 missing = (missing or 0) + val
-        else:
-            print(f"  ⏭️  latest=False 스킵")
 
         sendai_details.append({
             "type": s.get("sendaitype"),
@@ -485,8 +541,6 @@ def process_single_enrich(r):
             "description": s.get("description"),
             "date": s.get("dateinsert"),
         })
-    
-    print(f"\n[최종] deaths={deaths} | displaced={displaced} | missing={missing}\n")
 
     r["deaths"] = deaths
     r["displaced"] = displaced
@@ -504,12 +558,12 @@ def process_single_enrich(r):
                     raw_image_candidates.append(val.strip())
 
     valid_image_urls = validate_image_urls_parallel(raw_image_candidates)
-    
+
     alert_cap = r_alertlevel.capitalize()
     fallback_icon = f"https://www.gdacs.org/images/gdacs_icons/big/{alert_cap}/{r_eventtype}.png"
 
     r["image_urls"] = valid_image_urls
-    
+
     if valid_image_urls:
         r["overview_map_url"] = valid_image_urls[0]
     else:
@@ -528,7 +582,7 @@ def enrich_disasters_parallel(results):
     print(f"\n🔄 공식 리포트 상세 및 이미지 유효성(404) 검증 중... ({len(results)}건 대상)")
 
     enriched_results = []
-    with ThreadPoolExecutor(max_workers=1) as executor:  # 디버그 시엔 단일 스레드로
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = {executor.submit(process_single_enrich, r): r for r in results}
         for future in as_completed(futures):
             updated_record, _ = future.result()
@@ -598,7 +652,7 @@ def main():
 
                 if (prior_entry is None) or (prior_entry.get("fingerprint") != current_fingerprint):
                     iso3_val = str(r.get("iso3", "")).upper().strip()
-                    
+
                     send_disaster_push(
                         country_iso2=iso3_to_iso2(iso3_val),
                         country_iso3=iso3_val,
@@ -622,7 +676,7 @@ def main():
             json.dump({"status": "success", "data": results}, f, ensure_ascii=False, indent=2)
 
         os.replace(temp_filepath, final_filepath)
-        print(f"\n💾 404 필터링 적용 최종 데이터 저장 완료: '{final_filepath}'")
+        print(f"\n💾 필터링 적용 최종 데이터 저장 완료: '{final_filepath}'")
     except Exception as e:
         print(f"❌ 저장 오류: {e}")
         sys.exit(1)
