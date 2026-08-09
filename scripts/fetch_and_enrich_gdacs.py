@@ -25,7 +25,8 @@ HEADERS = {
 #    단, 아래 두 타입은 날짜 기준이 아니라 별도 규칙을 따름:
 #    - 가뭄(DR): 날짜 무관, 진행 중인 이벤트는 전부 표시
 #    - 산불(WF): 진행 중인 Orange/Red는 날짜 무관 전부 표시.
-#                Green은 "소실면적 10,000ha 초과 + 반경 5km 인구 10,000명 초과"일 때만 표시
+#                Green은 "소실면적 10,000ha 초과"일 때만 표시
+#      (인구 조건은 GDACS API로 노출되지 않아 면적 기준만 적용)
 #      (출처: https://www.gdacs.org/knowledge/models_wf.aspx)
 DAYS_BACK = 4
 ENABLE_DATE_FILTER = True
@@ -35,7 +36,6 @@ DATE_FILTER_EXEMPT_TYPES = {"DR", "WF"}
 
 # 산불(WF) 전용 기준 (GDACS 홈페이지 정책)
 WF_GREEN_AREA_THRESHOLD_HA = 10000
-WF_GREEN_POPULATION_THRESHOLD = 10000
 
 MAX_WORKERS = 8
 
@@ -169,7 +169,7 @@ def parse_gdacs_datetime(date_str):
 
 def is_within_recent_window(event_type_val, fromdate_str, todate_str, days_back, now_utc):
     """GDACS 홈페이지 지도 로직 재현:
-    - 가뭄(DR), 산불(WF)은 별도 규칙(is_drought_ok / wf 판정)으로 처리하므로 여기선 건너뜀
+    - 가뭄(DR), 산불(WF)은 별도 규칙으로 처리하므로 여기선 건너뜀
     - 그 외 타입은 최근 days_back일 이내 이벤트만 포함
       (todate 우선, 없으면 fromdate 사용)
     """
@@ -183,53 +183,6 @@ def is_within_recent_window(event_type_val, fromdate_str, todate_str, days_back,
 
     cutoff = now_utc - timedelta(days=days_back)
     return ref_dt >= cutoff
-
-
-def extract_population_value(props):
-    """GDACS geteventdata 응답에서 '반경 내 인구' 값을 최대한 찾아본다.
-    공식 필드명이 문서로 확정돼 있지 않아 알려진 후보 키를 순서대로 시도.
-    못 찾으면 None을 반환 (호출부에서 안전하게 '조건 미충족'으로 처리)."""
-    if not isinstance(props, dict):
-        return None
-
-    # 1) severitydata 형태처럼 {"population": {"value": ..., "unit": ...}} 로 오는 경우
-    pop_obj = props.get("population")
-    if isinstance(pop_obj, dict):
-        for key in ("value", "populationvalue", "pop"):
-            if key in pop_obj:
-                try:
-                    return float(re.sub(r"[^\d.]", "", str(pop_obj[key])) or 0)
-                except (ValueError, TypeError):
-                    pass
-
-    # 2) 평평한 필드명으로 오는 경우들
-    for key in ("populationvalue", "population5km", "exposedpopulation", "rapidpop"):
-        val = props.get(key)
-        if val not in (None, ""):
-            try:
-                return float(re.sub(r"[^\d.]", "", str(val)) or 0)
-            except (ValueError, TypeError):
-                pass
-
-    return None
-
-
-def wf_green_passes_population_check(eventtype, eventid):
-    """Green 등급 산불이 '반경 5km 인구 10,000명 초과' 조건을 만족하는지
-    상세 API(geteventdata)를 조회해서 확인. 필드를 못 찾으면 False(제외)로 처리해
-    과다 노출보다 과소 노출 쪽으로 안전하게 판단한다."""
-    detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
-    detail = fetch_json(detail_url)
-    if not detail:
-        return False
-
-    props = detail.get("properties", detail) or {}
-    pop_value = extract_population_value(props)
-    if pop_value is None:
-        print(f"  ⚠️ [WF {eventtype}{eventid}] 인구(5km) 필드를 찾지 못해 Green 산불을 제외합니다.")
-        return False
-
-    return pop_value > WF_GREEN_POPULATION_THRESHOLD
 
 
 def is_url_accessible(url, timeout=3.5):
@@ -458,7 +411,6 @@ def fetch_disaster_list():
     skipped_old = 0
     skipped_not_current = 0
     skipped_wf_small = 0
-    skipped_wf_no_population = 0
 
     for feat in all_features:
         props = feat.get("properties", {}) or {}
@@ -475,7 +427,8 @@ def fetch_disaster_list():
         if event_type_val == "WF":
             # 🔧 산불 전용 규칙 (GDACS 홈페이지 정책):
             #    - Orange/Red: 진행 중이면 날짜 무관 전부 포함
-            #    - Green: 소실면적 10,000ha 초과 + 반경 5km 인구 10,000명 초과일 때만 포함
+            #    - Green: 소실면적 10,000ha 초과일 때만 포함
+            #      (인구 조건은 GDACS API로 노출되지 않아 적용하지 않음)
             alertlevel_lower = str(props.get("alertlevel", "")).strip().lower()
             if alertlevel_lower not in ("orange", "red"):
                 try:
@@ -485,10 +438,6 @@ def fetch_disaster_list():
 
                 if area_ha <= WF_GREEN_AREA_THRESHOLD_HA:
                     skipped_wf_small += 1
-                    continue
-
-                if not wf_green_passes_population_check(event_type_val, event_id_val):
-                    skipped_wf_no_population += 1
                     continue
         elif ENABLE_DATE_FILTER:
             # 🔧 GDACS 홈페이지 지도와 동일하게 "최근 N일" 이내 이벤트만 표시
@@ -553,8 +502,7 @@ def fetch_disaster_list():
     print(
         f"🧹 필터링: iscurrent 아님 {skipped_not_current}건 / "
         f"{DAYS_BACK}일 초과(DR·WF 제외) {skipped_old}건 / "
-        f"Green 산불 면적 미달 {skipped_wf_small}건 / "
-        f"Green 산불 인구 미달·확인불가 {skipped_wf_no_population}건 "
+        f"Green 산불 면적 미달 {skipped_wf_small}건 "
         f"제외 → 최종 {len(results)}건"
     )
 
