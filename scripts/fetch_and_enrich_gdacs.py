@@ -43,12 +43,9 @@ DATE_FILTER_EXEMPT_TYPES = {"DR", "WF"}
 # 산불(WF) 전용 기준 (GDACS 홈페이지 정책)
 WF_GREEN_AREA_THRESHOLD_HA = 10000
 
-# 상세조회(geteventdata)와 이미지 검증은 gdacs.org에 동시에 몰리면
-# WAF의 "짧은 시간 내 동시 연결 수" 탐지에 걸려 403을 유발할 수 있어
-# 훨씬 보수적인 동시성을 별도로 사용한다.
-ENRICH_WORKERS = 3         # geteventdata 동시 호출 수 (outer)
-IMAGE_VALIDATE_WORKERS = 2 # 이미지 URL 검증 동시 호출 수 (inner, enrich 스레드마다)
-ENRICH_STAGGER_SEC = 0.3   # 스레드 제출 사이 최소 간격(지터)
+# 이미지 URL 검증(HEAD 요청)은 상세조회(geteventdata)와 별개로,
+# 지금까지 rate limit에 걸린 적이 없어 소규모 병렬을 유지한다.
+IMAGE_VALIDATE_WORKERS = 2
 
 EVENT_TYPES = ["EQ", "TC", "FL", "VO", "WF", "DR", "TS"]
 
@@ -62,6 +59,18 @@ PAGE_RETRY_DELAY_SEC = 2.0
 
 SENT_IDS_FILEPATH = "data/sent_disaster_ids.json"
 PRUNE_AFTER_DAYS = 45
+
+# 🔧 geteventdata 상세조회는 GDACS가 IP당 "일정 시간 동안의 누적 요청 수"로
+#    제한하는 것으로 보임(짧은 순간의 동시요청이 아니라도 403 "Too many requests"
+#    지속 발생 확인됨). 따라서:
+#    1) 상세조회는 병렬이 아니라 순차로, 매 요청 사이 최소 간격을 둔다.
+#    2) 이전에 이미 가져온 상세정보를 캐싱해서, 이벤트 정보(last_updated)가
+#       바뀌지 않았으면 재요청하지 않고 캐시를 그대로 재사용한다.
+#    이렇게 하면 실행마다 새로 호출해야 하는 geteventdata 건수 자체가
+#    "새로 생기거나 갱신된 이벤트"로만 줄어든다.
+DETAIL_CACHE_FILEPATH = "data/event_detail_cache.json"
+DETAIL_CACHE_PRUNE_DAYS = 45
+DETAIL_REQUEST_INTERVAL_SEC = 1.2  # 순차 상세조회 사이 최소 간격
 
 GDACS_COUNTRY_MAP = {
     "republic of korea": "South Korea",
@@ -538,30 +547,12 @@ def fetch_disaster_list():
     return results
 
 
-def process_single_enrich(r):
+def apply_enrich_from_props(r, props):
+    """geteventdata 응답의 properties(실시간 조회든 캐시든 동일 포맷)를
+    받아서 결과 레코드 r에 enrich 필드를 채워 넣는다."""
     r_eventtype = r.get("eventtype", "")
     r_alertlevel = str(r.get("alert_level", "green")).lower()
-    
-    r["report_description"] = (
-        f"This {EVENT_TYPE_NAME.get(r_eventtype, 'event')} could have a "
-        f"{IMPACT_LEVEL.get(r_alertlevel, 'unknown')} impact on affected communities, "
-        f"based on {IMPACT_BASIS.get(r_eventtype, 'the severity')} and the "
-        f"exposure and vulnerability of the population nearby."
-    )
 
-    eventtype = r.get("eventtype")
-    eventid = r.get("eventid")
-
-    if not eventtype or not eventid:
-        return r, True
-
-    detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
-    detail = fetch_json(detail_url)
-
-    if not detail:
-        return r, True
-
-    props = detail.get("properties", detail) or {}
     sendai = props.get("sendai") or []
     severity = props.get("severitydata") or {}
     images = props.get("images") or {}
@@ -607,7 +598,8 @@ def process_single_enrich(r):
     r["impact_history"] = sendai_details
     r["impact_description"] = (sendai_details[-1]["description"][:300] if sendai_details else None)
 
-    # 이미지 URL 추출 및 404 실시간 검증
+    # 이미지 URL 추출 및 404 실시간 검증 (geteventdata를 새로 안 불러도
+    # 이미지 유효성은 가볍게 매번 재확인 - 이건 rate limit에 걸린 적 없음)
     raw_image_candidates = []
     if isinstance(images, dict):
         for key, val in images.items():
@@ -631,26 +623,114 @@ def process_single_enrich(r):
     r["depth_km"] = eq_details.get("depth")
     r["exposed_population"] = eq_details.get("rapidpop")
 
-    return r, True
+
+def process_single_enrich(r, detail_cache):
+    """r 하나를 enrich한다. 캐시에 last_updated가 같은 상세정보가 있으면
+    네트워크 호출 없이 캐시를 재사용하고, 없거나 갱신됐으면 geteventdata를
+    호출한다. 반환값: (r, fetched_fresh: bool, cache_entry_to_store: dict|None)
+    fetched_fresh가 True일 때만 호출부에서 요청 간격(sleep)을 적용한다."""
+    r_eventtype = r.get("eventtype", "")
+    r_alertlevel = str(r.get("alert_level", "green")).lower()
+
+    r["report_description"] = (
+        f"This {EVENT_TYPE_NAME.get(r_eventtype, 'event')} could have a "
+        f"{IMPACT_LEVEL.get(r_alertlevel, 'unknown')} impact on affected communities, "
+        f"based on {IMPACT_BASIS.get(r_eventtype, 'the severity')} and the "
+        f"exposure and vulnerability of the population nearby."
+    )
+
+    eventtype = r.get("eventtype")
+    eventid = r.get("eventid")
+    gdacs_id = r.get("gdacs_id")
+    last_updated = r.get("last_updated", "")
+
+    if not eventtype or not eventid:
+        return r, False, None
+
+    cached_entry = detail_cache.get(gdacs_id) if gdacs_id else None
+    if cached_entry and cached_entry.get("last_updated") == last_updated and cached_entry.get("properties"):
+        apply_enrich_from_props(r, cached_entry["properties"])
+        return r, False, None
+
+    detail_url = f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={eventtype}&eventid={eventid}"
+    detail = fetch_json(detail_url)
+
+    if not detail:
+        # 신선한 상세정보를 못 가져왔으면, 오래됐더라도 이전 캐시라도 있으면 그걸로 채운다
+        if cached_entry and cached_entry.get("properties"):
+            apply_enrich_from_props(r, cached_entry["properties"])
+        return r, True, None
+
+    props = detail.get("properties", detail) or {}
+    apply_enrich_from_props(r, props)
+
+    new_cache_entry = {
+        "last_updated": last_updated,
+        "properties": props,
+        "recorded_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    }
+    return r, True, new_cache_entry
 
 
-def enrich_disasters_parallel(results):
+def enrich_disasters_sequential(results, detail_cache):
+    """geteventdata 상세조회를 병렬이 아니라 순차로 수행하고, 매 신규 호출
+    사이에 DETAIL_REQUEST_INTERVAL_SEC 간격을 둔다. 캐시에 있는 건은
+    네트워크 호출 자체가 없으므로 간격을 적용하지 않는다."""
     results.sort(key=lambda r: SEVERITY_ORDER.get(str(r.get("alert_level", "green")).lower(), 3))
 
-    print(f"\n🔄 공식 리포트 상세 및 이미지 유효성(404) 검증 중... ({len(results)}건 대상)")
+    print(f"\n🔄 공식 리포트 상세 및 이미지 유효성(404) 검증 중... ({len(results)}건 대상, 순차/캐시 우선)")
 
     enriched_results = []
-    with ThreadPoolExecutor(max_workers=ENRICH_WORKERS) as executor:
-        futures = {}
-        for r in results:
-            futures[executor.submit(process_single_enrich, r)] = r
-            time.sleep(ENRICH_STAGGER_SEC)  # gdacs.org에 몰리는 동시 연결을 완화
-        for future in as_completed(futures):
-            updated_record, _ = future.result()
-            enriched_results.append(updated_record)
+    fetched_count = 0
+    cached_count = 0
 
-    print("🎉 상세 데이터 및 이미지 유효성 검증 완료!")
+    for r in results:
+        updated_record, fetched_fresh, new_cache_entry = process_single_enrich(r, detail_cache)
+        enriched_results.append(updated_record)
+
+        if new_cache_entry and updated_record.get("gdacs_id"):
+            detail_cache[updated_record["gdacs_id"]] = new_cache_entry
+
+        if fetched_fresh:
+            fetched_count += 1
+            time.sleep(DETAIL_REQUEST_INTERVAL_SEC)
+        else:
+            cached_count += 1
+
+    print(f"🎉 상세 데이터 및 이미지 유효성 검증 완료! (신규 조회 {fetched_count}건 / 캐시 재사용 {cached_count}건)")
     return enriched_results
+
+
+def load_detail_cache():
+    if not os.path.exists(DETAIL_CACHE_FILEPATH):
+        return {}
+    try:
+        with open(DETAIL_CACHE_FILEPATH, "r", encoding="utf-8") as f:
+            raw = json.load(f)
+        return raw.get("cache", {})
+    except Exception:
+        return {}
+
+
+def save_detail_cache(cache):
+    # 너무 오래된 캐시는 정리
+    cutoff = datetime.now(timezone.utc) - timedelta(days=DETAIL_CACHE_PRUNE_DAYS)
+    pruned = {}
+    for gdacs_id, entry in cache.items():
+        recorded_at = parse_gdacs_datetime(entry.get("recorded_at"))
+        if recorded_at is None or recorded_at >= cutoff:
+            pruned[gdacs_id] = entry
+
+    tmp_path = DETAIL_CACHE_FILEPATH + ".tmp"
+    try:
+        os.makedirs(os.path.dirname(DETAIL_CACHE_FILEPATH), exist_ok=True)
+        with open(tmp_path, "w", encoding="utf-8") as f:
+            json.dump({"cache": pruned}, f, ensure_ascii=False, indent=2)
+        os.replace(tmp_path, DETAIL_CACHE_FILEPATH)
+    except Exception as e:
+        print(f"  ⚠️ 상세정보 캐시 저장 실패: {e}")
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
 
 
 def load_sent_ids_history():
@@ -681,7 +761,9 @@ def main():
         print("🚨 수집된 데이터가 없습니다. 응답 실패 방지를 위해 기존 데이터를 보존합니다.")
         sys.exit(0)
 
-    results = enrich_disasters_parallel(results)
+    detail_cache = load_detail_cache()
+    results = enrich_disasters_sequential(results, detail_cache)
+    save_detail_cache(detail_cache)
 
     temp_filepath = "data/realtime_disasters.json.tmp"
     final_filepath = "data/realtime_disasters.json"
