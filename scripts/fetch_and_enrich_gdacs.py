@@ -69,7 +69,11 @@ PRUNE_AFTER_DAYS = 45
 #    이렇게 하면 실행마다 새로 호출해야 하는 geteventdata 건수 자체가
 #    "새로 생기거나 갱신된 이벤트"로만 줄어든다.
 DETAIL_CACHE_FILEPATH = "data/event_detail_cache.json"
-DETAIL_CACHE_PRUNE_DAYS = 45
+# 🔧 화면에 표시되는 이벤트는 DAYS_BACK(4일)이 지나면 결과 목록에서 빠지므로
+#    (DR·WF 제외) 그 이후엔 캐시가 재사용될 일이 없다. 진행 중인 DR·WF는
+#    last_updated가 계속 갱신되며 자연히 캐시가 새로 채워지므로 길게 보관할
+#    필요가 없다. 4일 표시 기간에 여유를 둔 정도로만 보관한다.
+DETAIL_CACHE_PRUNE_DAYS = 10
 DETAIL_REQUEST_INTERVAL_SEC = 1.2  # 순차 상세조회 사이 최소 간격
 
 GDACS_COUNTRY_MAP = {
