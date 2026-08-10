@@ -7,7 +7,7 @@ korea_mofa_travel_alarm_scraper.py
 
 데이터 출처 (공식, 공공데이터포털 등록 Open API):
   https://www.data.go.kr/data/15000827/openapi.do   (여행경보제도)
-  요청 주소: http://apis.data.go.kr/1262000/TravelAlarmService2/getTravelAlarmList2
+  요청 주소: https://apis.data.go.kr/1262000/TravelAlarmService2/getTravelAlarmList2
 
 전제 조건 (중요, 무료지만 사전 신청 필요):
   1. https://www.data.go.kr 에서 회원가입
@@ -15,6 +15,9 @@ korea_mofa_travel_alarm_scraper.py
   3. 승인 후 마이페이지에서 발급된 서비스키(인증키)를 아래
      환경변수 DATA_GO_KR_SERVICE_KEY 로 설정
        export DATA_GO_KR_SERVICE_KEY="발급받은_인증키"
+     ⚠️ 반드시 "일반 인증키(Decoding)" 값을 사용할 것.
+        "Encoding" 키를 넣으면 requests가 URL 인코딩을 한 번 더 해서
+        키가 깨지고 403 Forbidden이 발생합니다.
   개발계정 기준 1일 트래픽 10,000건까지 무료.
 
 주의 (중요):
@@ -47,7 +50,7 @@ from datetime import datetime, timezone
 
 import requests
 
-BASE_URL = "http://apis.data.go.kr/1262000/TravelAlarmService2/getTravelAlarmList2"
+BASE_URL = "https://apis.data.go.kr/1262000/TravelAlarmService2/getTravelAlarmList2"
 USER_AGENT = "travel-advisory-research-script/1.0 (+contact: user)"
 PAGE_SIZE = 100
 
