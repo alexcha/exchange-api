@@ -2,36 +2,60 @@
 korea_mofa_travel_alarm_scraper.py
 
 대한민국 외교부(MOFA)가 공공데이터포털(data.go.kr)을 통해 제공하는
-"국가·지역별 여행경보" 공식 Open API를 호출하여 파싱한 뒤,
-미국 국무부 데이터와 동일한 스키마로 저장하는 스크립트.
+"국가·지역별 여행경보" 공식 Open API(TravelAlarmService2)를 호출하여
+파싱한 뒤, 미국 국무부 데이터와 유사한 스키마로 저장하는 스크립트.
+
+본 스크립트는 공식 기술문서
+  "국가∙지역별 여행경보 - Open API 활용가이드 v1.4"
+의 요청/응답 메시지 명세를 그대로 따른다.
 
 데이터 출처 (공식, 공공데이터포털 등록 Open API):
-  https://www.data.go.kr/data/15000827/openapi.do   (여행경보제도)
-  요청 주소: https://apis.data.go.kr/1262000/TravelAlarmService2/getTravelAlarmList2
+  https://www.data.go.kr/data/15076237/openapi.do
+  서비스 URL(문서 명시, SSL 미지원 - 반드시 http 사용):
+    http://apis.data.go.kr/1262000/TravelAlarmService2
+  요청 주소:
+    http://apis.data.go.kr/1262000/TravelAlarmService2/getTravelAlarmList2
 
-전제 조건 (중요, 무료지만 사전 신청 필요):
+전제 조건 (무료, 사전 활용신청 필요 - 개발단계 자동승인):
   1. https://www.data.go.kr 에서 회원가입
-  2. 위 API("외교부_국가·지역별 여행경보") 페이지에서 "활용신청"
+  2. "외교부_국가∙지역별 여행경보" API 페이지에서 "활용신청"
   3. 승인 후 마이페이지에서 발급된 서비스키(인증키)를 아래
      환경변수 DATA_GO_KR_SERVICE_KEY 로 설정
        export DATA_GO_KR_SERVICE_KEY="발급받은_인증키"
      ⚠️ 반드시 "일반 인증키(Decoding)" 값을 사용할 것.
         "Encoding" 키를 넣으면 requests가 URL 인코딩을 한 번 더 해서
-        키가 깨지고 403 Forbidden이 발생합니다.
-  개발계정 기준 1일 트래픽 10,000건까지 무료.
+        키가 깨집니다.
 
-주의 (중요):
-  이 스크립트를 작성한 환경은 data.go.kr 상세페이지 접근이
-  robots.txt로 차단되어 있어 요청 파라미터명/응답 필드명을
-  100% 실제 호출로 확인하지 못했습니다. 검색 결과에 노출된
-  공식 요약 정보(요청변수/출력결과 목록)를 근거로 아래와 같이
-  작성했습니다:
-    - 요청변수: 인증키(serviceKey), 페이지번호(pageNo),
-      페이지당개수(numOfRows), 반환타입(type), 국가명, ISO코드
-    - 출력결과: 국가영문명, 국가한글명, ISO 2자리코드, 대륙코드/명,
-      경보단계, 지역유형, 경보내용, 작성일
-  실제 실행 시 응답 JSON을 한 번 출력해서(print(raw)) 정확한 키
-  이름을 확인 후 KEY_CANDIDATES를 조정해 주세요.
+요청 파라미터 (기술문서 기준):
+  serviceKey            인증키 (필수)
+  returnType             XML 또는 JSON (필수) - "type" 아님, "returnType"
+  numOfRows             한 페이지 결과 수 (필수)
+  pageNo                페이지 번호 (필수)
+  cond[country_nm::EQ]        한글 국가명 (옵션)
+  cond[country_iso_alp2::EQ]  ISO 2자리코드 (옵션)
+
+응답 구조 (기술문서 기준, 중첩 없이 최상위에 바로 data 배열):
+  {
+    "resultCode": 0, "resultMsg": "정상",
+    "numOfRows": 10, "pageNo": 1,
+    "totalCount": 1268, "currentCount": 10,
+    "data": [
+      {
+        "country_eng_nm": "...", "country_nm": "...",
+        "country_iso_alp2": "...", "continent_cd": "...",
+        "continent_eng_nm": "...", "continent_nm": "...",
+        "dang_map_download_url": "...", "flag_download_url": "...",
+        "map_download_url": "...", "alarm_lvl": "...",
+        "remark": "...", "region_ty": "...", "written_dt": "..."
+      }, ...
+    ]
+  }
+
+resultCode 에러 코드 (기술문서 기준):
+  0: 정상 | -1: 시스템 내부 오류 | -2: 잘못된 파라미터
+  -3: 등록되지 않은 서비스 | -4: 등록되지 않은 인증키
+  -9: 종료된 서비스 | -10: 트래픽 초과 | -401: 유효하지 않은 인증키
+  -999: UNKNOWN
 
 사용법:
     pip install requests --break-system-packages
@@ -50,12 +74,22 @@ from datetime import datetime, timezone
 
 import requests
 
-BASE_URL = "https://apis.data.go.kr/1262000/TravelAlarmService2/getTravelAlarmList2"
+# ⚠️ 기술문서에 "전송 레벨 암호화: 없음"으로 명시됨 -> https 아님, http 사용.
+BASE_URL = "http://apis.data.go.kr/1262000/TravelAlarmService2/getTravelAlarmList2"
 USER_AGENT = "travel-advisory-research-script/1.0 (+contact: user)"
 PAGE_SIZE = 100
 
-# 한국 여행경보 4단계 -> 미국식 1~4 등급은 이미 동일한 체계이므로 별도 변환 불필요.
-# 1단계: 여행유의 / 2단계: 여행자제 / 3단계: 출국권고 / 4단계: 여행금지
+RESULT_CODE_MESSAGES = {
+    0: "정상",
+    -1: "시스템 내부 오류가 발생하였습니다.",
+    -2: "요청하신 파라미터가 적합하지 않습니다.",
+    -3: "등록되지 않은 서비스입니다.",
+    -4: "등록되지 않은 인증키입니다.",
+    -9: "종료된 서비스입니다.",
+    -10: "트래픽 허용 횟수를 초과하였습니다.",
+    -401: "유효하지 않은 인증키입니다.",
+    -999: "UNKNOWN",
+}
 
 
 def get_service_key():
@@ -71,66 +105,55 @@ def get_service_key():
     return key
 
 
-def _first_present(d, keys, default=None):
-    for k in keys:
-        if isinstance(d, dict) and k in d and d[k] not in (None, ""):
-            return d[k]
-    return default
-
-
 def fetch_page(service_key, page_no):
     params = {
         "serviceKey": service_key,
+        "returnType": "JSON",
         "numOfRows": PAGE_SIZE,
         "pageNo": page_no,
-        "type": "json",
     }
     resp = requests.get(
         BASE_URL, params=params, headers={"User-Agent": USER_AGENT}, timeout=30
     )
+    if not resp.ok:
+        print(
+            f"[디버그] HTTP {resp.status_code} 응답 본문:\n{resp.text[:2000]}",
+            file=sys.stderr,
+        )
     resp.raise_for_status()
-    return resp.json()
+    raw = resp.json()
 
+    result_code = raw.get("resultCode")
+    if result_code is not None and int(result_code) != 0:
+        msg = raw.get("resultMsg") or RESULT_CODE_MESSAGES.get(int(result_code), "알 수 없는 에러")
+        print(f"[API 에러] resultCode={result_code}, resultMsg={msg}", file=sys.stderr)
+        sys.exit(1)
 
-def extract_items(raw):
-    """
-    공공데이터포털 표준 응답 구조( response.body.items.item )를 우선 시도하고,
-    실패 시 다른 흔한 변형 구조도 방어적으로 시도한다.
-    """
-    try:
-        body = raw["response"]["body"]
-        total_count = int(body.get("totalCount", 0))
-        items = body.get("items", {})
-        if isinstance(items, dict):
-            items = items.get("item", [])
-        if isinstance(items, dict):  # 결과가 1건이면 dict로만 오는 경우 방어
-            items = [items]
-        return items or [], total_count
-    except (KeyError, TypeError):
-        pass
-
-    # 방어적 대체 경로
-    items = raw.get("items") or raw.get("data") or []
-    return items, len(items)
+    return raw
 
 
 def parse_record(item):
     return {
-        "iso_code": _first_present(item, ["isoCd", "iso_cd", "isoCode"]),
-        "name": _first_present(item, ["countryEngNm", "country_eng_nm", "countryNm"]),
-        "name_kr": _first_present(item, ["countryNm", "country_nm"]),
-        "advisory_level": _to_int(
-            _first_present(item, ["alarmLvl", "alarm_lvl", "level"])
-        ),
-        "advisory_text": _first_present(item, ["remark", "alarmCn", "content"]),
-        "region_type": _first_present(item, ["areaType", "area_type"]),
-        "continent": _first_present(item, ["continentEngNm", "continent_eng_nm"]),
-        "last_updated": _first_present(item, ["wrtDt", "wrt_dt", "regDt"]),
+        "iso_code": item.get("country_iso_alp2"),
+        "name": item.get("country_eng_nm"),
+        "name_kr": item.get("country_nm"),
+        "advisory_level": _to_int(item.get("alarm_lvl")),
+        "advisory_text": item.get("remark") or None,
+        "region_type": item.get("region_ty") or None,
+        "continent_code": item.get("continent_cd"),
+        "continent": item.get("continent_eng_nm"),
+        "continent_kr": item.get("continent_nm"),
+        "danger_map_url": item.get("dang_map_download_url") or None,
+        "flag_url": item.get("flag_download_url") or None,
+        "map_url": item.get("map_download_url") or None,
+        "last_updated": item.get("written_dt") or None,
         "risk_score": None,
     }
 
 
 def _to_int(v):
+    if v in (None, ""):
+        return None
     try:
         return int(v)
     except (TypeError, ValueError):
@@ -146,12 +169,15 @@ def main():
     total_count = None
     while True:
         raw = fetch_page(service_key, page_no)
-        items, total_count = extract_items(raw)
+        items = raw.get("data") or []
+        if isinstance(items, dict):  # 결과가 1건이면 dict로만 오는 경우 방어
+            items = [items]
+        total_count = raw.get("totalCount", total_count)
         if not items:
             break
         all_items.extend(items)
-        print(f"      페이지 {page_no}: {len(items)}건 (누적 {len(all_items)}건)", file=sys.stderr)
-        if total_count and len(all_items) >= total_count:
+        print(f"      페이지 {page_no}: {len(items)}건 (누적 {len(all_items)}건 / 전체 {total_count})", file=sys.stderr)
+        if total_count and len(all_items) >= int(total_count):
             break
         page_no += 1
         time.sleep(0.3)
