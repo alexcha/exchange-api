@@ -3,19 +3,9 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-10T13:34:45.358546+00:00",
+  "generated_at": "2026-08-10T14:04:46.325717+00:00",
   "count": 226,
   "data": [
-    {
-      "name": "Portugal",
-      "slug": "portugal",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Portugal. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-08-10T14:17:43+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/portugal"
-    },
     {
       "name": "Lebanon",
       "slug": "lebanon",
@@ -26,8 +16,28 @@
       "advisory_level": 3,
       "risk_score": null,
       "summary": "FCDO travel advice for Lebanon. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-05-21T10:11:01+01:00",
+      "public_updated_at": "2026-08-10T14:51:12+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/lebanon"
+    },
+    {
+      "name": "Fiji",
+      "slug": "fiji",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Fiji. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-10T14:48:05+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/fiji"
+    },
+    {
+      "name": "Portugal",
+      "slug": "portugal",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Portugal. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-10T14:17:43+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/portugal"
     },
     {
       "name": "Italy",
@@ -72,16 +82,6 @@
       "summary": "FCDO travel advice for Colombia. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-08-10T11:35:09+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/colombia"
-    },
-    {
-      "name": "Fiji",
-      "slug": "fiji",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Fiji. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-04-06T10:48:24+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/fiji"
     },
     {
       "name": "Falkland Islands (British Overseas Territory)",
