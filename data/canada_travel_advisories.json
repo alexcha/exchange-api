@@ -1,0 +1,2301 @@
+{
+  "status": "success",
+  "source": "Global Affairs Canada (GAC) Travel Advice and Advisories",
+  "source_url": "https://travel.gc.ca/travelling/advisories",
+  "license": "Open Government Licence - Canada",
+  "source_generated_at": "2026-08-10 07:01:30",
+  "generated_at": "2026-08-10T11:34:11.917030+00:00",
+  "count": 229,
+  "data": [
+    {
+      "iso_code": "AF",
+      "name": "Afghanistan",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/afghanistan"
+    },
+    {
+      "iso_code": "AL",
+      "name": "Albania",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/albania"
+    },
+    {
+      "iso_code": "DZ",
+      "name": "Algeria",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/algeria"
+    },
+    {
+      "iso_code": "AS",
+      "name": "American Samoa",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/american-samoa"
+    },
+    {
+      "iso_code": "AD",
+      "name": "Andorra",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/andorra"
+    },
+    {
+      "iso_code": "AO",
+      "name": "Angola",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/angola"
+    },
+    {
+      "iso_code": "AI",
+      "name": "Anguilla",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/anguilla"
+    },
+    {
+      "iso_code": "AQ",
+      "name": "Antarctica",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-09 11:22:12",
+      "web_url": "https://travel.gc.ca/destinations/antarctica"
+    },
+    {
+      "iso_code": "AG",
+      "name": "Antigua and Barbuda",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/antigua-and-barbuda"
+    },
+    {
+      "iso_code": "AR",
+      "name": "Argentina",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-05 08:58:39",
+      "web_url": "https://travel.gc.ca/destinations/argentina"
+    },
+    {
+      "iso_code": "AM",
+      "name": "Armenia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/armenia"
+    },
+    {
+      "iso_code": "AW",
+      "name": "Aruba",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/aruba"
+    },
+    {
+      "iso_code": "AU",
+      "name": "Australia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-10 06:42:05",
+      "web_url": "https://travel.gc.ca/destinations/australia"
+    },
+    {
+      "iso_code": "AT",
+      "name": "Austria",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-31 10:48:40",
+      "web_url": "https://travel.gc.ca/destinations/austria"
+    },
+    {
+      "iso_code": "AZ",
+      "name": "Azerbaijan",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/azerbaijan"
+    },
+    {
+      "iso_code": "BS",
+      "name": "Bahamas",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/bahamas"
+    },
+    {
+      "iso_code": "BH",
+      "name": "Bahrain",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-06 16:05:28",
+      "web_url": "https://travel.gc.ca/destinations/bahrain"
+    },
+    {
+      "iso_code": "BD",
+      "name": "Bangladesh",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/bangladesh"
+    },
+    {
+      "iso_code": "BB",
+      "name": "Barbados",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/barbados"
+    },
+    {
+      "iso_code": "BY",
+      "name": "Belarus",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/belarus"
+    },
+    {
+      "iso_code": "BE",
+      "name": "Belgium",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/belgium"
+    },
+    {
+      "iso_code": "BZ",
+      "name": "Belize",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/belize"
+    },
+    {
+      "iso_code": "BJ",
+      "name": "Benin",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/benin"
+    },
+    {
+      "iso_code": "BM",
+      "name": "Bermuda",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/bermuda"
+    },
+    {
+      "iso_code": "BT",
+      "name": "Bhutan",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/bhutan"
+    },
+    {
+      "iso_code": "BO",
+      "name": "Bolivia",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/bolivia"
+    },
+    {
+      "iso_code": "BQ",
+      "name": "Bonaire",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/bonaire"
+    },
+    {
+      "iso_code": "BA",
+      "name": "Bosnia and Herzegovina",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/bosnia-and-herzegovina"
+    },
+    {
+      "iso_code": "BW",
+      "name": "Botswana",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/botswana"
+    },
+    {
+      "iso_code": "BR",
+      "name": "Brazil",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-05 08:25:54",
+      "web_url": "https://travel.gc.ca/destinations/brazil"
+    },
+    {
+      "iso_code": "VG",
+      "name": "British Virgin Islands",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/british-virgin-islands"
+    },
+    {
+      "iso_code": "BN",
+      "name": "Brunei",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/brunei"
+    },
+    {
+      "iso_code": "BG",
+      "name": "Bulgaria",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/bulgaria"
+    },
+    {
+      "iso_code": "BF",
+      "name": "Burkina Faso",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/burkina-faso"
+    },
+    {
+      "iso_code": "BI",
+      "name": "Burundi",
+      "advisory_level": 3,
+      "risk_score": null,
+      "advisory_text": "Avoid non-essential travel (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/burundi"
+    },
+    {
+      "iso_code": "CV",
+      "name": "Cabo Verde",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/cabo-verde"
+    },
+    {
+      "iso_code": "KH",
+      "name": "Cambodia",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-05 08:26:49",
+      "web_url": "https://travel.gc.ca/destinations/cambodia"
+    },
+    {
+      "iso_code": "CM",
+      "name": "Cameroon",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-05 10:05:43",
+      "web_url": "https://travel.gc.ca/destinations/cameroon"
+    },
+    {
+      "iso_code": "IC",
+      "name": "Canary Islands",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/canary-islands"
+    },
+    {
+      "iso_code": "KY",
+      "name": "Cayman Islands",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/cayman-islands"
+    },
+    {
+      "iso_code": "CF",
+      "name": "Central African Republic",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-05 10:13:17",
+      "web_url": "https://travel.gc.ca/destinations/central-african-republic"
+    },
+    {
+      "iso_code": "TD",
+      "name": "Chad",
+      "advisory_level": 3,
+      "risk_score": null,
+      "advisory_text": "Avoid non-essential travel (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-05 10:20:17",
+      "web_url": "https://travel.gc.ca/destinations/chad"
+    },
+    {
+      "iso_code": "CL",
+      "name": "Chile",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/chile"
+    },
+    {
+      "iso_code": "CN",
+      "name": "China",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/china"
+    },
+    {
+      "iso_code": "CO",
+      "name": "Colombia",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-05 15:54:20",
+      "web_url": "https://travel.gc.ca/destinations/colombia"
+    },
+    {
+      "iso_code": "KM",
+      "name": "Comoros",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/comoros"
+    },
+    {
+      "iso_code": "CK",
+      "name": "Cook Islands",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/cook-islands"
+    },
+    {
+      "iso_code": "CR",
+      "name": "Costa Rica",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/costa-rica"
+    },
+    {
+      "iso_code": "CI",
+      "name": "Côte d'Ivoire (Ivory Coast)",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/cote-d-ivoire-ivory-coast"
+    },
+    {
+      "iso_code": "HR",
+      "name": "Croatia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/croatia"
+    },
+    {
+      "iso_code": "CU",
+      "name": "Cuba",
+      "advisory_level": 3,
+      "risk_score": null,
+      "advisory_text": "Avoid non-essential travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-30 14:24:19",
+      "web_url": "https://travel.gc.ca/destinations/cuba"
+    },
+    {
+      "iso_code": "CW",
+      "name": "Curaçao",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/curacao"
+    },
+    {
+      "iso_code": "CY",
+      "name": "Cyprus",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/cyprus"
+    },
+    {
+      "iso_code": "CZ",
+      "name": "Czechia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/czechia"
+    },
+    {
+      "iso_code": "CD",
+      "name": "Democratic Republic of Congo (Kinshasa)",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-06 08:22:53",
+      "web_url": "https://travel.gc.ca/destinations/congo-kinshasa"
+    },
+    {
+      "iso_code": "DK",
+      "name": "Denmark",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/denmark"
+    },
+    {
+      "iso_code": "DJ",
+      "name": "Djibouti",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/djibouti"
+    },
+    {
+      "iso_code": "DM",
+      "name": "Dominica",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/dominica"
+    },
+    {
+      "iso_code": "DO",
+      "name": "Dominican Republic",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/dominican-republic"
+    },
+    {
+      "iso_code": "EC",
+      "name": "Ecuador",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/ecuador"
+    },
+    {
+      "iso_code": "EG",
+      "name": "Egypt",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/egypt"
+    },
+    {
+      "iso_code": "SV",
+      "name": "El Salvador",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/el-salvador"
+    },
+    {
+      "iso_code": "GQ",
+      "name": "Equatorial Guinea",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/equatorial-guinea"
+    },
+    {
+      "iso_code": "ER",
+      "name": "Eritrea",
+      "advisory_level": 3,
+      "risk_score": null,
+      "advisory_text": "Avoid non-essential travel (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-04 10:42:15",
+      "web_url": "https://travel.gc.ca/destinations/eritrea"
+    },
+    {
+      "iso_code": "EE",
+      "name": "Estonia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/estonia"
+    },
+    {
+      "iso_code": "SZ",
+      "name": "Swaziland",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/eswatini"
+    },
+    {
+      "iso_code": "ET",
+      "name": "Ethiopia",
+      "advisory_level": 3,
+      "risk_score": null,
+      "advisory_text": "Avoid non-essential travel (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/ethiopia"
+    },
+    {
+      "iso_code": "FK",
+      "name": "Falkland Islands",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/falkland-islands"
+    },
+    {
+      "iso_code": "FJ",
+      "name": "Fiji",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/fiji"
+    },
+    {
+      "iso_code": "FI",
+      "name": "Finland",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/finland"
+    },
+    {
+      "iso_code": "FR",
+      "name": "France",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-04 13:32:59",
+      "web_url": "https://travel.gc.ca/destinations/france"
+    },
+    {
+      "iso_code": "GF",
+      "name": "French Guiana",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/french-guiana"
+    },
+    {
+      "iso_code": "PF",
+      "name": "French Polynesia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/french-polynesia"
+    },
+    {
+      "iso_code": "GA",
+      "name": "Gabon",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/gabon"
+    },
+    {
+      "iso_code": "GM",
+      "name": "Gambia, The",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/gambia-the"
+    },
+    {
+      "iso_code": "GE",
+      "name": "Georgia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/georgia"
+    },
+    {
+      "iso_code": "DE",
+      "name": "Germany",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/germany"
+    },
+    {
+      "iso_code": "GH",
+      "name": "Ghana",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/ghana"
+    },
+    {
+      "iso_code": "GI",
+      "name": "Gibraltar",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/gibraltar"
+    },
+    {
+      "iso_code": "GR",
+      "name": "Greece",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-05 16:10:06",
+      "web_url": "https://travel.gc.ca/destinations/greece"
+    },
+    {
+      "iso_code": "GL",
+      "name": "Greenland",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/greenland"
+    },
+    {
+      "iso_code": "GD",
+      "name": "Grenada",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/grenada"
+    },
+    {
+      "iso_code": "GP",
+      "name": "Guadeloupe",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/guadeloupe"
+    },
+    {
+      "iso_code": "GU",
+      "name": "Guam",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/guam"
+    },
+    {
+      "iso_code": "GT",
+      "name": "Guatemala",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-04 16:43:30",
+      "web_url": "https://travel.gc.ca/destinations/guatemala"
+    },
+    {
+      "iso_code": "GN",
+      "name": "Guinea",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/guinea"
+    },
+    {
+      "iso_code": "GW",
+      "name": "Guinea-Bissau",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/guinea-bissau"
+    },
+    {
+      "iso_code": "GY",
+      "name": "Guyana",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/guyana"
+    },
+    {
+      "iso_code": "HT",
+      "name": "Haiti",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/haiti"
+    },
+    {
+      "iso_code": "HN",
+      "name": "Honduras",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/honduras"
+    },
+    {
+      "iso_code": "HK",
+      "name": "Hong Kong",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-31 10:26:30",
+      "web_url": "https://travel.gc.ca/destinations/hong-kong"
+    },
+    {
+      "iso_code": "HU",
+      "name": "Hungary",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/hungary"
+    },
+    {
+      "iso_code": "IS",
+      "name": "Iceland",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/iceland"
+    },
+    {
+      "iso_code": "IN",
+      "name": "India",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/india"
+    },
+    {
+      "iso_code": "ID",
+      "name": "Indonesia",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/indonesia"
+    },
+    {
+      "iso_code": "IR",
+      "name": "Iran",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/iran"
+    },
+    {
+      "iso_code": "IQ",
+      "name": "Iraq",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/iraq"
+    },
+    {
+      "iso_code": "IE",
+      "name": "Ireland",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/ireland"
+    },
+    {
+      "iso_code": "IL",
+      "name": "Israel and Palestine",
+      "advisory_level": 3,
+      "risk_score": null,
+      "advisory_text": "Avoid non-essential travel (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/israel-and-palestine"
+    },
+    {
+      "iso_code": "IT",
+      "name": "Italy",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/italy"
+    },
+    {
+      "iso_code": "JM",
+      "name": "Jamaica",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/jamaica"
+    },
+    {
+      "iso_code": "JP",
+      "name": "Japan",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-07 12:00:26",
+      "web_url": "https://travel.gc.ca/destinations/japan"
+    },
+    {
+      "iso_code": "JO",
+      "name": "Jordan",
+      "advisory_level": 3,
+      "risk_score": null,
+      "advisory_text": "Avoid non-essential travel (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/jordan"
+    },
+    {
+      "iso_code": "KZ",
+      "name": "Kazakhstan",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/kazakhstan"
+    },
+    {
+      "iso_code": "KE",
+      "name": "Kenya",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/kenya"
+    },
+    {
+      "iso_code": "KI",
+      "name": "Kiribati",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/kiribati"
+    },
+    {
+      "iso_code": "XK",
+      "name": "Kosovo",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/kosovo"
+    },
+    {
+      "iso_code": "KW",
+      "name": "Kuwait",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-06 16:07:39",
+      "web_url": "https://travel.gc.ca/destinations/kuwait"
+    },
+    {
+      "iso_code": "KG",
+      "name": "Kyrgyzstan",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/kyrgyzstan"
+    },
+    {
+      "iso_code": "LA",
+      "name": "Laos",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/laos"
+    },
+    {
+      "iso_code": "LV",
+      "name": "Latvia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/latvia"
+    },
+    {
+      "iso_code": "LB",
+      "name": "Lebanon",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/lebanon"
+    },
+    {
+      "iso_code": "LS",
+      "name": "Lesotho",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/lesotho"
+    },
+    {
+      "iso_code": "LR",
+      "name": "Liberia",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/liberia"
+    },
+    {
+      "iso_code": "LY",
+      "name": "Libya",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/libya"
+    },
+    {
+      "iso_code": "LI",
+      "name": "Liechtenstein",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/liechtenstein"
+    },
+    {
+      "iso_code": "LT",
+      "name": "Lithuania",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/lithuania"
+    },
+    {
+      "iso_code": "LU",
+      "name": "Luxembourg",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-04 08:29:12",
+      "web_url": "https://travel.gc.ca/destinations/luxembourg"
+    },
+    {
+      "iso_code": "MO",
+      "name": "Macao",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/macao"
+    },
+    {
+      "iso_code": "MG",
+      "name": "Madagascar",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-06 10:17:27",
+      "web_url": "https://travel.gc.ca/destinations/madagascar"
+    },
+    {
+      "iso_code": "MW",
+      "name": "Malawi",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-06 14:43:31",
+      "web_url": "https://travel.gc.ca/destinations/malawi"
+    },
+    {
+      "iso_code": "MY",
+      "name": "Malaysia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/malaysia"
+    },
+    {
+      "iso_code": "MV",
+      "name": "Maldives",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/maldives"
+    },
+    {
+      "iso_code": "ML",
+      "name": "Mali",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/mali"
+    },
+    {
+      "iso_code": "MT",
+      "name": "Malta",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/malta"
+    },
+    {
+      "iso_code": "MH",
+      "name": "Marshall Islands",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/marshall-islands"
+    },
+    {
+      "iso_code": "MQ",
+      "name": "Martinique",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/martinique"
+    },
+    {
+      "iso_code": "MR",
+      "name": "Mauritania",
+      "advisory_level": 3,
+      "risk_score": null,
+      "advisory_text": "Avoid non-essential travel (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-05 10:48:39",
+      "web_url": "https://travel.gc.ca/destinations/mauritania"
+    },
+    {
+      "iso_code": "MU",
+      "name": "Mauritius",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-06 10:31:20",
+      "web_url": "https://travel.gc.ca/destinations/mauritius"
+    },
+    {
+      "iso_code": "YT",
+      "name": "Mayotte",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/mayotte"
+    },
+    {
+      "iso_code": "MX",
+      "name": "Mexico",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/mexico"
+    },
+    {
+      "iso_code": "FM",
+      "name": "Micronesia (FSM)",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/micronesia-fsm"
+    },
+    {
+      "iso_code": "MD",
+      "name": "Moldova",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/moldova"
+    },
+    {
+      "iso_code": "MC",
+      "name": "Monaco",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/monaco"
+    },
+    {
+      "iso_code": "MN",
+      "name": "Mongolia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-07 15:51:49",
+      "web_url": "https://travel.gc.ca/destinations/mongolia"
+    },
+    {
+      "iso_code": "ME",
+      "name": "Montenegro",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/montenegro"
+    },
+    {
+      "iso_code": "MS",
+      "name": "Montserrat",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/montserrat"
+    },
+    {
+      "iso_code": "MA",
+      "name": "Morocco",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/morocco"
+    },
+    {
+      "iso_code": "MZ",
+      "name": "Mozambique",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/mozambique"
+    },
+    {
+      "iso_code": "MM",
+      "name": "Myanmar",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/myanmar"
+    },
+    {
+      "iso_code": "NA",
+      "name": "Namibia",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/namibia"
+    },
+    {
+      "iso_code": "NR",
+      "name": "Nauru",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/nauru"
+    },
+    {
+      "iso_code": "NP",
+      "name": "Nepal",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/nepal"
+    },
+    {
+      "iso_code": "NL",
+      "name": "Netherlands",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/netherlands"
+    },
+    {
+      "iso_code": "NC",
+      "name": "New Caledonia",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/new-caledonia"
+    },
+    {
+      "iso_code": "NZ",
+      "name": "New Zealand",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/new-zealand"
+    },
+    {
+      "iso_code": "NI",
+      "name": "Nicaragua",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/nicaragua"
+    },
+    {
+      "iso_code": "NE",
+      "name": "Niger",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/niger"
+    },
+    {
+      "iso_code": "NG",
+      "name": "Nigeria",
+      "advisory_level": 3,
+      "risk_score": null,
+      "advisory_text": "Avoid non-essential travel (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-06 13:24:30",
+      "web_url": "https://travel.gc.ca/destinations/nigeria"
+    },
+    {
+      "iso_code": "NU",
+      "name": "Niue",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/niue"
+    },
+    {
+      "iso_code": "KP",
+      "name": "North Korea",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/north-korea"
+    },
+    {
+      "iso_code": "MK",
+      "name": "North Macedonia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-05 08:28:07",
+      "web_url": "https://travel.gc.ca/destinations/north-macedonia"
+    },
+    {
+      "iso_code": "MP",
+      "name": "Northern Marianas",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/northern-marianas"
+    },
+    {
+      "iso_code": "NO",
+      "name": "Norway",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/norway"
+    },
+    {
+      "iso_code": "OM",
+      "name": "Oman",
+      "advisory_level": 3,
+      "risk_score": null,
+      "advisory_text": "Avoid non-essential travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-06 16:02:26",
+      "web_url": "https://travel.gc.ca/destinations/oman"
+    },
+    {
+      "iso_code": "PK",
+      "name": "Pakistan",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-04 16:51:21",
+      "web_url": "https://travel.gc.ca/destinations/pakistan"
+    },
+    {
+      "iso_code": "PW",
+      "name": "Palau",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/palau"
+    },
+    {
+      "iso_code": "PA",
+      "name": "Panama",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/panama"
+    },
+    {
+      "iso_code": "PG",
+      "name": "Papua New Guinea",
+      "advisory_level": 3,
+      "risk_score": null,
+      "advisory_text": "Avoid non-essential travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/papua-new-guinea"
+    },
+    {
+      "iso_code": "PY",
+      "name": "Paraguay",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-30 15:31:47",
+      "web_url": "https://travel.gc.ca/destinations/paraguay"
+    },
+    {
+      "iso_code": "PE",
+      "name": "Peru",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/peru"
+    },
+    {
+      "iso_code": "PH",
+      "name": "Philippines",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/philippines"
+    },
+    {
+      "iso_code": "PL",
+      "name": "Poland",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/poland"
+    },
+    {
+      "iso_code": "PT",
+      "name": "Portugal",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-04 10:27:51",
+      "web_url": "https://travel.gc.ca/destinations/portugal"
+    },
+    {
+      "iso_code": "PR",
+      "name": "Puerto Rico",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/puerto-rico"
+    },
+    {
+      "iso_code": "QA",
+      "name": "Qatar",
+      "advisory_level": 3,
+      "risk_score": null,
+      "advisory_text": "Avoid non-essential travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-06 15:49:48",
+      "web_url": "https://travel.gc.ca/destinations/qatar"
+    },
+    {
+      "iso_code": "CG",
+      "name": "Republic of Congo (Brazzaville)",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/congo-brazzaville"
+    },
+    {
+      "iso_code": "RE",
+      "name": "Réunion",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/reunion"
+    },
+    {
+      "iso_code": "RO",
+      "name": "Romania",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/romania"
+    },
+    {
+      "iso_code": "RU",
+      "name": "Russia",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/russia"
+    },
+    {
+      "iso_code": "RW",
+      "name": "Rwanda",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/rwanda"
+    },
+    {
+      "iso_code": "BL",
+      "name": "Saint-Barthélemy",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/saint-barthelemy"
+    },
+    {
+      "iso_code": "KN",
+      "name": "Saint Kitts and Nevis",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/saint-kitts-and-nevis"
+    },
+    {
+      "iso_code": "LC",
+      "name": "Saint Lucia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/saint-lucia"
+    },
+    {
+      "iso_code": "MF",
+      "name": "Saint Martin",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/saint-martin"
+    },
+    {
+      "iso_code": "PM",
+      "name": "Saint-Pierre-et-Miquelon",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/saint-pierre-et-miquelon"
+    },
+    {
+      "iso_code": "VC",
+      "name": "Saint Vincent & the Grenadines",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/saint-vincent-the-grenadines"
+    },
+    {
+      "iso_code": "WS",
+      "name": "Samoa",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/samoa"
+    },
+    {
+      "iso_code": "SM",
+      "name": "San Marino",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/san-marino"
+    },
+    {
+      "iso_code": "ST",
+      "name": "São Tomé and Principe",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/sao-tome-and-principe"
+    },
+    {
+      "iso_code": "SA",
+      "name": "Saudi Arabia",
+      "advisory_level": 3,
+      "risk_score": null,
+      "advisory_text": "Avoid non-essential travel (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-06 15:58:13",
+      "web_url": "https://travel.gc.ca/destinations/saudi-arabia"
+    },
+    {
+      "iso_code": "SN",
+      "name": "Senegal",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/senegal"
+    },
+    {
+      "iso_code": "RS",
+      "name": "Serbia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/serbia"
+    },
+    {
+      "iso_code": "SC",
+      "name": "Seychelles",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/seychelles"
+    },
+    {
+      "iso_code": "SL",
+      "name": "Sierra Leone",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/sierra-leone"
+    },
+    {
+      "iso_code": "SG",
+      "name": "Singapore",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/singapore"
+    },
+    {
+      "iso_code": "SX",
+      "name": "Sint Maarten",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/sint-maarten"
+    },
+    {
+      "iso_code": "SK",
+      "name": "Slovakia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/slovakia"
+    },
+    {
+      "iso_code": "SI",
+      "name": "Slovenia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/slovenia"
+    },
+    {
+      "iso_code": "SB",
+      "name": "Solomon Islands",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/solomon-islands"
+    },
+    {
+      "iso_code": "SO",
+      "name": "Somalia",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/somalia"
+    },
+    {
+      "iso_code": "ZA",
+      "name": "South Africa",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/south-africa"
+    },
+    {
+      "iso_code": "KR",
+      "name": "South Korea",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-06 14:44:38",
+      "web_url": "https://travel.gc.ca/destinations/south-korea"
+    },
+    {
+      "iso_code": "SS",
+      "name": "South Sudan",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-07 10:23:56",
+      "web_url": "https://travel.gc.ca/destinations/south-sudan"
+    },
+    {
+      "iso_code": "ES",
+      "name": "Spain",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-05 13:27:26",
+      "web_url": "https://travel.gc.ca/destinations/spain"
+    },
+    {
+      "iso_code": "LK",
+      "name": "Sri Lanka",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/sri-lanka"
+    },
+    {
+      "iso_code": "SD",
+      "name": "Sudan",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/sudan"
+    },
+    {
+      "iso_code": "SR",
+      "name": "Suriname",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/suriname"
+    },
+    {
+      "iso_code": "SE",
+      "name": "Sweden",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/sweden"
+    },
+    {
+      "iso_code": "CH",
+      "name": "Switzerland",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/switzerland"
+    },
+    {
+      "iso_code": "SY",
+      "name": "Syria",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/syria"
+    },
+    {
+      "iso_code": "TW",
+      "name": "Taiwan",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-05 16:16:46",
+      "web_url": "https://travel.gc.ca/destinations/taiwan"
+    },
+    {
+      "iso_code": "TJ",
+      "name": "Tajikistan",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/tajikistan"
+    },
+    {
+      "iso_code": "TZ",
+      "name": "Tanzania",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/tanzania"
+    },
+    {
+      "iso_code": "TH",
+      "name": "Thailand",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-05 08:59:02",
+      "web_url": "https://travel.gc.ca/destinations/thailand"
+    },
+    {
+      "iso_code": "TL",
+      "name": "Timor-Leste (East Timor)",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/timor-leste-east-timor"
+    },
+    {
+      "iso_code": "TG",
+      "name": "Togo",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/togo"
+    },
+    {
+      "iso_code": "TK",
+      "name": "Tokelau",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/tokelau"
+    },
+    {
+      "iso_code": "TO",
+      "name": "Tonga",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/tonga"
+    },
+    {
+      "iso_code": "TT",
+      "name": "Trinidad and Tobago",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/trinidad-and-tobago"
+    },
+    {
+      "iso_code": "TN",
+      "name": "Tunisia",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/tunisia"
+    },
+    {
+      "iso_code": "TR",
+      "name": "Türkiye",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/turkiye"
+    },
+    {
+      "iso_code": "TM",
+      "name": "Turkmenistan",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/turkmenistan"
+    },
+    {
+      "iso_code": "TC",
+      "name": "Turks and Caicos Islands",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/turks-and-caicos-islands"
+    },
+    {
+      "iso_code": "TV",
+      "name": "Tuvalu",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/tuvalu"
+    },
+    {
+      "iso_code": "UG",
+      "name": "Uganda",
+      "advisory_level": 3,
+      "risk_score": null,
+      "advisory_text": "Avoid non-essential travel (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/uganda"
+    },
+    {
+      "iso_code": "UA",
+      "name": "Ukraine",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/ukraine"
+    },
+    {
+      "iso_code": "AE",
+      "name": "United Arab Emirates",
+      "advisory_level": 3,
+      "risk_score": null,
+      "advisory_text": "Avoid non-essential travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/united-arab-emirates"
+    },
+    {
+      "iso_code": "GB",
+      "name": "United Kingdom",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-10 06:38:39",
+      "web_url": "https://travel.gc.ca/destinations/united-kingdom"
+    },
+    {
+      "iso_code": "US",
+      "name": "United States",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-08-03 14:07:48",
+      "web_url": "https://travel.gc.ca/destinations/united-states"
+    },
+    {
+      "iso_code": "UY",
+      "name": "Uruguay",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/uruguay"
+    },
+    {
+      "iso_code": "UZ",
+      "name": "Uzbekistan",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/uzbekistan"
+    },
+    {
+      "iso_code": "VU",
+      "name": "Vanuatu",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/vanuatu"
+    },
+    {
+      "iso_code": "VE",
+      "name": "Venezuela",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/venezuela"
+    },
+    {
+      "iso_code": "VN",
+      "name": "Vietnam",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/vietnam"
+    },
+    {
+      "iso_code": "VI",
+      "name": "Virgin Islands (U.S.)",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/virgin-islands-u-s"
+    },
+    {
+      "iso_code": "YE",
+      "name": "Yemen",
+      "advisory_level": 4,
+      "risk_score": null,
+      "advisory_text": "Avoid all travel",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/yemen"
+    },
+    {
+      "iso_code": "ZM",
+      "name": "Zambia",
+      "advisory_level": 1,
+      "risk_score": null,
+      "advisory_text": "Exercise normal security precautions (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/zambia"
+    },
+    {
+      "iso_code": "ZW",
+      "name": "Zimbabwe",
+      "advisory_level": 2,
+      "risk_score": null,
+      "advisory_text": "Exercise a high degree of caution",
+      "has_regional_advisory": false,
+      "last_updated": "2026-07-29 14:31:46",
+      "web_url": "https://travel.gc.ca/destinations/zimbabwe"
+    }
+  ]
+}
