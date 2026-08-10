@@ -57,6 +57,16 @@ resultCode 에러 코드 (기술문서 기준):
   -9: 종료된 서비스 | -10: 트래픽 초과 | -401: 유효하지 않은 인증키
   -999: UNKNOWN
 
+⚠️ 안정성 관련 (이번 버전에서 추가됨):
+  apis.data.go.kr은 gov.uk 등 CDN 뒤에 있는 해외 API와 달리 국내
+  인프라에 직접 호스팅되어 있어, GitHub Actions 호스티드 러너처럼
+  해외 리전 IP에서 접속하면 간헐적으로 TCP 커넥션이 열리지 않고
+  30초 커넥션 타임아웃이 나는 경우가 있다 (ConnectTimeoutError).
+  이를 완화하기 위해 fetch_page()에 지수 백오프(exponential backoff)
+  재시도 로직을 추가했다. 커넥션 타임아웃/일시적 네트워크 오류에는
+  재시도하고, resultCode 기반의 API 레벨 에러(인증키 오류 등)는
+  재시도해도 소용없으므로 즉시 종료한다.
+
 사용법:
     pip install requests --break-system-packages
     export DATA_GO_KR_SERVICE_KEY="발급받은_인증키"
@@ -78,6 +88,13 @@ import requests
 BASE_URL = "http://apis.data.go.kr/1262000/TravelAlarmService2/getTravelAlarmList2"
 USER_AGENT = "travel-advisory-research-script/1.0 (+contact: user)"
 PAGE_SIZE = 100
+
+# 재시도 설정: 국내 인프라 API 특성상 해외 리전(Actions 러너)에서
+# 간헐적으로 커넥션이 막히는 문제를 완화하기 위함.
+MAX_RETRIES = 5
+RETRY_BACKOFF_BASE_SEC = 5  # 1차 재시도 전 5초, 이후 지수적으로 증가
+CONNECT_TIMEOUT_SEC = 20
+READ_TIMEOUT_SEC = 30
 
 RESULT_CODE_MESSAGES = {
     0: "정상",
@@ -106,35 +123,68 @@ def get_service_key():
 
 
 def fetch_page(service_key, page_no):
+    """
+    페이지 하나를 가져온다. 커넥션 타임아웃/네트워크 오류가 나면
+    지수 백오프로 최대 MAX_RETRIES회까지 재시도한다.
+    API가 정상 응답했지만 resultCode != 0인 경우(인증키 오류 등)는
+    재시도해도 의미가 없으므로 즉시 종료한다.
+    """
     params = {
         "serviceKey": service_key,
         "returnType": "JSON",
         "numOfRows": PAGE_SIZE,
         "pageNo": page_no,
     }
-    resp = requests.get(
-        BASE_URL, params=params, headers={"User-Agent": USER_AGENT}, timeout=30
+
+    last_error = None
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            resp = requests.get(
+                BASE_URL,
+                params=params,
+                headers={"User-Agent": USER_AGENT},
+                timeout=(CONNECT_TIMEOUT_SEC, READ_TIMEOUT_SEC),
+            )
+        except (requests.exceptions.ConnectTimeout, requests.exceptions.ConnectionError) as e:
+            last_error = e
+            if attempt == MAX_RETRIES:
+                break
+            wait = RETRY_BACKOFF_BASE_SEC * (2 ** (attempt - 1))
+            print(
+                f"      [재시도 {attempt}/{MAX_RETRIES}] 페이지 {page_no} 커넥션 실패 "
+                f"({type(e).__name__}) - {wait}초 후 재시도...",
+                file=sys.stderr,
+            )
+            time.sleep(wait)
+            continue
+
+        if not resp.ok:
+            print(
+                f"[디버그] HTTP {resp.status_code} 응답 본문:\n{resp.text[:2000]}",
+                file=sys.stderr,
+            )
+        resp.raise_for_status()
+        raw = resp.json()
+
+        # 실제 응답은 표준 공공데이터포털 포맷: response.header / response.body
+        # (기술문서 v1.4에 적힌 "최상위 data 배열" 구조와 다름 - 실기동 확인 결과 반영)
+        header = raw.get("response", {}).get("header", {})
+        result_code = header.get("resultCode")
+        if result_code is not None and str(result_code) != "0":
+            msg = header.get("resultMsg") or RESULT_CODE_MESSAGES.get(
+                _to_int(result_code), "알 수 없는 에러"
+            )
+            print(f"[API 에러] resultCode={result_code}, resultMsg={msg}", file=sys.stderr)
+            sys.exit(1)  # API 레벨 에러는 재시도해도 소용없으므로 즉시 종료
+
+        return raw
+
+    # 재시도를 모두 소진한 경우
+    print(
+        f"[실패] 페이지 {page_no}: {MAX_RETRIES}회 재시도 후에도 연결 실패 - {last_error}",
+        file=sys.stderr,
     )
-    if not resp.ok:
-        print(
-            f"[디버그] HTTP {resp.status_code} 응답 본문:\n{resp.text[:2000]}",
-            file=sys.stderr,
-        )
-    resp.raise_for_status()
-    raw = resp.json()
-
-    # 실제 응답은 표준 공공데이터포털 포맷: response.header / response.body
-    # (기술문서 v1.4에 적힌 "최상위 data 배열" 구조와 다름 - 실기동 확인 결과 반영)
-    header = raw.get("response", {}).get("header", {})
-    result_code = header.get("resultCode")
-    if result_code is not None and str(result_code) != "0":
-        msg = header.get("resultMsg") or RESULT_CODE_MESSAGES.get(
-            _to_int(result_code), "알 수 없는 에러"
-        )
-        print(f"[API 에러] resultCode={result_code}, resultMsg={msg}", file=sys.stderr)
-        sys.exit(1)
-
-    return raw
+    raise last_error
 
 
 def parse_record(item):
