@@ -22,9 +22,9 @@ jobs:
       with:
         python-version: '3.10'
         
-    - name: 파이어베이스 패키지 설치
+    - name: 파이어베이스 및 requests 패키지 설치
       run: |
-        pip install firebase-admin
+        pip install firebase-admin requests
 
     - name: data 디렉토리 생성
       run: mkdir -p data
@@ -35,6 +35,26 @@ jobs:
         curl -f -s "https://travel.state.gov/_res/rss/TAsTWs.xml" -o state_dept_raw.xml
         python3 scripts/fetch_travel_risk.py
         rm -f state_dept_raw.xml
+
+    # [1-1단계] 캐나다 외교부(GAC) 여행경보 데이터 추출
+    - name: 캐나다 외교부 여행경보 데이터 추출
+      run: |
+        python3 scripts/canada_travel_advisory_scraper.py
+        mv -f canada_travel_advisories.json data/canada_travel_advisories.json
+
+    # [1-2단계] 대한민국 외교부(MOFA) 여행경보 데이터 추출
+    - name: 대한민국 외교부 여행경보 데이터 추출
+      env:
+        DATA_GO_KR_SERVICE_KEY: ${{ secrets.DATA_GO_KR_SERVICE_KEY }}
+      run: |
+        python3 scripts/korea_mofa_travel_alarm_scraper.py
+        mv -f korea_mofa_travel_advisories.json data/korea_mofa_travel_advisories.json
+
+    # [1-3단계] 영국 외교부(FCDO) 여행경보 데이터 추출
+    - name: 영국 외교부 여행경보 데이터 추출
+      run: |
+        python3 scripts/uk_fcdo_scraper.py
+        mv -f uk_fcdo_advisories.json data/uk_fcdo_advisories.json
 
     # [2단계] 실시간 재난(GDACS) 데이터 추출 및 상세정보 보강 (FCM 알림 포함)
     - name: 실시간 재난(GDACS) 데이터 추출 및 API 보강
@@ -98,7 +118,7 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-        git add data/travel_risk.json data/realtime_disasters.json data/realtime_alerts.json data/unmatched_countries.log data/sent_disaster_ids.json
+        git add data/travel_risk.json data/realtime_disasters.json data/realtime_alerts.json data/unmatched_countries.log data/sent_disaster_ids.json data/canada_travel_advisories.json data/korea_mofa_travel_advisories.json data/uk_fcdo_advisories.json
 
         if ! git diff --cached --exit-code; then
           git commit -m "🚀 GDACS 수집-보강 단일 파이프라인 통합 및 FCM 푸시 알림 발송 완료"
