@@ -81,6 +81,7 @@ import os
 import sys
 import time
 from datetime import datetime, timezone
+from urllib.parse import unquote
 
 import requests
 
@@ -119,7 +120,23 @@ def get_service_key():
             file=sys.stderr,
         )
         sys.exit(1)
-    return key
+
+    # data.go.kr 서비스키는 base64 형태라 +, /, = 같은 문자가 포함되는데,
+    # 마이페이지에서 "Encoding(인코딩)" 키를 잘못 넣으면 이미 %2B 등으로
+    # 퍼센트 인코딩된 상태다. requests는 params에 넣은 값을 자동으로 다시
+    # URL 인코딩하므로, 이미 인코딩된 키를 그대로 넘기면 %가 %25로 한 번 더
+    # 인코딩되어 키가 깨지고 "등록되지 않은 서비스키" 에러가 발생한다.
+    # unquote()로 먼저 디코딩해두면 requests가 인코딩할 때 정확히 한 번만
+    # 인코딩되므로, "Decoding" 키를 넣었든 "Encoding" 키를 넣었든 항상
+    # 올바르게 동작한다.
+    decoded_key = unquote(key)
+    if decoded_key != key:
+        print(
+            "[알림] 서비스키에 URL 인코딩된 문자가 감지되어 디코딩했습니다. "
+            "(Encoding 키를 넣으신 것으로 보입니다 - Decoding 키를 써도 무방합니다)",
+            file=sys.stderr,
+        )
+    return decoded_key
 
 
 def fetch_page(service_key, page_no):
