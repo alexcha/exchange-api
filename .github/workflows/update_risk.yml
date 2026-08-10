@@ -38,12 +38,14 @@ jobs:
 
     # [1-1단계] 캐나다 외교부(GAC) 여행경보 데이터 추출
     - name: 캐나다 외교부 여행경보 데이터 추출
+      continue-on-error: true
       run: |
         python3 scripts/canada_travel_advisory_scraper.py
         mv -f canada_travel_advisories.json data/canada_travel_advisories.json
 
     # [1-2단계] 대한민국 외교부(MOFA) 여행경보 데이터 추출
     - name: 대한민국 외교부 여행경보 데이터 추출
+      continue-on-error: true
       env:
         DATA_GO_KR_SERVICE_KEY: ${{ secrets.DATA_GO_KR_SERVICE_KEY }}
       run: |
@@ -52,6 +54,7 @@ jobs:
 
     # [1-3단계] 영국 외교부(FCDO) 여행경보 데이터 추출
     - name: 영국 외교부 여행경보 데이터 추출
+      continue-on-error: true
       run: |
         python3 scripts/uk_fcdo_scraper.py
         mv -f uk_fcdo_advisories.json data/uk_fcdo_advisories.json
