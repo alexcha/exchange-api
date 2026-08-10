@@ -26,6 +26,17 @@ alert_status 코드(예: avoid_all_travel, avoid_all_travel_to_parts 등)로
 정규화한 advisory_level 필드를 함께 만들어 US 국무부 데이터와
 동일한 스키마로 저장합니다.
 
+이번 버전에서 바뀐 점 (병렬 처리):
+  - 국가별 상세 조회(fetch_country_detail)를 순차 for 루프 + time.sleep(1초)
+    대신 concurrent.futures.ThreadPoolExecutor로 동시 처리하도록 변경.
+  - 226개국을 1req/sec로 순차 처리하면 약 4분 정도 걸리던 것을,
+    MAX_WORKERS개 스레드로 나눠 처리해 크게 단축.
+  - 서버에 대한 예의(politeness)는 유지하기 위해 스레드마다 요청 간
+    소폭의 딜레이(REQUEST_DELAY_SEC)를 그대로 두고, 동시 연결 수는
+    MAX_WORKERS로 제한함 (요청 폭주 방지).
+  - 진행 상황 출력과 결과 리스트 접근은 스레드 안전을 위해 Lock으로 보호.
+  - 결과 순서는 country_list의 원래 순서를 그대로 유지하도록 인덱스 기반으로 정렬.
+
 사용법:
     pip install requests --break-system-packages
     python uk_fcdo_scraper.py
@@ -35,16 +46,19 @@ alert_status 코드(예: avoid_all_travel, avoid_all_travel_to_parts 등)로
 """
 
 import json
-import time
 import sys
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
+from threading import Lock
 
 import requests
 
 CONTENT_API = "https://www.gov.uk/api/content"
 INDEX_PATH = "/foreign-travel-advice"
 USER_AGENT = "travel-advisory-research-script/1.0 (+contact: user)"
-REQUEST_DELAY_SEC = 1.0  # 정중한 크롤링을 위한 딜레이 (공식 문서 권장 사항 참고)
+REQUEST_DELAY_SEC = 1.0  # 정중한 크롤링을 위한 스레드별 딜레이 (공식 문서 권장 사항 참고)
+MAX_WORKERS = 8  # 동시 요청 수 (서버 부담을 고려해 과도하게 높이지 않음)
 
 # alert_status 코드를 US 국무부 스타일의 1~4 등급으로 정규화하기 위한 매핑.
 # 여러 alert_status가 동시에 붙는 경우, 가장 심각한 코드를 기준으로 판정한다.
@@ -56,6 +70,10 @@ ALERT_STATUS_SEVERITY = {
     "see_the_summary": 2,
     "notify_before_travel": 1,
 }
+
+# 진행 상황 카운터/출력 보호용 락
+_progress_lock = Lock()
+_completed_count = 0
 
 
 def fetch_country_list():
@@ -99,6 +117,9 @@ def normalize_level(alert_status_list):
 
 def fetch_country_detail(base_path):
     """국가 하나의 상세 페이지(Content API)를 가져와 필요한 필드만 추출."""
+    # 스레드별로 요청 사이에 소폭의 딜레이를 둬서 서버에 대한 예의를 유지한다.
+    time.sleep(REQUEST_DELAY_SEC)
+
     url = f"{CONTENT_API}{base_path}"
     resp = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=30)
     if resp.status_code == 303:
@@ -124,25 +145,52 @@ def fetch_country_detail(base_path):
     }
 
 
+def _fetch_with_index(index, base_path, total):
+    """ThreadPoolExecutor용 래퍼: (원래 순서 인덱스, 결과/예외) 반환."""
+    global _completed_count
+    try:
+        record = fetch_country_detail(base_path)
+        error = None
+    except requests.RequestException as e:
+        record = None
+        error = e
+
+    with _progress_lock:
+        _completed_count += 1
+        if error:
+            print(f"      경고: {base_path} 가져오기 실패 - {error}", file=sys.stderr)
+        if _completed_count % 20 == 0 or _completed_count == total:
+            print(f"      진행: {_completed_count}/{total}", file=sys.stderr)
+
+    return index, record
+
+
 def main():
     print("[1/3] FCDO 여행경보 국가 목록 가져오는 중... (Content API 인덱스)", file=sys.stderr)
     country_list = fetch_country_list()
-    print(f"      -> {len(country_list)}개 국가/지역 발견", file=sys.stderr)
+    total = len(country_list)
+    print(f"      -> {total}개 국가/지역 발견", file=sys.stderr)
 
-    print("[2/3] 국가별 상세 정보(alert_status) 파싱 중... (1 req/sec)", file=sys.stderr)
-    records = []
-    for i, item in enumerate(country_list, start=1):
-        base_path = item.get("base_path")
-        if not base_path:
-            continue
-        try:
-            record = fetch_country_detail(base_path)
-            records.append(record)
-        except requests.RequestException as e:
-            print(f"      경고: {base_path} 가져오기 실패 - {e}", file=sys.stderr)
-        if i % 20 == 0:
-            print(f"      진행: {i}/{len(country_list)}", file=sys.stderr)
-        time.sleep(REQUEST_DELAY_SEC)
+    print(
+        f"[2/3] 국가별 상세 정보(alert_status) 병렬 파싱 중... "
+        f"(동시 {MAX_WORKERS}개, 요청당 {REQUEST_DELAY_SEC}초 딜레이)",
+        file=sys.stderr,
+    )
+
+    results = [None] * total
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        futures = [
+            executor.submit(_fetch_with_index, i, item["base_path"], total)
+            for i, item in enumerate(country_list)
+            if item.get("base_path")
+        ]
+        for future in as_completed(futures):
+            index, record = future.result()
+            if record is not None:
+                results[index] = record
+
+    # 실패한(None) 항목은 제외하고, 원래 국가 목록 순서를 유지한다.
+    records = [r for r in results if r is not None]
 
     output = {
         "status": "success",
