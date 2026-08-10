@@ -123,9 +123,14 @@ def fetch_page(service_key, page_no):
     resp.raise_for_status()
     raw = resp.json()
 
-    result_code = raw.get("resultCode")
-    if result_code is not None and int(result_code) != 0:
-        msg = raw.get("resultMsg") or RESULT_CODE_MESSAGES.get(int(result_code), "알 수 없는 에러")
+    # 실제 응답은 표준 공공데이터포털 포맷: response.header / response.body
+    # (기술문서 v1.4에 적힌 "최상위 data 배열" 구조와 다름 - 실기동 확인 결과 반영)
+    header = raw.get("response", {}).get("header", {})
+    result_code = header.get("resultCode")
+    if result_code is not None and str(result_code) != "0":
+        msg = header.get("resultMsg") or RESULT_CODE_MESSAGES.get(
+            _to_int(result_code), "알 수 없는 에러"
+        )
         print(f"[API 에러] resultCode={result_code}, resultMsg={msg}", file=sys.stderr)
         sys.exit(1)
 
@@ -146,7 +151,8 @@ def parse_record(item):
         "danger_map_url": item.get("dang_map_download_url") or None,
         "flag_url": item.get("flag_download_url") or None,
         "map_url": item.get("map_download_url") or None,
-        "last_updated": item.get("written_dt") or None,
+        "last_updated": item.get("written_dt") or None,  # null인 경우 잦음 (실기동 확인)
+        "country_idx": item.get("org_country_idx"),
         "risk_score": None,
     }
 
@@ -169,10 +175,13 @@ def main():
     total_count = None
     while True:
         raw = fetch_page(service_key, page_no)
-        items = raw.get("data") or []
-        if isinstance(items, dict):  # 결과가 1건이면 dict로만 오는 경우 방어
+        body = raw.get("response", {}).get("body", {})
+        items = body.get("items", {})
+        if isinstance(items, dict):
+            items = items.get("item", [])
+        if isinstance(items, dict):  # 결과가 1건이면 item이 dict로만 오는 경우 방어
             items = [items]
-        total_count = raw.get("totalCount", total_count)
+        total_count = body.get("totalCount", total_count)
         if not items:
             break
         all_items.extend(items)
