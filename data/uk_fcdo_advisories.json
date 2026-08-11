@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-11T13:05:01.998350+00:00",
+  "generated_at": "2026-08-11T13:34:58.718678+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Italy",
+      "slug": "italy",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Italy. Includes safety and security, insurance, entry requirements and legal differences.  \r\n",
+      "public_updated_at": "2026-08-11T14:10:14+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/italy"
+    },
     {
       "name": "Switzerland",
       "slug": "switzerland",
@@ -265,16 +275,6 @@
       "summary": "FCDO travel advice for Iceland. Includes safety and security, insurance, entry requirements and legal differences. \r\n\r\n",
       "public_updated_at": "2026-08-11T10:17:40+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/iceland"
-    },
-    {
-      "name": "Italy",
-      "slug": "italy",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Italy. Includes safety and security, insurance, entry requirements and legal differences.  \r\n",
-      "public_updated_at": "2026-08-11T10:17:32+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/italy"
     },
     {
       "name": "Latvia",
