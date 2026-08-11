@@ -63,9 +63,19 @@ MAX_WORKERS = 8  # 동시 요청 수 (서버 부담을 고려해 과도하게 �
 # alert_status 코드를 US 국무부 스타일의 1~4 등급으로 정규화하기 위한 매핑.
 # 여러 alert_status가 동시에 붙는 경우, 가장 심각한 코드를 기준으로 판정한다.
 ALERT_STATUS_SEVERITY = {
+    # ⚠️ [버그 수정] 실제 GOV.UK Content API는 "_to_whole_country"/"_to_parts" 접미사가
+    # 항상 붙어서 내려온다(접미사 없는 "avoid_all_travel"/"avoid_all_but_essential_travel"
+    # 값은 실제 응답에 한 번도 안 나온다). 이전 버전은 접미사 없는 키만 등록해놔서
+    # 실제 값과 전혀 매칭이 안 됐고, normalize_level()의 .get(status, 1) 기본값 1로
+    # 항상 떨어졌다 - 그 결과 러시아/북한/이란/아프가니스탄/시리아/예멘/벨라루스처럼
+    # "전국 여행 자제"(가장 심각한 등급)여야 할 나라들이 전부 1단계(정상)로 잘못
+    # 저장되고 있었다. 접미사 있는 키를 추가하고, 혹시 모를 접미사 없는 값도
+    # 대비 차원에서 함께 남겨둔다.
+    "avoid_all_travel_to_whole_country": 4,
     "avoid_all_travel": 4,
-    "avoid_all_travel_to_parts": 3,          # 일부 지역 전체 여행 자제
+    "avoid_all_but_essential_travel_to_whole_country": 3,
     "avoid_all_but_essential_travel": 3,
+    "avoid_all_travel_to_parts": 3,          # 일부 지역 전체 여행 자제
     "avoid_all_but_essential_travel_to_parts": 2,
     "see_the_summary": 2,
     "notify_before_travel": 1,
