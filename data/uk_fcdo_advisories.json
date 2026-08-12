@@ -3,9 +3,49 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-12T15:04:56.811902+00:00",
+  "generated_at": "2026-08-12T15:37:53.952148+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Guinea",
+      "slug": "guinea",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Guinea. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-08-12T16:34:39+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/guinea"
+    },
+    {
+      "name": "Spain",
+      "slug": "spain",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Spain. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-08-11T10:23:12+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/spain"
+    },
+    {
+      "name": "Vietnam",
+      "slug": "vietnam",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Vietnam. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-06-26T12:10:13+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/vietnam"
+    },
+    {
+      "name": "China",
+      "slug": "china",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for China. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-08-10T11:48:49+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/china"
+    },
     {
       "name": "Maldives",
       "slug": "maldives",
@@ -67,16 +107,6 @@
       "summary": "FCDO travel advice for Sweden. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-08-11T10:23:29+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/sweden"
-    },
-    {
-      "name": "Spain",
-      "slug": "spain",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Spain. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-11T10:23:12+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/spain"
     },
     {
       "name": "Slovenia",
@@ -352,16 +382,6 @@
       "summary": "FCDO travel advice for Papua New Guinea. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-08-10T11:54:33+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/papua-new-guinea"
-    },
-    {
-      "name": "China",
-      "slug": "china",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for China. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-10T11:48:49+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/china"
     },
     {
       "name": "Falkland Islands (British Overseas Territory)",
@@ -1208,16 +1228,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/somalia"
     },
     {
-      "name": "Vietnam",
-      "slug": "vietnam",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Vietnam. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-06-26T12:10:13+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/vietnam"
-    },
-    {
       "name": "Peru",
       "slug": "peru",
       "alert_status_raw": [
@@ -1376,16 +1386,6 @@
       "summary": "FCDO travel advice for Botswana. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-06-01T14:04:17+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/botswana"
-    },
-    {
-      "name": "Guinea",
-      "slug": "guinea",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Guinea. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-06-01T11:15:14+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/guinea"
     },
     {
       "name": "South Korea",
