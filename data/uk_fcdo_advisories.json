@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-12T10:04:43.581630+00:00",
+  "generated_at": "2026-08-12T10:37:51.334075+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Maldives",
+      "slug": "maldives",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Maldives. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-08-12T11:35:58+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/maldives"
+    },
     {
       "name": "Belgium",
       "slug": "belgium",
@@ -910,16 +920,6 @@
       "summary": "FCDO travel advice for Libya. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-07-21T10:00:09+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/libya"
-    },
-    {
-      "name": "Maldives",
-      "slug": "maldives",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Maldives. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-07-17T09:31:32+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/maldives"
     },
     {
       "name": "Cuba",
