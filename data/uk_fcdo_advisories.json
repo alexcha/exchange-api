@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-13T13:40:46.744332+00:00",
+  "generated_at": "2026-08-13T14:05:02.210959+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Guatemala",
+      "slug": "guatemala",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Guatemala. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-08-13T14:45:16+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/guatemala"
+    },
     {
       "name": "Nigeria",
       "slug": "nigeria",
@@ -517,18 +529,6 @@
       "summary": "FCDO travel advice for Mexico. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-07-16T16:08:09+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/mexico"
-    },
-    {
-      "name": "Guatemala",
-      "slug": "guatemala",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Guatemala. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-06T16:58:55+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/guatemala"
     },
     {
       "name": "Chad",
