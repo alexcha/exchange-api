@@ -2,7 +2,7 @@
 korea_mofa_special_travel_warning_scraper.py
 
 대한민국 외교부(MOFA)가 공공데이터포털(data.go.kr)을 통해 제공하는
-"국가∙지역별 특별여행주의보" 공식 Open API(SpTravelWarningServiceV2)를
+"국가∙지역별 특별여행주의보" 공식 Open API(SptravelWarningServiceV2)를
 호출하여 파싱한 뒤 JSON으로 저장하는 스크립트.
 
 데이터셋: 외교부_국가∙지역별 특별여행주의보 (data.go.kr ID: 15076244)
@@ -70,13 +70,15 @@ from urllib.parse import unquote
 
 import requests
 
-# ⚠️ [재정정] 문서의 인라인 REST 예제 표기(SptravelWarningServiceV2 / getSpTravelWarningListV2)를
-# 처음엔 신뢰했으나 실제 호출 결과 NO_OPENAPI_SERVICE_ERROR(반환코드 12)가 났다.
-# 문서의 구조화된 표(서비스명(영문) 표 / 상세기능명(영문) 표 - 자동 생성 메타데이터일
-# 가능성이 높음)를 다시 대조해보니 대소문자가 정확히 반대였다:
-#   - 서비스명(영문) 표: "Sp" + "TravelWarni" + "ngServiceV2" = SpTravelWarningServiceV2 (T 대문자)
-#   - 상세기능명(영문) 표: "get" + "SptravelWarningListV2"    = getSptravelWarningListV2 (t 소문자)
-BASE_URL = "https://apis.data.go.kr/1262000/SpTravelWarningServiceV2/getSptravelWarningListV2"
+# ⚠️ [최종 확정] data.go.kr 영문판 페이지에 명시된 "Requested Link"를 검색으로
+# 확인함: http://apis.data.go.kr/1262000/SptravelWarningServiceV2/getSptravelWarningListV2
+# - 서비스명/상세기능명 둘 다 "Sp" 뒤가 소문자 t (Sptravel...) 로 통일되어 있었다.
+#   직전 버전에서 서비스명 쪽을 대문자 T로 잘못 "수정"했던 게 실수였음 - 원래
+#   첫 버전의 서비스명(소문자)이 맞았다.
+# - 프로토콜도 https가 아니라 http가 맞다 (이전에 "실제 페이지가 https"라는
+#   확인되지 않은 정보로 바꿨던 게 잘못이었음 - 문서의 서비스 URL 표, 그리고
+#   이번에 찾은 공식 리스팅 둘 다 http로 일관되게 명시하고 있다).
+BASE_URL = "http://apis.data.go.kr/1262000/SptravelWarningServiceV2/getSptravelWarningListV2"
 USER_AGENT = "travel-advisory-research-script/1.0 (+contact: user)"
 PAGE_SIZE = 100
 
