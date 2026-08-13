@@ -3,9 +3,22 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-13T12:34:47.830805+00:00",
+  "generated_at": "2026-08-13T13:05:05.423354+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Nigeria",
+      "slug": "nigeria",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Nigeria. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-13T14:02:36+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/nigeria"
+    },
     {
       "name": "Kuwait",
       "slug": "kuwait",
@@ -1018,19 +1031,6 @@
       "summary": "FCDO travel advice for Gibraltar. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-07-14T09:32:42+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/gibraltar"
-    },
-    {
-      "name": "Nigeria",
-      "slug": "nigeria",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Nigeria. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-07-13T15:10:23+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/nigeria"
     },
     {
       "name": "Mali",
