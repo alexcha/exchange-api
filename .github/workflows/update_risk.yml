@@ -43,7 +43,7 @@ jobs:
         python3 scripts/canada_travel_advisory_scraper.py
         mv -f canada_travel_advisories.json data/canada_travel_advisories.json
 
-    # [1-2단계] 대한민국 외교부(MOFA) 여행경보 데이터 추출
+    # [1-2단계] 대한민국 외교부(MOFA) 여행경보 데이터 추출 (1~4단계, TravelAlarmService2)
     - name: 대한민국 외교부 여행경보 데이터 추출
       continue-on-error: true
       env:
@@ -51,6 +51,17 @@ jobs:
       run: |
         python3 scripts/korea_mofa_travel_alarm_scraper.py
         mv -f korea_mofa_travel_advisories.json data/korea_mofa_travel_advisories.json
+
+    # [1-2-1단계] ⭐️ [신규] 대한민국 외교부 특별여행주의보 데이터 추출
+    # (1~4단계와 완전히 별개 API/카테고리 - SptravelWarningServiceV2.
+    #  전용 서비스키를 따로 발급받아 DATA_GO_KR_SERVICE_KEY와 분리해서 사용한다.)
+    - name: 대한민국 외교부 특별여행주의보 데이터 추출
+      continue-on-error: true
+      env:
+        DATA_GO_KR_SPECIAL_WARNING_SERVICE_KEY: ${{ secrets.DATA_GO_KR_SPECIAL_WARNING_SERVICE_KEY }}
+      run: |
+        python3 scripts/korea_mofa_special_travel_warning_scraper.py
+        mv -f korea_mofa_special_travel_warnings.json data/korea_mofa_special_travel_warnings.json
 
     # [1-3단계] 영국 외교부(FCDO) 여행경보 데이터 추출
     - name: 영국 외교부 여행경보 데이터 추출
@@ -121,7 +132,7 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-        FILES_TO_ADD="data/travel_risk.json data/realtime_disasters.json data/realtime_alerts.json data/unmatched_countries.log data/sent_disaster_ids.json data/canada_travel_advisories.json data/korea_mofa_travel_advisories.json data/uk_fcdo_advisories.json"
+        FILES_TO_ADD="data/travel_risk.json data/realtime_disasters.json data/realtime_alerts.json data/unmatched_countries.log data/sent_disaster_ids.json data/canada_travel_advisories.json data/korea_mofa_travel_advisories.json data/korea_mofa_special_travel_warnings.json data/uk_fcdo_advisories.json"
         for f in $FILES_TO_ADD; do
           if [ -f "$f" ]; then
             git add "$f"
