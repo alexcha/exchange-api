@@ -3,9 +3,71 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-13T15:04:49.941352+00:00",
+  "generated_at": "2026-08-13T15:35:01.062332+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Albania",
+      "slug": "albania",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Albania. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-08-13T16:28:50+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/albania"
+    },
+    {
+      "name": "Bosnia and Herzegovina",
+      "slug": "bosnia-and-herzegovina",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Bosnia and Herzegovina. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-13T16:28:44+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/bosnia-and-herzegovina"
+    },
+    {
+      "name": "Montenegro",
+      "slug": "montenegro",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Montenegro. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-08-13T16:25:26+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/montenegro"
+    },
+    {
+      "name": "Iran",
+      "slug": "iran",
+      "alert_status_raw": [
+        "avoid_all_travel_to_whole_country"
+      ],
+      "advisory_level": 4,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Iran. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-07-22T19:36:21+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/iran"
+    },
+    {
+      "name": "Serbia",
+      "slug": "serbia",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Serbia. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-13T16:18:02+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/serbia"
+    },
+    {
+      "name": "North Macedonia",
+      "slug": "north-macedonia",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for North Macedonia. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-08-13T16:16:47+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/north-macedonia"
+    },
     {
       "name": "Guatemala",
       "slug": "guatemala",
@@ -54,16 +116,6 @@
       "summary": "Updated information on flooding risks during periods of heavy rain (‘Safety and security’ page).",
       "public_updated_at": "2026-08-13T12:10:25+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/laos"
-    },
-    {
-      "name": "Montenegro",
-      "slug": "montenegro",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Montenegro. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-06-04T11:55:51+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/montenegro"
     },
     {
       "name": "Qatar",
@@ -813,18 +865,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/bahrain"
     },
     {
-      "name": "Iran",
-      "slug": "iran",
-      "alert_status_raw": [
-        "avoid_all_travel_to_whole_country"
-      ],
-      "advisory_level": 4,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Iran. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-07-22T19:36:21+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/iran"
-    },
-    {
       "name": "Iraq",
       "slug": "iraq",
       "alert_status_raw": [
@@ -1214,16 +1254,6 @@
       "summary": "FCDO travel advice for Western Sahara. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-06-29T14:34:01+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/western-sahara"
-    },
-    {
-      "name": "Bosnia and Herzegovina",
-      "slug": "bosnia-and-herzegovina",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Bosnia and Herzegovina. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-06-29T14:24:11+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/bosnia-and-herzegovina"
     },
     {
       "name": "Malaysia",
@@ -1900,26 +1930,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/cameroon"
     },
     {
-      "name": "North Macedonia",
-      "slug": "north-macedonia",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for North Macedonia. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-02-04T12:04:35+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/north-macedonia"
-    },
-    {
-      "name": "Serbia",
-      "slug": "serbia",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Serbia. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-02-04T12:01:21+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/serbia"
-    },
-    {
       "name": "Barbados",
       "slug": "barbados",
       "alert_status_raw": [],
@@ -1968,16 +1978,6 @@
       "summary": "FCDO travel advice for Nicaragua. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2025-12-10T13:20:42+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/nicaragua"
-    },
-    {
-      "name": "Albania",
-      "slug": "albania",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Albania. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2025-12-10T12:40:35+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/albania"
     },
     {
       "name": "Equatorial Guinea",
