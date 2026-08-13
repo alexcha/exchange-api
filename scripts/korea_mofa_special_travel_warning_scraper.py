@@ -2,7 +2,7 @@
 korea_mofa_special_travel_warning_scraper.py
 
 대한민국 외교부(MOFA)가 공공데이터포털(data.go.kr)을 통해 제공하는
-"국가∙지역별 특별여행주의보" 공식 Open API(SptravelWarningServiceV2)를
+"국가∙지역별 특별여행주의보" 공식 Open API(SpTravelWarningServiceV2)를
 호출하여 파싱한 뒤 JSON으로 저장하는 스크립트.
 
 데이터셋: 외교부_국가∙지역별 특별여행주의보 (data.go.kr ID: 15076244)
@@ -70,11 +70,13 @@ from urllib.parse import unquote
 
 import requests
 
-# ⚠️ [정정] 기술문서 표에는 http("전송 레벨 암호화: 없음")로 적혀있었지만,
-# 실제 data.go.kr 활용신청 페이지의 요청주소는 https였다(사용자 확인).
-# 공공데이터포털 API들이 http에서 https로 전환되는 경우가 흔한데 기술문서가
-# 그 변경을 반영 못 한 것으로 보인다. 실제 요청주소를 그대로 신뢰한다.
-BASE_URL = "https://apis.data.go.kr/1262000/SptravelWarningServiceV2/getSpTravelWarningListV2"
+# ⚠️ [재정정] 문서의 인라인 REST 예제 표기(SptravelWarningServiceV2 / getSpTravelWarningListV2)를
+# 처음엔 신뢰했으나 실제 호출 결과 NO_OPENAPI_SERVICE_ERROR(반환코드 12)가 났다.
+# 문서의 구조화된 표(서비스명(영문) 표 / 상세기능명(영문) 표 - 자동 생성 메타데이터일
+# 가능성이 높음)를 다시 대조해보니 대소문자가 정확히 반대였다:
+#   - 서비스명(영문) 표: "Sp" + "TravelWarni" + "ngServiceV2" = SpTravelWarningServiceV2 (T 대문자)
+#   - 상세기능명(영문) 표: "get" + "SptravelWarningListV2"    = getSptravelWarningListV2 (t 소문자)
+BASE_URL = "https://apis.data.go.kr/1262000/SpTravelWarningServiceV2/getSptravelWarningListV2"
 USER_AGENT = "travel-advisory-research-script/1.0 (+contact: user)"
 PAGE_SIZE = 100
 
