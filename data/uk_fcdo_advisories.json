@@ -3,9 +3,22 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-14T14:34:51.969598+00:00",
+  "generated_at": "2026-08-14T15:10:44.372438+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Ukraine",
+      "slug": "ukraine",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Ukraine. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-08-14T15:37:09+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/ukraine"
+    },
     {
       "name": "Colombia",
       "slug": "colombia",
@@ -535,19 +548,6 @@
       "summary": "FCDO travel advice for the Falkland Islands. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-08-10T09:48:47+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/falkland-islands"
-    },
-    {
-      "name": "Ukraine",
-      "slug": "ukraine",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Ukraine. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-07T19:00:17+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/ukraine"
     },
     {
       "name": "Dominican Republic",
