@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-16T11:04:47.150141+00:00",
+  "generated_at": "2026-08-16T11:34:54.611891+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Indonesia",
+      "slug": "indonesia",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Indonesia. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-08-16T12:31:33+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/indonesia"
+    },
     {
       "name": "Ukraine",
       "slug": "ukraine",
@@ -1364,18 +1376,6 @@
       "summary": "FCDO travel advice for Kosovo. Includes safety and security, insurance, entry requirements and legal differences. \r\n",
       "public_updated_at": "2026-06-10T10:30:06+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/kosovo"
-    },
-    {
-      "name": "Indonesia",
-      "slug": "indonesia",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Indonesia. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-06-10T09:18:15+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/indonesia"
     },
     {
       "name": "Turkmenistan",
