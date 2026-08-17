@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-17T14:10:36.368544+00:00",
+  "generated_at": "2026-08-17T14:40:41.364442+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Papua New Guinea",
+      "slug": "papua-new-guinea",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Papua New Guinea. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-08-17T15:35:08+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/papua-new-guinea"
+    },
     {
       "name": "Chile",
       "slug": "chile",
@@ -548,18 +560,6 @@
       "summary": "FCDO travel advice for Fiji. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-08-10T14:48:05+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/fiji"
-    },
-    {
-      "name": "Papua New Guinea",
-      "slug": "papua-new-guinea",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Papua New Guinea. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-10T11:54:33+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/papua-new-guinea"
     },
     {
       "name": "Falkland Islands (British Overseas Territory)",
