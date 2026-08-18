@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-18T09:04:47.985915+00:00",
+  "generated_at": "2026-08-18T09:34:49.223442+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "USA",
+      "slug": "usa",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for USA. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-18T10:29:04+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/usa"
+    },
     {
       "name": "Papua New Guinea",
       "slug": "papua-new-guinea",
@@ -863,16 +873,6 @@
       "summary": "FCDO travel advice for United Arab Emirates. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-07-24T15:52:23+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/united-arab-emirates"
-    },
-    {
-      "name": "USA",
-      "slug": "usa",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for USA. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-06-02T17:02:32+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/usa"
     },
     {
       "name": "Canada",
