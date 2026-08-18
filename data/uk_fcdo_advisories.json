@@ -3,9 +3,31 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-18T14:34:49.813995+00:00",
+  "generated_at": "2026-08-18T15:10:46.274841+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Colombia",
+      "slug": "colombia",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Colombia. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-08-18T15:51:11+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/colombia"
+    },
+    {
+      "name": "Morocco",
+      "slug": "morocco",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Morocco. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-02-17T10:48:54+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/morocco"
+    },
     {
       "name": "USA",
       "slug": "usa",
@@ -84,18 +106,6 @@
       "summary": "FCDO travel advice for Ukraine. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-08-14T15:37:09+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/ukraine"
-    },
-    {
-      "name": "Colombia",
-      "slug": "colombia",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Colombia. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-14T15:25:53+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/colombia"
     },
     {
       "name": "Spain",
@@ -1905,16 +1915,6 @@
       "summary": "FCDO travel advice for Madagascar. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-01-26T10:47:11+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/madagascar"
-    },
-    {
-      "name": "Morocco",
-      "slug": "morocco",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Morocco. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-02-17T10:48:54+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/morocco"
     },
     {
       "name": "Cameroon",
