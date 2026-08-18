@@ -3,9 +3,31 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-18T22:04:52.614687+00:00",
+  "generated_at": "2026-08-18T22:35:00.935000+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Chile",
+      "slug": "chile",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Chile. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-18T23:18:12+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/chile"
+    },
+    {
+      "name": "Afghanistan",
+      "slug": "afghanistan",
+      "alert_status_raw": [
+        "avoid_all_travel_to_whole_country"
+      ],
+      "advisory_level": 4,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Afghanistan. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-07-30T11:36:13+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/afghanistan"
+    },
     {
       "name": "Colombia",
       "slug": "colombia",
@@ -49,16 +71,6 @@
       "summary": "FCDO travel advice for Papua New Guinea. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-08-17T15:35:08+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/papua-new-guinea"
-    },
-    {
-      "name": "Chile",
-      "slug": "chile",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Chile. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-08-17T10:19:31+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/chile"
     },
     {
       "name": "Italy",
@@ -747,18 +759,6 @@
       "summary": "FCDO travel advice for Trinidad and Tobago. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-07-30T16:58:19+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/trinidad-and-tobago"
-    },
-    {
-      "name": "Afghanistan",
-      "slug": "afghanistan",
-      "alert_status_raw": [
-        "avoid_all_travel_to_whole_country"
-      ],
-      "advisory_level": 4,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Afghanistan. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-07-30T11:36:13+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/afghanistan"
     },
     {
       "name": "Democratic Republic of the Congo",
