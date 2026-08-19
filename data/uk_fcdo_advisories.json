@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-19T13:34:50.289459+00:00",
+  "generated_at": "2026-08-19T14:04:47.691497+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Qatar",
+      "slug": "qatar",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "Latest FCDO travel advice for Qatar. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-08-19T14:38:09+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/qatar"
+    },
     {
       "name": "Morocco",
       "slug": "morocco",
@@ -271,16 +281,6 @@
       "summary": "Updated information on flooding risks during periods of heavy rain (‘Safety and security’ page).",
       "public_updated_at": "2026-08-13T12:10:25+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/laos"
-    },
-    {
-      "name": "Qatar",
-      "slug": "qatar",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "Latest FCDO travel advice for Qatar. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-03T13:41:18+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/qatar"
     },
     {
       "name": "Guinea",
