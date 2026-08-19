@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-19T14:40:41.716631+00:00",
+  "generated_at": "2026-08-19T15:05:00.340447+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Japan",
+      "slug": "japan",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Japan. Includes safety and security, insurance, entry requirements and legal differences.\r\n",
+      "public_updated_at": "2026-08-19T15:40:39+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/japan"
+    },
     {
       "name": "Tajikistan",
       "slug": "tajikistan",
@@ -733,16 +743,6 @@
       "summary": "FCDO travel advice for Russia. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-07-03T09:40:32+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/russia"
-    },
-    {
-      "name": "Japan",
-      "slug": "japan",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Japan. Includes safety and security, insurance, entry requirements and legal differences.\r\n",
-      "public_updated_at": "2026-08-04T11:37:49+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/japan"
     },
     {
       "name": "Myanmar",
