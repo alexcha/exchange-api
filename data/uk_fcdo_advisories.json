@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-20T07:35:03.963138+00:00",
+  "generated_at": "2026-08-20T08:04:46.054770+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Kuwait",
+      "slug": "kuwait",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Kuwait. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-20T09:00:55+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/kuwait"
+    },
     {
       "name": "Japan",
       "slug": "japan",
@@ -146,18 +156,6 @@
       "summary": "FCDO travel advice for Italy. Includes safety and security, insurance, entry requirements and legal differences.  \r\n",
       "public_updated_at": "2026-08-11T14:10:14+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/italy"
-    },
-    {
-      "name": "Kuwait",
-      "slug": "kuwait",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_whole_country"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Kuwait. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-08-13T12:29:47+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/kuwait"
     },
     {
       "name": "Indonesia",
