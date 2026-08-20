@@ -3,9 +3,29 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-20T10:40:34.391266+00:00",
+  "generated_at": "2026-08-20T11:10:37.907480+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Bahrain",
+      "slug": "bahrain",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Bahrain. Includes safety and security, insurance, entry requirements and legal differences. \r\n",
+      "public_updated_at": "2026-08-20T11:51:52+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/bahrain"
+    },
+    {
+      "name": "Morocco",
+      "slug": "morocco",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Morocco. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-08-19T12:00:36+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/morocco"
+    },
     {
       "name": "Kuwait",
       "slug": "kuwait",
@@ -45,16 +65,6 @@
       "summary": "Latest FCDO travel advice for Qatar. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-08-19T14:38:09+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/qatar"
-    },
-    {
-      "name": "Morocco",
-      "slug": "morocco",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Morocco. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-08-19T12:00:36+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/morocco"
     },
     {
       "name": "Nigeria",
@@ -923,18 +933,6 @@
       "summary": "FCDO travel advice for Canada. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-06-02T17:02:41+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/canada"
-    },
-    {
-      "name": "Bahrain",
-      "slug": "bahrain",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_whole_country"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Bahrain. Includes safety and security, insurance, entry requirements and legal differences. \r\n",
-      "public_updated_at": "2026-07-23T10:00:06+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/bahrain"
     },
     {
       "name": "Iraq",
