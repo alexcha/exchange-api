@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-21T09:34:43.909934+00:00",
+  "generated_at": "2026-08-21T10:04:50.381527+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Bolivia",
+      "slug": "bolivia",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Bolivia. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-21T10:53:00+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/bolivia"
+    },
     {
       "name": "Nigeria",
       "slug": "nigeria",
@@ -1211,18 +1223,6 @@
       "summary": "FCDO travel advice for Montserrat. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-07-03T16:32:01+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/montserrat"
-    },
-    {
-      "name": "Bolivia",
-      "slug": "bolivia",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Bolivia. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-07-03T12:47:30+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/bolivia"
     },
     {
       "name": "Malawi",
