@@ -3,8 +3,8 @@
   "source": "Global Affairs Canada (GAC) Travel Advice and Advisories",
   "source_url": "https://travel.gc.ca/travelling/advisories",
   "license": "Open Government Licence - Canada",
-  "source_generated_at": "2026-08-21 08:40:15",
-  "generated_at": "2026-08-21T14:04:02.082865+00:00",
+  "source_generated_at": "2026-08-21 10:20:29",
+  "generated_at": "2026-08-21T14:34:21.605754+00:00",
   "count": 229,
   "data": [
     {
@@ -170,11 +170,11 @@
     {
       "iso_code": "BH",
       "name": "Bahrain",
-      "advisory_level": 4,
+      "advisory_level": 3,
       "risk_score": null,
-      "advisory_text": "Avoid all travel",
+      "advisory_text": "Avoid non-essential travel",
       "has_regional_advisory": false,
-      "last_updated": "2026-08-06 16:05:28",
+      "last_updated": "2026-08-21 10:13:23",
       "web_url": "https://travel.gc.ca/destinations/bahrain"
     },
     {
@@ -1080,11 +1080,11 @@
     {
       "iso_code": "KW",
       "name": "Kuwait",
-      "advisory_level": 4,
+      "advisory_level": 3,
       "risk_score": null,
-      "advisory_text": "Avoid all travel",
-      "has_regional_advisory": false,
-      "last_updated": "2026-08-06 16:07:39",
+      "advisory_text": "Avoid non-essential travel (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-21 10:06:58",
       "web_url": "https://travel.gc.ca/destinations/kuwait"
     },
     {
