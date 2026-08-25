@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-25T08:34:59.407873+00:00",
+  "generated_at": "2026-08-25T09:10:58.306442+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "South Sudan",
+      "slug": "south-sudan",
+      "alert_status_raw": [
+        "avoid_all_travel_to_whole_country"
+      ],
+      "advisory_level": 4,
+      "risk_score": null,
+      "summary": "FCDO travel advice for South Sudan. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-08-25T10:10:08+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/south-sudan"
+    },
     {
       "name": "Norway",
       "slug": "norway",
@@ -13,7 +25,7 @@
       "advisory_level": 1,
       "risk_score": null,
       "summary": "FCDO travel advice for Norway. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-08-21T21:50:00+01:00",
+      "public_updated_at": "2026-08-25T09:47:40+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/norway"
     },
     {
@@ -1533,18 +1545,6 @@
       "summary": "FCDO travel advice for Sri Lanka. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-05-26T15:31:56+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/sri-lanka"
-    },
-    {
-      "name": "South Sudan",
-      "slug": "south-sudan",
-      "alert_status_raw": [
-        "avoid_all_travel_to_whole_country"
-      ],
-      "advisory_level": 4,
-      "risk_score": null,
-      "summary": "FCDO travel advice for South Sudan. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-05-26T13:55:03+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/south-sudan"
     },
     {
       "name": "Solomon Islands",
