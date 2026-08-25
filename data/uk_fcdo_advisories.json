@@ -3,8 +3,8 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-25T06:04:49.482806+00:00",
-  "count": 226,
+  "generated_at": "2026-08-25T06:35:12.659520+00:00",
+  "count": 224,
   "data": [
     {
       "name": "Norway",
@@ -791,19 +791,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/myanmar"
     },
     {
-      "name": "Egypt",
-      "slug": "egypt",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Egypt. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-08-04T11:10:57+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/egypt"
-    },
-    {
       "name": "Yemen",
       "slug": "yemen",
       "alert_status_raw": [
@@ -1424,16 +1411,6 @@
       "summary": "FCDO travel advice for the Republic of Congo. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-06-02T11:16:18+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/congo"
-    },
-    {
-      "name": "Zambia",
-      "slug": "zambia",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Zambia. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-06-01T14:58:33+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/zambia"
     },
     {
       "name": "Botswana",
