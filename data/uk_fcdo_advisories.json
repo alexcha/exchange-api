@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-26T14:34:46.118327+00:00",
+  "generated_at": "2026-08-26T16:22:59.001722+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "China",
+      "slug": "china",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for China. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-08-26T16:48:44+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/china"
+    },
     {
       "name": "Kyrgyzstan",
       "slug": "kyrgyzstan",
@@ -441,16 +451,6 @@
       "summary": "FCDO travel advice for Vietnam. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-06-26T12:10:13+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/vietnam"
-    },
-    {
-      "name": "China",
-      "slug": "china",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for China. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-10T11:48:49+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/china"
     },
     {
       "name": "Maldives",
