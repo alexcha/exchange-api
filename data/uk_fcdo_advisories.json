@@ -3,19 +3,9 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-27T22:04:46.372169+00:00",
+  "generated_at": "2026-08-27T22:35:27.024314+00:00",
   "count": 226,
   "data": [
-    {
-      "name": "China",
-      "slug": "china",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for China. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-27T23:02:55+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/china"
-    },
     {
       "name": "Nepal",
       "slug": "nepal",
@@ -25,6 +15,16 @@
       "summary": "FCDO travel advice for Nepal. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-08-27T23:04:09+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/nepal"
+    },
+    {
+      "name": "China",
+      "slug": "china",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for China. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-08-27T23:02:55+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/china"
     },
     {
       "name": "Kyrgyzstan",
