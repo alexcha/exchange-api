@@ -22,34 +22,7 @@
       "last_updated": "2026-08-22T08:22:37",
       "severity": "Green",
       "is_current": false,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
-      "exposed_population": "0",
-      "exposed_population_description": null,
-      "vulnerability": null,
-      "magnitude": "6.7",
-      "depth_km": "10",
-      "event_date_local": "2026-08-22T05:22:40",
-      "image_urls": [
-        "https://earthquake.usgs.gov/eqcenter/shakemap/global/shake/6000tmrw/download/intensity.jpg",
-        "https://www.gdacs.org/contentdata/resources/EQ/1561143/eq1728463_2.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1561143/1561143_1728463_alertfatal_small.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1561143/eq1728463_1.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1561143/eq1728463_4.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1561143/shakemap/eq1561143_1728463_3_2.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1561143/shakemap/eq1561143_1728463_3_1.png",
-        "https://www.gdacs.org/contentdata/resources/EQ/1561143/smpreliminary_1561143_1728463_intensity.jpg",
-        "https://www.gdacs.org/contentdata/resources/EQ/1561143/tsunami/JETS_System/2026/08/36455/tslocations_1561143_1728463.png"
-      ],
-      "map_urls": [],
-      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1561143/eq1728463_2.png",
-      "deaths": null,
-      "displaced": null,
-      "missing": null,
-      "severity_text": "Magnitude 6.2M, Depth:10km",
-      "impact_history": [],
-      "impact_description": null,
-      "detail_description": "Earthquake in Scotia Sea",
-      "report_detail_url": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=EQ&eventid=1561143"
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby."
     }
   ]
 }
