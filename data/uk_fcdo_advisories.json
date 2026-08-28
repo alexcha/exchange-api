@@ -3,9 +3,29 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-28T12:34:46.950417+00:00",
+  "generated_at": "2026-08-28T13:04:53.778251+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Slovakia",
+      "slug": "slovakia",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Slovakia. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-08-28T14:01:26+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/slovakia"
+    },
+    {
+      "name": "Nepal",
+      "slug": "nepal",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Nepal. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-08-28T13:46:24+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/nepal"
+    },
     {
       "name": "Taiwan",
       "slug": "taiwan",
@@ -27,16 +47,6 @@
       "summary": "FCDO travel advice for Indonesia. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-08-28T12:29:31+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/indonesia"
-    },
-    {
-      "name": "Nepal",
-      "slug": "nepal",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Nepal. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-08-27T23:04:09+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/nepal"
     },
     {
       "name": "China",
@@ -501,16 +511,6 @@
       "summary": "FCDO travel advice for Slovenia. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-08-11T10:22:42+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/slovenia"
-    },
-    {
-      "name": "Slovakia",
-      "slug": "slovakia",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Slovakia. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-08-11T10:22:25+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/slovakia"
     },
     {
       "name": "Romania",
