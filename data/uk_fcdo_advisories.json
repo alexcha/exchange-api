@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-28T14:04:52.324245+00:00",
+  "generated_at": "2026-08-28T14:34:51.763645+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Uganda",
+      "slug": "uganda",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Uganda. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-28T15:05:20+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/uganda"
+    },
     {
       "name": "Slovakia",
       "slug": "slovakia",
@@ -925,16 +935,6 @@
       "summary": "FCDO travel advice for Djibouti. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-07-27T15:03:02+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/djibouti"
-    },
-    {
-      "name": "Uganda",
-      "slug": "uganda",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Uganda. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-07-27T15:00:28+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/uganda"
     },
     {
       "name": "Georgia",
