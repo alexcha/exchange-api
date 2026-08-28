@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-28T12:04:56.930957+00:00",
+  "generated_at": "2026-08-28T12:34:46.950417+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Taiwan",
+      "slug": "taiwan",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Taiwan. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-28T13:31:24+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/taiwan"
+    },
     {
       "name": "Indonesia",
       "slug": "indonesia",
@@ -47,16 +57,6 @@
       "summary": "FCDO travel advice for Kyrgyzstan. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-08-26T15:14:04+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/kyrgyzstan"
-    },
-    {
-      "name": "Taiwan",
-      "slug": "taiwan",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Taiwan. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-08-26T11:06:26+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/taiwan"
     },
     {
       "name": "Democratic Republic of the Congo",
