@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-28T11:04:48.823657+00:00",
+  "generated_at": "2026-08-28T11:34:43.514264+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Indonesia",
+      "slug": "indonesia",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Indonesia. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-08-28T12:29:31+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/indonesia"
+    },
     {
       "name": "Nepal",
       "slug": "nepal",
@@ -288,18 +300,6 @@
       "summary": "FCDO travel advice for Italy. Includes safety and security, insurance, entry requirements and legal differences.  \r\n",
       "public_updated_at": "2026-08-11T14:10:14+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/italy"
-    },
-    {
-      "name": "Indonesia",
-      "slug": "indonesia",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Indonesia. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-16T12:31:33+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/indonesia"
     },
     {
       "name": "Ukraine",
