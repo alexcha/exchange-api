@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-29T14:10:50.314690+00:00",
+  "generated_at": "2026-08-29T14:34:54.049675+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Niger",
+      "slug": "niger",
+      "alert_status_raw": [
+        "avoid_all_travel_to_whole_country"
+      ],
+      "advisory_level": 4,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Niger. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-08-29T15:30:01+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/niger"
+    },
     {
       "name": "Japan",
       "slug": "japan",
@@ -1339,18 +1351,6 @@
       "summary": "FCDO travel advice for Peru. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-06-22T23:35:12+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/peru"
-    },
-    {
-      "name": "Niger",
-      "slug": "niger",
-      "alert_status_raw": [
-        "avoid_all_travel_to_whole_country"
-      ],
-      "advisory_level": 4,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Niger. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-06-19T16:00:50+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/niger"
     },
     {
       "name": "El Salvador",
