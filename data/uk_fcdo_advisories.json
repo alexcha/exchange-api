@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-30T16:34:54.527854+00:00",
+  "generated_at": "2026-08-30T17:04:45.536593+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Nepal",
+      "slug": "nepal",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Nepal. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-08-30T17:43:23+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/nepal"
+    },
     {
       "name": "Niger",
       "slug": "niger",
@@ -47,16 +57,6 @@
       "summary": "FCDO travel advice for Slovakia. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-08-28T14:01:26+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/slovakia"
-    },
-    {
-      "name": "Nepal",
-      "slug": "nepal",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Nepal. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-08-28T13:46:24+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/nepal"
     },
     {
       "name": "Taiwan",
