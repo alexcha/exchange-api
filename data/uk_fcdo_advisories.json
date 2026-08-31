@@ -3,9 +3,22 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-08-31T10:34:48.365799+00:00",
+  "generated_at": "2026-08-31T11:04:43.103567+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Kenya",
+      "slug": "kenya",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Kenya. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-31T11:42:11+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/kenya"
+    },
     {
       "name": "Nepal",
       "slug": "nepal",
@@ -1203,19 +1216,6 @@
       "summary": "FCDO travel advice for Ecuador. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-07-10T10:44:44+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/ecuador"
-    },
-    {
-      "name": "Kenya",
-      "slug": "kenya",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Kenya. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-06-24T12:48:44+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/kenya"
     },
     {
       "name": "Aruba",
