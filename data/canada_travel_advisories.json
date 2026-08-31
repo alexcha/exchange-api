@@ -3,8 +3,8 @@
   "source": "Global Affairs Canada (GAC) Travel Advice and Advisories",
   "source_url": "https://travel.gc.ca/travelling/advisories",
   "license": "Open Government Licence - Canada",
-  "source_generated_at": "2026-08-31 16:20:22",
-  "generated_at": "2026-08-31T20:34:07.425626+00:00",
+  "source_generated_at": "2026-08-31 17:00:26",
+  "generated_at": "2026-08-31T21:04:02.393117+00:00",
   "count": 229,
   "data": [
     {
@@ -442,9 +442,9 @@
       "name": "China",
       "advisory_level": 2,
       "risk_score": null,
-      "advisory_text": "Exercise a high degree of caution",
-      "has_regional_advisory": false,
-      "last_updated": "2026-08-27 13:48:31",
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-31 16:49:25",
       "web_url": "https://travel.gc.ca/destinations/china"
     },
     {
@@ -1432,9 +1432,9 @@
       "name": "Nepal",
       "advisory_level": 2,
       "risk_score": null,
-      "advisory_text": "Exercise a high degree of caution",
-      "has_regional_advisory": false,
-      "last_updated": "2026-08-27 13:46:31",
+      "advisory_text": "Exercise a high degree of caution (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-08-31 16:51:04",
       "web_url": "https://travel.gc.ca/destinations/nepal"
     },
     {
