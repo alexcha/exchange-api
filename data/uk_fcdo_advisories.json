@@ -3,19 +3,9 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-01T10:34:48.577193+00:00",
+  "generated_at": "2026-09-01T11:10:39.644844+00:00",
   "count": 226,
   "data": [
-    {
-      "name": "Nepal",
-      "slug": "nepal",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Nepal. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-09-01T09:47:59+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/nepal"
-    },
     {
       "name": "Kenya",
       "slug": "kenya",
@@ -26,8 +16,18 @@
       "advisory_level": 3,
       "risk_score": null,
       "summary": "FCDO travel advice for Kenya. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-08-31T11:42:11+01:00",
+      "public_updated_at": "2026-09-01T12:05:48+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/kenya"
+    },
+    {
+      "name": "Nepal",
+      "slug": "nepal",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Nepal. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-09-01T09:47:59+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/nepal"
     },
     {
       "name": "Niger",
