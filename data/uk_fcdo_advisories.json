@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-02T13:04:47.210728+00:00",
+  "generated_at": "2026-09-02T13:35:03.989356+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Syria",
+      "slug": "syria",
+      "alert_status_raw": [
+        "avoid_all_travel_to_whole_country"
+      ],
+      "advisory_level": 4,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Syria. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-09-02T14:13:57+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/syria"
+    },
     {
       "name": "Azerbaijan",
       "slug": "azerbaijan",
@@ -1110,18 +1122,6 @@
       "summary": "FCDO travel advice for Israel and Palestine. Includes safety and security, insurance, entry requirements and legal differences (Warnings and Insurance). ",
       "public_updated_at": "2026-07-22T13:45:00+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/israel"
-    },
-    {
-      "name": "Syria",
-      "slug": "syria",
-      "alert_status_raw": [
-        "avoid_all_travel_to_whole_country"
-      ],
-      "advisory_level": 4,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Syria. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-07-22T13:44:10+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/syria"
     },
     {
       "name": "Palestine",
