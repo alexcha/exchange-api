@@ -3,9 +3,54 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-02T10:10:36.869747+00:00",
+  "generated_at": "2026-09-02T10:34:55.022297+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Azerbaijan",
+      "slug": "azerbaijan",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Azerbaijan. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-09-02T11:21:51+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/azerbaijan"
+    },
+    {
+      "name": "Falkland Islands (British Overseas Territory)",
+      "slug": "falkland-islands",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for the Falkland Islands. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-10T09:48:47+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/falkland-islands"
+    },
+    {
+      "name": "Western Sahara",
+      "slug": "western-sahara",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Western Sahara. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-06-29T14:34:01+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/western-sahara"
+    },
+    {
+      "name": "Nauru",
+      "slug": "nauru",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Nauru. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-03-19T14:03:07+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/nauru"
+    },
     {
       "name": "Kenya",
       "slug": "kenya",
@@ -781,16 +826,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/fiji"
     },
     {
-      "name": "Falkland Islands (British Overseas Territory)",
-      "slug": "falkland-islands",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for the Falkland Islands. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-08-10T09:48:47+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/falkland-islands"
-    },
-    {
       "name": "Dominican Republic",
       "slug": "dominican-republic",
       "alert_status_raw": [],
@@ -1042,16 +1077,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/iraq"
     },
     {
-      "name": "Nauru",
-      "slug": "nauru",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Nauru. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-03-19T14:03:07+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/nauru"
-    },
-    {
       "name": "Turkey",
       "slug": "turkey",
       "alert_status_raw": [
@@ -1120,19 +1145,6 @@
       "summary": "FCDO travel advice for South Africa. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-07-08T16:36:29+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/south-africa"
-    },
-    {
-      "name": "Azerbaijan",
-      "slug": "azerbaijan",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Azerbaijan. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-07-20T14:03:02+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/azerbaijan"
     },
     {
       "name": "Libya",
@@ -1303,18 +1315,6 @@
       "summary": "FCDO travel advice for Thailand. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-06-30T12:30:58+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/thailand"
-    },
-    {
-      "name": "Western Sahara",
-      "slug": "western-sahara",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Western Sahara. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-06-29T14:34:01+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/western-sahara"
     },
     {
       "name": "Malaysia",
