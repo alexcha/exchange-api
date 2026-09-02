@@ -3,9 +3,22 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-02T14:34:54.250840+00:00",
+  "generated_at": "2026-09-02T15:10:48.558664+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Venezuela",
+      "slug": "venezuela",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Venezuela. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-09-02T15:49:14+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/venezuela"
+    },
     {
       "name": "Syria",
       "slug": "syria",
@@ -1290,19 +1303,6 @@
       "summary": "FCDO travel advice for Ghana. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-07-02T14:48:30+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/ghana"
-    },
-    {
-      "name": "Venezuela",
-      "slug": "venezuela",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Venezuela. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-07-01T19:10:05+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/venezuela"
     },
     {
       "name": "Thailand",
