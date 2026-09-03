@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-03T23:10:44.832360+00:00",
+  "generated_at": "2026-09-03T23:41:53.091480+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Mexico",
+      "slug": "mexico",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Mexico. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-09-04T00:25:51+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/mexico"
+    },
     {
       "name": "Colombia",
       "slug": "colombia",
@@ -882,18 +894,6 @@
       "summary": "FCDO travel advice for Pakistan. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-08-07T10:33:58+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/pakistan"
-    },
-    {
-      "name": "Mexico",
-      "slug": "mexico",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Mexico. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-07-16T16:08:09+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/mexico"
     },
     {
       "name": "Chad",
