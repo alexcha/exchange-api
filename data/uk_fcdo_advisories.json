@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-06T14:35:47.764285+00:00",
+  "generated_at": "2026-09-06T15:06:02.058986+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Nepal",
+      "slug": "nepal",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Nepal. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-09-06T15:39:52+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/nepal"
+    },
     {
       "name": "Indonesia",
       "slug": "indonesia",
@@ -40,16 +50,6 @@
       "summary": "FCDO travel advice for Kenya. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-09-04T15:12:11+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/kenya"
-    },
-    {
-      "name": "Nepal",
-      "slug": "nepal",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Nepal. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-09-04T13:11:59+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/nepal"
     },
     {
       "name": "Ireland",
