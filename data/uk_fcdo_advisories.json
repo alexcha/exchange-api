@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-06T05:40:39.089805+00:00",
+  "generated_at": "2026-09-06T06:04:45.923396+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Indonesia",
+      "slug": "indonesia",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Indonesia. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-09-06T06:58:49+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/indonesia"
+    },
     {
       "name": "Mauritius",
       "slug": "mauritius",
@@ -218,18 +230,6 @@
       "summary": "FCDO travel advice for Taiwan. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-08-28T13:31:24+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/taiwan"
-    },
-    {
-      "name": "Indonesia",
-      "slug": "indonesia",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Indonesia. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-28T12:29:31+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/indonesia"
     },
     {
       "name": "China",
