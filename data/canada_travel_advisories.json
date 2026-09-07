@@ -3,8 +3,8 @@
   "source": "Global Affairs Canada (GAC) Travel Advice and Advisories",
   "source_url": "https://travel.gc.ca/travelling/advisories",
   "license": "Open Government Licence - Canada",
-  "source_generated_at": "2026-09-06 02:20:27",
-  "generated_at": "2026-09-07T18:34:03.761269+00:00",
+  "source_generated_at": "2026-09-07 14:40:16",
+  "generated_at": "2026-09-07T19:04:04.467599+00:00",
   "count": 229,
   "data": [
     {
@@ -2202,9 +2202,9 @@
       "name": "United States",
       "advisory_level": 1,
       "risk_score": null,
-      "advisory_text": "Exercise normal security precautions",
-      "has_regional_advisory": false,
-      "last_updated": "2026-09-04 13:53:33",
+      "advisory_text": "Exercise normal security precautions (with regional advisories)",
+      "has_regional_advisory": true,
+      "last_updated": "2026-09-07 14:25:33",
       "web_url": "https://travel.gc.ca/destinations/united-states"
     },
     {
