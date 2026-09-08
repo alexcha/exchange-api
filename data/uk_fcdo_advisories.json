@@ -3,18 +3,20 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-08T10:35:10.017031+00:00",
+  "generated_at": "2026-09-08T11:10:45.403105+00:00",
   "count": 226,
   "data": [
     {
-      "name": "Italy",
-      "slug": "italy",
-      "alert_status_raw": [],
-      "advisory_level": 1,
+      "name": "Thailand",
+      "slug": "thailand",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
       "risk_score": null,
-      "summary": "FCDO travel advice for Italy. Includes safety and security, insurance, entry requirements and legal differences.  \r\n",
-      "public_updated_at": "2026-09-07T10:19:38+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/italy"
+      "summary": "FCDO travel advice for Thailand. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-09-08T11:41:26+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/thailand"
     },
     {
       "name": "Nepal",
@@ -25,6 +27,16 @@
       "summary": "FCDO travel advice for Nepal. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-09-06T15:39:52+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/nepal"
+    },
+    {
+      "name": "Italy",
+      "slug": "italy",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Italy. Includes safety and security, insurance, entry requirements and legal differences.  \r\n",
+      "public_updated_at": "2026-09-07T10:19:38+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/italy"
     },
     {
       "name": "Indonesia",
@@ -1335,18 +1347,6 @@
       "summary": "FCDO travel advice for Ghana. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-07-02T14:48:30+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/ghana"
-    },
-    {
-      "name": "Thailand",
-      "slug": "thailand",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Thailand. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-06-30T12:30:58+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/thailand"
     },
     {
       "name": "Malaysia",
