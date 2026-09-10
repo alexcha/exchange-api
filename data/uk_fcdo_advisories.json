@@ -3,19 +3,9 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-10T13:34:49.691439+00:00",
+  "generated_at": "2026-09-10T14:04:54.121864+00:00",
   "count": 226,
   "data": [
-    {
-      "name": "St Helena, Ascension and Tristan da Cunha",
-      "slug": "st-helena-ascension-and-tristan-da-cunha",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for St Helena, Ascension and Tristan da Cunha. Includes safety and security, insurance, entry requirements and legal differences.   ",
-      "public_updated_at": "2026-09-10T14:21:17+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/st-helena-ascension-and-tristan-da-cunha"
-    },
     {
       "name": "Belarus",
       "slug": "belarus",
@@ -25,8 +15,18 @@
       "advisory_level": 4,
       "risk_score": null,
       "summary": "FCDO travel advice for Belarus. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-05-11T12:38:13+01:00",
+      "public_updated_at": "2026-09-10T14:40:11+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/belarus"
+    },
+    {
+      "name": "St Helena, Ascension and Tristan da Cunha",
+      "slug": "st-helena-ascension-and-tristan-da-cunha",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for St Helena, Ascension and Tristan da Cunha. Includes safety and security, insurance, entry requirements and legal differences.   ",
+      "public_updated_at": "2026-09-10T14:21:17+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/st-helena-ascension-and-tristan-da-cunha"
     },
     {
       "name": "Jordan",
