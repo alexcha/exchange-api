@@ -3,9 +3,31 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-11T10:34:41.333305+00:00",
+  "generated_at": "2026-09-11T11:04:45.141374+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Kosovo",
+      "slug": "kosovo",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Kosovo. Includes safety and security, insurance, entry requirements and legal differences. \r\n",
+      "public_updated_at": "2026-09-11T11:40:38+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/kosovo"
+    },
+    {
+      "name": "Thailand",
+      "slug": "thailand",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Thailand. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-09-08T11:41:26+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/thailand"
+    },
     {
       "name": "Belarus",
       "slug": "belarus",
@@ -86,18 +108,6 @@
       "summary": "FCDO travel advice for Mozambique. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-08-20T14:50:43+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/mozambique"
-    },
-    {
-      "name": "Thailand",
-      "slug": "thailand",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Thailand. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-09-08T11:41:26+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/thailand"
     },
     {
       "name": "Nepal",
@@ -1437,16 +1447,6 @@
       "summary": "FCDO travel advice for Belize. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-06-12T10:40:30+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/belize"
-    },
-    {
-      "name": "Kosovo",
-      "slug": "kosovo",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Kosovo. Includes safety and security, insurance, entry requirements and legal differences. \r\n",
-      "public_updated_at": "2026-06-10T10:30:06+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/kosovo"
     },
     {
       "name": "Turkmenistan",
