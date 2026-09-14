@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-14T10:04:48.930491+00:00",
+  "generated_at": "2026-09-14T10:40:41.590577+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Kyrgyzstan",
+      "slug": "kyrgyzstan",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Kyrgyzstan. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-09-14T11:23:33+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/kyrgyzstan"
+    },
     {
       "name": "Mexico",
       "slug": "mexico",
@@ -341,16 +351,6 @@
       "summary": "FCDO travel advice for China. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-08-27T23:02:55+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/china"
-    },
-    {
-      "name": "Kyrgyzstan",
-      "slug": "kyrgyzstan",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Kyrgyzstan. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-26T15:14:04+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/kyrgyzstan"
     },
     {
       "name": "Democratic Republic of the Congo",
