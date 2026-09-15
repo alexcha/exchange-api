@@ -3,9 +3,22 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-15T14:40:49.792386+00:00",
+  "generated_at": "2026-09-15T15:10:38.366478+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Ukraine",
+      "slug": "ukraine",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Ukraine. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-09-15T15:41:54+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/ukraine"
+    },
     {
       "name": "Georgia",
       "slug": "georgia",
@@ -559,19 +572,6 @@
       "summary": "FCDO travel advice for Papua New Guinea. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-08-17T15:35:08+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/papua-new-guinea"
-    },
-    {
-      "name": "Ukraine",
-      "slug": "ukraine",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Ukraine. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-14T15:37:09+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/ukraine"
     },
     {
       "name": "Spain",
