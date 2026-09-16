@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-16T16:10:52.067530+00:00",
+  "generated_at": "2026-09-16T16:34:52.653390+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Ecuador",
+      "slug": "ecuador",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Ecuador. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-09-16T17:13:24+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/ecuador"
+    },
     {
       "name": "Democratic Republic of the Congo",
       "slug": "democratic-republic-of-the-congo",
@@ -1327,18 +1339,6 @@
       "summary": "FCDO travel advice for Mali. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-07-10T14:24:11+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/mali"
-    },
-    {
-      "name": "Ecuador",
-      "slug": "ecuador",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Ecuador. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-07-10T10:44:44+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/ecuador"
     },
     {
       "name": "Aruba",
