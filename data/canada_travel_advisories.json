@@ -3,8 +3,8 @@
   "source": "Global Affairs Canada (GAC) Travel Advice and Advisories",
   "source_url": "https://travel.gc.ca/travelling/advisories",
   "license": "Open Government Licence - Canada",
-  "source_generated_at": "2026-09-18 11:00:25",
-  "generated_at": "2026-09-18T15:04:13.201149+00:00",
+  "source_generated_at": "2026-09-18 11:20:26",
+  "generated_at": "2026-09-18T15:34:05.978225+00:00",
   "count": 229,
   "data": [
     {
@@ -1532,9 +1532,9 @@
       "name": "Northern Marianas",
       "advisory_level": 1,
       "risk_score": null,
-      "advisory_text": "Exercise normal security precautions (with regional advisories)",
-      "has_regional_advisory": true,
-      "last_updated": "2026-09-15 15:00:02",
+      "advisory_text": "Exercise normal security precautions",
+      "has_regional_advisory": false,
+      "last_updated": "2026-09-18 11:19:45",
       "web_url": "https://travel.gc.ca/destinations/northern-marianas"
     },
     {
@@ -1624,7 +1624,7 @@
       "risk_score": null,
       "advisory_text": "Exercise a high degree of caution (with regional advisories)",
       "has_regional_advisory": true,
-      "last_updated": "2026-09-18 06:53:02",
+      "last_updated": "2026-09-18 11:01:08",
       "web_url": "https://travel.gc.ca/destinations/philippines"
     },
     {
