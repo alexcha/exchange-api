@@ -3,9 +3,33 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-18T09:34:54.277817+00:00",
+  "generated_at": "2026-09-18T10:10:35.137776+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Russia",
+      "slug": "russia",
+      "alert_status_raw": [
+        "avoid_all_travel_to_whole_country"
+      ],
+      "advisory_level": 4,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Russia. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-09-18T11:01:11+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/russia"
+    },
+    {
+      "name": "Indonesia",
+      "slug": "indonesia",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Indonesia. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-09-10T12:07:18+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/indonesia"
+    },
     {
       "name": "Belgium",
       "slug": "belgium",
@@ -198,18 +222,6 @@
       "summary": "FCDO travel advice for Jordan. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-09-10T12:30:28+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/jordan"
-    },
-    {
-      "name": "Indonesia",
-      "slug": "indonesia",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Indonesia. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-09-10T12:07:18+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/indonesia"
     },
     {
       "name": "Madagascar",
@@ -1075,18 +1087,6 @@
       "summary": "FCDO travel advice for Sierra Leone. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-06-19T15:34:37+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/sierra-leone"
-    },
-    {
-      "name": "Russia",
-      "slug": "russia",
-      "alert_status_raw": [
-        "avoid_all_travel_to_whole_country"
-      ],
-      "advisory_level": 4,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Russia. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-07-03T09:40:32+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/russia"
     },
     {
       "name": "Myanmar",
