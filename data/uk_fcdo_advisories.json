@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-21T13:04:47.344136+00:00",
+  "generated_at": "2026-09-21T13:34:47.294331+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Vietnam",
+      "slug": "vietnam",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Vietnam. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-09-21T14:25:10+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/vietnam"
+    },
     {
       "name": "Turkey",
       "slug": "turkey",
@@ -17,16 +27,6 @@
       "summary": "Latest FCDO travel advice for Turkey including on entry requirements, safety and security and local laws and customs.",
       "public_updated_at": "2026-09-21T14:00:49+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/turkey"
-    },
-    {
-      "name": "Vietnam",
-      "slug": "vietnam",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Vietnam. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-06-26T12:10:13+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/vietnam"
     },
     {
       "name": "Croatia",
