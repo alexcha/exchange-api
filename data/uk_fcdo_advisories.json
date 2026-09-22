@@ -3,9 +3,22 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-22T10:05:03.948628+00:00",
+  "generated_at": "2026-09-22T10:34:47.801526+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Pakistan",
+      "slug": "pakistan",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Pakistan. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-09-22T11:07:03+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/pakistan"
+    },
     {
       "name": "Trinidad and Tobago",
       "slug": "trinidad-and-tobago",
@@ -1082,19 +1095,6 @@
       "summary": "FCDO travel advice for Mongolia. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-08-07T13:03:24+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/mongolia"
-    },
-    {
-      "name": "Pakistan",
-      "slug": "pakistan",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Pakistan. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-07T10:33:58+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/pakistan"
     },
     {
       "name": "Chad",
