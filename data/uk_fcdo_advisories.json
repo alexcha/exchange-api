@@ -3,9 +3,33 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-22T15:04:51.142883+00:00",
+  "generated_at": "2026-09-22T15:35:08.743255+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Mexico",
+      "slug": "mexico",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Mexico. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-09-22T16:13:12+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/mexico"
+    },
+    {
+      "name": "Bolivia",
+      "slug": "bolivia",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Bolivia. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-21T10:53:00+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/bolivia"
+    },
     {
       "name": "Pakistan",
       "slug": "pakistan",
@@ -239,18 +263,6 @@
       "summary": "FCDO travel advice for Kyrgyzstan. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-09-14T11:23:33+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/kyrgyzstan"
-    },
-    {
-      "name": "Mexico",
-      "slug": "mexico",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Mexico. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-09-11T16:29:14+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/mexico"
     },
     {
       "name": "Nepal",
@@ -563,18 +575,6 @@
       "summary": "FCDO travel advice for Norway. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-08-25T09:47:40+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/norway"
-    },
-    {
-      "name": "Bolivia",
-      "slug": "bolivia",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Bolivia. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-08-21T10:53:00+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/bolivia"
     },
     {
       "name": "Nigeria",
