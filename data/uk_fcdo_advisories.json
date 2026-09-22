@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-22T15:35:08.743255+00:00",
+  "generated_at": "2026-09-22T16:04:46.026811+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Bolivia",
+      "slug": "bolivia",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Bolivia. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-09-22T16:45:15+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/bolivia"
+    },
     {
       "name": "Mexico",
       "slug": "mexico",
@@ -17,18 +29,6 @@
       "summary": "FCDO travel advice for Mexico. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-09-22T16:13:12+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/mexico"
-    },
-    {
-      "name": "Bolivia",
-      "slug": "bolivia",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Bolivia. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-08-21T10:53:00+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/bolivia"
     },
     {
       "name": "Pakistan",
