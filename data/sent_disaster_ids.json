@@ -745,11 +745,6 @@
       "fingerprint": "bad946024158676a0d8f05e902d34526f4e6fcdc0370a0f561e5352ce1b752fb",
       "recorded_at": "2026-08-13T05:35:01Z"
     },
-    "EQ1557016": {
-      "last_updated": "2026-08-09T03:02:07",
-      "fingerprint": "0b5effd16f29a66a708851c703f2cb1766d335364a95244557297415ed127cbf",
-      "recorded_at": "2026-08-09T08:34:12Z"
-    },
     "EQ1557024": {
       "last_updated": "2026-08-09T04:05:44",
       "fingerprint": "2f1c8bba21549c13a6775c61f18a96f6c67ae0f67a9450a7cb1e19912b5f83cb",
@@ -14779,6 +14774,11 @@
       "last_updated": "2026-09-23T05:46:11",
       "fingerprint": "e4dd29373c6c02645b7929b4b4ce17d9a82057183fad7ef14f0161868190d74f",
       "recorded_at": "2026-09-23T06:35:11Z"
+    },
+    "TC1001327": {
+      "last_updated": "2026-09-23T06:00:00",
+      "fingerprint": "b6a4adc07598b0b0b55262f01bcd6b4e906c57f2a15c23979c02110b88ed9ecf",
+      "recorded_at": "2026-09-23T08:35:58Z"
     }
   }
 }
