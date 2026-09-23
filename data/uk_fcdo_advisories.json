@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-23T11:35:13.936987+00:00",
+  "generated_at": "2026-09-23T12:04:44.418772+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Kosovo",
+      "slug": "kosovo",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Kosovo. Includes safety and security, insurance, entry requirements and legal differences. \r\n",
+      "public_updated_at": "2026-09-23T12:48:46+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/kosovo"
+    },
     {
       "name": "Ethiopia",
       "slug": "ethiopia",
@@ -174,16 +184,6 @@
       "summary": "FCDO travel advice for Belgium. Includes safety and security, insurance, entry requirements and legal differences.   ",
       "public_updated_at": "2026-09-17T16:32:38+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/belgium"
-    },
-    {
-      "name": "Kosovo",
-      "slug": "kosovo",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Kosovo. Includes safety and security, insurance, entry requirements and legal differences. \r\n",
-      "public_updated_at": "2026-09-17T16:32:21+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/kosovo"
     },
     {
       "name": "Italy",
