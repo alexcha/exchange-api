@@ -3,9 +3,22 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-23T11:04:45.646786+00:00",
+  "generated_at": "2026-09-23T11:35:13.936987+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Ethiopia",
+      "slug": "ethiopia",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Ethiopia. Includes safety and security, insurance, entry requirements and legal differences. ​​ ",
+      "public_updated_at": "2026-09-23T12:15:24+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/ethiopia"
+    },
     {
       "name": "Bolivia",
       "slug": "bolivia",
@@ -1531,19 +1544,6 @@
       "summary": "FCDO travel advice for Côte d'Ivoire. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-05-29T16:11:15+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/cote-d-ivoire"
-    },
-    {
-      "name": "Ethiopia",
-      "slug": "ethiopia",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Ethiopia. Includes safety and security, insurance, entry requirements and legal differences. ​​ ",
-      "public_updated_at": "2026-05-29T11:35:25+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/ethiopia"
     },
     {
       "name": "Bahamas",
