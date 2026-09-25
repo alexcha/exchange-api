@@ -3,9 +3,34 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-25T14:40:39.967682+00:00",
+  "generated_at": "2026-09-25T15:07:04.286466+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Algeria",
+      "slug": "algeria",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Algeria. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-09-25T16:01:59+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/algeria"
+    },
+    {
+      "name": "Ethiopia",
+      "slug": "ethiopia",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Ethiopia. Includes safety and security, insurance, entry requirements and legal differences. ​​ ",
+      "public_updated_at": "2026-09-24T21:04:06+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/ethiopia"
+    },
     {
       "name": "Belgium",
       "slug": "belgium",
@@ -27,19 +52,6 @@
       "summary": "FCDO travel advice for Cuba. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-09-25T12:36:31+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/cuba"
-    },
-    {
-      "name": "Ethiopia",
-      "slug": "ethiopia",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Ethiopia. Includes safety and security, insurance, entry requirements and legal differences. ​​ ",
-      "public_updated_at": "2026-09-24T21:04:06+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/ethiopia"
     },
     {
       "name": "Mexico",
@@ -769,18 +781,6 @@
       "summary": "FCDO travel advice for Cyprus. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-08-14T10:34:05+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/cyprus"
-    },
-    {
-      "name": "Algeria",
-      "slug": "algeria",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Algeria. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-07-24T17:25:37+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/algeria"
     },
     {
       "name": "Iran",
