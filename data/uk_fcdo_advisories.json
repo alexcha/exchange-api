@@ -3,9 +3,32 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-28T13:04:52.007624+00:00",
+  "generated_at": "2026-09-28T13:35:16.445117+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Italy",
+      "slug": "italy",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Italy. Includes safety and security, insurance, entry requirements and legal differences.  \r\n",
+      "public_updated_at": "2026-09-28T14:17:37+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/italy"
+    },
+    {
+      "name": "Nigeria",
+      "slug": "nigeria",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Nigeria. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-20T15:18:43+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/nigeria"
+    },
     {
       "name": "Thailand",
       "slug": "thailand",
@@ -240,16 +263,6 @@
       "summary": "FCDO travel advice for Russia. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-09-18T11:01:11+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/russia"
-    },
-    {
-      "name": "Italy",
-      "slug": "italy",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Italy. Includes safety and security, insurance, entry requirements and legal differences.  \r\n",
-      "public_updated_at": "2026-09-17T12:00:32+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/italy"
     },
     {
       "name": "Tanzania",
@@ -632,19 +645,6 @@
       "summary": "FCDO travel advice for Norway. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-08-25T09:47:40+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/norway"
-    },
-    {
-      "name": "Nigeria",
-      "slug": "nigeria",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Nigeria. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-08-20T15:18:43+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/nigeria"
     },
     {
       "name": "Bahrain",
