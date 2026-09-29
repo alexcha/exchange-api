@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-09-29T15:40:46.001235+00:00",
+  "generated_at": "2026-09-29T16:04:50.180167+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Brazil",
+      "slug": "brazil",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Brazil. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-09-29T17:00:43+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/brazil"
+    },
     {
       "name": "Tanzania",
       "slug": "tanzania",
@@ -399,18 +411,6 @@
       "summary": "FCDO travel advice for Madagascar. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-09-09T14:30:36+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/madagascar"
-    },
-    {
-      "name": "Brazil",
-      "slug": "brazil",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Brazil. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-09-09T10:06:01+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/brazil"
     },
     {
       "name": "Mozambique",
