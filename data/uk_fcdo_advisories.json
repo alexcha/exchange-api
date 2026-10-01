@@ -3,9 +3,69 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-01T12:04:48.610806+00:00",
+  "generated_at": "2026-10-01T12:34:50.819154+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Nepal",
+      "slug": "nepal",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Nepal. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-01T13:09:36+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/nepal"
+    },
+    {
+      "name": "Colombia",
+      "slug": "colombia",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Colombia. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-09-23T19:02:49+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/colombia"
+    },
+    {
+      "name": "Ukraine",
+      "slug": "ukraine",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Ukraine. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-09-15T15:41:54+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/ukraine"
+    },
+    {
+      "name": "Ethiopia",
+      "slug": "ethiopia",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Ethiopia. Includes safety and security, insurance, entry requirements and legal differences. ​​ ",
+      "public_updated_at": "2026-09-25T16:13:20+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/ethiopia"
+    },
+    {
+      "name": "Cambodia",
+      "slug": "cambodia",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Cambodia. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-03-19T14:03:23+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/cambodia"
+    },
     {
       "name": "Brazil",
       "slug": "brazil",
@@ -78,19 +138,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/thailand"
     },
     {
-      "name": "Ethiopia",
-      "slug": "ethiopia",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Ethiopia. Includes safety and security, insurance, entry requirements and legal differences. ​​ ",
-      "public_updated_at": "2026-09-25T16:13:20+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/ethiopia"
-    },
-    {
       "name": "Algeria",
       "slug": "algeria",
       "alert_status_raw": [
@@ -123,18 +170,6 @@
       "summary": "FCDO travel advice for Cuba. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-09-25T12:36:31+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/cuba"
-    },
-    {
-      "name": "Colombia",
-      "slug": "colombia",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Colombia. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-09-23T19:02:49+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/colombia"
     },
     {
       "name": "Hungary",
@@ -314,19 +349,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/democratic-republic-of-the-congo"
     },
     {
-      "name": "Ukraine",
-      "slug": "ukraine",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Ukraine. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-09-15T15:41:54+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/ukraine"
-    },
-    {
       "name": "Georgia",
       "slug": "georgia",
       "alert_status_raw": [
@@ -357,16 +379,6 @@
       "summary": "FCDO travel advice for Kyrgyzstan. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-09-14T11:23:33+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/kyrgyzstan"
-    },
-    {
-      "name": "Nepal",
-      "slug": "nepal",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Nepal. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-09-11T14:52:03+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/nepal"
     },
     {
       "name": "Belarus",
@@ -1692,18 +1704,6 @@
       "summary": "FCDO travel advice for St Vincent and the Grenadines. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-04-23T14:50:31+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/st-vincent-and-the-grenadines"
-    },
-    {
-      "name": "Cambodia",
-      "slug": "cambodia",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Cambodia. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-03-19T14:03:23+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/cambodia"
     },
     {
       "name": "Tonga",
