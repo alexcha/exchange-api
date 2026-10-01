@@ -865,21 +865,6 @@
       "fingerprint": "270300cec53dfd05d18f13f4730ebed9d8f603a674dfd486aad1a08874ca08d1",
       "recorded_at": "2026-08-23T07:06:01Z"
     },
-    "WF1030652": {
-      "last_updated": "2026-08-17T00:00:00",
-      "fingerprint": "dfdfc7b81abca07ee4aabd0b7ee745fd8a2379fb8ec8f2167fd928915b31ea87",
-      "recorded_at": "2026-08-17T20:10:51Z"
-    },
-    "WF1030653": {
-      "last_updated": "2026-08-17T00:00:00",
-      "fingerprint": "ebcbe12013cb9afd0af5a9e01c2c8d3eb04840eadf25a52762f443399eb6953e",
-      "recorded_at": "2026-08-17T20:10:51Z"
-    },
-    "EQ1559579": {
-      "last_updated": "2026-08-17T19:51:23",
-      "fingerprint": "01ae8a6819b3b778f8d51f44c637bf628e46b2b27965901d9911b9420a12d31e",
-      "recorded_at": "2026-08-17T20:35:06Z"
-    },
     "EQ1559582": {
       "last_updated": "2026-08-17T20:35:10",
       "fingerprint": "00276320c0343e95460fc60b91f5c31851486c58c88cb8f20b3ecdb590480807",
@@ -13536,9 +13521,9 @@
       "recorded_at": "2026-09-30T02:35:07Z"
     },
     "TC1001332": {
-      "last_updated": "2026-10-01T12:00:00",
-      "fingerprint": "25743dd26cfa6ce4d844f197af74c8859bdecb71939bcf0fe782c0366c3e89a9",
-      "recorded_at": "2026-10-01T14:34:58Z"
+      "last_updated": "2026-10-01T18:00:00",
+      "fingerprint": "115f24bd433c1cf35e44775763e625e78e27cd4c99dd88a43a678cb28f7c15fe",
+      "recorded_at": "2026-10-01T20:35:13Z"
     },
     "EQ1568717": {
       "last_updated": "2026-09-30T02:35:50",
@@ -13839,6 +13824,16 @@
       "last_updated": "2026-10-01T00:00:00",
       "fingerprint": "13a84954d6d901189e35a9186f768f89d30ebcba23a58ecae6b2d94a3ad9b66e",
       "recorded_at": "2026-10-01T19:10:43Z"
+    },
+    "EQ1568980": {
+      "last_updated": "2026-10-01T20:00:34",
+      "fingerprint": "c01aa74245a0156c29db524e05ad19d9070c5eb902f7b4b37c065408259e6197",
+      "recorded_at": "2026-10-01T20:35:13Z"
+    },
+    "EQ1568979": {
+      "last_updated": "2026-10-01T19:38:01",
+      "fingerprint": "c01aa74245a0156c29db524e05ad19d9070c5eb902f7b4b37c065408259e6197",
+      "recorded_at": "2026-10-01T20:35:13Z"
     }
   }
 }
