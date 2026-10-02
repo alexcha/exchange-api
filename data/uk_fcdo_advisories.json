@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-02T12:34:51.234397+00:00",
+  "generated_at": "2026-10-02T13:10:45.590740+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Italy",
+      "slug": "italy",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Italy. Includes safety and security, insurance, entry requirements and legal differences.  \r\n",
+      "public_updated_at": "2026-10-02T13:49:28+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/italy"
+    },
     {
       "name": "Ukraine",
       "slug": "ukraine",
@@ -114,16 +124,6 @@
       "summary": "FCDO travel advice for Nigeria. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-09-28T15:46:12+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/nigeria"
-    },
-    {
-      "name": "Italy",
-      "slug": "italy",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Italy. Includes safety and security, insurance, entry requirements and legal differences.  \r\n",
-      "public_updated_at": "2026-09-28T14:17:37+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/italy"
     },
     {
       "name": "Thailand",
