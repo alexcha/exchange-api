@@ -3,9 +3,66 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-07T09:04:48.985139+00:00",
+  "generated_at": "2026-10-07T09:40:44.990802+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Kenya",
+      "slug": "kenya",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Kenya. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-07T10:29:49+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/kenya"
+    },
+    {
+      "name": "Cambodia",
+      "slug": "cambodia",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Cambodia. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-03-19T14:03:23+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/cambodia"
+    },
+    {
+      "name": "Australia",
+      "slug": "australia",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Australia. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-03-19T14:06:09+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/australia"
+    },
+    {
+      "name": "Afghanistan",
+      "slug": "afghanistan",
+      "alert_status_raw": [
+        "avoid_all_travel_to_whole_country"
+      ],
+      "advisory_level": 4,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Afghanistan. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-07-30T11:36:13+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/afghanistan"
+    },
+    {
+      "name": "New Caledonia",
+      "slug": "new-caledonia",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for New Caledonia. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2025-12-10T13:19:36+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/new-caledonia"
+    },
     {
       "name": "Saudi Arabia",
       "slug": "saudi-arabia",
@@ -134,18 +191,6 @@
       "summary": "FCDO travel advice for Nepal. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-10-01T13:09:36+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/nepal"
-    },
-    {
-      "name": "Cambodia",
-      "slug": "cambodia",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Cambodia. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-03-19T14:03:23+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/cambodia"
     },
     {
       "name": "Brazil",
@@ -470,19 +515,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/mauritius"
     },
     {
-      "name": "Kenya",
-      "slug": "kenya",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Kenya. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-09-04T15:12:11+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/kenya"
-    },
-    {
       "name": "Ireland",
       "slug": "ireland",
       "alert_status_raw": [],
@@ -761,18 +793,6 @@
       "summary": "FCDO travel advice for Chile. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-08-18T23:18:12+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/chile"
-    },
-    {
-      "name": "Afghanistan",
-      "slug": "afghanistan",
-      "alert_status_raw": [
-        "avoid_all_travel_to_whole_country"
-      ],
-      "advisory_level": 4,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Afghanistan. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-07-30T11:36:13+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/afghanistan"
     },
     {
       "name": "USA",
@@ -1612,16 +1632,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/angola"
     },
     {
-      "name": "Australia",
-      "slug": "australia",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Australia. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-03-19T14:06:09+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/australia"
-    },
-    {
       "name": "Liberia",
       "slug": "liberia",
       "alert_status_raw": [],
@@ -2213,16 +2223,6 @@
       "summary": "FCDO travel advice for North Korea. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2025-12-10T13:22:30+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/north-korea"
-    },
-    {
-      "name": "New Caledonia",
-      "slug": "new-caledonia",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for New Caledonia. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2025-12-10T13:19:36+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/new-caledonia"
     },
     {
       "name": "Curaçao",
