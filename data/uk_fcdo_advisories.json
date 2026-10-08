@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-08T20:05:03.450757+00:00",
+  "generated_at": "2026-10-08T20:34:54.925182+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Mexico",
+      "slug": "mexico",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Mexico. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-08T21:17:59+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/mexico"
+    },
     {
       "name": "Saudi Arabia",
       "slug": "saudi-arabia",
@@ -1473,18 +1485,6 @@
       "summary": "FCDO travel advice for Martinique. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2025-12-10T13:37:46+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/martinique"
-    },
-    {
-      "name": "Mexico",
-      "slug": "mexico",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Mexico. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-10-01T15:16:05+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/mexico"
     },
     {
       "name": "Montserrat",
