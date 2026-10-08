@@ -3,9 +3,22 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-08T18:35:01.832301+00:00",
+  "generated_at": "2026-10-08T19:10:54.653972+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Saudi Arabia",
+      "slug": "saudi-arabia",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Saudi Arabia. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-08T19:35:10+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/saudi-arabia"
+    },
     {
       "name": "Uganda",
       "slug": "uganda",
@@ -1072,19 +1085,6 @@
       "summary": "Latest FCDO travel advice for Qatar. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-08-19T14:38:09+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/qatar"
-    },
-    {
-      "name": "Saudi Arabia",
-      "slug": "saudi-arabia",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Saudi Arabia. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-10-06T16:15:18+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/saudi-arabia"
     },
     {
       "name": "Syria",
