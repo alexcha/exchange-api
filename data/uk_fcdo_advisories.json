@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-08T12:34:49.629853+00:00",
+  "generated_at": "2026-10-08T13:04:55.194650+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Bahrain",
+      "slug": "bahrain",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Bahrain. Includes safety and security, insurance, entry requirements and legal differences. \r\n",
+      "public_updated_at": "2026-10-08T14:01:04+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/bahrain"
+    },
     {
       "name": "Democratic Republic of the Congo",
       "slug": "democratic-republic-of-the-congo",
@@ -2415,16 +2425,6 @@
       "summary": "FCDO travel advice for Zimbabwe. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-07-15T09:15:29+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/zimbabwe"
-    },
-    {
-      "name": "Bahrain",
-      "slug": "bahrain",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Bahrain. Includes safety and security, insurance, entry requirements and legal differences. \r\n",
-      "public_updated_at": "2026-08-20T11:51:52+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/bahrain"
     }
   ]
 }
