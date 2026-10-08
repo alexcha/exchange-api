@@ -330,11 +330,6 @@
       "fingerprint": "f7c8626b97d1909e558726c03f18673fa140a3c17a62433108883d4784c098e8",
       "recorded_at": "2026-08-27T08:05:26Z"
     },
-    "WF1030797": {
-      "last_updated": "2026-08-24T00:00:00",
-      "fingerprint": "0debf3fe279a00745968321156b6bb2c78f9f120f0ded3872223db06e1f034ed",
-      "recorded_at": "2026-08-24T20:12:14Z"
-    },
     "WF1030800": {
       "last_updated": "2026-08-28T00:00:00",
       "fingerprint": "16bdeacc7e2b756c94f8b53009b3a7f07c9257fb29f1e2daa0e163bbcd7edf2a",
@@ -395,25 +390,10 @@
       "fingerprint": "082e43838e8bb475f3190a02dd82596d019253f143980fe68a83a9e686c6a178",
       "recorded_at": "2026-08-24T20:36:49Z"
     },
-    "WF1030849": {
-      "last_updated": "2026-08-24T00:00:00",
-      "fingerprint": "6d679ee66a94286ad1284c96d853fdcb6842a661531107d5da1912e221d09caf",
-      "recorded_at": "2026-08-24T20:12:14Z"
-    },
     "WF1030850": {
       "last_updated": "2026-08-26T00:00:00",
       "fingerprint": "7b2bf080a080c8130524105216636be9f77cd6e8ac99ea1d65a274f1c9b84bce",
       "recorded_at": "2026-08-27T00:06:31Z"
-    },
-    "WF1030852": {
-      "last_updated": "2026-08-24T00:00:00",
-      "fingerprint": "af9731a0ba4300f060ac1821825418538199204d9b88d28df60ba07d36e48118",
-      "recorded_at": "2026-08-24T20:12:14Z"
-    },
-    "WF1030844": {
-      "last_updated": "2026-08-24T00:00:00",
-      "fingerprint": "4395fdddac7e9d0cff1744c727bfae0b1e97ae0b6067bb7bd113da9e888de2e6",
-      "recorded_at": "2026-08-24T20:12:14Z"
     },
     "WF1030842": {
       "last_updated": "2026-08-24T00:00:00",
@@ -12729,6 +12709,16 @@
       "last_updated": "2026-10-08T18:06:00",
       "fingerprint": "4936d647f8ef4f9317ed88600bad13b70b1e6539a2bcbe21f730a04aa7d1978e",
       "recorded_at": "2026-10-08T20:05:13Z"
+    },
+    "EQ1570138": {
+      "last_updated": "2026-10-08T15:23:47",
+      "fingerprint": "09f5a887b4e366d2e7fa8057a3c2f404d1530076f0e99745dd92117db28a4802",
+      "recorded_at": "2026-10-08T20:35:06Z"
+    },
+    "EQ1570171": {
+      "last_updated": "2026-10-08T18:32:03",
+      "fingerprint": "f095e9754d63d83861fc9cf8c4b46ff08733feee47e3996a56f1d9a3614c9da5",
+      "recorded_at": "2026-10-08T20:35:06Z"
     }
   }
 }
