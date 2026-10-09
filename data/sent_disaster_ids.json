@@ -775,11 +775,6 @@
       "fingerprint": "a378f5188691fb935c30fe693422b0a690a8f8635ee640ccc6366ec6374e827a",
       "recorded_at": "2026-08-26T00:11:33Z"
     },
-    "WF1031084": {
-      "last_updated": "2026-08-25T00:00:00",
-      "fingerprint": "8b334dcfd03865a63281d7ceddd0cf393df6421322446eb0277af2bdd029f489",
-      "recorded_at": "2026-08-25T20:35:46Z"
-    },
     "WF1031087": {
       "last_updated": "2026-08-25T00:00:00",
       "fingerprint": "c9bb14a31558cd94d90e4dcb666800c4ba8dc2c6a47f119a9eab902a8ad5a252",
@@ -1084,11 +1079,6 @@
       "last_updated": "2026-08-28T00:00:00",
       "fingerprint": "4b27ba5c6badf81b34e03ec34348ea648da443b40d3112956e9da58aaa816b1f",
       "recorded_at": "2026-08-28T16:11:50Z"
-    },
-    "WF1031146": {
-      "last_updated": "2026-08-25T00:00:00",
-      "fingerprint": "93f6d74cbc9f931b9aeda02da3b75da43e7e2318ca1fbcc7cc8d7d6471772e60",
-      "recorded_at": "2026-08-25T20:35:46Z"
     },
     "WF1031144": {
       "last_updated": "2026-08-28T00:00:00",
@@ -11896,9 +11886,9 @@
       "recorded_at": "2026-10-08T19:11:04Z"
     },
     "TC1001335": {
-      "last_updated": "2026-10-09T15:00:00",
-      "fingerprint": "684337a5b16ba144a051f576baabca3f8929a1851ad0c687b30f58a0ec226d55",
-      "recorded_at": "2026-10-09T15:35:25Z"
+      "last_updated": "2026-10-09T21:00:00",
+      "fingerprint": "268b2e96f262dd747b617e94af2bbc49a9393ca340bf5f15ab9e90f5daf7277e",
+      "recorded_at": "2026-10-09T21:05:01Z"
     },
     "EQ1569956": {
       "last_updated": "2026-10-07T14:59:25",
@@ -12474,6 +12464,16 @@
       "last_updated": "2026-10-09T19:48:55",
       "fingerprint": "5cd35a543df7ec131057e4d10a4e8602d770d0c4fd5bc5037c1123001d439851",
       "recorded_at": "2026-10-09T20:34:55Z"
+    },
+    "EQ1570372": {
+      "last_updated": "2026-10-09T20:20:23",
+      "fingerprint": "40874e99258e01b480978bd9a836c75268e074b3adec4ef01037076b3b51d8c6",
+      "recorded_at": "2026-10-09T21:05:01Z"
+    },
+    "EQ1570370": {
+      "last_updated": "2026-10-09T20:25:39",
+      "fingerprint": "34b519d8cb28006b469f4d758a5406f24ae9b0e48b39f6dc59f07302eb60d58c",
+      "recorded_at": "2026-10-09T21:05:01Z"
     }
   }
 }
