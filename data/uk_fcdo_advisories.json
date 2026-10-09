@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-09T10:04:55.248998+00:00",
+  "generated_at": "2026-10-09T10:34:44.761485+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Bangladesh",
+      "slug": "bangladesh",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Bangladesh. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-10-09T11:14:33+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/bangladesh"
+    },
     {
       "name": "Eritrea",
       "slug": "eritrea",
@@ -2098,18 +2110,6 @@
       "summary": "FCDO travel advice for Gabon. Includes safety and security, insurance, entry requirements and legal differences. \r\n",
       "public_updated_at": "2025-12-10T13:37:09+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/gabon"
-    },
-    {
-      "name": "Bangladesh",
-      "slug": "bangladesh",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Bangladesh. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-09-04T10:49:04+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/bangladesh"
     },
     {
       "name": "The Gambia",
