@@ -3,9 +3,44 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-09T20:04:52.838490+00:00",
+  "generated_at": "2026-10-09T20:34:46.654249+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Mexico",
+      "slug": "mexico",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Mexico. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-09T21:19:56+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/mexico"
+    },
+    {
+      "name": "Panama",
+      "slug": "panama",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Panama. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-09T21:08:09+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/panama"
+    },
+    {
+      "name": "Eritrea",
+      "slug": "eritrea",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Eritrea. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-09T10:14:54+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/eritrea"
+    },
     {
       "name": "Saudi Arabia",
       "slug": "saudi-arabia",
@@ -56,19 +91,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/bangladesh"
     },
     {
-      "name": "Eritrea",
-      "slug": "eritrea",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Eritrea. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-09T10:14:54+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/eritrea"
-    },
-    {
       "name": "Kenya",
       "slug": "kenya",
       "alert_status_raw": [
@@ -90,18 +112,6 @@
       "summary": "FCDO travel advice for Chile. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-10-09T00:26:56+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/chile"
-    },
-    {
-      "name": "Mexico",
-      "slug": "mexico",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Mexico. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-10-08T21:17:59+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/mexico"
     },
     {
       "name": "Uganda",
@@ -184,16 +194,6 @@
       "summary": "FCDO travel advice for Belgium. Includes safety and security, insurance, entry requirements and legal differences.   ",
       "public_updated_at": "2026-10-07T16:20:34+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/belgium"
-    },
-    {
-      "name": "Panama",
-      "slug": "panama",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Panama. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-07T16:03:44+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/panama"
     },
     {
       "name": "Albania",
