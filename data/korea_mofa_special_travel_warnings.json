@@ -4,8 +4,8 @@
   "source_url": "https://www.0404.go.kr/",
   "api_url": "http://apis.data.go.kr/1262000/SptravelWarningServiceV2/getSptravelWarningListV2",
   "license": "공공데이터포털 이용약관에 따름",
-  "generated_at": "2026-10-11T14:04:13.357836+00:00",
-  "count": 12,
+  "generated_at": "2026-10-11T15:04:09.884156+00:00",
+  "count": 11,
   "total_countries_checked": 197,
   "data": [
     {
@@ -73,23 +73,6 @@
       "danger_map_url": "https://www.0404.go.kr/files/image/COUNTRY_92/3",
       "flag_url": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/98/20241007_155421689.png",
       "map_url": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/maps/98/20220318_155840777.png",
-      "last_updated": null,
-      "risk_score": null
-    },
-    {
-      "iso_code": "SA",
-      "name": "Saudi Arabia",
-      "name_kr": "사우디아라비아",
-      "continent_code": "40",
-      "continent": "Middle East",
-      "continent_kr": "중동",
-      "evacuate_region_type": "일부",
-      "evacuate_remark": "3단계 지정 지역을 제외한 지역",
-      "forbidden_region_type": null,
-      "forbidden_remark": null,
-      "danger_map_url": "https://www.0404.go.kr/files/image/COUNTRY_107/3",
-      "flag_url": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/108/20241010_172156601.png",
-      "map_url": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/maps/108/20220318_165528112.png",
       "last_updated": null,
       "risk_score": null
     },
