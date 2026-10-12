@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-12T09:04:59.111758+00:00",
+  "generated_at": "2026-10-12T09:40:38.916346+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Thailand",
+      "slug": "thailand",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Thailand. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-12T10:20:34+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/thailand"
+    },
     {
       "name": "Saudi Arabia",
       "slug": "saudi-arabia",
@@ -855,18 +867,6 @@
       "summary": "FCDO travel advice for Timor-Leste. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2025-12-10T12:48:06+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/timor-leste"
-    },
-    {
-      "name": "Thailand",
-      "slug": "thailand",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Thailand. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-09-28T06:10:02+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/thailand"
     },
     {
       "name": "Tajikistan",
