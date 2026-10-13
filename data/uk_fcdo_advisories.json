@@ -3,9 +3,22 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-13T06:04:54.525893+00:00",
+  "generated_at": "2026-10-13T06:34:48.525470+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Saudi Arabia",
+      "slug": "saudi-arabia",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Saudi Arabia. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-11T22:11:44+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/saudi-arabia"
+    },
     {
       "name": "Eritrea",
       "slug": "eritrea",
@@ -28,19 +41,6 @@
       "summary": "FCDO travel advice for the Solomon Islands. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-10-12T12:44:41+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/solomon-islands"
-    },
-    {
-      "name": "Saudi Arabia",
-      "slug": "saudi-arabia",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Saudi Arabia. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-10-11T22:11:44+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/saudi-arabia"
     },
     {
       "name": "Thailand",
