@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-13T09:04:57.547731+00:00",
+  "generated_at": "2026-10-13T09:35:48.782611+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Mauritius",
+      "slug": "mauritius",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Mauritius. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-13T10:06:03+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/mauritius"
+    },
     {
       "name": "Mexico",
       "slug": "mexico",
@@ -17,16 +27,6 @@
       "summary": "FCDO travel advice for Mexico. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-10-13T09:45:22+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/mexico"
-    },
-    {
-      "name": "Mauritius",
-      "slug": "mauritius",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Mauritius. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-09-04T16:08:37+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/mauritius"
     },
     {
       "name": "Saudi Arabia",
