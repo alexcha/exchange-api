@@ -3,9 +3,34 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-13T11:40:48.570764+00:00",
+  "generated_at": "2026-10-13T12:04:50.461289+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Kenya",
+      "slug": "kenya",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Kenya. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-13T12:59:44+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/kenya"
+    },
+    {
+      "name": "Yemen",
+      "slug": "yemen",
+      "alert_status_raw": [
+        "avoid_all_travel_to_whole_country"
+      ],
+      "advisory_level": 4,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Yemen. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-07-31T10:35:27+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/yemen"
+    },
     {
       "name": "Mauritius",
       "slug": "mauritius",
@@ -121,19 +146,6 @@
       "summary": "FCDO travel advice for Bangladesh. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-10-09T11:14:33+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/bangladesh"
-    },
-    {
-      "name": "Kenya",
-      "slug": "kenya",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Kenya. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-09T09:38:13+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/kenya"
     },
     {
       "name": "Chile",
@@ -1233,18 +1245,6 @@
       "summary": "FCDO travel advice for Western Sahara. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-06-29T14:34:01+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/western-sahara"
-    },
-    {
-      "name": "Yemen",
-      "slug": "yemen",
-      "alert_status_raw": [
-        "avoid_all_travel_to_whole_country"
-      ],
-      "advisory_level": 4,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Yemen. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-07-31T10:35:27+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/yemen"
     },
     {
       "name": "Malaysia",
