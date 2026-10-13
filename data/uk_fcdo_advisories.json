@@ -3,21 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-13T12:34:53.144018+00:00",
+  "generated_at": "2026-10-13T13:04:48.632149+00:00",
   "count": 226,
   "data": [
     {
-      "name": "Kenya",
-      "slug": "kenya",
+      "name": "Pakistan",
+      "slug": "pakistan",
       "alert_status_raw": [
         "avoid_all_travel_to_parts",
         "avoid_all_but_essential_travel_to_parts"
       ],
       "advisory_level": 3,
       "risk_score": null,
-      "summary": "FCDO travel advice for Kenya. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-13T12:59:44+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/kenya"
+      "summary": "FCDO travel advice for Pakistan. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-10-13T13:37:00+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/pakistan"
     },
     {
       "name": "Yemen",
@@ -30,6 +30,19 @@
       "summary": "FCDO travel advice for Yemen. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-07-31T10:35:27+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/yemen"
+    },
+    {
+      "name": "Kenya",
+      "slug": "kenya",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Kenya. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-13T12:59:44+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/kenya"
     },
     {
       "name": "Mauritius",
@@ -1013,19 +1026,6 @@
       "summary": "FCDO travel advice for Palau. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2025-12-10T13:25:21+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/palau"
-    },
-    {
-      "name": "Pakistan",
-      "slug": "pakistan",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Pakistan. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-09-22T11:07:03+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/pakistan"
     },
     {
       "name": "Korea, DPR (North Korea)",
