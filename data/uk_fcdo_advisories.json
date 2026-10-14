@@ -3,9 +3,34 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-14T09:04:49.791396+00:00",
+  "generated_at": "2026-10-14T09:34:48.075278+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Venezuela",
+      "slug": "venezuela",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Venezuela. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-14T10:31:54+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/venezuela"
+    },
+    {
+      "name": "Cambodia",
+      "slug": "cambodia",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Cambodia. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-03-19T14:03:23+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/cambodia"
+    },
     {
       "name": "Mauritius",
       "slug": "mauritius",
@@ -1877,19 +1902,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/uruguay"
     },
     {
-      "name": "Venezuela",
-      "slug": "venezuela",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Venezuela. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-09-02T15:49:14+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/venezuela"
-    },
-    {
       "name": "Angola",
       "slug": "angola",
       "alert_status_raw": [
@@ -2080,18 +2092,6 @@
       "summary": "FCDO travel advice for Eswatini. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2025-12-10T13:32:46+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/eswatini"
-    },
-    {
-      "name": "Cambodia",
-      "slug": "cambodia",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Cambodia. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-03-19T14:03:23+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/cambodia"
     },
     {
       "name": "Brunei",
