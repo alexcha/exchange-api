@@ -3,19 +3,9 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-15T17:34:49.101674+00:00",
+  "generated_at": "2026-10-15T18:04:56.801519+00:00",
   "count": 226,
   "data": [
-    {
-      "name": "Albania",
-      "slug": "albania",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Albania. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-10-15T16:44:54+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/albania"
-    },
     {
       "name": "Saudi Arabia",
       "slug": "saudi-arabia",
@@ -26,8 +16,18 @@
       "advisory_level": 3,
       "risk_score": null,
       "summary": "FCDO travel advice for Saudi Arabia. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-10-13T17:09:24+01:00",
+      "public_updated_at": "2026-10-15T19:01:21+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/saudi-arabia"
+    },
+    {
+      "name": "Albania",
+      "slug": "albania",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Albania. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-10-15T16:44:54+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/albania"
     },
     {
       "name": "South Korea",
