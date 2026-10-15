@@ -3,9 +3,32 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-15T14:10:50.111809+00:00",
+  "generated_at": "2026-10-15T14:40:52.382655+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Mauritius",
+      "slug": "mauritius",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Mauritius. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-15T15:40:02+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/mauritius"
+    },
+    {
+      "name": "Venezuela",
+      "slug": "venezuela",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Venezuela. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-14T10:31:54+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/venezuela"
+    },
     {
       "name": "Colombia",
       "slug": "colombia",
@@ -39,29 +62,6 @@
       "summary": "FCDO travel advice for Senegal. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-10-15T10:00:14+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/senegal"
-    },
-    {
-      "name": "Mauritius",
-      "slug": "mauritius",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Mauritius. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-10-14T20:09:22+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/mauritius"
-    },
-    {
-      "name": "Venezuela",
-      "slug": "venezuela",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Venezuela. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-14T10:31:54+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/venezuela"
     },
     {
       "name": "Pakistan",
