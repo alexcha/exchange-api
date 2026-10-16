@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-16T12:10:32.478358+00:00",
+  "generated_at": "2026-10-16T12:34:43.506467+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Mauritius",
+      "slug": "mauritius",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Mauritius. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-16T13:27:02+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/mauritius"
+    },
     {
       "name": "Kenya",
       "slug": "kenya",
@@ -51,16 +61,6 @@
       "summary": "FCDO travel advice for South Korea. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-05-14T11:06:39+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/south-korea"
-    },
-    {
-      "name": "Mauritius",
-      "slug": "mauritius",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Mauritius. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-10-15T15:40:02+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/mauritius"
     },
     {
       "name": "Venezuela",
