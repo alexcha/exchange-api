@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-19T19:04:46.292679+00:00",
+  "generated_at": "2026-10-19T19:34:49.111062+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Mauritania",
+      "slug": "mauritania",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Mauritania. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-10-19T20:07:15+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/mauritania"
+    },
     {
       "name": "France",
       "slug": "france",
@@ -1219,18 +1231,6 @@
       "summary": "FCDO travel advice for Libya. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-07-21T10:00:09+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/libya"
-    },
-    {
-      "name": "Mauritania",
-      "slug": "mauritania",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Mauritania. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-03-24T16:23:01+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/mauritania"
     },
     {
       "name": "Morocco",
