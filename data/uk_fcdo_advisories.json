@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-19T15:34:51.701366+00:00",
+  "generated_at": "2026-10-19T16:04:51.982864+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Turkey",
+      "slug": "turkey",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "Latest FCDO travel advice for Turkey including on entry requirements, safety and security and local laws and customs.",
+      "public_updated_at": "2026-10-19T16:55:54+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/turkey"
+    },
     {
       "name": "Mauritius",
       "slug": "mauritius",
@@ -134,18 +146,6 @@
       "summary": "FCDO travel advice for Colombia. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-10-15T11:21:54+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/colombia"
-    },
-    {
-      "name": "Turkey",
-      "slug": "turkey",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "Latest FCDO travel advice for Turkey including on entry requirements, safety and security and local laws and customs.",
-      "public_updated_at": "2026-10-15T10:34:15+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/turkey"
     },
     {
       "name": "Senegal",
