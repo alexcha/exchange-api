@@ -3,9 +3,31 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-20T13:04:51.265452+00:00",
+  "generated_at": "2026-10-20T13:34:52.468276+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Mexico",
+      "slug": "mexico",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Mexico. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-20T14:20:31+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/mexico"
+    },
+    {
+      "name": "Seychelles",
+      "slug": "seychelles",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Seychelles. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-01-21T12:01:13+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/seychelles"
+    },
     {
       "name": "Mauritania",
       "slug": "mauritania",
@@ -85,18 +107,6 @@
       "summary": "FCDO travel advice for Ethiopia. Includes safety and security, insurance, entry requirements and legal differences. ​​ ",
       "public_updated_at": "2026-10-16T17:03:39+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/ethiopia"
-    },
-    {
-      "name": "Mexico",
-      "slug": "mexico",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Mexico. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-10-16T16:29:42+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/mexico"
     },
     {
       "name": "Nigeria",
@@ -1044,16 +1054,6 @@
       "summary": "FCDO travel advice for Singapore. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-03-19T14:08:04+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/singapore"
-    },
-    {
-      "name": "Seychelles",
-      "slug": "seychelles",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Seychelles. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-01-21T12:01:13+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/seychelles"
     },
     {
       "name": "Samoa",
