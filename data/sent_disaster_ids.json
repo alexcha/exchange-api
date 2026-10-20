@@ -380,11 +380,6 @@
       "fingerprint": "c7354ee959b822169968dfa5416964cd9c76d49b680c1ad2f944e88537c4f5cb",
       "recorded_at": "2026-09-08T11:12:29Z"
     },
-    "WF1031439": {
-      "last_updated": "2026-09-04T00:00:00",
-      "fingerprint": "31177d27027df604232d662694d906d1ec27b36336dced56a45a57bbdb83b864",
-      "recorded_at": "2026-09-05T02:35:58Z"
-    },
     "WF1031441": {
       "last_updated": "2026-09-04T00:00:00",
       "fingerprint": "2ca1a158576b270c91bc2e004072c4c6c24150eabfc35bcc00325ee42c6b0450",
@@ -404,11 +399,6 @@
       "last_updated": "2026-09-05T00:00:00",
       "fingerprint": "ea4132a08686bb5c4d3734b7e500b19466d697f440bf5e878f274b689cd61778",
       "recorded_at": "2026-09-05T17:42:38Z"
-    },
-    "WF1031449": {
-      "last_updated": "2026-09-04T00:00:00",
-      "fingerprint": "03a60b9bd69b18d8f58f48a370dd813165703cffae7f76e8c0c5a749836cb5ba",
-      "recorded_at": "2026-09-05T02:35:58Z"
     },
     "WF1031454": {
       "last_updated": "2026-09-10T00:00:00",
@@ -10226,9 +10216,9 @@
       "recorded_at": "2026-10-13T15:05:03Z"
     },
     "TC1001337": {
-      "last_updated": "2026-10-19T09:00:00",
-      "fingerprint": "fcef0b6a25a389842b64ef83fe36c5f6d7dc41df000a831ba54042261669cd8b",
-      "recorded_at": "2026-10-19T09:05:00Z"
+      "last_updated": "2026-10-20T03:00:00",
+      "fingerprint": "08c3c8993f054cb10f24f8ae2dbc040bd99fb4dd6a235c15ac3131db68238e29",
+      "recorded_at": "2026-10-20T03:05:03Z"
     },
     "EQ1571350": {
       "last_updated": "2026-10-13T16:28:15",
@@ -11472,8 +11462,8 @@
     },
     "WF1032938": {
       "last_updated": "2026-10-19T00:00:00",
-      "fingerprint": "c38703b7b9c9dec6c32a55af5aaa1737b834c735acc41a7809c800cfabb3f6c2",
-      "recorded_at": "2026-10-19T23:05:14Z"
+      "fingerprint": "5b3e9bcc8d39366e5cf5b7c78c9d43d6a2e7a0afedee763849d2cc8f5d6f9b74",
+      "recorded_at": "2026-10-20T03:05:03Z"
     },
     "WF1032937": {
       "last_updated": "2026-10-19T00:00:00",
@@ -11599,6 +11589,11 @@
       "last_updated": "2026-10-20T00:56:32",
       "fingerprint": "882b591522709e077985d740b5bc96b2ecb649c61964b0b140b2fa7d1904c924",
       "recorded_at": "2026-10-20T01:35:08Z"
+    },
+    "WF1032956": {
+      "last_updated": "2026-10-19T00:00:00",
+      "fingerprint": "5cb09be00622b78114ab49d5ed5ece590b6fd0156272790c5c468baf69d99bc1",
+      "recorded_at": "2026-10-20T03:05:03Z"
     }
   }
 }
