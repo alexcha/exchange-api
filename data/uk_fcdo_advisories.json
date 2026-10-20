@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-20T14:34:47.283627+00:00",
+  "generated_at": "2026-10-20T15:04:58.829283+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Malawi",
+      "slug": "malawi",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Malawi. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-20T15:35:09+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/malawi"
+    },
     {
       "name": "Tanzania",
       "slug": "tanzania",
@@ -2249,16 +2259,6 @@
       "summary": "FCDO travel advice for Madagascar. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-09-09T14:30:36+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/madagascar"
-    },
-    {
-      "name": "Malawi",
-      "slug": "malawi",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Malawi. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-07-03T10:59:53+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/malawi"
     },
     {
       "name": "Mali",
