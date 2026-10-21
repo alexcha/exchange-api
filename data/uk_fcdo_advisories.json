@@ -3,9 +3,22 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-21T16:34:55.800474+00:00",
+  "generated_at": "2026-10-21T17:04:48.363971+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Nigeria",
+      "slug": "nigeria",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Nigeria. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-21T18:00:06+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/nigeria"
+    },
     {
       "name": "Turkmenistan",
       "slug": "turkmenistan",
@@ -162,19 +175,6 @@
       "summary": "FCDO travel advice for Belgium. Includes safety and security, insurance, entry requirements and legal differences.   ",
       "public_updated_at": "2026-10-17T20:49:24+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/belgium"
-    },
-    {
-      "name": "Nigeria",
-      "slug": "nigeria",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Nigeria. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-16T15:52:35+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/nigeria"
     },
     {
       "name": "Kenya",
