@@ -3,9 +3,32 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-21T14:34:46.901852+00:00",
+  "generated_at": "2026-10-21T15:04:48.976306+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Turkmenistan",
+      "slug": "turkmenistan",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Turkmenistan. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-21T15:50:49+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/turkmenistan"
+    },
+    {
+      "name": "Ethiopia",
+      "slug": "ethiopia",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Ethiopia. Includes safety and security, insurance, entry requirements and legal differences. ​​ ",
+      "public_updated_at": "2026-10-21T15:37:51+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/ethiopia"
+    },
     {
       "name": "Saudi Arabia",
       "slug": "saudi-arabia",
@@ -139,19 +162,6 @@
       "summary": "FCDO travel advice for Belgium. Includes safety and security, insurance, entry requirements and legal differences.   ",
       "public_updated_at": "2026-10-17T20:49:24+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/belgium"
-    },
-    {
-      "name": "Ethiopia",
-      "slug": "ethiopia",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Ethiopia. Includes safety and security, insurance, entry requirements and legal differences. ​​ ",
-      "public_updated_at": "2026-10-16T17:03:39+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/ethiopia"
     },
     {
       "name": "Nigeria",
@@ -981,16 +991,6 @@
       "summary": "FCDO travel advice for Tuvalu. Includes safety and security, insurance, entry requirements and legal differences.  \r\n",
       "public_updated_at": "2026-03-19T14:07:18+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/tuvalu"
-    },
-    {
-      "name": "Turkmenistan",
-      "slug": "turkmenistan",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Turkmenistan. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-06-04T13:53:56+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/turkmenistan"
     },
     {
       "name": "Tonga",
