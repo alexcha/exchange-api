@@ -3,9 +3,39 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-22T16:34:56.569775+00:00",
+  "generated_at": "2026-10-22T17:05:08.783461+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Guadeloupe",
+      "slug": "guadeloupe",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Guadeloupe. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-22T18:02:17+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/guadeloupe"
+    },
+    {
+      "name": "France",
+      "slug": "france",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for France. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-10-22T17:57:33+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/france"
+    },
+    {
+      "name": "Réunion",
+      "slug": "reunion",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Réunion. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2025-12-10T13:30:27+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/reunion"
+    },
     {
       "name": "Serbia",
       "slug": "serbia",
@@ -155,16 +185,6 @@
       "summary": "FCDO travel advice for Mauritania. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-10-19T20:07:15+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/mauritania"
-    },
-    {
-      "name": "France",
-      "slug": "france",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for France. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-10-19T18:40:21+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/france"
     },
     {
       "name": "Turkey",
@@ -1563,16 +1583,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/grenada"
     },
     {
-      "name": "Guadeloupe",
-      "slug": "guadeloupe",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Guadeloupe. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2025-12-10T13:54:06+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/guadeloupe"
-    },
-    {
       "name": "Guatemala",
       "slug": "guatemala",
       "alert_status_raw": [
@@ -2306,16 +2316,6 @@
       "summary": "FCDO travel advice for Niger. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-08-29T15:30:01+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/niger"
-    },
-    {
-      "name": "Réunion",
-      "slug": "reunion",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Réunion. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2025-12-10T13:30:27+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/reunion"
     },
     {
       "name": "Rwanda",
