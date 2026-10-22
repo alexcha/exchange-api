@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-22T09:04:49.153947+00:00",
+  "generated_at": "2026-10-22T09:40:37.696078+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Serbia",
+      "slug": "serbia",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Serbia. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-22T10:20:25+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/serbia"
+    },
     {
       "name": "Bangladesh",
       "slug": "bangladesh",
@@ -551,16 +561,6 @@
       "summary": "FCDO travel advice for Slovakia. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-08-28T14:01:26+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/slovakia"
-    },
-    {
-      "name": "Serbia",
-      "slug": "serbia",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Serbia. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-08-13T16:18:02+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/serbia"
     },
     {
       "name": "San Marino",
