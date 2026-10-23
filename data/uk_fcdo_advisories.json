@@ -3,9 +3,22 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-23T12:34:53.551544+00:00",
+  "generated_at": "2026-10-23T13:05:14.355771+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Azerbaijan",
+      "slug": "azerbaijan",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Azerbaijan. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-23T13:44:51+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/azerbaijan"
+    },
     {
       "name": "Réunion",
       "slug": "reunion",
@@ -409,19 +422,6 @@
       "summary": "FCDO travel advice for Uganda. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-10-08T14:51:08+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/uganda"
-    },
-    {
-      "name": "Azerbaijan",
-      "slug": "azerbaijan",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Azerbaijan. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-08T14:13:24+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/azerbaijan"
     },
     {
       "name": "Bahrain",
