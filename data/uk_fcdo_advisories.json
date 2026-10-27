@@ -3,9 +3,32 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-27T16:35:40.220182+00:00",
+  "generated_at": "2026-10-27T17:04:59.871735+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Saudi Arabia",
+      "slug": "saudi-arabia",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Saudi Arabia. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-27T16:54:07+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/saudi-arabia"
+    },
+    {
+      "name": "Cyprus",
+      "slug": "cyprus",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Cyprus. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-08-14T10:34:05+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/cyprus"
+    },
     {
       "name": "Turkey",
       "slug": "turkey",
@@ -194,16 +217,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/india"
     },
     {
-      "name": "Cyprus",
-      "slug": "cyprus",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Cyprus. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-08-14T10:34:05+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/cyprus"
-    },
-    {
       "name": "Congo",
       "slug": "congo",
       "alert_status_raw": [
@@ -369,19 +382,6 @@
       "summary": "FCDO travel advice for Turkmenistan. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-10-21T15:50:49+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/turkmenistan"
-    },
-    {
-      "name": "Saudi Arabia",
-      "slug": "saudi-arabia",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Saudi Arabia. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-10-21T12:35:47+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/saudi-arabia"
     },
     {
       "name": "Italy",
