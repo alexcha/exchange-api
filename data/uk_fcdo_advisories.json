@@ -3,9 +3,206 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-27T15:34:55.341145+00:00",
+  "generated_at": "2026-10-27T16:04:44.873934+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Egypt",
+      "slug": "egypt",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Egypt. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-27T16:03:56+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/egypt"
+    },
+    {
+      "name": "United Arab Emirates",
+      "slug": "united-arab-emirates",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for United Arab Emirates. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-27T16:03:20+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/united-arab-emirates"
+    },
+    {
+      "name": "Qatar",
+      "slug": "qatar",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "Latest FCDO travel advice for Qatar. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-10-27T16:03:07+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/qatar"
+    },
+    {
+      "name": "Oman",
+      "slug": "oman",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Oman. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-10-27T16:01:00+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/oman"
+    },
+    {
+      "name": "Jordan",
+      "slug": "jordan",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Jordan. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-10-25T15:33:37+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/jordan"
+    },
+    {
+      "name": "India",
+      "slug": "india",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for India. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-07T11:56:27+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/india"
+    },
+    {
+      "name": "Iraq",
+      "slug": "iraq",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Iraq. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-07-22T13:46:56+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/iraq"
+    },
+    {
+      "name": "Palestine",
+      "slug": "palestine",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "",
+      "public_updated_at": "2026-07-22T13:43:56+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/palestine"
+    },
+    {
+      "name": "Bahrain",
+      "slug": "bahrain",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Bahrain. Includes safety and security, insurance, entry requirements and legal differences. \r\n",
+      "public_updated_at": "2026-10-08T14:01:04+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/bahrain"
+    },
+    {
+      "name": "Israel",
+      "slug": "israel",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Israel and Palestine. Includes safety and security, insurance, entry requirements and legal differences (Warnings and Insurance). ",
+      "public_updated_at": "2026-07-22T13:45:00+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/israel"
+    },
+    {
+      "name": "Kuwait",
+      "slug": "kuwait",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Kuwait. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-20T09:00:55+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/kuwait"
+    },
+    {
+      "name": "Iran",
+      "slug": "iran",
+      "alert_status_raw": [
+        "avoid_all_travel_to_whole_country"
+      ],
+      "advisory_level": 4,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Iran. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-08-13T16:37:44+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/iran"
+    },
+    {
+      "name": "Pakistan",
+      "slug": "pakistan",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Pakistan. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-10-13T13:37:00+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/pakistan"
+    },
+    {
+      "name": "Yemen",
+      "slug": "yemen",
+      "alert_status_raw": [
+        "avoid_all_travel_to_whole_country"
+      ],
+      "advisory_level": 4,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Yemen. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-07-31T10:35:27+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/yemen"
+    },
+    {
+      "name": "Turkey",
+      "slug": "turkey",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "Latest FCDO travel advice for Turkey including on entry requirements, safety and security and local laws and customs.",
+      "public_updated_at": "2026-10-19T16:55:54+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/turkey"
+    },
+    {
+      "name": "Syria",
+      "slug": "syria",
+      "alert_status_raw": [
+        "avoid_all_travel_to_whole_country"
+      ],
+      "advisory_level": 4,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Syria. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-09-02T14:13:57+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/syria"
+    },
+    {
+      "name": "Cyprus",
+      "slug": "cyprus",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Cyprus. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-08-14T10:34:05+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/cyprus"
+    },
     {
       "name": "Congo",
       "slug": "congo",
@@ -52,18 +249,6 @@
       "summary": "FCDO travel advice for Burkina Faso. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-10-26T15:58:48+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/burkina-faso"
-    },
-    {
-      "name": "Jordan",
-      "slug": "jordan",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Jordan. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-10-25T15:33:37+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/jordan"
     },
     {
       "name": "Seychelles",
@@ -268,18 +453,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/mauritania"
     },
     {
-      "name": "Turkey",
-      "slug": "turkey",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "Latest FCDO travel advice for Turkey including on entry requirements, safety and security and local laws and customs.",
-      "public_updated_at": "2026-10-19T16:55:54+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/turkey"
-    },
-    {
       "name": "Mauritius",
       "slug": "mauritius",
       "alert_status_raw": [],
@@ -355,19 +528,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/senegal"
     },
     {
-      "name": "Pakistan",
-      "slug": "pakistan",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Pakistan. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-10-13T13:37:00+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/pakistan"
-    },
-    {
       "name": "Ukraine",
       "slug": "ukraine",
       "alert_status_raw": [
@@ -401,18 +561,6 @@
       "summary": "FCDO travel advice for Kazakhstan. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-10-13T15:04:04+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/kazakhstan"
-    },
-    {
-      "name": "Yemen",
-      "slug": "yemen",
-      "alert_status_raw": [
-        "avoid_all_travel_to_whole_country"
-      ],
-      "advisory_level": 4,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Yemen. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-07-31T10:35:27+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/yemen"
     },
     {
       "name": "Eritrea",
@@ -492,16 +640,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/uganda"
     },
     {
-      "name": "Bahrain",
-      "slug": "bahrain",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Bahrain. Includes safety and security, insurance, entry requirements and legal differences. \r\n",
-      "public_updated_at": "2026-10-08T14:01:04+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/bahrain"
-    },
-    {
       "name": "Democratic Republic of the Congo",
       "slug": "democratic-republic-of-the-congo",
       "alert_status_raw": [
@@ -515,57 +653,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/democratic-republic-of-the-congo"
     },
     {
-      "name": "Palestine",
-      "slug": "palestine",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "",
-      "public_updated_at": "2026-07-22T13:43:56+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/palestine"
-    },
-    {
-      "name": "Israel",
-      "slug": "israel",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Israel and Palestine. Includes safety and security, insurance, entry requirements and legal differences (Warnings and Insurance). ",
-      "public_updated_at": "2026-07-22T13:45:00+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/israel"
-    },
-    {
-      "name": "Iraq",
-      "slug": "iraq",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Iraq. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-07-22T13:46:56+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/iraq"
-    },
-    {
-      "name": "Iran",
-      "slug": "iran",
-      "alert_status_raw": [
-        "avoid_all_travel_to_whole_country"
-      ],
-      "advisory_level": 4,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Iran. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-13T16:37:44+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/iran"
-    },
-    {
       "name": "New Caledonia",
       "slug": "new-caledonia",
       "alert_status_raw": [],
@@ -574,19 +661,6 @@
       "summary": "FCDO travel advice for New Caledonia. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2025-12-10T13:19:36+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/new-caledonia"
-    },
-    {
-      "name": "Egypt",
-      "slug": "egypt",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Egypt. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-08-04T11:10:57+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/egypt"
     },
     {
       "name": "Algeria",
@@ -947,16 +1021,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/czechia"
     },
     {
-      "name": "Cyprus",
-      "slug": "cyprus",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Cyprus. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-08-14T10:34:05+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/cyprus"
-    },
-    {
       "name": "Croatia",
       "slug": "croatia",
       "alert_status_raw": [],
@@ -1283,16 +1347,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/federated-states-of-micronesia"
     },
     {
-      "name": "Kuwait",
-      "slug": "kuwait",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Kuwait. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-08-20T09:00:55+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/kuwait"
-    },
-    {
       "name": "Lebanon",
       "slug": "lebanon",
       "alert_status_raw": [
@@ -1329,38 +1383,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/morocco"
     },
     {
-      "name": "Oman",
-      "slug": "oman",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Oman. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-07-22T13:46:33+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/oman"
-    },
-    {
-      "name": "Qatar",
-      "slug": "qatar",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "Latest FCDO travel advice for Qatar. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-19T14:38:09+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/qatar"
-    },
-    {
-      "name": "Syria",
-      "slug": "syria",
-      "alert_status_raw": [
-        "avoid_all_travel_to_whole_country"
-      ],
-      "advisory_level": 4,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Syria. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-09-02T14:13:57+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/syria"
-    },
-    {
       "name": "Marshall Islands",
       "slug": "marshall-islands",
       "alert_status_raw": [],
@@ -1369,16 +1391,6 @@
       "summary": "FCDO travel advice for the Marshall Islands. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-03-19T14:02:32+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/marshall-islands"
-    },
-    {
-      "name": "United Arab Emirates",
-      "slug": "united-arab-emirates",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for United Arab Emirates. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-07-24T15:52:23+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/united-arab-emirates"
     },
     {
       "name": "Maldives",
@@ -1651,18 +1663,6 @@
       "summary": "FCDO travel advice for Haiti. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2025-12-10T13:57:03+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/haiti"
-    },
-    {
-      "name": "India",
-      "slug": "india",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for India. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-10-07T11:56:27+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/india"
     },
     {
       "name": "Honduras",
