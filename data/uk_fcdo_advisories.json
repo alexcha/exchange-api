@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-27T11:04:43.635251+00:00",
+  "generated_at": "2026-10-27T11:34:50.236288+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "El Salvador",
+      "slug": "el-salvador",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for El Salvador. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-27T11:06:26+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/el-salvador"
+    },
     {
       "name": "Ethiopia",
       "slug": "ethiopia",
@@ -1595,16 +1605,6 @@
       "summary": "FCDO travel advice for the Dominican Republic. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-08-07T16:02:53+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/dominican-republic"
-    },
-    {
-      "name": "El Salvador",
-      "slug": "el-salvador",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for El Salvador. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-06-17T14:04:09+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/el-salvador"
     },
     {
       "name": "Grenada",
