@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-28T10:34:51.056373+00:00",
+  "generated_at": "2026-10-28T11:04:48.348321+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Brazil",
+      "slug": "brazil",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Brazil. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-28T10:42:46+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/brazil"
+    },
     {
       "name": "Uganda",
       "slug": "uganda",
@@ -1815,18 +1827,6 @@
       "summary": "FCDO travel advice for Bolivia. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-09-22T16:45:15+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/bolivia"
-    },
-    {
-      "name": "Brazil",
-      "slug": "brazil",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Brazil. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-09-29T17:00:43+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/brazil"
     },
     {
       "name": "Antarctica/British Antarctic Territory",
