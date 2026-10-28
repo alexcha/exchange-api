@@ -3,9 +3,32 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-28T12:34:43.741696+00:00",
+  "generated_at": "2026-10-28T13:04:41.093265+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Spain",
+      "slug": "spain",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Spain. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-10-28T13:02:06+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/spain"
+    },
+    {
+      "name": "Nigeria",
+      "slug": "nigeria",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Nigeria. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-21T18:00:06+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/nigeria"
+    },
     {
       "name": "Kenya",
       "slug": "kenya",
@@ -396,19 +419,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/bangladesh"
     },
     {
-      "name": "Nigeria",
-      "slug": "nigeria",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Nigeria. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-21T18:00:06+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/nigeria"
-    },
-    {
       "name": "Turkmenistan",
       "slug": "turkmenistan",
       "alert_status_raw": [],
@@ -705,16 +715,6 @@
       "summary": "FCDO travel advice for Sweden. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-08-11T10:23:29+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/sweden"
-    },
-    {
-      "name": "Spain",
-      "slug": "spain",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Spain. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-12T16:46:24+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/spain"
     },
     {
       "name": "Slovenia",
