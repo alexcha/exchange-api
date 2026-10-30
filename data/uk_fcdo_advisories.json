@@ -3,9 +3,45 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-10-30T12:04:46.408607+00:00",
+  "generated_at": "2026-10-30T12:34:55.610903+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Kenya",
+      "slug": "kenya",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Kenya. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-30T12:31:34+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/kenya"
+    },
+    {
+      "name": "Ukraine",
+      "slug": "ukraine",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Ukraine. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-10-02T09:30:25+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/ukraine"
+    },
+    {
+      "name": "Kazakhstan",
+      "slug": "kazakhstan",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Kazakhstan. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-13T15:04:04+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/kazakhstan"
+    },
     {
       "name": "Colombia",
       "slug": "colombia",
@@ -50,19 +86,6 @@
       "summary": "FCDO travel advice for Spain. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-10-28T13:02:06+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/spain"
-    },
-    {
-      "name": "Kenya",
-      "slug": "kenya",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Kenya. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-28T11:16:05+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/kenya"
     },
     {
       "name": "Brazil",
@@ -560,19 +583,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/senegal"
     },
     {
-      "name": "Ukraine",
-      "slug": "ukraine",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Ukraine. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-10-02T09:30:25+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/ukraine"
-    },
-    {
       "name": "Cambodia",
       "slug": "cambodia",
       "alert_status_raw": [
@@ -583,16 +593,6 @@
       "summary": "FCDO travel advice for Cambodia. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-03-19T14:03:23+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/cambodia"
-    },
-    {
-      "name": "Kazakhstan",
-      "slug": "kazakhstan",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Kazakhstan. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-13T15:04:04+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/kazakhstan"
     },
     {
       "name": "Eritrea",
