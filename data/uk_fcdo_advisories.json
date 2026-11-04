@@ -3,9 +3,33 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-11-04T14:04:52.202436+00:00",
+  "generated_at": "2026-11-04T14:34:58.122801+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Chad",
+      "slug": "chad",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Chad. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-11-04T14:33:29+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/chad"
+    },
+    {
+      "name": "Moldova",
+      "slug": "moldova",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Moldova. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2025-12-10T13:44:10+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/moldova"
+    },
     {
       "name": "Paraguay",
       "slug": "paraguay",
@@ -899,18 +923,6 @@
       "summary": "FCDO travel advice for Monaco. Includes safety and security, insurance, entry requirements and legal differences.  \r\n",
       "public_updated_at": "2025-12-10T13:45:13+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/monaco"
-    },
-    {
-      "name": "Moldova",
-      "slug": "moldova",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Moldova. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2025-12-10T13:44:10+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/moldova"
     },
     {
       "name": "Mayotte",
@@ -2091,18 +2103,6 @@
       "summary": "FCDO travel advice for the Central African Republic. Includes safety and security, insurance, entry requirements and legal differences.   ",
       "public_updated_at": "2026-05-28T12:08:37+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/central-african-republic"
-    },
-    {
-      "name": "Chad",
-      "slug": "chad",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Chad. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-06T12:06:47+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/chad"
     },
     {
       "name": "Côte d'Ivoire",
