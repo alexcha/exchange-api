@@ -3,9 +3,51 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-11-05T14:05:05.402414+00:00",
+  "generated_at": "2026-11-05T14:35:25.813490+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Nicaragua",
+      "slug": "nicaragua",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Nicaragua. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-11-05T14:10:53+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/nicaragua"
+    },
+    {
+      "name": "Guatemala",
+      "slug": "guatemala",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Guatemala. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-11-05T14:10:49+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/guatemala"
+    },
+    {
+      "name": "El Salvador",
+      "slug": "el-salvador",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for El Salvador. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-11-05T14:10:46+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/el-salvador"
+    },
+    {
+      "name": "Honduras",
+      "slug": "honduras",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Honduras. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-11-05T14:10:43+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/honduras"
+    },
     {
       "name": "South Africa",
       "slug": "south-africa",
@@ -489,16 +531,6 @@
       "summary": "FCDO travel advice for the Republic of Congo. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-10-27T12:00:20+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/congo"
-    },
-    {
-      "name": "El Salvador",
-      "slug": "el-salvador",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for El Salvador. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-27T11:06:26+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/el-salvador"
     },
     {
       "name": "Burkina Faso",
@@ -1742,18 +1774,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/grenada"
     },
     {
-      "name": "Guatemala",
-      "slug": "guatemala",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Guatemala. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-08-13T14:45:16+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/guatemala"
-    },
-    {
       "name": "Haiti",
       "slug": "haiti",
       "alert_status_raw": [
@@ -1764,16 +1784,6 @@
       "summary": "FCDO travel advice for Haiti. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2025-12-10T13:57:03+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/haiti"
-    },
-    {
-      "name": "Honduras",
-      "slug": "honduras",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Honduras. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-07-29T16:40:19+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/honduras"
     },
     {
       "name": "Jamaica",
@@ -1794,16 +1804,6 @@
       "summary": "FCDO travel advice for Montserrat. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-07-03T16:32:01+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/montserrat"
-    },
-    {
-      "name": "Nicaragua",
-      "slug": "nicaragua",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Nicaragua. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2025-12-10T13:20:42+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/nicaragua"
     },
     {
       "name": "St Kitts and Nevis",
