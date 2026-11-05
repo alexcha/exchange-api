@@ -3,9 +3,32 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-11-05T16:40:41.560135+00:00",
+  "generated_at": "2026-11-05T17:05:02.517236+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Belize",
+      "slug": "belize",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Belize. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-11-05T16:48:48+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/belize"
+    },
+    {
+      "name": "Saudi Arabia",
+      "slug": "saudi-arabia",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Saudi Arabia. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-10-27T16:54:07+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/saudi-arabia"
+    },
     {
       "name": "Nicaragua",
       "slug": "nicaragua",
@@ -309,19 +332,6 @@
       "summary": "FCDO travel advice for Uganda. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-10-28T09:39:34+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/uganda"
-    },
-    {
-      "name": "Saudi Arabia",
-      "slug": "saudi-arabia",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Saudi Arabia. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-10-27T16:54:07+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/saudi-arabia"
     },
     {
       "name": "Cyprus",
@@ -1618,16 +1628,6 @@
       "summary": "FCDO travel advice for Barbados. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-01-23T15:06:44+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/barbados"
-    },
-    {
-      "name": "Belize",
-      "slug": "belize",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Belize. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-06-12T10:40:30+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/belize"
     },
     {
       "name": "Laos",
