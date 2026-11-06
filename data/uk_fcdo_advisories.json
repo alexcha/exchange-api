@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-11-06T10:04:53.611844+00:00",
+  "generated_at": "2026-11-06T10:34:50.980955+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Uganda",
+      "slug": "uganda",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Uganda. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-11-06T10:16:14+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/uganda"
+    },
     {
       "name": "Belize",
       "slug": "belize",
@@ -322,16 +332,6 @@
       "summary": "FCDO travel advice for Brazil. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-10-28T10:42:46+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/brazil"
-    },
-    {
-      "name": "Uganda",
-      "slug": "uganda",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Uganda. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-28T09:39:34+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/uganda"
     },
     {
       "name": "Cyprus",
