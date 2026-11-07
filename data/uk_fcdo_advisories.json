@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-11-07T15:34:53.657119+00:00",
+  "generated_at": "2026-11-07T16:04:58.217364+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Poland",
+      "slug": "poland",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Poland. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-11-07T15:53:32+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/poland"
+    },
     {
       "name": "Kenya",
       "slug": "kenya",
@@ -986,16 +996,6 @@
       "summary": "FCDO travel advice for Portugal. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-08-11T10:21:44+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/portugal"
-    },
-    {
-      "name": "Poland",
-      "slug": "poland",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Poland. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-08-11T10:21:18+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/poland"
     },
     {
       "name": "Norway",
