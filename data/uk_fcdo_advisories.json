@@ -3,9 +3,34 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-11-09T16:04:55.690613+00:00",
+  "generated_at": "2026-11-09T16:34:49.420856+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Eritrea",
+      "slug": "eritrea",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Eritrea. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-11-09T16:20:13+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/eritrea"
+    },
+    {
+      "name": "Côte d'Ivoire",
+      "slug": "cote-d-ivoire",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Côte d'Ivoire. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-11-09T16:16:31+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/cote-d-ivoire"
+    },
     {
       "name": "Eswatini",
       "slug": "eswatini",
@@ -844,19 +869,6 @@
       "summary": "FCDO travel advice for Cambodia. Includes safety and security, insurance, entry requirements and legal differences.  ",
       "public_updated_at": "2026-03-19T14:03:23+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/cambodia"
-    },
-    {
-      "name": "Eritrea",
-      "slug": "eritrea",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Eritrea. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-12T12:48:05+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/eritrea"
     },
     {
       "name": "Solomon Islands",
@@ -2135,18 +2147,6 @@
       "summary": "FCDO travel advice for the Central African Republic. Includes safety and security, insurance, entry requirements and legal differences.   ",
       "public_updated_at": "2026-05-28T12:08:37+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/central-african-republic"
-    },
-    {
-      "name": "Côte d'Ivoire",
-      "slug": "cote-d-ivoire",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Côte d'Ivoire. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-05-29T16:11:15+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/cote-d-ivoire"
     },
     {
       "name": "Djibouti",
