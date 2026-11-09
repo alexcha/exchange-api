@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-11-09T14:35:02.813214+00:00",
+  "generated_at": "2026-11-09T15:04:55.041332+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Eswatini",
+      "slug": "eswatini",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Eswatini. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-11-09T14:38:31+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/eswatini"
+    },
     {
       "name": "Chile",
       "slug": "chile",
@@ -2169,16 +2179,6 @@
       "summary": "FCDO travel advice for China. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-08-27T23:02:55+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/china"
-    },
-    {
-      "name": "Eswatini",
-      "slug": "eswatini",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Eswatini. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2025-12-10T13:32:46+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/eswatini"
     },
     {
       "name": "Brunei",
