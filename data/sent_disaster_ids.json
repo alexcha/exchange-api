@@ -190,20 +190,10 @@
       "fingerprint": "761e44e45122dfe67dd095ad7de1f5e88c4f2eac177a9be0d3f90a6c7cc3416d",
       "recorded_at": "2026-09-27T19:34:56Z"
     },
-    "WF1032223": {
-      "last_updated": "2026-09-26T00:00:00",
-      "fingerprint": "8e1e406ac062976680254240445fa7d3a262418098af887a72791bf2d7a240f7",
-      "recorded_at": "2026-09-26T11:40:52Z"
-    },
     "WF1032217": {
       "last_updated": "2026-10-02T00:00:00",
       "fingerprint": "0f15a783292ff471c1291cbfb4b8142bce3f6ced598ed6ad087fd9f9ed27760d",
       "recorded_at": "2026-10-02T15:35:13Z"
-    },
-    "WF1032224": {
-      "last_updated": "2026-09-26T00:00:00",
-      "fingerprint": "ff4e13ebbbddb39184973f1fb056735e2dfb588c3ba6e1ca8ed2304ab2a5d4e4",
-      "recorded_at": "2026-09-26T11:40:52Z"
     },
     "TC1001323": {
       "last_updated": "2026-09-29T15:00:00",
@@ -219,11 +209,6 @@
       "last_updated": "2026-09-26T00:00:00",
       "fingerprint": "5bc08c29d813b487f8dfb748f118b45b2880302569a398b43ee6082d0ed222d9",
       "recorded_at": "2026-09-26T19:35:00Z"
-    },
-    "WF1032248": {
-      "last_updated": "2026-09-26T00:00:00",
-      "fingerprint": "b67768f4f1de40ceb5f663b2f325188f99705b346ea41b7b07049f83fde65b96",
-      "recorded_at": "2026-09-26T11:40:52Z"
     },
     "FL1104176": {
       "last_updated": "2026-10-04T01:00:00",
@@ -455,11 +440,6 @@
       "fingerprint": "5c4dd279d5fdeab1144ed7470aceceeb1605857df323197f15f776b9b97adbc3",
       "recorded_at": "2026-09-26T19:35:00Z"
     },
-    "WF1032374": {
-      "last_updated": "2026-09-26T00:00:00",
-      "fingerprint": "0926b64679d4d483c66df1e9f868745e0d40b65cd4fde057b9ce23a4dbad1eeb",
-      "recorded_at": "2026-09-26T11:40:52Z"
-    },
     "WF1032375": {
       "last_updated": "2026-09-29T00:00:00",
       "fingerprint": "b2d5dae373ae3a672d67e2fb1c96d78c147f196ade857f1004a80523ed237a9d",
@@ -555,11 +535,6 @@
       "fingerprint": "b935c44a501a65bbe0047b7e37f11c622e5ed630bd25f83d8c0dcfbba3106766",
       "recorded_at": "2026-09-27T19:34:56Z"
     },
-    "WF1032401": {
-      "last_updated": "2026-09-26T00:00:00",
-      "fingerprint": "098d8d9bb17aab534bdd0468a702461f50ccd36052c5d729a0c6a35baf20d3ff",
-      "recorded_at": "2026-09-26T11:40:52Z"
-    },
     "EQ1568087": {
       "last_updated": "2026-09-25T21:23:03",
       "fingerprint": "d5fef1bbe19fea467c46142680665e754d821c653d5ea9d3f438988945949100",
@@ -604,11 +579,6 @@
       "last_updated": "2026-09-30T00:00:00",
       "fingerprint": "1e1b13aba4814553a09faa16168c123a941d80e372c5bb8c7f3fcc16c1ab724f",
       "recorded_at": "2026-09-30T11:35:07Z"
-    },
-    "EQ1568161": {
-      "last_updated": "2026-09-26T10:53:15",
-      "fingerprint": "dfbaccbd48daac9c070a6268cb52debbe64c127cb28f115726852434260dc583",
-      "recorded_at": "2026-09-26T11:40:52Z"
     },
     "WF1032412": {
       "last_updated": "2026-09-30T00:00:00",
@@ -9857,33 +9827,33 @@
     },
     "EQ1576387": {
       "last_updated": "2026-11-09T07:04:13",
-      "fingerprint": "88f576fb9d0d00357e1b8242c666f0038f1dd53055ac4eddc7d4e175fa7c61e3",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "debde82f55a6c2b223c4ee7bc5ea6ce713806d56c86501a8ed3b86b8b75ee37b",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "EQ1576404": {
       "last_updated": "2026-11-09T09:48:27",
-      "fingerprint": "0b3fbdcc59a28b86d91fd236bd6b149df65c64ed4231cf97cf2be978f46c23a2",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "376d37d19ec5ff7b4995f8c413e90535256e757a37b6327402a1928b8e751f4e",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "EQ1576406": {
       "last_updated": "2026-11-09T10:23:53",
-      "fingerprint": "e030d860cf0daefca4ee1bce60660a31e26b3c4f83f3be33042f46fdb9fb5312",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "c2905d32842ce69a2fe5f376f592abcbf9dc640dc28930d6e789c90610c1ebdd",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "EQ1576378": {
       "last_updated": "2026-11-09T05:16:56",
-      "fingerprint": "2a4c144ea3cd44df33384f28904ddab98c25e5878bb41878ed27c6f212767910",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "b5628e9a1f71b4ea9401dafefd4dd49a6a1e868ee0be821cdae3b1924f984bce",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "EQ1576364": {
       "last_updated": "2026-11-09T03:34:59",
-      "fingerprint": "7fc49a3fb5202c2e9559adbee39beeffbc50df70527b14da61e467ee3f04c0ee",
-      "recorded_at": "2026-11-10T10:35:58Z"
+      "fingerprint": "668b7321e4f60c8ab6f7faaad2c17f145a279c4316679bb207f5db4d1b57da0e",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "EQ1576405": {
       "last_updated": "2026-11-09T09:53:38",
-      "fingerprint": "0b3fbdcc59a28b86d91fd236bd6b149df65c64ed4231cf97cf2be978f46c23a2",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "aa6ddb2e626e4123a9b1183e8e8fb595d8102c6448aa19e888106b765d10a201",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "EQ1576376": {
       "last_updated": "2026-11-09T05:01:53",
@@ -9902,8 +9872,8 @@
     },
     "EQ1576337": {
       "last_updated": "2026-11-09T00:46:59",
-      "fingerprint": "bd716febdecf90da38a926d6171d43ff4dbb801fd1854b86fb313c6de8a9e437",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "9294b187971e0bab827b1e292333ec0048d787338b98de8ea6232e38933489b3",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "EQ1576320": {
       "last_updated": "2026-11-08T20:16:30",
@@ -9917,8 +9887,8 @@
     },
     "EQ1576361": {
       "last_updated": "2026-11-09T02:21:57",
-      "fingerprint": "bd716febdecf90da38a926d6171d43ff4dbb801fd1854b86fb313c6de8a9e437",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "2336a105375a3091063cef03fbe1d68e87a6cd61cfb5b242c3828adc7e309233",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "EQ1576287": {
       "last_updated": "2026-11-08T16:33:24",
@@ -9952,18 +9922,18 @@
     },
     "FL1104275": {
       "last_updated": "2026-11-09T01:00:00",
-      "fingerprint": "92c4779c3a9236e1906d18c2fa202cede7d6b9cda3a187193a7344f9edc4fadb",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "920113259bdb5559fe4027082bf153dacd22519f7bfb02eb7078d1b508d2e111",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "FL1104274": {
       "last_updated": "2026-11-09T01:00:00",
-      "fingerprint": "ff0f7adaef89640f9c9e846823fb18a73cfb42fd1738935bf4a739a7835b380f",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "7bc2cd576486c31c5f3308e001f8307ef5995a700462b8daa392acf900d2b8c9",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "FL1104273": {
       "last_updated": "2026-11-09T01:00:00",
-      "fingerprint": "bbbae05584f35b970fdc1d5330c454fb7bcfd4ab081161598966709866680d4f",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "c42efc94ae63a9656b12b6e24e665a3ee599d38d79305e915f5e4bbffc0d6f0a",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "TC1001349": {
       "last_updated": "2026-11-08T12:00:00",
@@ -9972,13 +9942,13 @@
     },
     "TC1001348": {
       "last_updated": "2026-11-10T09:00:00",
-      "fingerprint": "7ad30864cb0d14565e57fc760b55aa91d788d92cedd72f57fbe50502a7f65e3d",
-      "recorded_at": "2026-11-10T10:06:26Z"
+      "fingerprint": "3accd8069c091d37cc542a33f786363a31c4e0832abf474d478b2a48a7f6316a",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "TC1001347": {
       "last_updated": "2026-11-10T06:00:00",
-      "fingerprint": "91359353ebe3af8ef2ed905f48e63c46956a844d8b44a391ff245a9e608b258d",
-      "recorded_at": "2026-11-10T10:06:26Z"
+      "fingerprint": "7b5f3527c9b6149236ff108761873035daf8e7ad2059677cc947c43c8264d19c",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "FL1104271": {
       "last_updated": "2026-11-08T01:00:00",
@@ -9987,13 +9957,13 @@
     },
     "FL1104272": {
       "last_updated": "2026-11-09T01:00:00",
-      "fingerprint": "4285c05c511e1d812ade3c95e40be06a7b8fbe8dbac627009bdc3ba447ff60fa",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "2cdd38b963ba6c25b45d2e94fce30de36c73afc82dd670ddbf262b7efae416ce",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033655": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "5c81236fb7b9ba4c0584ccf85c816f88aaf49c98d368ef3f273e8fda0e908492",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033654": {
       "last_updated": "2026-11-09T00:00:00",
@@ -10022,8 +9992,8 @@
     },
     "WF1033644": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T10:06:26Z"
+      "fingerprint": "1b5b14aa167273f094699f4fb7c8e8e0fda9aa2ae08c7f4f7d882ae58f784de3",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033643": {
       "last_updated": "2026-11-10T00:00:00",
@@ -10032,8 +10002,8 @@
     },
     "WF1033637": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4d0c26435a39bd8be0e626984f2d91e0daab0d8062ff46b43da7db92e0047406",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "7abf4eb8729ce6018c0848c18af545cb3b8909371ea38d62e0f10707f93d8988",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033651": {
       "last_updated": "2026-11-10T00:00:00",
@@ -10042,38 +10012,38 @@
     },
     "WF1033629": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T10:06:26Z"
+      "fingerprint": "684b68d14b520fd2fbc6f2c1f5d6c5cca27adae59c6d63af3f1b985796e43f1d",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033628": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T10:06:26Z"
+      "fingerprint": "e5e52acf8032b36d0606c30015b76f7046252c141b31a158baaa4360e9278070",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033636": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "0e9f533c4f544ce84600b82141e906f00a2c683d32ebc084dd12840eda2a773c",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033626": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T10:06:26Z"
+      "fingerprint": "20ce9e30c17e8deb3e05a213ebc536fc1f3b572064a5fd983cd1419259daf3d5",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033622": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "ad5dfc884065858c0803275fea7d3894631426a43cb4f08d3ee67afe3806f003",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033619": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "9b06ab0c20e666c3ce64d524899e9b4994016c0e170e8cfa6525ca456ddbf13b",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033618": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "5c315dee538a802ccd385fd0e3e8e0665d56cbb926ffb2905f0363856eb82b48",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033615": {
       "last_updated": "2026-11-09T00:00:00",
@@ -10087,8 +10057,8 @@
     },
     "WF1033617": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T10:06:26Z"
+      "fingerprint": "eb34a0aa3d9c18291f1e1ab6ddc3f47f3551122228d5c5675bd39d2e2737f30d",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033613": {
       "last_updated": "2026-11-09T00:00:00",
@@ -10097,8 +10067,8 @@
     },
     "WF1033616": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T09:35:57Z"
+      "fingerprint": "e085d7db1801f65360ec390a4efdccd7cfd26297af535ee79a50c3f3be62a439",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033612": {
       "last_updated": "2026-11-09T00:00:00",
@@ -10122,8 +10092,8 @@
     },
     "WF1033583": {
       "last_updated": "2026-11-10T00:00:00",
-      "fingerprint": "d70fc1b46bc582ffee37401390399bfe675d2f7eace46b88769d878fdaaa3cca",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "0108754c1517b7c2b4a843638721348b133036f9074fef46667d3ce73f71d4d6",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033592": {
       "last_updated": "2026-11-10T00:00:00",
@@ -10252,8 +10222,8 @@
     },
     "WF1033648": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "8e058294cb18130916cd0a7c6bae5b421b892767e9eeff7b2876947e97f3bc11",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033646": {
       "last_updated": "2026-11-08T00:00:00",
@@ -10312,13 +10282,13 @@
     },
     "WF1033625": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T10:06:26Z"
+      "fingerprint": "ecf56c7099657544d25bffd66fa07bb5cc29a09ede2d518d87c09b89292b9cb1",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033627": {
       "last_updated": "2026-11-10T00:00:00",
-      "fingerprint": "e999deb003d360d1bdee71d57045e625f8862e1be3c2aa417f6c0ae2b4dcae6b",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "c75dad37bc498a9d94419440725a7f32063adc62c42b66b719e761e045470d16",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033623": {
       "last_updated": "2026-11-08T00:00:00",
@@ -10337,8 +10307,8 @@
     },
     "FL1104276": {
       "last_updated": "2026-11-09T01:00:00",
-      "fingerprint": "869f9a01134d6cc4394db073973dc2e49fafe19258c18fe301b448922a508a2b",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "8229efb7bbb412a5dc6d6f0a88894005a89307dc170443831d0c64db7b57c08a",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "EQ1576414": {
       "last_updated": "2026-11-09T11:25:07",
@@ -10347,18 +10317,18 @@
     },
     "EQ1576420": {
       "last_updated": "2026-11-09T12:28:18",
-      "fingerprint": "1cd4bf197651b260d5b319e83b7b65bab3d59ca6cdafddd2b7713867d235540f",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "048cd31e44afee10bb5e9f21cb01a80f44c44a0af45efd0b8190042150d37949",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033665": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "bb272d3bff2e26a681a6a5a4b1bcbf6cf89fbaabbec6343514528f19e0e03135",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033667": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "acc193fc3aa12ce64d0b0709a34b7a2244ea9cf00bb499182bf8d1b70c411b57",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033663": {
       "last_updated": "2026-11-09T00:00:00",
@@ -10372,13 +10342,13 @@
     },
     "WF1033668": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "2fff6227d483acbdf67aab59f31c189fb87f0486f49d288dda830a9649f4ab56",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033662": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "7aa66afc2365b5bf1d18dc9aa7a11eb979b86e04c7b635ac47f62c3ad36f9192",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033666": {
       "last_updated": "2026-11-09T00:00:00",
@@ -10387,8 +10357,8 @@
     },
     "WF1033658": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "9cb97fb9f52ae8cde35d2e10f850c4cce9d87bd71230e204a865f27537efbabc",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033659": {
       "last_updated": "2026-11-09T00:00:00",
@@ -10407,13 +10377,13 @@
     },
     "WF1033621": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "822c4fbe168d08c865b0faf9db4f16d8672a7beaeddf4cdcb86f820aa2003214",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033608": {
       "last_updated": "2026-11-10T00:00:00",
-      "fingerprint": "f5af8bc9d77bb4e2047ce299b9faba339b8fed852ff4186c1214ab5125720872",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "26dc7de5816e5626e85efe79e771bb72bbde0d302a6408654b237d25508effe8",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033600": {
       "last_updated": "2026-11-09T00:00:00",
@@ -10437,8 +10407,8 @@
     },
     "WF1033669": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "3dac7a4ee04507996ac06953ccdbaec2b098835960284fe0c518c2ce68b738c4",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033457": {
       "last_updated": "2026-11-09T00:00:00",
@@ -10472,8 +10442,8 @@
     },
     "WF1033670": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "e8b375f6df5e4879d532ef4cbb74d784ebe3ff90d366bceaef7120481426580b",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "24ff0e6eb5d665fc2814d6e9cfb51ec8aebed4661670e634ea79b1e8b451cf93",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033581": {
       "last_updated": "2026-11-09T00:00:00",
@@ -10482,8 +10452,8 @@
     },
     "WF1033672": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "518d1a60c537bef2b9f19bb488eb06dde4cd89e25b1b11697f3652d0caf67f76",
-      "recorded_at": "2026-11-10T10:06:26Z"
+      "fingerprint": "95852d238b936ff645be6a0704157ea07a36486fe46177a8537166cc01670ca3",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033599": {
       "last_updated": "2026-11-09T00:00:00",
@@ -10502,18 +10472,18 @@
     },
     "EQ1576484": {
       "last_updated": "2026-11-09T18:51:45",
-      "fingerprint": "2a4c144ea3cd44df33384f28904ddab98c25e5878bb41878ed27c6f212767910",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "1a68a8e4d9721afb99cda30d330f585ad6e2e923b83defb23448ae72458577ce",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "EQ1576485": {
       "last_updated": "2026-11-09T19:09:47",
-      "fingerprint": "bd716febdecf90da38a926d6171d43ff4dbb801fd1854b86fb313c6de8a9e437",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "ee88cfc28f8e5e21eb45862fb22639ba81006d3c43ef5814e0decb69235c7583",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "EQ1576492": {
       "last_updated": "2026-11-09T19:27:54",
-      "fingerprint": "d5fef1bbe19fea467c46142680665e754d821c653d5ea9d3f438988945949100",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "42581bc1c8c897d52c45c0556bfa98b80e583d0e2c5f99cc037fc180f61d0548",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033674": {
       "last_updated": "2026-11-10T00:00:00",
@@ -10522,8 +10492,8 @@
     },
     "WF1033673": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "518d1a60c537bef2b9f19bb488eb06dde4cd89e25b1b11697f3652d0caf67f76",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "2b26a9d874fbe7d39afcc1ab6a4c41d0488bfeb7ebe926e653f5417b3358fc32",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033675": {
       "last_updated": "2026-11-09T00:00:00",
@@ -10532,8 +10502,8 @@
     },
     "WF1033678": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "907e956c9588424f7a192ae7d17a163ee9d6a5a8845d8a83faa7d501d5bc3840",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "782683dac3fd3a96abda6e633f62aec0f576a9205c001d8851a5945c828effbd",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033677": {
       "last_updated": "2026-11-10T00:00:00",
@@ -10547,13 +10517,13 @@
     },
     "WF1033679": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "907e956c9588424f7a192ae7d17a163ee9d6a5a8845d8a83faa7d501d5bc3840",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "3a73dd1a3a01d4f6eddd635004fc612482b5ce80d929887ca73041906683750e",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "EQ1576511": {
       "last_updated": "2026-11-09T22:03:07",
-      "fingerprint": "3115eae10af495407d240c183e7c8c164daa236d856fd0a39ca1ecf330339295",
-      "recorded_at": "2026-11-10T10:06:26Z"
+      "fingerprint": "b311fe641021cb69249a6351f5020d03dbb32a39906dc585b1ba701aeebf70f5",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "EQ1576522": {
       "last_updated": "2026-11-09T23:45:21",
@@ -10562,18 +10532,18 @@
     },
     "WF1033683": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T10:06:26Z"
+      "fingerprint": "520bde70994dd6e05db44b9741fbf5e335b4837bffec412f93d5849e88f49a0f",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033685": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "80a016727e4c501df17598589e50da404342638bc66862129f3784df9e35bb02",
-      "recorded_at": "2026-11-10T10:06:26Z"
+      "fingerprint": "4040ec24566c7835674b7e4ab46a9e9e7cfd286b76d28d51d411296da554367f",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033682": {
       "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "5c911ad9771216f8de0ab719f1ac4c701a37ce99ab6f8bcddc4f2207e7dda590",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033684": {
       "last_updated": "2026-11-09T00:00:00",
@@ -10581,9 +10551,9 @@
       "recorded_at": "2026-11-10T10:06:26Z"
     },
     "WF1033680": {
-      "last_updated": "2026-11-09T00:00:00",
-      "fingerprint": "4462bf789ffdefe81135492a7df34f36644f8db281f11e99e8eb240b3f8a91eb",
-      "recorded_at": "2026-11-10T10:06:26Z"
+      "last_updated": "2026-11-10T00:00:00",
+      "fingerprint": "3b94fd9f1d6635e255b70e83a25438989dc99a73aac05dcbc08b2a9bb66e6514",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033681": {
       "last_updated": "2026-11-10T00:00:00",
@@ -10592,8 +10562,8 @@
     },
     "EQ1576526": {
       "last_updated": "2026-11-10T01:53:24",
-      "fingerprint": "0b3fbdcc59a28b86d91fd236bd6b149df65c64ed4231cf97cf2be978f46c23a2",
-      "recorded_at": "2026-11-10T11:37:11Z"
+      "fingerprint": "fc65a1d4d09aeba3a6f2e5ed967e5bd02d0122943443ef618cfb8ef788be3f96",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "EQ1576536": {
       "last_updated": "2026-11-10T02:00:03",
@@ -10607,8 +10577,8 @@
     },
     "EQ1576552": {
       "last_updated": "2026-11-10T04:30:17",
-      "fingerprint": "2a4c144ea3cd44df33384f28904ddab98c25e5878bb41878ed27c6f212767910",
-      "recorded_at": "2026-11-10T10:06:26Z"
+      "fingerprint": "1a68a8e4d9721afb99cda30d330f585ad6e2e923b83defb23448ae72458577ce",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "EQ1576554": {
       "last_updated": "2026-11-10T05:20:08",
@@ -10627,13 +10597,13 @@
     },
     "EQ1576565": {
       "last_updated": "2026-11-10T06:43:11",
-      "fingerprint": "e5b91858bdccb4d07c5ad1f110e1d49367ba526327ac0f0092589c31134d2493",
-      "recorded_at": "2026-11-10T10:06:26Z"
+      "fingerprint": "0402724b4c43fcb35e0004627714733a7e90f265c315eab7150a7251d372400a",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033686": {
       "last_updated": "2026-11-10T00:00:00",
-      "fingerprint": "e19dc9bd9a4b402897f53be944a7aca0f86bc676d970df85c523b5fd1131b473",
-      "recorded_at": "2026-11-10T11:07:07Z"
+      "fingerprint": "f875ea5f1951c0613c28fd61ff5a1e14202e4b6e32ba266e905ad477d4c0281e",
+      "recorded_at": "2026-11-10T12:06:14Z"
     },
     "WF1033543": {
       "last_updated": "2026-11-10T00:00:00",
@@ -10644,6 +10614,11 @@
       "last_updated": "2026-11-10T08:34:07",
       "fingerprint": "0b3fbdcc59a28b86d91fd236bd6b149df65c64ed4231cf97cf2be978f46c23a2",
       "recorded_at": "2026-11-10T11:07:07Z"
+    },
+    "WF1033687": {
+      "last_updated": "2026-11-10T00:00:00",
+      "fingerprint": "2c632eb717bcdc8b4f993cd77ff99f118a5b669719863385389f2268cb9050be",
+      "recorded_at": "2026-11-10T12:06:14Z"
     }
   }
 }
