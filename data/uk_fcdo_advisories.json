@@ -3,9 +3,29 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-11-11T15:34:54.608319+00:00",
+  "generated_at": "2026-11-11T16:04:49.961298+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Madagascar",
+      "slug": "madagascar",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Madagascar. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-11-11T15:51:34+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/madagascar"
+    },
+    {
+      "name": "Poland",
+      "slug": "poland",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Poland. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-11-11T15:42:44+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/poland"
+    },
     {
       "name": "Spain",
       "slug": "spain",
@@ -83,16 +103,6 @@
       "summary": "FCDO travel advice for Chile. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-11-09T12:06:58+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/chile"
-    },
-    {
-      "name": "Poland",
-      "slug": "poland",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Poland. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-11-07T15:53:32+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/poland"
     },
     {
       "name": "Kenya",
@@ -308,16 +318,6 @@
       "summary": "FCDO travel advice for Paraguay. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-11-03T20:29:30+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/paraguay"
-    },
-    {
-      "name": "Madagascar",
-      "slug": "madagascar",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Madagascar. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-11-03T16:23:39+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/madagascar"
     },
     {
       "name": "Italy",
