@@ -480,11 +480,6 @@
       "fingerprint": "2f870a4b030da8eeda86d42542d27eed4e94451de001c3ee0808fab150083e36",
       "recorded_at": "2026-09-30T11:35:07Z"
     },
-    "WF1032484": {
-      "last_updated": "2026-09-29T00:00:00",
-      "fingerprint": "0320d685b3814ad8548a847bae514b346f7c86e2dfedffbeac3dd71c427109b6",
-      "recorded_at": "2026-09-29T23:04:56Z"
-    },
     "WF1032485": {
       "last_updated": "2026-09-30T00:00:00",
       "fingerprint": "ee339cade69164d09a381ee6ac8da25f1e1a0cef9461aaf84b7562bab2bc8c3a",
@@ -539,16 +534,6 @@
       "last_updated": "2026-09-30T00:00:00",
       "fingerprint": "82e226096f05760290c18dcfacdab816fd891a0c32b4e5460032bdb24ea6c4e4",
       "recorded_at": "2026-09-30T19:40:50Z"
-    },
-    "EQ1568686": {
-      "last_updated": "2026-09-29T21:50:29",
-      "fingerprint": "2545b7b6ea63513f773b087372fd466dad1fef8045634614089fc463b24534c4",
-      "recorded_at": "2026-09-29T22:35:33Z"
-    },
-    "WF1032493": {
-      "last_updated": "2026-09-29T00:00:00",
-      "fingerprint": "b603d527ed1e12fc2ddaa624754b3de240fdeedd7708ac6929bb8df41a930370",
-      "recorded_at": "2026-09-29T23:04:56Z"
     },
     "WF1032495": {
       "last_updated": "2026-10-02T00:00:00",
@@ -10767,8 +10752,8 @@
     },
     "WF1033816": {
       "last_updated": "2026-11-13T00:00:00",
-      "fingerprint": "ce9a7720fe8e57bb805603b31d6202037c8708e0417923854ca34d68f6fed037",
-      "recorded_at": "2026-11-13T22:35:12Z"
+      "fingerprint": "f624c74ed36f74a22259909d41bea31261c21d843be2190a097d9b83d99f2b33",
+      "recorded_at": "2026-11-13T23:05:09Z"
     },
     "EQ1577195": {
       "last_updated": "2026-11-13T16:43:02",
@@ -10839,6 +10824,11 @@
       "last_updated": "2026-11-13T00:00:00",
       "fingerprint": "7904a36f89593924458eac3e97554bef1bfecdc53279cd3db25256d3ba0f18c0",
       "recorded_at": "2026-11-13T21:05:22Z"
+    },
+    "EQ1577239": {
+      "last_updated": "2026-11-13T22:10:42",
+      "fingerprint": "0d87efdd56716586d424c4eed9013cb50e85444f36f3ec7670f1a0aed817fa4b",
+      "recorded_at": "2026-11-13T23:05:09Z"
     }
   }
 }
