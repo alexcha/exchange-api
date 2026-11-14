@@ -115,11 +115,6 @@
       "fingerprint": "ce33e9866e0a1348e56d4cc8f0856363276eeb20f41e06db70ff054879d6f8da",
       "recorded_at": "2026-10-01T15:35:11Z"
     },
-    "TC1001325": {
-      "last_updated": "2026-09-30T03:00:00",
-      "fingerprint": "055c9917d41f674c799e2abe6162b9393fbdeab1ea5d241cfdb15c5f78e19ef7",
-      "recorded_at": "2026-09-30T03:05:07Z"
-    },
     "DR1015915": {
       "last_updated": "2026-11-12T08:29:00",
       "fingerprint": "ec9b14941dbd25750e84863fbe60ae038002661cfa8ddbf4b4a744109fae2bf8",
@@ -494,16 +489,6 @@
       "last_updated": "2026-10-06T18:00:00",
       "fingerprint": "e474ad4be943b5702ede5974b1e4196fc94960fe2838b80a5a62f3c37b4bbfcf",
       "recorded_at": "2026-10-07T03:05:01Z"
-    },
-    "EQ1568717": {
-      "last_updated": "2026-09-30T02:35:50",
-      "fingerprint": "d55d6c6d813bf37c013df107dff53b84b16f4155a6690807f2cdd304a8acfb70",
-      "recorded_at": "2026-09-30T03:05:07Z"
-    },
-    "EQ1568718": {
-      "last_updated": "2026-09-30T02:30:44",
-      "fingerprint": "66ce65d940aead08410134b6b3c45cfe53cf6f062c93dc1ead4556e827cce098",
-      "recorded_at": "2026-09-30T03:05:07Z"
     },
     "FL1104199": {
       "last_updated": "2026-10-08T01:00:00",
@@ -10692,8 +10677,8 @@
     },
     "WF1033816": {
       "last_updated": "2026-11-13T00:00:00",
-      "fingerprint": "f624c74ed36f74a22259909d41bea31261c21d843be2190a097d9b83d99f2b33",
-      "recorded_at": "2026-11-14T02:35:12Z"
+      "fingerprint": "ce9a7720fe8e57bb805603b31d6202037c8708e0417923854ca34d68f6fed037",
+      "recorded_at": "2026-11-14T03:05:07Z"
     },
     "EQ1577195": {
       "last_updated": "2026-11-13T16:43:02",
@@ -10809,6 +10794,16 @@
       "last_updated": "2026-11-13T23:55:15",
       "fingerprint": "f2caf02234f04c3c893f223d634a54d4de409afb472ee85cec8dae23c8a94462",
       "recorded_at": "2026-11-14T02:05:19Z"
+    },
+    "EQ1577274": {
+      "last_updated": "2026-11-13T23:22:54",
+      "fingerprint": "e633ba326cd6106e030acfe8ceb7432f4af8d4ebf87bff91d497b6f7966489bd",
+      "recorded_at": "2026-11-14T03:05:07Z"
+    },
+    "EQ1577273": {
+      "last_updated": "2026-11-14T02:21:07",
+      "fingerprint": "ec6100316e340cd9b4792d887c6d131d32bef9c9450ebe3bcf3a4c6b9e5a3605",
+      "recorded_at": "2026-11-14T03:05:07Z"
     }
   }
 }
