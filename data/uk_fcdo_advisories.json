@@ -3,9 +3,41 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-11-17T13:04:59.940399+00:00",
+  "generated_at": "2026-11-17T13:34:52.226712+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Brazil",
+      "slug": "brazil",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Brazil. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-11-17T13:27:42+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/brazil"
+    },
+    {
+      "name": "Finland",
+      "slug": "finland",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Finland. Includes safety and security, insurance, entry requirements and legal differences.\r\n\r\n\r\n\r\n\r\n",
+      "public_updated_at": "2026-11-17T13:27:15+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/finland"
+    },
+    {
+      "name": "Taiwan",
+      "slug": "taiwan",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Taiwan. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-08-28T13:31:24+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/taiwan"
+    },
     {
       "name": "Guatemala",
       "slug": "guatemala",
@@ -484,18 +516,6 @@
       "summary": "FCDO travel advice for Colombia. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-10-30T00:40:46+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/colombia"
-    },
-    {
-      "name": "Brazil",
-      "slug": "brazil",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Brazil. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-28T10:42:46+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/brazil"
     },
     {
       "name": "Cyprus",
@@ -1244,16 +1264,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/germany"
     },
     {
-      "name": "Finland",
-      "slug": "finland",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Finland. Includes safety and security, insurance, entry requirements and legal differences.\r\n\r\n\r\n\r\n\r\n",
-      "public_updated_at": "2026-08-11T10:18:13+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/finland"
-    },
-    {
       "name": "Estonia",
       "slug": "estonia",
       "alert_status_raw": [],
@@ -1436,16 +1446,6 @@
       "summary": "FCDO travel advice for Tajikistan. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-08-19T15:15:52+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/tajikistan"
-    },
-    {
-      "name": "Taiwan",
-      "slug": "taiwan",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Taiwan. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-08-28T13:31:24+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/taiwan"
     },
     {
       "name": "Sri Lanka",
