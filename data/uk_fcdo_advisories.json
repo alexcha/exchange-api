@@ -3,9 +3,34 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-11-18T11:05:04.695061+00:00",
+  "generated_at": "2026-11-18T11:34:58.484460+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Venezuela",
+      "slug": "venezuela",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Venezuela. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-11-18T11:13:15+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/venezuela"
+    },
+    {
+      "name": "Thailand",
+      "slug": "thailand",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Thailand. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-10-12T10:20:34+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/thailand"
+    },
     {
       "name": "Brazil",
       "slug": "brazil",
@@ -846,19 +871,6 @@
       "web_url": "https://www.gov.uk/foreign-travel-advice/turkmenistan"
     },
     {
-      "name": "Venezuela",
-      "slug": "venezuela",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Venezuela. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-14T10:31:54+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/venezuela"
-    },
-    {
       "name": "Malawi",
       "slug": "malawi",
       "alert_status_raw": [],
@@ -963,18 +975,6 @@
       "summary": "FCDO travel advice for the Solomon Islands. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-10-12T12:44:41+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/solomon-islands"
-    },
-    {
-      "name": "Thailand",
-      "slug": "thailand",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Thailand. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-12T10:20:34+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/thailand"
     },
     {
       "name": "Panama",
