@@ -3,9 +3,58 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-11-18T16:34:58.672962+00:00",
+  "generated_at": "2026-11-18T17:05:01.527277+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Pakistan",
+      "slug": "pakistan",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Pakistan. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-11-18T16:36:34+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/pakistan"
+    },
+    {
+      "name": "Turkey",
+      "slug": "turkey",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "Latest FCDO travel advice for Turkey including on entry requirements, safety and security and local laws and customs.",
+      "public_updated_at": "2026-11-18T16:36:28+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/turkey"
+    },
+    {
+      "name": "Syria",
+      "slug": "syria",
+      "alert_status_raw": [
+        "avoid_all_travel_to_whole_country"
+      ],
+      "advisory_level": 4,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Syria. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-11-18T16:36:20+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/syria"
+    },
+    {
+      "name": "Yemen",
+      "slug": "yemen",
+      "alert_status_raw": [
+        "avoid_all_travel_to_whole_country"
+      ],
+      "advisory_level": 4,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Yemen. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-11-18T16:36:14+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/yemen"
+    },
     {
       "name": "United Arab Emirates",
       "slug": "united-arab-emirates",
@@ -190,55 +239,6 @@
       "summary": "FCDO travel advice for Taiwan. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-11-18T15:21:27+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/taiwan"
-    },
-    {
-      "name": "Pakistan",
-      "slug": "pakistan",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Pakistan. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-10-27T16:05:20+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/pakistan"
-    },
-    {
-      "name": "Turkey",
-      "slug": "turkey",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "Latest FCDO travel advice for Turkey including on entry requirements, safety and security and local laws and customs.",
-      "public_updated_at": "2026-10-27T16:07:12+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/turkey"
-    },
-    {
-      "name": "Yemen",
-      "slug": "yemen",
-      "alert_status_raw": [
-        "avoid_all_travel_to_whole_country"
-      ],
-      "advisory_level": 4,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Yemen. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-10-27T16:06:42+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/yemen"
-    },
-    {
-      "name": "Syria",
-      "slug": "syria",
-      "alert_status_raw": [
-        "avoid_all_travel_to_whole_country"
-      ],
-      "advisory_level": 4,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Syria. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-10-27T16:05:05+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/syria"
     },
     {
       "name": "Venezuela",
