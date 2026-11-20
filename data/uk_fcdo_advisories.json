@@ -3,9 +3,29 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-11-20T19:35:02.904805+00:00",
+  "generated_at": "2026-11-20T20:04:51.100131+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "USA",
+      "slug": "usa",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for USA. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-11-20T19:57:12+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/usa"
+    },
+    {
+      "name": "Bahamas",
+      "slug": "bahamas",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for The Bahamas. Includes safety and security, insurance, entry requirements, and legal differences.  ",
+      "public_updated_at": "2026-05-28T17:01:45+01:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/bahamas"
+    },
     {
       "name": "Ecuador",
       "slug": "ecuador",
@@ -344,16 +364,6 @@
       "summary": "FCDO travel advice for Madagascar. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-11-16T10:56:40+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/madagascar"
-    },
-    {
-      "name": "USA",
-      "slug": "usa",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for USA. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-11-14T02:26:03+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/usa"
     },
     {
       "name": "Afghanistan",
@@ -1707,16 +1717,6 @@
       "summary": "FCDO travel advice for Aruba. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-07-07T14:03:43+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/aruba"
-    },
-    {
-      "name": "Bahamas",
-      "slug": "bahamas",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for The Bahamas. Includes safety and security, insurance, entry requirements, and legal differences.  ",
-      "public_updated_at": "2026-05-28T17:01:45+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/bahamas"
     },
     {
       "name": "Barbados",
