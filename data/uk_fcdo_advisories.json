@@ -3,9 +3,21 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-11-23T10:34:51.922826+00:00",
+  "generated_at": "2026-11-23T11:04:52.724628+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Colombia",
+      "slug": "colombia",
+      "alert_status_raw": [
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 2,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Colombia. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-11-23T10:55:23+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/colombia"
+    },
     {
       "name": "USA",
       "slug": "usa",
@@ -774,18 +786,6 @@
       "summary": "FCDO travel advice for Ukraine. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-10-02T09:30:25+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/ukraine"
-    },
-    {
-      "name": "Colombia",
-      "slug": "colombia",
-      "alert_status_raw": [
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 2,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Colombia. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-10-30T00:40:46+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/colombia"
     },
     {
       "name": "Cyprus",
