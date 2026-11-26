@@ -3,9 +3,19 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-11-26T10:34:52.431218+00:00",
+  "generated_at": "2026-11-26T11:04:51.569406+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Malawi",
+      "slug": "malawi",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Malawi. Includes safety and security, insurance, entry requirements and legal differences. ",
+      "public_updated_at": "2026-11-26T10:49:53+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/malawi"
+    },
     {
       "name": "Peru",
       "slug": "peru",
@@ -27,16 +37,6 @@
       "summary": "FCDO travel advice for Serbia. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-11-25T15:24:11+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/serbia"
-    },
-    {
-      "name": "Malawi",
-      "slug": "malawi",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Malawi. Includes safety and security, insurance, entry requirements and legal differences. ",
-      "public_updated_at": "2026-11-25T11:22:56+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/malawi"
     },
     {
       "name": "Comoros",
