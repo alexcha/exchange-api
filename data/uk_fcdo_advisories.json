@@ -3,9 +3,32 @@
   "source": "UK FCDO (gov.uk Content API)",
   "source_url": "https://www.gov.uk/foreign-travel-advice",
   "license": "Open Government Licence v3.0 (Crown copyright)",
-  "generated_at": "2026-11-26T16:34:56.504461+00:00",
+  "generated_at": "2026-11-26T17:04:59.755750+00:00",
   "count": 226,
   "data": [
+    {
+      "name": "Mauritius",
+      "slug": "mauritius",
+      "alert_status_raw": [],
+      "advisory_level": 1,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Mauritius. Includes safety and security, insurance, entry requirements and legal differences.  ",
+      "public_updated_at": "2026-11-26T16:39:27+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/mauritius"
+    },
+    {
+      "name": "Pakistan",
+      "slug": "pakistan",
+      "alert_status_raw": [
+        "avoid_all_travel_to_parts",
+        "avoid_all_but_essential_travel_to_parts"
+      ],
+      "advisory_level": 3,
+      "risk_score": null,
+      "summary": "FCDO travel advice for Pakistan. Includes safety and security, insurance, entry requirements and legal differences.",
+      "public_updated_at": "2026-11-18T16:36:34+00:00",
+      "web_url": "https://www.gov.uk/foreign-travel-advice/pakistan"
+    },
     {
       "name": "Malawi",
       "slug": "malawi",
@@ -174,19 +197,6 @@
       "summary": "FCDO travel advice for Malaysia. Includes safety and security, insurance, entry requirements and legal differences. ",
       "public_updated_at": "2026-11-18T15:21:43+00:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/malaysia"
-    },
-    {
-      "name": "Pakistan",
-      "slug": "pakistan",
-      "alert_status_raw": [
-        "avoid_all_travel_to_parts",
-        "avoid_all_but_essential_travel_to_parts"
-      ],
-      "advisory_level": 3,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Pakistan. Includes safety and security, insurance, entry requirements and legal differences.",
-      "public_updated_at": "2026-11-18T16:36:34+00:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/pakistan"
     },
     {
       "name": "Turkey",
@@ -981,16 +991,6 @@
       "summary": "FCDO travel advice for Mauritania. Includes safety and security, insurance, entry requirements and legal differences.",
       "public_updated_at": "2026-10-19T20:07:15+01:00",
       "web_url": "https://www.gov.uk/foreign-travel-advice/mauritania"
-    },
-    {
-      "name": "Mauritius",
-      "slug": "mauritius",
-      "alert_status_raw": [],
-      "advisory_level": 1,
-      "risk_score": null,
-      "summary": "FCDO travel advice for Mauritius. Includes safety and security, insurance, entry requirements and legal differences.  ",
-      "public_updated_at": "2026-10-19T15:45:58+01:00",
-      "web_url": "https://www.gov.uk/foreign-travel-advice/mauritius"
     },
     {
       "name": "Belgium",
