@@ -22,7 +22,32 @@
       "last_updated": "2026-11-23T02:40:57",
       "severity": "Green",
       "is_current": false,
-      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby."
+      "report_description": "This earthquake could have a low impact on affected communities, based on the magnitude and the exposure and vulnerability of the population nearby.",
+      "exposed_population": "0",
+      "exposed_population_description": null,
+      "vulnerability": null,
+      "magnitude": "6.5",
+      "depth_km": "601",
+      "event_date_local": "2026-11-23T13:40:57",
+      "image_urls": [
+        "https://earthquake.usgs.gov/eqcenter/shakemap/global/shake/6000ucvm/download/intensity.jpg",
+        "https://www.gdacs.org/contentdata/resources/EQ/1578798/eq1748237_2.png",
+        "https://www.gdacs.org/contentdata/resources/EQ/1578798/1578798_1748237_alertfatal_small.png",
+        "https://www.gdacs.org/contentdata/resources/EQ/1578798/eq1748237_1.png",
+        "https://www.gdacs.org/contentdata/resources/EQ/1578798/eq1748237_4.png",
+        "https://www.gdacs.org/contentdata/resources/EQ/1578798/smpreliminary_1578798_1748237_intensity.jpg",
+        "https://www.gdacs.org/contentdata/resources/EQ/1578798/tsunami/JETS_System/2026/11/36602/tslocations_1578798_1748237.png"
+      ],
+      "map_urls": [],
+      "overview_map_url": "https://www.gdacs.org/contentdata/resources/EQ/1578798/eq1748237_2.png",
+      "deaths": null,
+      "displaced": null,
+      "missing": null,
+      "severity_text": "Magnitude 6.5M, Depth:598km",
+      "impact_history": [],
+      "impact_description": null,
+      "detail_description": "Earthquake in Vanuatu Islands Region",
+      "report_detail_url": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=EQ&eventid=1578798"
     },
     {
       "latitude": -17.7049,
